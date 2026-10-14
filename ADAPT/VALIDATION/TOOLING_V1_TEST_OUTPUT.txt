@@ -1,0 +1,70 @@
+Command: python -B -m unittest discover -s ADAPT/EXPERIMENTS/STATE_READER/tests -p test_state_reader.py -v
+test_actual_canonical_template_acceptance (test_state_reader.StateReaderTests.test_actual_canonical_template_acceptance) ... ok
+test_actual_template_rejects_each_missing_duplicate_and_unknown_field (test_state_reader.StateReaderTests.test_actual_template_rejects_each_missing_duplicate_and_unknown_field) ... ok
+test_bom_crlf_and_alignment (test_state_reader.StateReaderTests.test_bom_crlf_and_alignment) ... ok
+test_deterministic_output_and_no_mutation (test_state_reader.StateReaderTests.test_deterministic_output_and_no_mutation) ... ok
+test_malformed_tables (test_state_reader.StateReaderTests.test_malformed_tables) ... ok
+test_missing_and_duplicate_fields (test_state_reader.StateReaderTests.test_missing_and_duplicate_fields) ... ok
+test_missing_file (test_state_reader.StateReaderTests.test_missing_file) ... ok
+test_valid_values_and_schema_order (test_state_reader.StateReaderTests.test_valid_values_and_schema_order) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 3.433s
+
+OK
+
+Command: python -B -m unittest discover -s ADAPT/EXPERIMENTS/OPERATOR_TOOLKIT/tests -p test_toolkit.py -v
+test_absent_evidence_file_and_limits (test_toolkit.ToolkitTests.test_absent_evidence_file_and_limits) ... ok
+test_authority_conflict (test_toolkit.ToolkitTests.test_authority_conflict) ... ok
+test_context_conflict (test_toolkit.ToolkitTests.test_context_conflict) ... ok
+test_declared_handoff_and_context_id_conflicts (test_toolkit.ToolkitTests.test_declared_handoff_and_context_id_conflicts) ... ok
+test_diagnostics_do_not_echo_malformed_artifact_values (test_toolkit.ToolkitTests.test_diagnostics_do_not_echo_malformed_artifact_values) ... ok
+test_duplicate_control_plane (test_toolkit.ToolkitTests.test_duplicate_control_plane) ... ok
+test_empty_binding_header_cannot_consume_next_line (test_toolkit.ToolkitTests.test_empty_binding_header_cannot_consume_next_line) ... ok
+test_end_to_end_determinism_and_no_mutation (test_toolkit.ToolkitTests.test_end_to_end_determinism_and_no_mutation) ... ok
+test_failures_do_not_mutate_instance (test_toolkit.ToolkitTests.test_failures_do_not_mutate_instance) ... ok
+test_git_queries_are_bounded_read_only (test_toolkit.ToolkitTests.test_git_queries_are_bounded_read_only) ... ok
+test_handoff_reference_outside_active (test_toolkit.ToolkitTests.test_handoff_reference_outside_active) ... ok
+test_human_output_and_usage_error (test_toolkit.ToolkitTests.test_human_output_and_usage_error) ... ok
+test_incomplete_scope (test_toolkit.ToolkitTests.test_incomplete_scope) ... ok
+test_invalid_references (test_toolkit.ToolkitTests.test_invalid_references) ... ok
+test_malformed_handoff_and_wrong_target (test_toolkit.ToolkitTests.test_malformed_handoff_and_wrong_target) ... ok
+test_malformed_registry (test_toolkit.ToolkitTests.test_malformed_registry) ... ok
+test_missing_active_handoff (test_toolkit.ToolkitTests.test_missing_active_handoff) ... ok
+test_missing_control_plane (test_toolkit.ToolkitTests.test_missing_control_plane) ... ok
+test_missing_repository_and_invalid_root (test_toolkit.ToolkitTests.test_missing_repository_and_invalid_root) ... ok
+test_missing_required_instance_file_and_inactive_rule (test_toolkit.ToolkitTests.test_missing_required_instance_file_and_inactive_rule) ... ok
+test_register_consistency_and_closed_preview (test_toolkit.ToolkitTests.test_register_consistency_and_closed_preview) ... ok
+test_schema_drift_and_invalid_enum (test_toolkit.ToolkitTests.test_schema_drift_and_invalid_enum) ... ok
+test_starter_placeholders_unverified_not_failed (test_toolkit.ToolkitTests.test_starter_placeholders_unverified_not_failed) ... ok
+test_state_reader_output_compatibility (test_toolkit.ToolkitTests.test_state_reader_output_compatibility) ... ok
+test_unknown_register_status (test_toolkit.ToolkitTests.test_unknown_register_status) ... ok
+test_unknown_workcell (test_toolkit.ToolkitTests.test_unknown_workcell) ... ok
+test_unsupported_next_action (test_toolkit.ToolkitTests.test_unsupported_next_action) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 12.719s
+
+OK
+
+Command: python -B -m unittest discover -s ADAPT/TOOLS/tests -p test_release.py -v
+test_conflicting_active_handoff_fails_closed (test_release.ReleaseTests.test_conflicting_active_handoff_fails_closed) ... ok
+test_distribution_refuses_existing_targets_and_detects_tampering (test_release.ReleaseTests.test_distribution_refuses_existing_targets_and_detects_tampering) ... ok
+test_five_contract_corrections_and_distribution_instructions (test_release.ReleaseTests.test_five_contract_corrections_and_distribution_instructions) ... ok
+test_fresh_scaffold_standalone_state_doctor_blocked_preview (test_release.ReleaseTests.test_fresh_scaffold_standalone_state_doctor_blocked_preview) ... ok
+test_generated_bound_preview_and_evidence_without_dev_import_paths (test_release.ReleaseTests.test_generated_bound_preview_and_evidence_without_dev_import_paths) ... ok
+test_missing_binding_and_invalid_stage_evidence (test_release.ReleaseTests.test_missing_binding_and_invalid_stage_evidence) ... ok
+test_mutation_paths_cannot_escape_scope (test_release.ReleaseTests.test_mutation_paths_cannot_escape_scope) ... ok
+test_ordinary_cli_creates_no_bytecode_or_persistent_state (test_release.ReleaseTests.test_ordinary_cli_creates_no_bytecode_or_persistent_state) ... ok
+test_root_readme_relative_links_and_runtime_manifest (test_release.ReleaseTests.test_root_readme_relative_links_and_runtime_manifest) ... ok
+test_scaffold_reproducibility_inventory_and_header_population (test_release.ReleaseTests.test_scaffold_reproducibility_inventory_and_header_population) ... ok
+test_stale_context_and_missing_approval_fail_closed (test_release.ReleaseTests.test_stale_context_and_missing_approval_fail_closed) ... ok
+test_subsequent_delta_requires_context_steward_review (test_release.ReleaseTests.test_subsequent_delta_requires_context_steward_review) ... ok
+test_trace_never_selects_or_authorizes (test_release.ReleaseTests.test_trace_never_selects_or_authorizes) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 11.071s
+
+OK
+
+Syntax checks: 11 Python files compiled in memory; no bytecode writes.

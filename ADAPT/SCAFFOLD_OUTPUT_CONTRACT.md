@@ -283,6 +283,30 @@ Memory Bank content is reference-only and is not live source authority.
 * EVIDENCE_STANDARD_BY_ROLE.md
 * MINIMAL_VIABLE_ADAPT_MODE.md
 
+## Required Tooling Distribution
+
+New instances also contain `ADAPT/TOOLS/` (alongside the sixteen governance
+directories), copied verbatim from the framework's `TOOLS/`, not generated.
+
+* TOOLS/adapt.py
+* TOOLS/supporting_modules/__init__.py
+* TOOLS/supporting_modules/operator.py
+* TOOLS/supporting_modules/state_reader.py
+* TOOLS/supporting_modules/instance_inventory.json
+* TOOLS/README.md
+* TOOLS/MANIFEST.json
+
+MANIFEST.json declares all runtime/documentation file SHA256 hashes. The scaffold
+must execute the tooling distribution and verification steps specified in
+SCAFFOLD_WORKFLOW_AGENT.md before reporting completion. No separate operator copy
+is required. Running operator commands remains optional. Existing instances are
+never migrated automatically.
+
+Additional canonical starters:
+
+* 08_TEMPLATES/OPERATOR_BINDING_TEMPLATE.md
+* 15_COMMANDS_AND_DRIVERS/TOOLING_DECISION_CONTRACT.md
+
 ## Population Rules
 
 * Populate project facts only from the project document or other explicitly accepted source truth.

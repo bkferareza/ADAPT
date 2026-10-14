@@ -90,4 +90,4 @@ CONTEXT_DELTA_ID: {{CONTEXT_DELTA_ID}}
 
 ## Placement Note
 
-This handoff must be placed in `06_HANDOFFS/ACTIVE/` and the control plane `ActiveHandoff` field must be updated to reference this HANDOFF_ID before the receiving workcell begins execution. Handoffs in `06_HANDOFFS/ARCHIVE/` are not active and must not be acted upon.
+This handoff must be placed in `06_HANDOFFS/ACTIVE/`. The Director binds its HANDOFF_ID to the receiving `ActiveWorkcell` under CONTROL_PLANE_SCHEMA.md before that workcell begins execution. An emitted escalation or outgoing handoff never replaces the emitter's active binding. Handoffs in `06_HANDOFFS/ARCHIVE/` are not active and must not be acted upon.

@@ -168,7 +168,8 @@ Record the detected mode in `PROJECT_CONTROL_PLANE.md` under `DeploymentMode` be
 12. Extract source truth.
 13. Infer project shape.
 14. Create or recover the full external ADAPT instance using canonical starters (see Canonical Starters section below).
-15. Populate starter artifacts required by the scaffold output contract.
+15. Populate starter artifacts required by the scaffold output contract. For a
+    NEW instance, automatically perform the Tooling Distribution step below.
 16. Record missing details as open questions and gaps.
 17. Do not create real workcells unless onboarding commands were provided.
 18. Keep project source mutation at `NO` unless the user explicitly requested a clear project shell or source mutation scope.
@@ -215,7 +216,7 @@ Do not pause between path resolution and scaffold creation merely to request app
 
 ### Copy, Do Not Generate
 
-The scaffold must copy each required file from `CANONICAL_STARTERS/` into the `{{ADAPT_INSTANCE_PATH}}` rather than generating starter file content from AI training knowledge.
+The scaffold must copy each required file from `CANONICAL_STARTERS/` into `{{ADAPT_INSTANCE_PATH}}/ADAPT` (or directly into the supplied path if it already names the inner ADAPT directory), rather than generating starter content from AI training knowledge.
 
 The canonical starters mirror the ADAPT instance folder structure. For each required file listed in `SCAFFOLD_OUTPUT_CONTRACT.md`, locate the corresponding file in `CANONICAL_STARTERS/` and copy it to the target path.
 
@@ -242,7 +243,9 @@ eight lines of the file matching `^[A-Z_]+:` — under the header key named belo
 | `{{INITIALIZATION_DATE}}` | `INITIALIZED:` | the scaffold date, ISO 8601 |
 | `{{DATE}}` | `LAST_UPDATED:` only | the scaffold date, ISO 8601 |
 
-Every other token is template-level and must survive untouched. This includes all
+Outside the explicit population steps (including the complete control-plane table
+and RoutingMode in the scope guardrail), every other token is template-level and
+must survive untouched. This includes instructional occurrences of
 occurrences of `{{PROJECT_NAME}}` and `{{DATE}}` in body text, tables, and examples.
 
 Template-level tokens also appear in header lines. These four are the most common and
@@ -255,7 +258,8 @@ are **not** substituted at scaffold time:
 | `{{WORKCELL_ID}}` | a workcell is onboarded |
 | `{{IDENTITY}}` | a workcell is onboarded |
 
-A surviving placeholder is only a POPULATION_FAILURE if it is instance-level.
+A surviving placeholder is a POPULATION_FAILURE only in an explicitly populated
+live field or an instance-level header.
 Template-level placeholders surviving scaffold completion are the expected state. The
 completion scan must report the two categories separately.
 
@@ -293,6 +297,28 @@ If a canonical starter file does not exist for a required output file, the AI mu
 2. Generate a best-effort version of the file using ADAPT governance principles.
 3. Mark the generated file with `GENERATED_FROM_TRAINING_KNOWLEDGE: YES` at the top.
 4. Flag it clearly in the initialization report.
+
+## Tooling Distribution (mandatory for NEW instances)
+
+The scaffold is agent-guided; there is no hidden general-purpose generator.
+After copying canonical starters, the scaffold agent MUST run:
+
+```text
+python {{ADAPT_FRAMEWORK_PATH}}/VALIDATION/distribute_tools.py --framework {{ADAPT_FRAMEWORK_PATH}} --instance {{ADAPT_INSTANCE_PATH}}/ADAPT
+python {{ADAPT_FRAMEWORK_PATH}}/VALIDATION/distribute_tools.py --framework {{ADAPT_FRAMEWORK_PATH}} --instance {{ADAPT_INSTANCE_PATH}}/ADAPT --verify
+```
+
+Quote all paths in the calling shell. If the resolved instance path already names
+the inner ADAPT directory, pass that directory directly. This narrow copy step
+creates only its TOOLS directory and verifies manifest hashes; it does not populate
+source truth, approve anything or scaffold the governance tree. Python 3.9+ is
+required; inability to copy/verify tooling is a scaffold failure, not a silent skip.
+TOOLS is copied verbatim: never substitute framework/template tokens in tool code
+or documentation. Source manifest and distributed file hashes must agree.
+
+During recovery of an EXISTING instance, do not add or overwrite TOOLS. A tooling
+upgrade is an explicitly authorized framework upgrade/backport, not recovery.
+The startup report records tool file count and distribution verification result.
 
 ## Source Truth Extraction
 

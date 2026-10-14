@@ -16,6 +16,7 @@ Defines exactly what each ADAPT role may and may not write, modify, or create. E
 | Frontend Workcell | LIMITED | NO | YES | LIMITED | LIMITED | YES | YES | NO | NO |
 | QA Workcell | LIMITED | NO | NO | YES | NO | YES | YES | NO | YES |
 | Planning Orchestrator | LIMITED | NO | NO | NO | NO | YES | NO | NO | NO |
+| Onboarding Orchestrator | LIMITED | NO | NO | NO | NO | YES | YES | NO | NO |
 | Context Steward | LIMITED | NO | NO | NO | NO | YES | NO | NO | NO |
 | Janitor | LIMITED | NO | NO | NO | NO | NO | NO | NO | NO |
 | Challenge Lane | LIMITED | NO | NO | NO | NO | YES | NO | NO | NO |
@@ -35,12 +36,32 @@ authorship at all.
 
 ## Notes for LIMITED Entries
 
+### Control-plane permission precedence
+
+CONTROL_PLANE_SCHEMA.md Field Classes governs control-plane writes. Its explicit
+Identity, Authority, State and Trace permissions apply before the restrictive
+role summaries below. State may be written by a lane discovering the condition;
+Trace only by the performer of the recorded activity. Neither grants assignment
+or identity authority. Direct human registry commands permit only their named
+CurrentAuthority recording and activity phase delegation; approval gates remain.
+Role-specific prohibitions below prohibit additional control-plane writes, not
+class permissions or explicit delegations. No toolkit command writes state.
+
+### Onboarding Orchestrator — LIMITED
+
+May create the approved identity's workcell artifacts and registry/onboarding
+records after Director approval under Gate 3. A direct human Onboard command
+permits CurrentAuthority recording under the schema's direct-command delegation;
+otherwise authority is assigned by the Director. No self-assignment, milestone
+assignment, source promotion, or other Authority/Identity edits are permitted.
+
 ### All Workcells — control plane discharge exception
 
 A workcell may make exactly one control-plane update when its current bounded action
 completes: discharge its own active handoff to CONSUMED/, clear `ActiveHandoff`, and set
 `CurrentPhase = READY_FOR_ASSIGNMENT`. It may not update any other control-plane field
-under this exception.
+under this exception. Independent State and Trace permissions remain governed by
+CONTROL_PLANE_SCHEMA.md; discharge does not restrict them or grant new authority.
 
 ### Director Lane — Can mutate source truth? — LIMITED
 The Director Lane may promote a source truth version and record it in SOURCE_TRUTH_VERSION_LOG.md. This requires human approval before the promotion record is written. The Director Lane may NOT modify the content of the source truth document itself. Content modifications require a new version, human approval, and re-extraction. Writing an acceptance criterion's lifecycle status — the Status column of ACCEPTANCE_CRITERIA.md, by the agent and under the conditions that file names for each value — is governance state, not source-truth content, and is permitted. Changing a criterion's text is content modification and remains prohibited.
@@ -82,7 +103,7 @@ The Planning Orchestrator may update: WORKCELL_ROADMAPS.md, DEPENDENCY_MAP.md, a
 The Context Steward may update: `LastContextDelta` field in PROJECT_CONTROL_PLANE.md (this specific field only), context pack artifacts (CP-IDs in the context pack folder), staleness records. It may NOT update: any governance register, accepted work records, decision log, or source truth.
 
 ### Janitor — Can mutate ADAPT control artifacts? — LIMITED
-The Janitor may: move consumed handoffs from ACTIVE/ to ARCHIVE/ (adding archive header only), compact resolved register entries (summarize in-place without deleting original IDs and resolution status). The Janitor may NOT: delete any record, modify accepted work records, modify decision log content, or alter any active artifact. All Janitor mutations are archive or compaction only.
+The Janitor may: move consumed handoffs from CONSUMED/ to ARCHIVE/ when their milestone closes (adding archive header only), compact resolved register entries (summarize in-place without deleting original IDs and resolution status). The Janitor never moves handoffs out of ACTIVE/: the receiving lane discharges its own completed handoff to CONSUMED/. The Janitor may NOT: delete any record, modify accepted work records, modify decision log content, or alter any active artifact. All Janitor mutations are archive or compaction only.
 
 ---
 

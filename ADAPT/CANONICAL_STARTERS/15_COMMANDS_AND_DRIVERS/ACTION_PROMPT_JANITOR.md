@@ -44,7 +44,7 @@ still requires it.
 
 The Janitor Orchestrator is authorized to:
 - Read all ADAPT folders and artifacts
-- Archive consumed handoffs (move from ACTIVE/ to ARCHIVE/ with provenance record)
+- Archive consumed handoffs at milestone close (move from CONSUMED/ to ARCHIVE/ with provenance record); never move a handoff out of ACTIVE/
 - Compact resolved history into summaries while preserving decisions, evidence references, and authoritative links
 - Flag stale, orphaned, or inconsistent artifacts for review
 
@@ -80,7 +80,7 @@ Finds superseded, duplicate, abandoned, or inconsistent ADAPT artifacts and reco
 
 **Actions**
 1. Scan the source truth folder for artifacts that reference a source truth version older than the current `SourceTruthVersion` in the control plane. Mark these as SUPERSEDED.
-2. Scan all handoff folders. For each handoff, check its status (ACTIVE / CONSUMED / ARCHIVED). Flag any handoff marked CONSUMED that is still in the ACTIVE/ folder — it should be archived.
+2. Scan all handoff folders. For each handoff, check its status (ACTIVE / CONSUMED / ARCHIVED). Flag any handoff marked CONSUMED that is still in ACTIVE/ for receiving-lane discharge and Director review. Do not move it. Only CONSUMED/ handoffs whose milestone has closed are archive candidates.
 3. Scan for duplicate artifact IDs (same ID in two different files) — flag as DUPLICATE.
 4. Scan for workcell folders that have no corresponding entry in WORKCELL_REGISTRY.md — flag as UNREGISTERED_WORKCELL_ARTIFACT.
 5. Scan for decision log entries that have been superseded by newer entries on the same topic — flag as SUPERSEDED_DECISION (for compaction consideration, not deletion).
@@ -109,20 +109,20 @@ To Handoff Archivist (for consumed handoffs ready to archive), to Orphan Task De
 ### 2. Handoff Archivist
 
 **Purpose**
-Archives consumed handoffs from the ACTIVE/ folder while preserving their provenance, status, final state, and retrieval paths so they remain traceable for audit and context recovery.
+Archives consumed handoffs from the CONSUMED/ folder when their milestone closes, preserving provenance, status, final state, and retrieval paths for audit and context recovery. Receiving lanes alone discharge completed handoffs from ACTIVE/ to CONSUMED/.
 
 **Inputs**
 - Stale artifact register (from Stale Artifact Detector)
-- ADAPT/06_HANDOFFS/ACTIVE/ folder
+- ADAPT/06_HANDOFFS/CONSUMED/ folder
 - ADAPT/06_HANDOFFS/ARCHIVE/ folder (target)
 
 **Actions**
-1. From the stale artifact register, identify all handoffs with recommended action ARCHIVE (CONSUMED handoffs still in ACTIVE/).
+1. From the stale artifact register, identify ARCHIVE candidates already in CONSUMED/ whose milestone has closed. Never archive from ACTIVE/.
 2. For each handoff to archive:
    a. Read the handoff file and confirm its status is CONSUMED (not ACTIVE or PENDING).
    b. Confirm the handoff's emitting agent and receiving agent have both recorded completion (check HANDOFFS.md for both parties).
    c. Append an archive header to the handoff file: archive date, archiving agent (Janitor), reason, retrieval path.
-   d. Move the handoff file from ACTIVE/ to ARCHIVE/ (create ARCHIVE/ subfolder organized by cycle or milestone if it does not exist).
+   d. Move the handoff file from CONSUMED/ to ARCHIVE/ (create ARCHIVE/ subfolder organized by cycle or milestone if it does not exist).
    e. Update the relevant HANDOFFS.md entry to record the archive path.
 3. Record all archived handoffs in the janitor report (see Cleanup Reporter).
 

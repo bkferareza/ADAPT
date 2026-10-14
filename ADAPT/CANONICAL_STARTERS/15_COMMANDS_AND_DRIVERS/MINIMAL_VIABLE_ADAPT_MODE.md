@@ -16,7 +16,7 @@ The following modules are required even in ADAPT Lite. They cannot be deferred o
 | `01_SOURCE_TRUTH` | `ADAPT/01_SOURCE_TRUTH/` | Requirements, business items, acceptance criteria, and open questions. Without source truth, there is no governed basis for any work. |
 | `02_DIRECTOR_LANE` | `ADAPT/02_DIRECTOR_LANE/` | Control plane, intake register, gap register, blocker register, and decision log. Without the Director Lane, there is no routing, no certification, and no cycle management. |
 | `06_HANDOFFS` | `ADAPT/06_HANDOFFS/` | Lite does not relax handoff emission. Every Atomic Handoff Dispatch cycle ends by emitting a handoff, and it needs somewhere to land. |
-| `15_COMMANDS_AND_DRIVERS` | `ADAPT/15_COMMANDS_AND_DRIVERS/` | Holds COMMAND_REGISTRY, STOP_RULES and HUMAN_APPROVAL_GATES. Lite relaxes none of the 18 commands, 14 stop rules or 11 approval gates, so none of them can be validated without it. |
+| `15_COMMANDS_AND_DRIVERS` | `ADAPT/15_COMMANDS_AND_DRIVERS/` | Holds COMMAND_REGISTRY, STOP_RULES and HUMAN_APPROVAL_GATES. Lite relaxes none of the 18 commands, 15 stop rules or 11 approval gates, so none of them can be validated without it. |
 | `08_TEMPLATES` | `ADAPT/08_TEMPLATES/` | All standard ADAPT templates. Required to ensure artifact consistency regardless of team size. |
 | `10_CONTEXT_ECONOMY` | `ADAPT/10_CONTEXT_ECONOMY/` | Context rules, context budgets, and context index. Required even in Lite mode — context overload risks are present for any team size. |
 | `11_ONBOARDING` | `ADAPT/11_ONBOARDING/` | Onboarding rules and role map. Required to properly register any workcell, even in a single-workcell instance. |
@@ -83,7 +83,7 @@ These governance properties are mandatory in ADAPT Lite. They are not simplified
 | **Evidence production** | Every completed action requires reviewable evidence. Team size does not reduce the evidence standard. |
 | **Handoff emission** | Every completed Atomic Handoff Dispatch cycle must emit a handoff. Even in a solo project, the handoff is the record of what was done and what comes next. |
 | **Human approval gates** | The 11 human approval gates in HUMAN_APPROVAL_GATES.md apply in ADAPT Lite. A small team does not bypass approval gates — the human approver may be the same person as the sole developer, but the approval must be explicit and recorded. |
-| **Stop rules** | All 14 stop rules in STOP_RULES.md apply in ADAPT Lite. Stopping when a stop condition is triggered is not optional for small teams. |
+| **Stop rules** | All 15 stop rules in STOP_RULES.md apply in ADAPT Lite. Stopping when a stop condition is triggered is not optional for small teams. |
 | **Director Lane** | ADAPT Lite requires the Director Lane even in solo projects. In a single-person project, the same person holds both the Director role and the workcell role — but the Director Lane artifacts (control plane, intake register, decision log) must still exist and be maintained. |
 
 ---

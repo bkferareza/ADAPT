@@ -16,6 +16,8 @@ sys.dont_write_bytecode = True
 spec = importlib.util.spec_from_file_location("toolkit", SCRIPT)
 toolkit = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(toolkit)
+sys.path.insert(0, str(FRAMEWORK / "TOOLS/tests"))
+from fixtures import enrich_dispatch
 
 
 class ToolkitTests(unittest.TestCase):
@@ -69,6 +71,7 @@ class ToolkitTests(unittest.TestCase):
                              "SOURCE_TRUTH_VERSION": "SOURCE_TRUTH_V0.1"}.items():
             context = context.replace("{{" + token + "}}", value)
         self.write("10_CONTEXT_ECONOMY/CONTEXT_PACKS/CP-0001.md", context)
+        enrich_dispatch(self.instance)
 
     def git(self, *args):
         return subprocess.run(["git", "-C", str(self.repo), *args], capture_output=True, check=True)
@@ -131,7 +134,7 @@ class ToolkitTests(unittest.TestCase):
                 if command[0] == "prompt":
                     self.assertFalse(data["execution_authorized"])
                     self.assertTrue(data["preview_only"])
-                    self.assertNotIn("invocation", data)
+                    self.assertEqual(data["invocation"]["command"], "Run atomic handoff dispatch")
                 if command[0] == "evidence":
                     self.assertEqual(data["changed_paths"], ["example.txt"])
                     self.assertEqual(len(data["artifacts"]), 3)
@@ -170,8 +173,8 @@ class ToolkitTests(unittest.TestCase):
         self.expect_fail("SCOPE_INCOMPLETE", "prompt", "next")
 
     def test_unsupported_next_action(self):
-        self.values["NextExpectedAction"] = "Run QA validation"
-        self.write_state()
+        ref = self.values["ActiveHandoff"]
+        self.write(ref, self.read(ref).replace("| Command | Run atomic handoff dispatch |", "| Command | Run QA validation |"))
         self.expect_fail("NEXT_SELECTION_UNSUPPORTED", "prompt", "next")
 
     def test_missing_repository_and_invalid_root(self):

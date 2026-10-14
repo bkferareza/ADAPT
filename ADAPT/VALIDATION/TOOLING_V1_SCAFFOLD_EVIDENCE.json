@@ -1,0 +1,1178 @@
+{
+  "evidence_class": "GROUNDED",
+  "scope": "Replay of documented mechanical fresh-scaffold steps and actual mandatory tool copy/verifier; not full agent-led semantic discovery/extraction certification",
+  "framework_version": "ADAPT-FW-0002",
+  "canonical_artifacts": 112,
+  "distributed_tool_files": 7,
+  "input_mutation": false,
+  "runtime_dependency_on_development_repo": false,
+  "outputs": {
+    "state": {
+      "exit_code": 0,
+      "output": {
+        "ProjectName": "Fixture",
+        "ProjectType": "Web App",
+        "DeploymentMode": "MODE_B_REQUIREMENTS_ONLY",
+        "RoutingMode": "PROTECTED_DEFAULT",
+        "InitializationMode": "FULL_EXTERNAL_ADAPT_INSTANCE_SCAFFOLD",
+        "SourceTruthVersion": "NONE",
+        "ActiveMilestone": "NONE",
+        "ActiveCycle": "NONE",
+        "ActiveHandoff": "NONE",
+        "CurrentAuthority": "Director Lane",
+        "ExecutionReadiness": "NEEDS_PLANNING",
+        "CurrentPhase": "INITIALIZED",
+        "ActiveWorkcell": "NONE",
+        "Blocked": "NO",
+        "ActiveBlockers": "NONE",
+        "ActiveGaps": "NONE",
+        "LastAction": "Synthetic mechanical scaffold replay 2026-10-15",
+        "LastContextDelta": "NONE",
+        "NextExpectedAction": "Run Director intake",
+        "LastConsolidatedAt": "NEVER",
+        "Notes": "Synthetic fixture, no execution authority"
+      },
+      "deterministic": true
+    },
+    "doctor": {
+      "exit_code": 0,
+      "output": {
+        "diagnostics": [
+          {
+            "id": "INSTANCE_DIR",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "00_FRAMEWORK"
+          },
+          {
+            "id": "INSTANCE_DIR",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "01_SOURCE_TRUTH"
+          },
+          {
+            "id": "INSTANCE_DIR",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "02_DIRECTOR_LANE"
+          },
+          {
+            "id": "INSTANCE_DIR",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "03_WORKCELLS"
+          },
+          {
+            "id": "INSTANCE_DIR",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "04_INTEGRATION"
+          },
+          {
+            "id": "INSTANCE_DIR",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "05_VALIDATION"
+          },
+          {
+            "id": "INSTANCE_DIR",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "06_HANDOFFS"
+          },
+          {
+            "id": "INSTANCE_DIR",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "06_HANDOFFS/ACTIVE"
+          },
+          {
+            "id": "INSTANCE_DIR",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "06_HANDOFFS/ARCHIVE"
+          },
+          {
+            "id": "INSTANCE_DIR",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "06_HANDOFFS/CONSUMED"
+          },
+          {
+            "id": "INSTANCE_DIR",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "07_GUARDRAILS"
+          },
+          {
+            "id": "INSTANCE_DIR",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "08_TEMPLATES"
+          },
+          {
+            "id": "INSTANCE_DIR",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "09_CHALLENGE_LANE"
+          },
+          {
+            "id": "INSTANCE_DIR",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "10_CONTEXT_ECONOMY"
+          },
+          {
+            "id": "INSTANCE_DIR",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "10_CONTEXT_ECONOMY/CONTEXT_DELTAS"
+          },
+          {
+            "id": "INSTANCE_DIR",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "10_CONTEXT_ECONOMY/CONTEXT_PACKS"
+          },
+          {
+            "id": "INSTANCE_DIR",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "10_CONTEXT_ECONOMY/CONTEXT_SUMMARIES"
+          },
+          {
+            "id": "INSTANCE_DIR",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "11_ONBOARDING"
+          },
+          {
+            "id": "INSTANCE_DIR",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "12_JANITOR"
+          },
+          {
+            "id": "INSTANCE_DIR",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "13_PLANNING"
+          },
+          {
+            "id": "INSTANCE_DIR",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "14_MEMORY_BANK"
+          },
+          {
+            "id": "INSTANCE_DIR",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "15_COMMANDS_AND_DRIVERS"
+          },
+          {
+            "id": "INSTANCE_DIR",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "TOOLS"
+          },
+          {
+            "id": "INSTANCE_DIR",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "TOOLS/supporting_modules"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "00_FRAMEWORK/ADAPT_FRAMEWORK.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "00_FRAMEWORK/ARTIFACT_STANDARDS.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "00_FRAMEWORK/GLOSSARY.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "00_FRAMEWORK/GOVERNANCE_RULES.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "00_FRAMEWORK/ROLE_MODEL.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "00_FRAMEWORK/SOURCE_AUTHORITY_POLICY.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "01_SOURCE_TRUTH/ACCEPTANCE_CRITERIA.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "01_SOURCE_TRUTH/BUSINESS_ITEMS.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "01_SOURCE_TRUTH/OPEN_QUESTIONS.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "01_SOURCE_TRUTH/REQUIREMENTS_INDEX.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "01_SOURCE_TRUTH/REQUIREMENT_SECTION_MAP.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "01_SOURCE_TRUTH/SOURCE_TRUTH_VERSION_LOG.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "02_DIRECTOR_LANE/ACCEPTED_WORK_REGISTER.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "02_DIRECTOR_LANE/BLOCKER_REGISTER.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "02_DIRECTOR_LANE/CARRY_OVER_REGISTER.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "02_DIRECTOR_LANE/DECISION_LOG.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "02_DIRECTOR_LANE/DEPENDENCY_MAP.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "02_DIRECTOR_LANE/DIRECTOR_IDENTITY.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "02_DIRECTOR_LANE/GAP_REGISTER.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "02_DIRECTOR_LANE/INTAKE_REGISTER.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "02_DIRECTOR_LANE/LANE_ASSIGNMENT_MATRIX.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "02_DIRECTOR_LANE/PROJECT_CONTROL_PLANE.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "02_DIRECTOR_LANE/WORKCELL_REGISTRY.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "03_WORKCELLS/README.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "03_WORKCELLS/ROLE_WORKCELL_BLUEPRINTS.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "04_INTEGRATION/API_CONTRACTS.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "04_INTEGRATION/INTEGRATION_CONTRACTS.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "04_INTEGRATION/INTEGRATION_GAPS.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "04_INTEGRATION/MERGE_READINESS.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "04_INTEGRATION/PIPELINE_STATUS.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "04_INTEGRATION/RELEASE_READINESS.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "04_INTEGRATION/UI_BE_CONTRACTS.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "05_VALIDATION/DEFECT_REGISTER.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "05_VALIDATION/QA_STRATEGY.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "05_VALIDATION/REGRESSION_RISK_MAP.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "05_VALIDATION/SIGNOFF_REGISTER.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "05_VALIDATION/TEST_CASE_INDEX.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "05_VALIDATION/VALIDATION_EVIDENCE.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "06_HANDOFFS/ACTIVE/README.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "06_HANDOFFS/ARCHIVE/README.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "06_HANDOFFS/CONSUMED/README.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "06_HANDOFFS/README.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "07_GUARDRAILS/CONTEXT_GUARDRAIL.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "07_GUARDRAILS/CONTRACT_GUARDRAIL.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "07_GUARDRAILS/EVIDENCE_GUARDRAIL.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "07_GUARDRAILS/HANDOFF_GUARDRAIL.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "07_GUARDRAILS/MUTATION_GUARDRAIL.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "07_GUARDRAILS/QA_INDEPENDENCE_GUARDRAIL.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "07_GUARDRAILS/SCOPE_GUARDRAIL.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "08_TEMPLATES/ACTION_PROMPT_ROLE_IDENTITY_TEMPLATE.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "08_TEMPLATES/BLOCKER_TEMPLATE.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "08_TEMPLATES/CONTEXT_DELTA_TEMPLATE.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "08_TEMPLATES/CONTEXT_PACK_TEMPLATE.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "08_TEMPLATES/DEFAULT_AGENT_BLUEPRINT_TEMPLATE.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "08_TEMPLATES/EFFECTIVE_WORKFLOW_TEMPLATE.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "08_TEMPLATES/EVIDENCE_REPORT_TEMPLATE.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "08_TEMPLATES/GAP_TEMPLATE.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "08_TEMPLATES/GUARDRAIL_BINDINGS_TEMPLATE.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "08_TEMPLATES/HANDOFF_TEMPLATE.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "08_TEMPLATES/OPERATOR_BINDING_TEMPLATE.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "08_TEMPLATES/SCOPE_CONTRACT_TEMPLATE.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "08_TEMPLATES/VALIDATION_REPORT_TEMPLATE.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "08_TEMPLATES/WORKCELL_IDENTITY_TEMPLATE.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "08_TEMPLATES/WORKFLOW_CHANGE_LOG_TEMPLATE.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "08_TEMPLATES/WORKFLOW_CHANGE_REQUEST_TEMPLATE.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "08_TEMPLATES/WORKFLOW_CUSTOMIZATION_TEMPLATE.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "09_CHALLENGE_LANE/CHALLENGE_IDENTITY.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "09_CHALLENGE_LANE/CHALLENGE_REGISTER.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "09_CHALLENGE_LANE/CHALLENGE_REPORT_TEMPLATE.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "10_CONTEXT_ECONOMY/CONTEXT_BUDGETS.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "10_CONTEXT_ECONOMY/CONTEXT_INDEX.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "10_CONTEXT_ECONOMY/CONTEXT_RULES.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "10_CONTEXT_ECONOMY/STALE_CONTEXT_REGISTER.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "11_ONBOARDING/ONBOARDING_REPORTS.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "11_ONBOARDING/ONBOARDING_REQUESTS.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "11_ONBOARDING/ONBOARDING_RULES.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "11_ONBOARDING/ROLE_TO_WORKCELL_MAP.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "12_JANITOR/ARCHIVE_CANDIDATES.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "12_JANITOR/CLEANUP_REPORTS.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "12_JANITOR/COMPACTION_SUMMARIES.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "12_JANITOR/JANITOR_RULES.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "12_JANITOR/STALE_ARTIFACT_REGISTER.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "13_PLANNING/CAPACITY_MODEL.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "13_PLANNING/DEPENDENCY_SEQUENCES.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "13_PLANNING/MILESTONE_PLANS.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "13_PLANNING/MILESTONE_REGISTER.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "13_PLANNING/OVEREXTENSION_RISK_REPORTS.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "13_PLANNING/PLANNING_RULES.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "13_PLANNING/WORKCELL_ROADMAPS.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "14_MEMORY_BANK/NOTES.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "14_MEMORY_BANK/REFERENCES_INDEX.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_CHALLENGE.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_CONTEXT_STEWARD.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_DIRECTOR.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_INTEGRATOR.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_JANITOR.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_MASTER.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_ONBOARDING.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_PLANNING.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_QA.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_WORKCELL.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "15_COMMANDS_AND_DRIVERS/COMMAND_REGISTRY.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "15_COMMANDS_AND_DRIVERS/COMMAND_ROUTING_MATRIX.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "15_COMMANDS_AND_DRIVERS/COMMAND_SYNTAX.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "15_COMMANDS_AND_DRIVERS/CONTEXT_BUDGET_POLICY.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "15_COMMANDS_AND_DRIVERS/CONTROL_PLANE_SCHEMA.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "15_COMMANDS_AND_DRIVERS/EVIDENCE_STANDARD_BY_ROLE.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "15_COMMANDS_AND_DRIVERS/HUMAN_APPROVAL_GATES.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "15_COMMANDS_AND_DRIVERS/MINIMAL_VIABLE_ADAPT_MODE.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "15_COMMANDS_AND_DRIVERS/MUTATION_PERMISSION_MATRIX.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "15_COMMANDS_AND_DRIVERS/STOP_RULES.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "15_COMMANDS_AND_DRIVERS/TOOLING_DECISION_CONTRACT.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "TOOLS/adapt.py"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "TOOLS/README.md"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "TOOLS/MANIFEST.json"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "TOOLS/supporting_modules/__init__.py"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "TOOLS/supporting_modules/operator.py"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "TOOLS/supporting_modules/state_reader.py"
+          },
+          {
+            "id": "INSTANCE_FILE",
+            "status": "PASS",
+            "message": "Required artifact exists",
+            "source": "TOOLS/supporting_modules/instance_inventory.json"
+          },
+          {
+            "id": "CP_STRUCTURE",
+            "status": "PASS",
+            "message": "All 21 fields parsed",
+            "source": "02_DIRECTOR_LANE/PROJECT_CONTROL_PLANE.md"
+          },
+          {
+            "id": "SCHEMA_COMPATIBILITY",
+            "status": "PASS",
+            "message": "Instance schema matches supported 21-field inventory",
+            "source": "15_COMMANDS_AND_DRIVERS/CONTROL_PLANE_SCHEMA.md"
+          },
+          {
+            "id": "CP_ENUM",
+            "status": "PASS",
+            "message": "Recognized value: DeploymentMode",
+            "source": "02_DIRECTOR_LANE/PROJECT_CONTROL_PLANE.md"
+          },
+          {
+            "id": "CP_ENUM",
+            "status": "PASS",
+            "message": "Recognized value: RoutingMode",
+            "source": "02_DIRECTOR_LANE/PROJECT_CONTROL_PLANE.md"
+          },
+          {
+            "id": "CP_ENUM",
+            "status": "PASS",
+            "message": "Recognized value: InitializationMode",
+            "source": "02_DIRECTOR_LANE/PROJECT_CONTROL_PLANE.md"
+          },
+          {
+            "id": "CP_ENUM",
+            "status": "PASS",
+            "message": "Recognized value: ExecutionReadiness",
+            "source": "02_DIRECTOR_LANE/PROJECT_CONTROL_PLANE.md"
+          },
+          {
+            "id": "CP_ENUM",
+            "status": "PASS",
+            "message": "Recognized value: CurrentPhase",
+            "source": "02_DIRECTOR_LANE/PROJECT_CONTROL_PLANE.md"
+          },
+          {
+            "id": "CP_ENUM",
+            "status": "PASS",
+            "message": "Recognized value: Blocked",
+            "source": "02_DIRECTOR_LANE/PROJECT_CONTROL_PLANE.md"
+          },
+          {
+            "id": "CP_PREREQUISITE",
+            "status": "WARN",
+            "message": "Recorded prerequisite state: NEEDS_PLANNING; no action authorized",
+            "source": "02_DIRECTOR_LANE/PROJECT_CONTROL_PLANE.md"
+          },
+          {
+            "id": "CP_VERSION",
+            "status": "PASS",
+            "message": "Source-truth version format",
+            "source": "02_DIRECTOR_LANE/PROJECT_CONTROL_PLANE.md"
+          },
+          {
+            "id": "CP_DATE",
+            "status": "PASS",
+            "message": "Consolidation date format",
+            "source": "02_DIRECTOR_LANE/PROJECT_CONTROL_PLANE.md"
+          },
+          {
+            "id": "CP-C01",
+            "status": "NOT_EXERCISED",
+            "message": "Control-plane consistency rule",
+            "source": "15_COMMANDS_AND_DRIVERS/CONTROL_PLANE_SCHEMA.md"
+          },
+          {
+            "id": "CP-C02",
+            "status": "PASS",
+            "message": "Control-plane consistency rule",
+            "source": "15_COMMANDS_AND_DRIVERS/CONTROL_PLANE_SCHEMA.md"
+          },
+          {
+            "id": "CP-C03",
+            "status": "NOT_EXERCISED",
+            "message": "Control-plane consistency rule",
+            "source": "15_COMMANDS_AND_DRIVERS/CONTROL_PLANE_SCHEMA.md"
+          },
+          {
+            "id": "CP-C04",
+            "status": "NOT_EXERCISED",
+            "message": "Control-plane consistency rule",
+            "source": "15_COMMANDS_AND_DRIVERS/CONTROL_PLANE_SCHEMA.md"
+          },
+          {
+            "id": "CP-C09",
+            "status": "PASS",
+            "message": "Control-plane consistency rule",
+            "source": "15_COMMANDS_AND_DRIVERS/CONTROL_PLANE_SCHEMA.md"
+          },
+          {
+            "id": "CP-C06",
+            "status": "PASS",
+            "message": "Authority is registered or recognized",
+            "source": "02_DIRECTOR_LANE/WORKCELL_REGISTRY.md"
+          },
+          {
+            "id": "CP-C05",
+            "status": "NOT_EXERCISED",
+            "message": "No declared active handoff",
+            "source": "15_COMMANDS_AND_DRIVERS/CONTROL_PLANE_SCHEMA.md"
+          },
+          {
+            "id": "CP-C10",
+            "status": "PASS",
+            "message": "Declared IDs agree with register",
+            "source": "02_DIRECTOR_LANE/BLOCKER_REGISTER.md"
+          },
+          {
+            "id": "CP-C11",
+            "status": "PASS",
+            "message": "Declared IDs agree with register",
+            "source": "02_DIRECTOR_LANE/GAP_REGISTER.md"
+          },
+          {
+            "id": "CP-C07",
+            "status": "NOT_CHECKED",
+            "message": "No cycle history evaluated",
+            "source": "15_COMMANDS_AND_DRIVERS/CONTROL_PLANE_SCHEMA.md"
+          },
+          {
+            "id": "CP-C08",
+            "status": "PASS",
+            "message": "Repository routing declaration matches control plane",
+            "source": "07_GUARDRAILS/SCOPE_GUARDRAIL.md"
+          },
+          {
+            "id": "DOCTOR_LIMITS",
+            "status": "NOT_CHECKED",
+            "message": "Approval, evidence stage records, scope semantics and context freshness are not certified",
+            "source": "02_DIRECTOR_LANE/PROJECT_CONTROL_PLANE.md"
+          }
+        ]
+      },
+      "deterministic": true
+    },
+    "prompt next": {
+      "exit_code": 1,
+      "output": {
+        "diagnostics": [
+          {
+            "id": "PREVIEW_STATE_UNVERIFIED",
+            "status": "FAIL",
+            "message": "Mandatory control-plane bindings are unresolved or unsupported",
+            "source": "02_DIRECTOR_LANE/PROJECT_CONTROL_PLANE.md"
+          }
+        ],
+        "result": "BLOCKED"
+      },
+      "deterministic": true
+    }
+  },
+  "instance_file_sha256": {
+    "00_FRAMEWORK/ADAPT_FRAMEWORK.md": "d276c3827f4ce42d5129cedd86982af0a972cfc624ce4331cea18ff1e9695c2b",
+    "00_FRAMEWORK/ARTIFACT_STANDARDS.md": "b452a2fd2ca0f6de285bd4dd269421cddae86e4c69d0a704362d18bb01907e30",
+    "00_FRAMEWORK/GLOSSARY.md": "72638e9c89a3c87f8a99dcfae83a718356248530ccec1ec26549528917755be4",
+    "00_FRAMEWORK/GOVERNANCE_RULES.md": "ae8d6e302a462f7de56ee8e938bd85eeb212c61078e1ee0c172f7cbf931b86ac",
+    "00_FRAMEWORK/ROLE_MODEL.md": "f670682e7ab6ac79b53e4362ca8aa27c3ecc0860264dd9c12967f26a59319a90",
+    "00_FRAMEWORK/SOURCE_AUTHORITY_POLICY.md": "4821f2f99fc4e51a433432acd4369c46b99af928a72c1f7d11a1894e646a7ea4",
+    "01_SOURCE_TRUTH/ACCEPTANCE_CRITERIA.md": "2fad0e3db6dcfd4894a036c8419530cfd96d667a5cc5a56947b293a3170bbaa1",
+    "01_SOURCE_TRUTH/BUSINESS_ITEMS.md": "a77df258311137d5abe522116648179fe340f5462a9316a92a6c0c4782f67588",
+    "01_SOURCE_TRUTH/OPEN_QUESTIONS.md": "727fc8cef164ffe8d7f0fc1582698f39a9d1afde29eda96784cc2c9a1a9e5863",
+    "01_SOURCE_TRUTH/REQUIREMENTS_INDEX.md": "df8f6f3c43dfcb500f7f598378be8bd30c652b3bdea1331c4b1945c1a7f1d1a6",
+    "01_SOURCE_TRUTH/REQUIREMENT_SECTION_MAP.md": "cb72f92dae1d0c85f3c6737099a34c0cc49713e6afd3c2393b51d33c7eaf18f3",
+    "01_SOURCE_TRUTH/SOURCE_TRUTH_VERSION_LOG.md": "4b88350071d80cca9f28509662fcd38a39dd619473905648c3bc7220657662e2",
+    "02_DIRECTOR_LANE/ACCEPTED_WORK_REGISTER.md": "9584a090476e56ea76455609a4199afb7f7a572f665c843b8d6456b03d992b43",
+    "02_DIRECTOR_LANE/BLOCKER_REGISTER.md": "2fa8d05e570d945e54e1f604cf7a262e6f3d2f4531b3d0b4edf6711b7e0a1024",
+    "02_DIRECTOR_LANE/CARRY_OVER_REGISTER.md": "a88a476321d21e48d99d2ff4589da41dc8a4c0a33e93c2292d2dc01db90a88cb",
+    "02_DIRECTOR_LANE/DECISION_LOG.md": "450b34fd85ea4396f532cce4904ed093c9b457fa0ecc290bdccefc364a97b61a",
+    "02_DIRECTOR_LANE/DEPENDENCY_MAP.md": "d388d03c4ada84cb149f3abd0badfdcefbc61e15b7d15a667ef032d95362846a",
+    "02_DIRECTOR_LANE/DIRECTOR_IDENTITY.md": "8e2120eff3329be419c1f2b483401efc0d7f895ce28f9a57b6098c56c916ded3",
+    "02_DIRECTOR_LANE/GAP_REGISTER.md": "be94d499b1be40874163abc55aff0dbf59b421a57c5dd7f1c6159e6ba9e7988d",
+    "02_DIRECTOR_LANE/INTAKE_REGISTER.md": "780de2c379899be8c7a6362fe7e072f8410eb77ceccb0ce885d98021e0edec78",
+    "02_DIRECTOR_LANE/LANE_ASSIGNMENT_MATRIX.md": "2fb21db70bebfd0f6dad0e4846c9cdc80cf02832462238b74d5bda9ab7692f1a",
+    "02_DIRECTOR_LANE/PROJECT_CONTROL_PLANE.md": "bf528c10a900526da814b0a673952e87821030b286a50738e22873fba018f66e",
+    "02_DIRECTOR_LANE/WORKCELL_REGISTRY.md": "2e6f50baa8ef9400e82180a066e3b379b08b68f80bbe0efc953caa2b84232f9e",
+    "03_WORKCELLS/README.md": "249c82267eebdb0f4d8d67a4355562fa15d9101ebb5c1f59ff8ddf9d12dc20b6",
+    "03_WORKCELLS/ROLE_WORKCELL_BLUEPRINTS.md": "bbcc0fdc67b92f42cdcb545b35f74e2d501ca63d48fc2ed15f7bea0cbd78d373",
+    "04_INTEGRATION/API_CONTRACTS.md": "5fd17350234172a18ad1788ab0d5ed89cc7709cdd0ad1c0841516e6d9f6b0985",
+    "04_INTEGRATION/INTEGRATION_CONTRACTS.md": "7c635bbd10a4c083cdcff40e9ae038a9568b706cf81c8068b9a5028c1c532776",
+    "04_INTEGRATION/INTEGRATION_GAPS.md": "0463578f3fcdedab5fe34fc05936faaa696b775167ff5747faf78bccf7d0a442",
+    "04_INTEGRATION/MERGE_READINESS.md": "ecfee01503c14aea5faef853244d29542255f4b377b14a6830ee09aac655fbfe",
+    "04_INTEGRATION/PIPELINE_STATUS.md": "1133a13ea9493e81196d107df13feefebb56b1bf7d8bb99af7538959cc7521fa",
+    "04_INTEGRATION/RELEASE_READINESS.md": "98642969ee7a419a09eed7dffbcb2d5672f2d2a9987c5fd7f83b59bb9d64750e",
+    "04_INTEGRATION/UI_BE_CONTRACTS.md": "84e5316414229278acbcf8bd0d199af9238efbc3399b854322f8c32be8fc518b",
+    "05_VALIDATION/DEFECT_REGISTER.md": "95b49ff3be59a840f41d597343ecee9e48d9d2adff5305b92a0c4d3a72c92575",
+    "05_VALIDATION/QA_STRATEGY.md": "48b28094fe323e92e6db3f6757ac1d29f9ed8a05af6cdebf8149244d824eadad",
+    "05_VALIDATION/REGRESSION_RISK_MAP.md": "ba046bb484e1c9713ce192fef2e19f82cb5682986085c8944dd4904e6ba47ee7",
+    "05_VALIDATION/SIGNOFF_REGISTER.md": "9a34479d4e61d32aef6c349f96c469793d5c3d3730c712f78aecf8560ac00c19",
+    "05_VALIDATION/TEST_CASE_INDEX.md": "7670e43e2fe9a4d92714910c171993f12b919cd0cbfaec036ffc0282dcd0ed04",
+    "05_VALIDATION/VALIDATION_EVIDENCE.md": "56eddac1ee147fb927c4c020d5f9c7e4399d9c22915ddb2998d844c9f67675ee",
+    "06_HANDOFFS/README.md": "131addc481f543a0c5baf4bf259a3bfa24463324fd3c8c9e89a77bac8ac98df7",
+    "06_HANDOFFS/ACTIVE/README.md": "2297912df56c793291b850e7a4b4265c8744348e71dfddfbe2369bd9634df442",
+    "06_HANDOFFS/ARCHIVE/README.md": "ce7b6205edeb2d347954f41868e44b3610f4801b520a4b772136dfa35e54e719",
+    "06_HANDOFFS/CONSUMED/README.md": "f1e8a2210cb40d4a4836afc36b2321d7e4342a712778cbbcdf12f701f31812ef",
+    "07_GUARDRAILS/CONTEXT_GUARDRAIL.md": "d8496885cad18ce77864069b372d33c05371147be656b42c24f9bb3ecb22663e",
+    "07_GUARDRAILS/CONTRACT_GUARDRAIL.md": "139f7c2f2f514a7d67121dc1c0b13d9aa521b32f2a69041be650965909730179",
+    "07_GUARDRAILS/EVIDENCE_GUARDRAIL.md": "acb773d1f4d8bb038429a42f80bd8c26bd8e5d2d53c48b7d8ce128d8ff1daeab",
+    "07_GUARDRAILS/HANDOFF_GUARDRAIL.md": "24eef771dcff176fc500837cc5c1b473233948a4a28bc6bbd8fb7739eac34723",
+    "07_GUARDRAILS/MUTATION_GUARDRAIL.md": "9f2aa5b719338c231dd84b688d06e661e6402d37cc9a70d60e67eadba85c816f",
+    "07_GUARDRAILS/QA_INDEPENDENCE_GUARDRAIL.md": "2b5f286c8c730a33ab52ab593c070a8f0c5a4794fd875e8180412427625265b6",
+    "07_GUARDRAILS/SCOPE_GUARDRAIL.md": "58a78cf816d93c03d1fb5c78bc1aef234175200f7a8d9bc634f9e7281e4c9d3e",
+    "08_TEMPLATES/ACTION_PROMPT_ROLE_IDENTITY_TEMPLATE.md": "cbd9e301c6be06f1d448eee30cd2af055a9d542666280980323dd118596c4023",
+    "08_TEMPLATES/BLOCKER_TEMPLATE.md": "6216a49fcdae4c2319255555289c6a3ef4c4d4e53a26489e7ebbc4db66ab3eee",
+    "08_TEMPLATES/CONTEXT_DELTA_TEMPLATE.md": "11b6262da7afacbe3581f2e153e4ac9ad8aeaaa379f5dc8270a26d41452c5d02",
+    "08_TEMPLATES/CONTEXT_PACK_TEMPLATE.md": "5ff863635411d5ba7098ab288be58ea924db275cb590b507548931fbeac66880",
+    "08_TEMPLATES/DEFAULT_AGENT_BLUEPRINT_TEMPLATE.md": "26bc417085d81ffbe1bacf2f316da5a41474f6c6e50aa4e332f16d32dc96e471",
+    "08_TEMPLATES/EFFECTIVE_WORKFLOW_TEMPLATE.md": "46224075bbb3ca956667096b34f9ae77639152a0ec9328b82c6e3da761d29471",
+    "08_TEMPLATES/EVIDENCE_REPORT_TEMPLATE.md": "a14d87fecc4134cebae79e0f10cc2bea9a56f7ebc71f88bb9b48223c2883399c",
+    "08_TEMPLATES/GAP_TEMPLATE.md": "5fe73b02a907cd4ca54186c088fec0ed3d1a49924f16a10df2e308c91fa17b7c",
+    "08_TEMPLATES/GUARDRAIL_BINDINGS_TEMPLATE.md": "6be2d8371da980104bb33ae30b22c32c7d03a32defb75901ae4c45e36c755a88",
+    "08_TEMPLATES/HANDOFF_TEMPLATE.md": "7f0d5e1a0c326e023ad41ba9ae635c94ace3ff06951b846ce8d2c95fabeb6215",
+    "08_TEMPLATES/OPERATOR_BINDING_TEMPLATE.md": "3e03cb763279046a2ec6e8a85ae1972b811ba79f287935df0c2b38a664bac434",
+    "08_TEMPLATES/SCOPE_CONTRACT_TEMPLATE.md": "d967e399e207875b43d7dba00b0aeef4cab5b064cc2a7a3139b16680aaf18fac",
+    "08_TEMPLATES/VALIDATION_REPORT_TEMPLATE.md": "f614753e6caf9d930cac3ce8d65530530eda0e1e4b3def613e400bef64e4ef76",
+    "08_TEMPLATES/WORKCELL_IDENTITY_TEMPLATE.md": "e50501de59b3323ac11492a06ff8f86d44503b53985b174d4982e5c98fb7c698",
+    "08_TEMPLATES/WORKFLOW_CHANGE_LOG_TEMPLATE.md": "834928a128168acb703b68600fb2c75cb0ab3243cb415e282daf3d9507a06b87",
+    "08_TEMPLATES/WORKFLOW_CHANGE_REQUEST_TEMPLATE.md": "b086b041a6ea1f61f37c1e42116703e405fbd0bd66c30789c567158f5216f1ef",
+    "08_TEMPLATES/WORKFLOW_CUSTOMIZATION_TEMPLATE.md": "18a7c382e131bc88f8f4f0829f0947f4b2faf10e7b7d36eb00b03e88150692c8",
+    "09_CHALLENGE_LANE/CHALLENGE_IDENTITY.md": "8f1c9509f20652a972dd9575e44c44bba6571bdeec21662728ea1af00e5b7c6e",
+    "09_CHALLENGE_LANE/CHALLENGE_REGISTER.md": "a289b887db4bf88310b24934dc8d77c87855cb2b996f6ce1bdc4ea7d52613d73",
+    "09_CHALLENGE_LANE/CHALLENGE_REPORT_TEMPLATE.md": "f461fe4217853e48529c3c1f9c66a1e472c11129fbc2525b83ab296ef3254a01",
+    "10_CONTEXT_ECONOMY/CONTEXT_BUDGETS.md": "be0b8e2702f7f5cf35f1be50f92a1fa8b4fee5875d2146630253caf0dd7d1e39",
+    "10_CONTEXT_ECONOMY/CONTEXT_INDEX.md": "fc6ce5f210848c70476a56352d18995889a53692bceca37b33debe98c382c8a2",
+    "10_CONTEXT_ECONOMY/CONTEXT_RULES.md": "4d5dd8db827c6f994528161dc2688e4ecda8579d8037560f3ae5bde8f58cd2ee",
+    "10_CONTEXT_ECONOMY/STALE_CONTEXT_REGISTER.md": "c0713330e5c02a1832d7633cfb3a143949de27880f6fa7f3664b2476089f47fc",
+    "11_ONBOARDING/ONBOARDING_REPORTS.md": "cf5f10794d41e2f806f8078ead0552b1681dc2937e4740c71ccce98d2432cac6",
+    "11_ONBOARDING/ONBOARDING_REQUESTS.md": "b04fe06ea9cc4ea10670ff4f0855a0767d66265b101c9bd6821f7988099db910",
+    "11_ONBOARDING/ONBOARDING_RULES.md": "e8b5fb9105c6d9f11c1614db8c0966dd5856b317631643cc3aedb90edcc5003e",
+    "11_ONBOARDING/ROLE_TO_WORKCELL_MAP.md": "8936e3d42dac9971a0a1fe4fa1f8112b91fd3fe89371c15f31bfe28e1e85a2b8",
+    "12_JANITOR/ARCHIVE_CANDIDATES.md": "f0b31daaffdb8f60d4112a9dfc5bf0aba46e53160d293e0e69b98c2481b339f3",
+    "12_JANITOR/CLEANUP_REPORTS.md": "b63dd0eed6d548e5e952f848911c04ed211c67f3b69e6cea72943c08a77062e8",
+    "12_JANITOR/COMPACTION_SUMMARIES.md": "0a264ec330b4e18abe0188198f808d7d9e8b12f441f66877165bba50468be858",
+    "12_JANITOR/JANITOR_RULES.md": "1048148817c601f3bf73cdbe7ce9e4d13ea0509d475e47318b4f4d7f3b40b255",
+    "12_JANITOR/STALE_ARTIFACT_REGISTER.md": "f15a5861ea664344fef6d4e21a96469b3c9fb165bb2efb83fceaf49040db4c51",
+    "13_PLANNING/CAPACITY_MODEL.md": "1ef88c01c27df3c7b853e982232dffd06100f400d260aea1d1b86491dc1ac386",
+    "13_PLANNING/DEPENDENCY_SEQUENCES.md": "07d76816285c87cbd88fe10c764a0af456aa7e00cf065dd0778a931efa02d405",
+    "13_PLANNING/MILESTONE_PLANS.md": "3159f91e032e412321ccc22d5c9abd755ef204290c72c1cc6b1529aa0806b1bd",
+    "13_PLANNING/MILESTONE_REGISTER.md": "fbb6ac12471c3ff180ce730cd12e253d20b9eda6b997b31d109f5775a9c75913",
+    "13_PLANNING/OVEREXTENSION_RISK_REPORTS.md": "00ca9ed6dab193014359af4def35880b4868c20f5f05f278eee43844b0ef9f1d",
+    "13_PLANNING/PLANNING_RULES.md": "97a8be9ca1d8541c14810c528299b8110cbae7d7a28c27108a3976dc1dac52a6",
+    "13_PLANNING/WORKCELL_ROADMAPS.md": "f07d283795a3489c4ac7ead17151aa0c7db3294c7580fde38003d67abf6db027",
+    "14_MEMORY_BANK/NOTES.md": "9aea67d7bad5361776c321583d63717912368f1622a4a489d779e1420375b955",
+    "14_MEMORY_BANK/REFERENCES_INDEX.md": "3387f16c640df1d13636a02785b397f362d262f8367b3162644fde7a10313fa1",
+    "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_CHALLENGE.md": "885dae58aa27823557367c0d8e4308be4135ae77570d46086e4cee175f9d22b7",
+    "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_CONTEXT_STEWARD.md": "7244f344e2b2c2637681c600df3582b95786244f55e36ffd0a0fd2523fbbe2e1",
+    "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_DIRECTOR.md": "004ce64844bf11f6ea3b27358da0a408032ffdaa4aad464fe5528df119a73908",
+    "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_INTEGRATOR.md": "172ef22852ec941b151a3869b2eaced626d3c10ddd94a3ad5075c3a7dbeefd69",
+    "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_JANITOR.md": "829b9468ac5e2781c2f47b71c5c0935fdf900fd3e93e224ebea47cbb66ea7b47",
+    "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_MASTER.md": "29c7dea40605ec2371c3bc4864c91f73c261efcbf5699d5bd420b3993aa62c61",
+    "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_ONBOARDING.md": "f4974807b39d20de1c1c0267d4f4258f85543d337c4f0b5dfde8795cb821d7a4",
+    "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_PLANNING.md": "310add589a1bb6afa1638ef65f2def9fa0d6e11694a2d06c45f26cbbaf23dd40",
+    "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_QA.md": "200f28a74e8062c97eb404fdce792a5d2a87c487a26cf867b32622a64edd4ff2",
+    "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_WORKCELL.md": "ffb08bee40cbb8fb42814fb53ab2eda97003e61225d8ffbdfb31aa09efb46f1a",
+    "15_COMMANDS_AND_DRIVERS/COMMAND_REGISTRY.md": "024029295f12b3bf3e023d0b3c4ff2db176fb5d1d81108e497806cee8197d12b",
+    "15_COMMANDS_AND_DRIVERS/COMMAND_ROUTING_MATRIX.md": "5761f22b3a64dddde940d6397419f4793f2a2483b023c3517ae6495e228ba41a",
+    "15_COMMANDS_AND_DRIVERS/COMMAND_SYNTAX.md": "f2b2435274a1ebcaf76921cb74ce73f130754b2c0f180cb7b01be3a63fbd5f9e",
+    "15_COMMANDS_AND_DRIVERS/CONTEXT_BUDGET_POLICY.md": "1386ce0a549a88d7e3f4aa988a249030b0f11122b3683ac8dfc052b68c174eaf",
+    "15_COMMANDS_AND_DRIVERS/CONTROL_PLANE_SCHEMA.md": "6b1cac90562a4d9ff3ddaac0aa9c1cff3c747b84d6865d01ee8b623f23e51444",
+    "15_COMMANDS_AND_DRIVERS/EVIDENCE_STANDARD_BY_ROLE.md": "a39cdf3421e1e61d94797de8aedc164e5ffae81bfccf64b458c42490fdc58ce7",
+    "15_COMMANDS_AND_DRIVERS/HUMAN_APPROVAL_GATES.md": "00529c1f109e5e45c2cd86815726885605dacf064ec9afd0d57eacf06d23a9b3",
+    "15_COMMANDS_AND_DRIVERS/MINIMAL_VIABLE_ADAPT_MODE.md": "cb1f1ce21011b9f5f143c21352a73b523319ba33d3c4c8a6b40d3904b7faa412",
+    "15_COMMANDS_AND_DRIVERS/MUTATION_PERMISSION_MATRIX.md": "3182f77f565fe06c6c60130cca46c536dd7dd5b8016ab2a9d58c9b2dd9506847",
+    "15_COMMANDS_AND_DRIVERS/STOP_RULES.md": "9226ad323f2bfd0ef360746923302da6c1b41ece1d2c1f1a6a97f605ea35ffd0",
+    "15_COMMANDS_AND_DRIVERS/TOOLING_DECISION_CONTRACT.md": "7dba83c058b9f5e6d09da3253349ed80549c499de093139648956413e7858cf0",
+    "TOOLS/adapt.py": "b86eee3f0667bda819d836ed50ed5b9c6b6a51834a44f158d8540c253df4e6c8",
+    "TOOLS/MANIFEST.json": "356b7eb0fd73ef3106308158564353444a82c24e7079a794ff0adb3abbbf1e78",
+    "TOOLS/README.md": "8cda0093f151955c974414b110ec0d6726978310021b34a3f2404c46b05de2e9",
+    "TOOLS/supporting_modules/instance_inventory.json": "84b9cb3fe34c9a162edf34ac5c1e432c7b753906fbb4fa8b2ed24e357bb5f1f7",
+    "TOOLS/supporting_modules/operator.py": "ab2473795a969de4f40dc7a0baddbe5a2999fcb25300c9b0a870570432be10c6",
+    "TOOLS/supporting_modules/state_reader.py": "aca049abc4caac9cecb99948c19202243bc305f8f035e5f4c12a0aedb6ddc05b",
+    "TOOLS/supporting_modules/__init__.py": "80955242325b35a9f4e5ad4a1a1ed6ab75d108fd72a7ed1605d5023ca2db3deb"
+  }
+}

@@ -31,6 +31,13 @@ This registry defines every supported ADAPT command: its authority requirements,
 
 ---
 
+## Optional read-only operator interface
+
+`TOOLS/adapt.py` offers state, doctor, prompt next and evidence. These inspect or
+prepare previews of existing records; they are not additional executing ADAPT
+commands. See TOOLING_DECISION_CONTRACT.md for explicit binding selection. No
+CLI result bypasses approval gates or authorizes execution.
+
 ## Notes
 
 1. **{{DOUBLE_BRACE}} placeholders** in command names (e.g., `{{DOCUMENT}}`, `{{MILESTONE_ID}}`, `{{IDENTITY}}`, `{{ROLE}}`, `{{WORKCELL_ID}}`, `{{GAP_ID}}`, `{{BLK_ID}}`, `{{ITEM}}`) must be replaced with actual values when issuing the command.

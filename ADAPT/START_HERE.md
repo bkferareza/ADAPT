@@ -205,6 +205,13 @@ After the report, stop.
 
 ---
 
+## Integrated Read-only Tooling
+
+New scaffolds automatically include `TOOLS/`, copied and hash-verified under
+`SCAFFOLD_WORKFLOW_AGENT.md`. Python 3.9+ is required for distribution and operator
+commands; Git is needed only for `evidence`. Tool use is optional and never grants
+execution authority. See `TOOLS/README.md`. Existing instances are not migrated.
+
 ## Framework Maintainer Orientation
 
 Reference for whoever maintains this framework. This section is not part of scaffold execution and changes nothing above.

@@ -152,7 +152,7 @@ Both modes must:
 
 1. **Use canonical starters** — all files not populated from source truth must be copied from `CANONICAL_STARTERS/` rather than generated from AI training knowledge.
 
-2. **Produce the same ADAPT instance folder structure** — 16 folders, all required files per `SCAFFOLD_OUTPUT_CONTRACT.md`.
+2. **Produce the same ADAPT instance folder structure** — 16 governance folders plus TOOLS, all required files per `SCAFFOLD_OUTPUT_CONTRACT.md`. New-instance creation automatically copies and verifies the tooling distribution; recovery never adds or overwrites tooling without an explicit upgrade decision.
 
 3. **End with the same ADAPT Startup / Initialization Report** — including deployment mode, paths, files created, open questions, gaps, and next recommended command.
 

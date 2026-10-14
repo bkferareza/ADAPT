@@ -1,0 +1,2 @@
+# Tool distribution hashes must survive clone/checkout newline settings.
+ADAPT/TOOLS/** text eol=lf

@@ -1,0 +1,12 @@
+{
+  "tooling_version": "1",
+  "framework_version": "ADAPT-FW-0002",
+  "files": {
+    "adapt.py": "b86eee3f0667bda819d836ed50ed5b9c6b6a51834a44f158d8540c253df4e6c8",
+    "README.md": "8cda0093f151955c974414b110ec0d6726978310021b34a3f2404c46b05de2e9",
+    "supporting_modules/__init__.py": "80955242325b35a9f4e5ad4a1a1ed6ab75d108fd72a7ed1605d5023ca2db3deb",
+    "supporting_modules/instance_inventory.json": "84b9cb3fe34c9a162edf34ac5c1e432c7b753906fbb4fa8b2ed24e357bb5f1f7",
+    "supporting_modules/operator.py": "ab2473795a969de4f40dc7a0baddbe5a2999fcb25300c9b0a870570432be10c6",
+    "supporting_modules/state_reader.py": "aca049abc4caac9cecb99948c19202243bc305f8f035e5f4c12a0aedb6ddc05b"
+  }
+}

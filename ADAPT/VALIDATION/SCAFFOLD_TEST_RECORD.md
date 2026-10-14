@@ -30,6 +30,7 @@ Read and Execute START_HERE.md
 ### Expected Outputs
 
 - Full ADAPT instance folder structure (16 folders: 00_FRAMEWORK through 15_COMMANDS_AND_DRIVERS)
+- TOOLS distribution included automatically, matching its manifest SHA256 hashes
 - All required starter files populated from canonical starters (CANONICAL_STARTERS/)
 - Existing-solution facts discovered from example-project into:
   - OPEN_QUESTIONS.md
@@ -45,8 +46,9 @@ Read and Execute START_HERE.md
 | Criterion | How to Verify |
 |-----------|--------------|
 | Every file listed in SCAFFOLD_OUTPUT_CONTRACT.md exists in the output | List all files in example-project_ADAPT_INSTANCE/ and compare against contract |
-| No angle-bracket placeholders remain in the output | Grep for `<[A-Z_]+>` across all generated files |
-| No unreplaced {{DOUBLE_BRACE}} placeholders remain in created files | Grep for `{{` across all generated files |
+| Tool distribution is runnable and complete | Run the mandatory distribute_tools.py copy/verify step; run generated TOOLS/adapt.py state and doctor; tools have no development-repository dependency |
+| Explicitly populated live fields contain no placeholders | Check all 21 control-plane values and RoutingMode; instructional examples are excluded |
+| Instance-level header tokens are populated; template tokens are preserved | Apply header-key substitution in SCAFFOLD_WORKFLOW_AGENT.md; report the two categories separately, never fail solely on preserved template tokens |
 | Generated `VERSION:` headers carry the source framework's declared version | Read `Current Framework Version` in the framework-root FRAMEWORK_LEARNING_REGISTER.md; confirm every generated `VERSION:` header substituted from the ADAPT_VERSION token carries exactly that value |
 | Discovered facts and gaps are recorded | Review BUSINESS_ITEMS.md, OPEN_QUESTIONS.md, and GAP_REGISTER.md for discovery results |
 | No existing application source code or configuration was mutated during scaffold | Compare example-project source files and configuration before and after scaffold |
@@ -59,6 +61,11 @@ Read and Execute START_HERE.md
 ---
 
 ## Test Execution Record
+
+The original full agent-led example-project test below remains pending. Tooling
+v1 mechanical fresh-scaffold/distribution and standalone execution results are
+recorded separately in TOOLING_V1_RELEASE.md with raw focused runner output.
+Those results do not certify arbitrary agent-led source discovery/extraction.
 
 | Field | Value |
 |-------|-------|
@@ -85,7 +92,7 @@ Before running this test:
 | Failure Type | Classification |
 |-------------|---------------|
 | Missing required file | CONTRACT_VIOLATION |
-| Unreplaced placeholder in source-truth file | POPULATION_FAILURE |
+| Unreplaced required live field or instance-level header token | POPULATION_FAILURE |
 | Application source code created | MUTATION_VIOLATION |
 | Real workcell created without onboarding command | WORKCELL_VIOLATION |
 | DeploymentMode not recorded | CONTROL_PLANE_FAILURE |
