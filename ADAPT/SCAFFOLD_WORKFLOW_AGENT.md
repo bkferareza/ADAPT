@@ -322,6 +322,13 @@ The startup report records tool file count and distribution verification result.
 
 ## Source Truth Extraction
 
+Scaffold extraction is CANDIDATE_TRUTH pending promotion, not Gate 1 approval.
+Preserve NONE / INITIALIZED at completion. The startup evidence records the source
+framework version/reference and frozen governing contract SHA256 hashes for the
+Director's later eligibility verification under SOURCE_AUTHORITY_POLICY.md,
+First-Promotion Initial Context Basis. Scaffold creation does not begin an attempt,
+promote a source, grant implementation authority or create a context pack.
+
 Extract:
 
 * project name

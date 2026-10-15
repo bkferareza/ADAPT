@@ -101,6 +101,18 @@ Before running this test:
 
 ---
 
+## Bounded first-promotion acceptance
+
+The separate MODE_B synthetic case for local version candidate ADAPT-FW-0003
+is documented in BOOTSTRAP_V2_REPORT.md with raw BOOTSTRAP_V2_ACCEPTANCE.json.
+It exercises current canonical copying, prescribed population, official tooling
+distribution, Director first promotion, Context Steward assembly and ordinary
+context/reuse rejection as separate agent-guided stages. Synthetic approval is
+test data only. Structural tests and Tooling v1 regressions are recorded separately
+in BOOTSTRAP_V2_TESTS.json. These results do not close the original MODE_A
+example-project test above, certify arbitrary extraction, certify a framework
+release, or count as a successful self-hosted development lane.
+
 ## Related Files
 
 - `START_HERE.md` — entry point

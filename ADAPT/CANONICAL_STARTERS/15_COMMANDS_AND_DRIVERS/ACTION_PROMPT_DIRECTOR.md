@@ -42,6 +42,16 @@ still requires it.
 
 ## Director Authority
 
+For the first Promote command, the Source Truth Agent must apply
+SOURCE_AUTHORITY_POLICY.md, First-Promotion Initial Context Basis, in full before
+any write. That procedure governs the reservation, source preservation, existing
+extraction/duplicate/quote checks, registration, completion and Steward handoff.
+The Director writes only its named fields: CurrentPhase, ExecutionReadiness,
+SourceTruthVersion, CurrentAuthority, LastAction, LastContextDelta and
+NextExpectedAction, within that procedure and CONTROL_PLANE_SCHEMA.md class
+permissions. Existing State writes record stops only. No adjacent Director agent
+operation is authorized; ordinary context is required after this completion.
+
 The Director Lane is authorized to:
 - Receive and validate incoming commands
 - Classify and route intake items

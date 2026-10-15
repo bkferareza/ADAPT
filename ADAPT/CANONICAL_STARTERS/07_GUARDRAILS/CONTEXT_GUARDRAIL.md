@@ -8,6 +8,15 @@ GUARDRAIL_ID: {{GUARDRAIL_ID_CONTEXT}}
 
 Execution must not proceed with stale, superseded, or untraced context.
 
+Before ordinary pack triggers, evaluate SOURCE_AUTHORITY_POLICY.md,
+First-Promotion Initial Context Basis, for the exact first-promotion action.
+PASS on that recorded basis requires every eligibility/scope/hash check; it is
+not an override or a valid unversioned pack. Uncertain eligibility, reuse, changed
+binding, adjacent action or unlawful partial-attempt recovery is STOP_REQUIRED.
+All ordinary triggers and the no-override rule below apply to every other action.
+After registration Context Steward uses its existing self-assembly rule against
+the registered version; failed assembly never reopens the initial basis.
+
 ## Trigger Conditions
 
 - The active context pack does not reference a specific source truth version identifier from 01_SOURCE_TRUTH/SOURCE_TRUTH_VERSION_LOG.md

@@ -74,6 +74,15 @@ Do not continue past Step 13. Do not begin the next action. Do not process the n
 
 ## Pre-Execution Checklist
 
+For the first Promote command only, apply SOURCE_AUTHORITY_POLICY.md,
+First-Promotion Initial Context Basis, at Steps 3-8 and this checklist. The verified
+basis replaces only the pre-existing source-version/context-pack prerequisite.
+Authority, Gate 1, other guardrails, evidence, retry limits and all thirteen steps
+remain. Steps 9-12 use that policy's exact file/field boundary, then STOP. For
+this promotion and the subsequent first Context Steward assembly only, the human
+request / Director-routed lane handoff supplies scope without an invented workcell
+scope contract. All ordinary operations retain their context/authority stops.
+
 Before beginning Step 8 (Execute), confirm all of the following:
 
 - [ ] Control plane has been read (Step 1 complete)

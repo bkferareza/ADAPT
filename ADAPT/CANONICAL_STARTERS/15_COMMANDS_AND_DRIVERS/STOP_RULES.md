@@ -10,6 +10,13 @@ Agents do not continue past a stop condition to "fix it and keep going." Stoppin
 
 ## Universal Stop Rules
 
+Rules 3 and 4 admit only the fully eligible Director action under
+SOURCE_AUTHORITY_POLICY.md, First-Promotion Initial Context Basis, in place of
+the pre-existing registered source/context prerequisite. No other stop is waived.
+Failed eligibility, uncertain history, changed binding, reuse or unlawful partial
+recovery is STOP_REQUIRED. After registration all ordinary context stops resume;
+Context Steward uses its existing self-assembly rule with the registered version.
+
 ---
 
 ### Stop Rule 1 — No Active Authority

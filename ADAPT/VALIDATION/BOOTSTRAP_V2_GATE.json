@@ -1,0 +1,94 @@
+{
+  "status": "ALL_REQUIRED_LOCAL_DELIVERY_GATES_PASS",
+  "baseline": "37f465782ef1fb69bc58da46bcc5969d6bea8220",
+  "local_version_candidate": "ADAPT-FW-0003",
+  "branch": "fix/initial-source-truth-bootstrap-v2",
+  "test_suite_counts": [
+    38,
+    8,
+    27
+  ],
+  "total_tests": 73,
+  "all_suite_exit_codes_zero": true,
+  "actual_scaffold_acceptance": "PASS",
+  "negative_acceptance_stops": [
+    {
+      "case": "Repeated bootstrap",
+      "outcome": "STOP_REQUIRED",
+      "reason": "STATE_CHANGED"
+    },
+    {
+      "case": "Ordinary promotion without context",
+      "outcome": "STOP_REQUIRED",
+      "reason": "ORDINARY_CONTEXT_MISSING"
+    },
+    {
+      "case": "Reset to NONE",
+      "outcome": "STOP_REQUIRED",
+      "reason": "PROMOTION_HISTORY"
+    },
+    {
+      "case": "Ordinary context stale source",
+      "outcome": "STOP_REQUIRED",
+      "reason": "ORDINARY_STALE"
+    }
+  ],
+  "frozen_source_hashes_verified": true,
+  "all_artifact_inverse_diffs_verified": true,
+  "contract_consistency": "Nine canonical contracts changed; 18 commands, 21 fields, 15 stop rules; Gate 1 and writer classes preserved. Codex review, not independent certification.",
+  "protected_instance_files_unchanged": 132,
+  "protected_directory_inventory_unchanged": true,
+  "worktree_sha256_unchanged": "3a65c16636d08333e318d380b807e6014af98d51f6fa13ce50bf18363d7073fb",
+  "exclude_sha256_unchanged": "4659c9a6d796f50dea541e08f9373fe5864c12164a2779277811ee551d4fd16e",
+  "remote_heads_before_commit": [
+    "37f465782ef1fb69bc58da46bcc5969d6bea8220\trefs/heads/feat/deterministic-state-reader",
+    "37f465782ef1fb69bc58da46bcc5969d6bea8220\trefs/heads/main"
+  ],
+  "local_main_unchanged": "37f465782ef1fb69bc58da46bcc5969d6bea8220",
+  "unchanged_runtime_and_schema_paths": [
+    "ADAPT/TOOLS/adapt.py",
+    "ADAPT/TOOLS/supporting_modules",
+    "ADAPT/TOOLS/MANIFEST.json",
+    "ADAPT/TOOLS/README.md",
+    "ADAPT/VALIDATION/distribute_tools.py",
+    "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/CONTROL_PLANE_SCHEMA.md",
+    "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/COMMAND_REGISTRY.md",
+    "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/HUMAN_APPROVAL_GATES.md",
+    "ADAPT/SCAFFOLD_OUTPUT_CONTRACT.md"
+  ],
+  "authorized_changed_file_inventory_including_this_record": [
+    "ADAPT/CANONICAL_STARTERS/00_FRAMEWORK/GOVERNANCE_RULES.md",
+    "ADAPT/CANONICAL_STARTERS/00_FRAMEWORK/SOURCE_AUTHORITY_POLICY.md",
+    "ADAPT/CANONICAL_STARTERS/07_GUARDRAILS/CONTEXT_GUARDRAIL.md",
+    "ADAPT/CANONICAL_STARTERS/10_CONTEXT_ECONOMY/CONTEXT_RULES.md",
+    "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_CONTEXT_STEWARD.md",
+    "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_DIRECTOR.md",
+    "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_MASTER.md",
+    "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/MUTATION_PERMISSION_MATRIX.md",
+    "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/STOP_RULES.md",
+    "ADAPT/FRAMEWORK_LEARNING_REGISTER.md",
+    "ADAPT/SCAFFOLD_WORKFLOW_AGENT.md",
+    "ADAPT/TOOLS/tests/test_bootstrap.py",
+    "ADAPT/VALIDATION/BOOTSTRAP_V2_ACCEPTANCE.json",
+    "ADAPT/VALIDATION/BOOTSTRAP_V2_GATE.json",
+    "ADAPT/VALIDATION/BOOTSTRAP_V2_REPORT.md",
+    "ADAPT/VALIDATION/BOOTSTRAP_V2_TESTS.json",
+    "ADAPT/VALIDATION/SCAFFOLD_TEST_RECORD.md",
+    "ADAPT/VALIDATION/bootstrap_case.py",
+    "ADAPT/VALIDATION/run_bootstrap_tests.py",
+    "README.md"
+  ],
+  "temporary_instances_or_protected_state_staged": false,
+  "publication_or_merge_authorized": false,
+  "certification": "NOT_PERFORMED; separate publication/adoption review required",
+  "validation_source_hashes": {
+    "ADAPT/TOOLS/tests/test_bootstrap.py": "53fb7723bb4b576b11a6fd7c7b8c960787d5c8e7bf6203eb8d9975f4471a92c4",
+    "ADAPT/VALIDATION/bootstrap_case.py": "2417b30cf6bfe8a500521d88b32a3937b41bb9cf8ab1da89ee5e4360cd22fed8",
+    "ADAPT/VALIDATION/run_bootstrap_tests.py": "859c22381d357b10ab6c7d58f88cbd3848693665d750b1cb3179ea535fb03ce4"
+  },
+  "evidence_hashes": {
+    "ADAPT/VALIDATION/BOOTSTRAP_V2_ACCEPTANCE.json": "6e6ad3805cecd1ed54783c5bc032c4c0052117e2cfaaa19d3f6c313e183ee02d",
+    "ADAPT/VALIDATION/BOOTSTRAP_V2_TESTS.json": "bfbac9ca1b9804c9d06c3f27f29d29d8bc5b59502e477de5a6d4f1906b6418c9"
+  },
+  "evidence_line_endings": "LF; staged Git blob SHA256 verified against recorded evidence/source digests"
+}

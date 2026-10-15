@@ -52,6 +52,10 @@ ASSERTED evidence is not a validation result.
 ### Rule 6 — Context Traceability
 Context packs must reference specific source truth versions and active handoff identifiers. Missing or untraced context must be recorded as GAP-T11 Context Gap before execution proceeds. Stale context from prior cycles must not be passed as current.
 
+Sole first-promotion qualification: SOURCE_AUTHORITY_POLICY.md, First-Promotion
+Initial Context Basis. All eligibility, scope, expiry and recovery conditions
+apply together. This never validates an ordinary unversioned context pack.
+
 ### Rule 7 — Handoff Completion
 A lane must emit a handoff before stopping. Silent continuation past the next handoff boundary is forbidden. If a handoff cannot be emitted (missing state, blocked, incomplete evidence), the lane must stop and record a blocker.
 
@@ -66,6 +70,10 @@ Memory Bank documents in 14_MEMORY_BANK/ are reference-only. Memory Bank content
 
 ### Rule 11 — Workcell Identity
 Every ADAPT execution must occur under a single, identified workcell identity. Executing under an ambiguous or missing identity is forbidden. See WORKCELL_ONBOARDING_CONTRACT.md for identity binding rules.
+
+For only the first promotion and its first ordinary context assembly under
+SOURCE_AUTHORITY_POLICY.md, the identified Director Lane / Context Steward lane
+identities satisfy this rule. No implementation workcell is created or implied.
 
 ### Rule 12 — No Workcell Self-Assignment
 Workcells must not assign themselves new work. Work assignments come from the Director Lane via handoffs. A workcell that encounters unassigned work must record a gap or blocker and route to the Director.

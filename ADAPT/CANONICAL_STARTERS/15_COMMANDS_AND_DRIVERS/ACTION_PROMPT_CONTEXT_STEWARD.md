@@ -42,6 +42,16 @@ still requires it.
 
 ## Context Steward Authority
 
+For the first ordinary pack after registration, follow SOURCE_AUTHORITY_POLICY.md,
+First-Promotion Initial Context Basis, first ordinary context procedure. The explicit
+Director handoff in ACTIVE/ addressed to Context Steward supplies the lane-only
+scope to recovery, sizing, selection and assembly agents while ActiveWorkcell
+and ActiveHandoff stay NONE. Use the registered version and existing self-assembly
+rule; the initial basis is already consumed. Index the CP-ID in CONTEXT_INDEX.md:
+for this transition this replaces the builder's step 4 below. LastContextDelta
+contains the real processed/produced CD-ID, never CP-ID or PENDING_DELTA. No
+Authority field is written; ordinary evidence/delta/delivery and STOP still apply.
+
 The Context Steward is authorized to:
 - Read any ADAPT artifact for the purpose of assembling context
 - Assemble context packs for any active handoff

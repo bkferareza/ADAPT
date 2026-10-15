@@ -23,6 +23,114 @@ To promote a document as source truth:
 5. The document is assigned a version identifier: e.g., SOURCE_TRUTH_V0.1
 6. All downstream work must trace to the promoted version
 
+## First-Promotion Initial Context Basis
+
+The existing `Promote {{DOCUMENT}} as {{SOURCE_TRUTH_VERSION}}` command has one
+governed alternative to its ordinary context-pack prerequisite. This initial
+basis is not an ordinary context pack or a general authorization token. It is
+limited to preparation, recording, required extraction and completion evidence
+for the FIRST promotion. All later promotions require valid ordinary context.
+
+### Eligibility: all conditions required
+
+- A valid canonical-derived instance with a known frozen framework version,
+  source reference and hashes of the governing contracts; the full control plane
+  passes CONTROL_PLANE_SCHEMA.md consistency rules.
+- `SourceTruthVersion = NONE`, `CurrentPhase = INITIALIZED`; `ActiveWorkcell`,
+  `ActiveHandoff`, `ActiveMilestone` and `ActiveCycle` all `NONE`. Actual registers
+  and artifacts also show no active implementation workcell, execution lane,
+  milestone, cycle or handoff. NONE alone never establishes eligibility.
+- No prior promotion exists in the full source-version log, intake/decision
+  evidence or retained archived/superseded history. Verify history completeness;
+  missing or contradictory history is uncertainty, not evidence of absence.
+  A pending scaffold document is not a promotion.
+- The current human request identifies one exact source document and unused
+  version label, with traceable applicable Gate 1 human approval. Bind that
+  request and approval to the document identity, SHA256, version and scope.
+  Scaffold initiation is not promotion approval; AI-written approval claims
+  cannot substitute for the human evidence.
+- The entire source is readable, nonempty and complete for this promotion. Its
+  exact bytes and intended preservation location are bound to SHA256.
+- The executor is the identified Director Lane / Source Truth Agent under the
+  existing Director identity and permissions. CurrentAuthority must lawfully
+  name Director Lane. No uncertain authority or unresolved eligibility conflict
+  may be inferred away. Every failed check is STOP_REQUIRED.
+
+### Procedure and exact mutation boundary
+
+1. Record the initial basis in the promotion evidence report, referenced from
+   INTAKE_REGISTER.md and an append-only DECISION_LOG.md attempt reservation.
+   Make the durable reservation before other promotion writes. The basis
+   contains the human request/approval references, document identity and original
+   location/hash, unused version, frozen contract references/hashes, full initial
+   control-plane snapshot, history search/results, Director identity/permissions,
+   size and guardrail checks, exact allowed writes and before hashes, and stage
+   attempts. A recorded incomplete attempt precludes a fresh attempt.
+2. Preserve the source bytes at a new immutable path inside `01_SOURCE_TRUTH/`.
+   Record that location and hash. Never edit the source. Compare both original
+   and preserved bytes with the bound hash again immediately before registration.
+3. Follow the existing Source Truth Agent extraction, duplicate comparison and
+   verbatim-quote checks. Reuse matching scaffold candidate IDs; acceptance
+   criteria remain DRAFT. No accepted work, milestone acceptance or QA signoff.
+4. Register the approved version in SOURCE_TRUTH_VERSION_LOG.md, using its existing
+   columns. Key Changes references the promotion evidence with exact document
+   paths/hash, timestamp, approval and extraction summary. Registration consumes
+   the initial basis immediately; only the declared completion evidence/state
+   for this same promotion may still be finished under it.
+5. Produce the evidence report and Context Delta, with all engaged stages and
+   non-engaged agents/reasons, before/after SHA256 and exact permitted differences
+   for every changed file. Governance evidence traces to the attempt and contracts;
+   never fabricate a workcell, BI-ID or CP-ID to fill a template.
+6. Emit a canonical handoff in ACTIVE/ addressed to Context Steward, referencing
+   the registered version, evidence and CD-ID. Explicit Director routing permits
+   only first ordinary context assembly for promotion review. Stop at Step 13.
+
+Allowed file writes: the immutable source copy; intake, append-only decision/
+attempt evidence; SOURCE_TRUTH_VERSION_LOG.md, REQUIREMENTS_INDEX.md,
+BUSINESS_ITEMS.md, ACCEPTANCE_CRITERIA.md (DRAFT only), REQUIREMENT_SECTION_MAP.md
+and OPEN_QUESTIONS.md as required for extraction; the declared promotion evidence,
+Context Delta, handoff and named control-plane fields. Existing schemas apply.
+No unrelated rows or files may change. Product code, implementation workcells,
+framework edits, new scope approval, standing delegation and adjacent Director
+operations are forbidden under this basis.
+
+The Director may write `CurrentPhase = SOURCE_TRUTH_LOADING` and
+`ExecutionReadiness = NOT_READY` during preparation. Completion writes only
+`SourceTruthVersion = <registered version>`, `CurrentPhase = SOURCE_TRUTH_READY`,
+`ExecutionReadiness = NEEDS_CONTEXT`, `LastAction`, `LastContextDelta` (actual CD-ID),
+`NextExpectedAction`, and `CurrentAuthority = Context Steward` for this routing.
+ActiveWorkcell, ActiveHandoff, ActiveMilestone and ActiveCycle remain NONE;
+Identity fields and RoutingMode are unchanged. Existing State permissions still
+record discovered stops and reconcile against registers. No READY transition is
+permitted without the ordinary CP-C03 prerequisites.
+
+### First ordinary context and termination
+
+Context Steward uses its existing self-assembly rule with the registered version,
+control plane and Director-issued handoff addressed to it in ACTIVE/. For this
+lane-only assembly the routed request supplies scope; no workcell or scope
+contract is invented and ActiveHandoff remains NONE. Verify the completed
+promotion, source hash, approval and evidence, process the CD-ID, and create/index
+the first ordinary CP-ID with scope, provenance, exclusions and staleness checks.
+Name the active delivery handoff for Director review as the pack's task handoff;
+retain the consumed assembly request as provenance. Discharge that request before
+emitting the delivery handoff. Neither lane handoff becomes ActiveHandoff.
+Context Steward writes no Authority field and never writes a CP-ID or PENDING_DELTA
+into LastContextDelta. Its evidence/delta/delivery follow ordinary dispatch and
+stop at the boundary. Pack creation alone authorizes no further Director action,
+implementation or READY state; all ordinary context requirements resume.
+
+Any promotion history permanently excludes bootstrap, even after resetting
+SourceTruthVersion to NONE. Failed first-pack creation never reopens it.
+Changed approval, document, hash, version or scope invalidates an attempt. Partial
+writes fail closed: preserve reservation/history/evidence; no false completion,
+history deletion or fresh retry. Only evidence-backed reconciliation of the SAME
+recorded incomplete attempt is possible where existing recovery authority permits,
+with unchanged bindings and the existing one-correction limit. SOURCE_TRUTH_LOADING
+is never fresh eligibility. After registration, reconciliation may finish only
+missing completion evidence/state, never promote again. Missing evidence or
+authority requires a stop and human route; no new recovery permission is created.
+
 ## Version Identifier Format
 
 Source truth versions use: SOURCE_TRUTH_V{{MAJOR}}.{{MINOR}}

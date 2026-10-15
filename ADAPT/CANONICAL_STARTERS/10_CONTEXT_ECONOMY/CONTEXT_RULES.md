@@ -13,6 +13,12 @@ These rules govern how context is assembled, used, validated, and retired within
 
 Every bounded ADAPT action requires a context pack assembled by the Context Steward. Ad-hoc context pulled directly from memory or training knowledge is not permitted as the basis for ADAPT actions.
 
+The sole alternate initial basis is SOURCE_AUTHORITY_POLICY.md, First-Promotion
+Initial Context Basis, for its eligible Director promotion and required completion
+evidence only. It is not a context pack. Rule 2 applies to every ordinary pack,
+including the first pack built by Context Steward after version registration
+using its existing self-assembly rule. No other bounded action is exempted.
+
 ## Rule 2 — Source Truth Version Reference
 
 Context packs must reference a specific source truth version from SOURCE_TRUTH_VERSION_LOG.md. Unversioned context is not valid.

@@ -23,6 +23,15 @@ Defines exactly what each ADAPT role may and may not write, modify, or create. E
 
 ---
 
+## First-promotion boundary
+
+Under SOURCE_AUTHORITY_POLICY.md, First-Promotion Initial Context Basis, the
+Director's file and control-field permissions are restricted to that procedure's
+declared allowlist. An exact immutable source copy is permitted, never source
+editing. Context Steward retains its existing context/delta/handoff permissions
+and schema class precedence. No product, framework, scope approval, certification,
+QA signoff, delegation or adjacent Director authority follows from this basis.
+
 ## Memory Bank Write Authority
 
 14_MEMORY_BANK/ (NOTES.md, REFERENCES_INDEX.md, and named reference documents within
