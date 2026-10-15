@@ -48,21 +48,32 @@ A disposed candidate is never deleted. Introduced In (an ADAPT-FW-NNNN label), B
 ## Candidates
 
 FLC-002 is raised from the Human Owner-confirmed FRAMEWORK_BOOTSTRAP_CONTRACT_GAP
-in ADAPT-SELF-HOST-001. The current Human Owner / Framework Maintainer directive,
+in ADAPT-SELF-HOST-001. The initial Human Owner / Framework Maintainer directive,
 ADAPT — BOOTSTRAP RECOVERY MILESTONE (2026-10-16), reaffirms the accepted bounded
 correction and authorizes external framework implementation, validation and a
 local maintenance commit only. No publication or instance adoption is authorized.
 This records supplied human authority, not an AI self-approval or historical signature.
 
-FLC-002 is incorporated locally under that supplied maintainer disposition.
+FLC-002 was incorporated locally under that supplied maintainer disposition.
 ADAPT-FW-0003 is the next label after ADAPT-FW-0002, advanced once for this single
-authorized patch. It is a local version candidate pending publication review,
-not an issued release or instance adoption. The interrupted, recovered attempt
-created no published successor. No issued label or published lineage is redefined.
-The local commit is gated on VALIDATION/BOOTSTRAP_V2_REPORT.md and its raw evidence.
+authorized patch. The interrupted, recovered attempt created no published
+successor. No issued label or published lineage is redefined.
+
+The Human Owner's subsequent BOOTSTRAP V2 FINAL ACCEPTANCE AND RELEASE directive
+(2026-10-16) explicitly authorizes publication to GitHub main only after MODE_A
+acceptance, existing MODE_B verification, regressions, integrity and governance
+gates pass. This supplied conditional Framework Maintainer release decision
+supersedes the earlier local-only delivery limit. No additional release approval
+is required by this register or Rule 14; no AI self-approval, independent QA,
+instance adoption or self-hosted development-lane success is implied. The gate
+and both deployment modes are recorded in VALIDATION/BOOTSTRAP_V2_GATE.json,
+VALIDATION/BOOTSTRAP_V2_ACCEPTANCE.json and VALIDATION/BOOTSTRAP_V2_REPORT.md.
+Release completion is verified against remote refs; a prepared record alone
+does not claim that a push has happened. No further version increment accompanies
+this validation/documentation completion of the same FLC-002 patch.
 
 | FLC-ID | Observed In | Evidence | Novelty Dimensions | Solution-Specific Portion | Proposed Generic Change | Disposition | Decision | Introduced In | Backport | Upgrade Assessment |
 |---|---|---|---|---|---|---|---|---|---|---|
 
 | FLC-001 | Tooling v1 consolidation, 2026-10-15; owner-raised framework gap review | GROUNDED: VALIDATION/TOOLING_V1_TEST_OUTPUT.txt, TOOLS/MANIFEST.json; ASSERTED summary: VALIDATION/TOOLING_V1_RELEASE.md | GOVERNANCE_COMBINATION, VALIDATION_MECHANISM | No client instance or solution-specific changes | Align placeholder validation, lifecycle ownership and schema write precedence; distribute read-only tools with explicit handoff-bound preview and reproducible copy verification | PROMOTED | Current repository-owner/Framework Maintainer directive: ADAPT — TOOLING V1 COMPLETION AND PUBLICATION; explicitly authorizes this scoped correction, promotion and publication after validation. Recorded on behalf of that human authority, not an AI/Director self-approval or historical signature. See VALIDATION/TOOLING_V1_RELEASE.md. | ADAPT-FW-0002 | ELIGIBLE | REQUIRED |
-| FLC-002 | ADAPT-SELF-HOST-001; owner-confirmed FRAMEWORK_BOOTSTRAP_CONTRACT_GAP | GROUNDED: original contracts at 37f465782ef1fb69bc58da46bcc5969d6bea8220, VALIDATION/BOOTSTRAP_V2_ACCEPTANCE.json, VALIDATION/BOOTSTRAP_V2_TESTS.json; ASSERTED interpretation: VALIDATION/BOOTSTRAP_V2_REPORT.md | EXECUTION_PATH, GOVERNANCE_COMBINATION | No instance-specific operational state incorporated; frozen instance unchanged | Single-use first-promotion initial basis followed by ordinary versioned Context Steward assembly | PROMOTED | Current Human Owner / Framework Maintainer BOOTSTRAP RECOVERY MILESTONE directive, 2026-10-16: bounded external framework correction, validation and local commit only. Recorded on behalf of that human; incorporation is local, with no publication, independent certification or adoption claimed. | ADAPT-FW-0003 | ELIGIBLE | REQUIRED |
+| FLC-002 | ADAPT-SELF-HOST-001; owner-confirmed FRAMEWORK_BOOTSTRAP_CONTRACT_GAP | GROUNDED: original contracts at 37f465782ef1fb69bc58da46bcc5969d6bea8220, VALIDATION/BOOTSTRAP_V2_ACCEPTANCE.json (original MODE_B and final MODE_A), VALIDATION/BOOTSTRAP_V2_TESTS.json, VALIDATION/BOOTSTRAP_V2_GATE.json; ASSERTED interpretation, affected contracts and limitations: VALIDATION/BOOTSTRAP_V2_REPORT.md | EXECUTION_PATH, GOVERNANCE_COMBINATION | No instance-specific operational state incorporated; frozen instance unchanged | Single-use first-promotion initial basis followed by ordinary versioned Context Steward assembly | PROMOTED | Human Owner / Framework Maintainer BOOTSTRAP RECOVERY MILESTONE approved local implementation; subsequent BOOTSTRAP V2 FINAL ACCEPTANCE AND RELEASE, 2026-10-16, explicitly authorizes publication after recorded MODE_A/MODE_B, regression, integrity and governance gates pass. Recorded on behalf of that human; no independent certification or adoption claimed. | ADAPT-FW-0003 | ELIGIBLE | REQUIRED |

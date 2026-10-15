@@ -195,9 +195,15 @@ def command(base, args, expected=0):
 
 
 def cli(base, root, *args, expected=0):
+    manifest = json.loads(read(root, "TOOLS/MANIFEST.json"))
+    need(all(sha(root / "TOOLS" / name) == digest for name, digest in manifest["files"].items()), "TOOL_MANIFEST")
     before = snapshot(root)
     value = command(base, [sys.executable, "-B", root / "TOOLS/adapt.py", *args, "--instance", root, "--json"], expected)
     need(before == snapshot(root), "TOOL_MUTATED_INSTANCE")
+    journal = json.loads(read(base, "commands.json"))
+    journal[-1].update(manifest_inspected_before_invocation=True, manifest_sha256=sha(root / "TOOLS/MANIFEST.json"), tool_bypass=False,
+                       limitations="Read-only inspection/preview; exit 0 is not execution authority. Lane-only bootstrap is agent-guided, not executed by these tools.")
+    write(base, "commands.json", json.dumps(journal, indent=2) + "\n")
     return json.loads(value)
 
 
@@ -221,18 +227,34 @@ def checkpoint(base, root, name, before):
     write(base, name + ".json", json.dumps({"state": state(root), "before": before, "after": after, "changes": changes}, indent=2) + "\n")
 
 
-def scaffold(base):
+def scaffold(base, deployment="MODE_B_REQUIREMENTS_ONLY"):
     """Codex scaffold file actions, independent of the unittest fresh-instance fixture."""
     root = base / "acceptance/ADAPT"
     need(not root.exists(), "NO_OVERWRITE")
     project = base / "project"
     project.mkdir()
     write(project, "REQUIREMENTS.txt", DOCUMENT)
-    # A document-only MODE_B project; isolated Git metadata for readonly evidence.
+    if deployment == "MODE_A_EXISTING_SOLUTION":
+        # Establish the disposable existing solution BEFORE the read-only scaffold.
+        write(project, "src/greeting.py", "def greeting():\n    return 'Hello'\n")
+        write(project, "tests/test_greeting.py", "import unittest\nfrom src.greeting import greeting\n\nclass GreetingTest(unittest.TestCase):\n    def test_greeting(self):\n        self.assertEqual(greeting(), 'Hello')\n")
+        write(project, "README.md", "# Synthetic existing solution\nPython greeting function; unittest test source exists. This is a disposable fixture, not a real product.\n")
+    # Isolated Git metadata supports the distributed read-only evidence command.
     command(base, ["git", "init", project])
-    command(base, ["git", "-C", project, "add", "REQUIREMENTS.txt"])
+    command(base, ["git", "-C", project, "add", "."])
     command(base, ["git", "-C", project, "-c", "user.name=Synthetic Fixture", "-c", "user.email=fixture@example.invalid", "-c", "commit.gpgsign=false", "commit", "-m", "synthetic test input"])
     write(base, "project-before.json", json.dumps(snapshot(project)))
+    discovery = None
+    if deployment == "MODE_A_EXISTING_SOLUTION":
+        discovery = {"deployment": deployment, "read_only": True,
+                     "files": {p.relative_to(project).as_posix(): sha(p) for p in project.rglob("*") if p.is_file() and ".git" not in p.relative_to(project).parts},
+                     "observations": {"language": "Python (.py source)", "platform_framework": "Python; no application framework declared in fixture files",
+                                      "build": "No build configuration or dependency manifest present", "validation_candidate": "tests/test_greeting.py imports unittest; presence observed, tests not run or declared as QA oracle",
+                                      "layout": "src/ and tests/", "documentation": "README.md and REQUIREMENTS.txt", "requirements_origin": "Explicit REQUIREMENTS.txt; no ticket reference found",
+                                      "code_observation": "src/greeting.py contains return 'Hello'; no runtime behavior or intended requirement inferred"},
+                     "truth_class": "OBSERVED_EVIDENCE; any derived interpretation stays CANDIDATE_TRUTH", "qa_oracle": "UNDECLARED"}
+        need(snapshot(project) == json.loads(read(base, "project-before.json")), "DISCOVERY_MUTATED_PROJECT")
+        write(base, "discovery.json", json.dumps(discovery, indent=2))
     shutil.copytree(FRAMEWORK / "CANONICAL_STARTERS", root)
     for directory in ("CONTEXT_PACKS", "CONTEXT_DELTAS", "CONTEXT_SUMMARIES"):
         (root / "10_CONTEXT_ECONOMY" / directory).mkdir()
@@ -247,7 +269,7 @@ def scaffold(base):
                 if lines[i].startswith(key + ":"):
                     lines[i] = lines[i].replace("{{" + token + "}}", value)
         write(root, file.relative_to(root), "".join(lines))
-    set_state(root, ProjectName="Bootstrap Acceptance", ProjectType="Web App", DeploymentMode="MODE_B_REQUIREMENTS_ONLY", RoutingMode="PROTECTED_DEFAULT", InitializationMode="FULL_EXTERNAL_ADAPT_INSTANCE_SCAFFOLD", SourceTruthVersion="NONE", ActiveMilestone="NONE", ActiveCycle="NONE", ActiveHandoff="NONE", CurrentAuthority="Director Lane", ExecutionReadiness="NEEDS_PLANNING", CurrentPhase="INITIALIZED", ActiveWorkcell="NONE", Blocked="NO", ActiveBlockers="NONE", ActiveGaps="GAP-T10-001", LastAction="Synthetic scaffold " + DATE + "; STARTUP.md", LastContextDelta="NONE", NextExpectedAction="Run Director intake", LastConsolidatedAt="NEVER", Notes="SYNTHETIC ONLY; current maintainer acceptance directive authorizes this disposable scaffold; project/REQUIREMENTS.txt; no product writes; STARTUP.md records frozen provenance")
+    set_state(root, ProjectName="Bootstrap Acceptance", ProjectType="Web App", DeploymentMode=deployment, RoutingMode="PROTECTED_DEFAULT", InitializationMode="FULL_EXTERNAL_ADAPT_INSTANCE_SCAFFOLD", SourceTruthVersion="NONE", ActiveMilestone="NONE", ActiveCycle="NONE", ActiveHandoff="NONE", CurrentAuthority="Director Lane", ExecutionReadiness="NEEDS_PLANNING", CurrentPhase="INITIALIZED", ActiveWorkcell="NONE", Blocked="NO", ActiveBlockers="NONE", ActiveGaps="GAP-T10-001", LastAction="Synthetic scaffold " + DATE + "; STARTUP.md", LastContextDelta="NONE", NextExpectedAction="Run Director intake", LastConsolidatedAt="NEVER", Notes="SYNTHETIC ONLY; current maintainer acceptance directive authorizes this disposable scaffold; project/REQUIREMENTS.txt; no product writes; STARTUP.md records frozen provenance")
     guard = "07_GUARDRAILS/SCOPE_GUARDRAIL.md"
     write(root, guard, read(root, guard).replace("{{ROUTING_MODE}}", "PROTECTED_DEFAULT"))
     for ref in REGISTERS:
@@ -255,6 +277,11 @@ def scaffold(base):
     extract(root, promoted=False)
     put_row(root, "01_SOURCE_TRUTH/OPEN_QUESTIONS.md", "OQ-001", ["OQ-001", "Which language, framework, database, authentication and deployment?", "Director Lane", "MEDIUM", "project/REQUIREMENTS.txt", "NONE", "OPEN", "NONE", "NONE"])
     put_row(root, "02_DIRECTOR_LANE/GAP_REGISTER.md", "GAP-T10-001", ["GAP-T10-001", "GAP-T10 Decision Gap", "MEDIUM", "Technical choices pending", "Source explicitly leaves technical choices undecided", "Director Lane", DATE, "future implementation only", "Human Owner", DATE, "OPEN", "NONE", "NONE"])
+    if discovery:
+        summary = "; ".join(f"{key}: {value}" for key, value in discovery["observations"].items())
+        provenance = "project/ fixture files; SHA256 pins and read-only discovery in STARTUP.md"
+        put_row(root, "01_SOURCE_TRUTH/BUSINESS_ITEMS.md", "BI-002", ["BI-002", "Existing solution discovery", summary, "NONE (candidate observation only)", "Discovery", "LOW", "DRAFT", "OBSERVED_EVIDENCE; any interpretation CANDIDATE_TRUTH; not a promoted requirement; " + provenance])
+        put_row(root, "01_SOURCE_TRUTH/OPEN_QUESTIONS.md", "OQ-002", ["OQ-002", "OBSERVED_EVIDENCE: " + summary + "; which mechanism will the Director declare?", "Director Lane", "MEDIUM", provenance, "NONE; QA oracle remains UNDECLARED", "OPEN", "NONE", "NONE"])
     append(root, LOG, "\nScaffold pending input: project/REQUIREMENTS.txt. Candidate only; this note is not a promotion event.\n")
     append(root, "11_ONBOARDING/ONBOARDING_REPORTS.md", "\nSynthetic initialization under maintainer acceptance directive; no person-owned workcells; see STARTUP.md.\n")
     for flags in ([], ["--verify"]):
@@ -273,7 +300,7 @@ def scaffold(base):
             if file.relative_to(root).as_posix() not in excluded and i < 8 and re.match(r"^(PROJECT|VERSION|INITIALIZED|LAST_UPDATED):", line) and any(t in line for t in ("{{PROJECT_NAME}}", "{{ADAPT_VERSION}}", "{{INITIALIZATION_DATE}}", "{{DATE}}")):
                 live_survivors.append(file.relative_to(root).as_posix())
     need(not live_survivors, "POPULATION_FAILURE")
-    startup = {"framework": "<FRAMEWORK>", "project": "<DISPOSABLE>/project", "instance": "<DISPOSABLE>/acceptance/ADAPT", "document": "project/REQUIREMENTS.txt", "project_name": "Bootstrap Acceptance", "mode": "MODE_B_REQUIREMENTS_ONLY", "routing": "PROTECTED_DEFAULT (explicit test input)", "project_source_mutation": "NO", "canonical_files": len(list((FRAMEWORK / "CANONICAL_STARTERS").rglob("*.md"))), "missing": [], "governance_directories": 16, "tool_files": 7, "instance_survivors": live_survivors, "template_survivors": template_count, "questions": ["OQ-001"], "gaps": ["GAP-T10-001"], "blockers": [], "state": state(root), "version": version, "frozen_source_hashes": source_pins, "next_command": "Run Director intake", "status": "SCAFFOLDED; STOP", "approval_notice": "Synthetic Gate 1 input is for the later promotion; not exercised during scaffold."}
+    startup = {"framework": "<FRAMEWORK>", "project": "<DISPOSABLE>/project", "instance": "<DISPOSABLE>/acceptance/ADAPT", "document": "project/REQUIREMENTS.txt", "project_name": "Bootstrap Acceptance", "mode": deployment, "routing": "PROTECTED_DEFAULT (explicit test input)", "project_source_mutation": "NO", "canonical_files": len(list((FRAMEWORK / "CANONICAL_STARTERS").rglob("*.md"))), "missing": [], "governance_directories": 16, "tool_files": 7, "instance_survivors": live_survivors, "template_survivors": template_count, "questions": ["OQ-001", "OQ-002"] if discovery else ["OQ-001"], "gaps": ["GAP-T10-001"], "blockers": [], "state": state(root), "version": version, "frozen_source_hashes": source_pins, "discovery": discovery, "next_command": "Run Director intake", "status": "SCAFFOLDED; STOP", "approval_notice": "Synthetic Gate 1 input is for the later promotion; not exercised during scaffold."}
     write(root, "STARTUP.md", "# ADAPT Startup / Initialization Report\nSYNTHETIC ONLY\n```json\n" + json.dumps(startup, indent=2) + "\n```\n")
     write(base, "basis.json", json.dumps(basis, indent=2))
     write(base, "scaffold.json", json.dumps({"startup": startup, "hashes": snapshot(root)}, indent=2))
@@ -286,7 +313,8 @@ def scaffold(base):
 def extract(root, promoted):
     version = VERSION if promoted else "NONE"
     path = PRESERVED if promoted else "project/REQUIREMENTS.txt"
-    note = ("verbatim: " + QUOTE + "; match; duplicate comparisons 1 per REQ/BI/AC register; reused existing ID" if promoted else "CANDIDATE_TRUTH; pending promotion")
+    counts = [sum(1 for line in real_rows(root / ref).splitlines() if re.match(r"^\| (REQ|BI|AC)-\d+ \|", line)) for ref in REGISTERS[:3]]
+    note = ("verbatim: " + QUOTE + "; match; duplicate comparisons REQ/BI/AC=" + "/".join(map(str, counts)) + "; reused existing ID; no overlap with unrelated discovery candidates" if promoted else "CANDIDATE_TRUTH; pending promotion")
     put_row(root, REGISTERS[0], "REQ-001", ["REQ-001", "Requirement and acceptance condition", QUOTE, "MUST_HAVE", path, version, "ACTIVE" if promoted else "DRAFT", note])
     put_row(root, REGISTERS[1], "BI-001", ["BI-001", "Greeting view", QUOTE, "REQ-001", "Greeting", "MUST_HAVE", "DRAFT", note + "; " + version])
     put_row(root, REGISTERS[2], "AC-001", ["AC-001", "REQ-001", QUOTE, "Functional", "DRAFT", "NONE", "BI-001; " + note + "; " + version])
@@ -340,10 +368,23 @@ def promote(base, root, basis):
     print("PASS_PROMOTION; STOP")
 
 
-def context(base, root, basis):
+def steward_request(root, basis):
+    """Read-only conformance check for the exact Director-routed assembly request."""
     need(state(root)["SourceTruthVersion"] == VERSION and state(root)["CurrentAuthority"] == "Context Steward", "STEWARD_AUTHORITY")
+    need(all(state(root)[key] == "NONE" for key in ("ActiveWorkcell", "ActiveHandoff", "ActiveMilestone", "ActiveCycle")), "STEWARD_BINDING")
+    need((root / HO).is_file(), "STEWARD_HANDOFF_MISSING")
+    document = read(root, HO)
+    for key, expected in (("STATUS", "ACTIVE"), ("HANDOFF_ID", "HO-0001"), ("FROM_LANE", "Director Lane"), ("TO_WORKCELL / TO_LANE", "Context Steward"), ("SOURCE_TRUTH_VERSION", VERSION)):
+        matches = re.findall(r"^" + re.escape(key) + r":\s*([^\r\n]+)$", document, re.M)
+        need(matches == [expected], "STEWARD_HANDOFF_BINDING")
+    need(ER in document and CD in document and (root / ER).is_file() and (root / CD).is_file(), "STEWARD_HANDOFF_EVIDENCE")
     need(state(root)["CurrentPhase"] == "SOURCE_TRUTH_READY" and sha(root / PRESERVED) == basis["source_sha256"], "PROMOTION_INCOMPLETE")
     need(sha(root / APPROVAL) == basis["approval_sha256"] and "BOOTSTRAP_ATTEMPT:" in read(root, DEC), "PROMOTION_BINDING")
+    return "PASS_STEWARD_REQUEST"
+
+
+def context(base, root, basis):
+    print(steward_request(root, basis))
     before = snapshot(root)
     shutil.copytree(root, base / "before-context")
     append(root, CD, "\nContext Steward processed CD-0001; no prior packs exist to invalidate; CP-0001 follows this delta.\n")
@@ -363,6 +404,8 @@ def context(base, root, basis):
         required += f"| {ref} | {reason} | CURRENT; SHA256 verified below |\n"
     required += "\n## Relevant Decisions\nDEC-001 reserves this first attempt under the synthetic Gate 1 evidence; no implementation or scope approval.\n## Open Gaps and Blockers\nOQ-001 / GAP-T10-001: undecided technical choices block future implementation only. No blocker to this assembly.\n## Constraints\nUse SOURCE_TRUTH_V0.1 only. AC-001 remains DRAFT; no implementation, milestone acceptance, QA signoff or adjacent execution. Director must lawfully acquire authority before review.\n"
     pack = pack.replace("\n## File Integrity", required + "\n## File Integrity")
+    if state(root)["DeploymentMode"] == "MODE_A_EXISTING_SOLUTION":
+        pack += "\n## Existing solution discovery limitation\nOQ-002 and BI-002 retain OBSERVED_EVIDENCE / CANDIDATE_TRUTH only. No observed code behavior was promoted. QA oracle remains UNDECLARED; no QA action is authorized.\n"
     write(root, PACK, pack)
     put_row(root, "10_CONTEXT_ECONOMY/CONTEXT_INDEX.md", "CP-0001", ["CP-0001", "NONE (Director Lane review)", "HO-0002", VERSION, "M", DATE, "ACTIVE", "Context Steward; consumed HO-0001 provenance; no implementation"])
     write(root, DELIVERY, delivery)
@@ -377,6 +420,41 @@ def context(base, root, basis):
 
 def before_state(base, name):
     return state(base / ("before-" + name))
+
+
+def negative_cases(base, root, basis):
+    """Agent checks of attacked clones derived from the actual scaffold/promotion."""
+    accepted_before = snapshot(root)
+    records = []
+    def attempt(name, source, setup, check):
+        clone = base / ("negative-" + name) / "ADAPT"
+        shutil.copytree(source, clone)
+        setup(clone)
+        before = snapshot(clone)
+        try:
+            check(clone)
+        except Stop as error:
+            records.append({"case": name, "result": "PASS", "guardrail_outcome": "STOP_REQUIRED", "reason": str(error),
+                            "derived_from": source.relative_to(base).as_posix(), "no_writes_after_stop": before == snapshot(clone)})
+        else:
+            raise AssertionError("Expected negative STOP: " + name)
+        need(before == snapshot(clone), "NEGATIVE_CHECK_WROTE_FILES")
+    initial = base / "before-promote"
+    attempt("missing-approval", initial, lambda c: (c / APPROVAL).unlink(), lambda c: fresh(c, basis))
+    attempt("invalid-source-hash", initial, lambda c: append(c, SOURCE, "altered"), lambda c: fresh(c, basis))
+    attempt("unauthorized-writer", initial, lambda c: None, lambda c: fresh(c, dict(basis, writer="Backend Workcell")))
+    attempt("duplicate-or-previous-promotion", root, lambda c: None, lambda c: fresh(c, dict(basis, state=state(c))))
+    def reset(c):
+        set_state(c, SourceTruthVersion="NONE", CurrentPhase="INITIALIZED", CurrentAuthority="Director Lane", ExecutionReadiness="NEEDS_PLANNING", LastContextDelta="NONE")
+    attempt("reset-version-to-none", root, reset, lambda c: fresh(c, dict(basis, state=state(c))))
+    def wrong_handoff(c):
+        write(c, HO, read(c, HO).replace("TO_WORKCELL / TO_LANE: Context Steward", "TO_WORKCELL / TO_LANE: Backend Workcell"))
+    attempt("invalid-context-steward-handoff", root, wrong_handoff, lambda c: steward_request(c, basis))
+    attempt("ordinary-promotion-without-context", root, lambda c: None, lambda c: ordinary(c, None))
+    attempt("unauthorized-adjacent-action", initial, lambda c: None, lambda c: fresh(c, dict(basis, action="Director consolidate cycle")))
+    need(accepted_before == snapshot(root), "NEGATIVES_MUTATED_ACCEPTED_INSTANCE")
+    write(base, "negatives.json", json.dumps({"result": "PASS", "cases": records, "not_exercised": []}, indent=2))
+    print(json.dumps(records, indent=2))
 
 
 def verify(base, root, basis):
@@ -409,15 +487,16 @@ def verify(base, root, basis):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("stage", choices=("scaffold", "promote", "context", "verify"))
+    parser.add_argument("stage", choices=("scaffold", "promote", "negatives", "context", "verify"))
+    parser.add_argument("--deployment", choices=("MODE_A_EXISTING_SOLUTION", "MODE_B_REQUIREMENTS_ONLY"), default="MODE_B_REQUIREMENTS_ONLY")
     parser.add_argument("--disposable", type=Path, required=True)
     options = parser.parse_args()
     base = options.disposable.resolve()
     need(base.is_dir() and base.name.startswith("adapt-bootstrap-v2-"), "EXTERNAL_DISPOSABLE_REQUIRED")
     need(not base.is_relative_to(FRAMEWORK.parent), "DISPOSABLE_INSIDE_WORKSPACE")
     if options.stage == "scaffold":
-        scaffold(base)
+        scaffold(base, options.deployment)
     else:
         root = base / "acceptance/ADAPT"
         basis = json.loads(read(base, "basis.json"))
-        {"promote": promote, "context": context, "verify": verify}[options.stage](base, root, basis)
+        {"promote": promote, "negatives": negative_cases, "context": context, "verify": verify}[options.stage](base, root, basis)

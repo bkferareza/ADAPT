@@ -1,50 +1,168 @@
 {
-  "status": "ALL_REQUIRED_LOCAL_DELIVERY_GATES_PASS",
+  "status": "ALL_REQUIRED_RELEASE_GATES_PASS",
   "baseline": "37f465782ef1fb69bc58da46bcc5969d6bea8220",
-  "local_version_candidate": "ADAPT-FW-0003",
+  "implementation_commit": "5e85373f76581d19fcfd19687c62a511be83370b",
+  "framework_version": "ADAPT-FW-0003",
   "branch": "fix/initial-source-truth-bootstrap-v2",
+  "release_authority": "Human Owner / Framework Maintainer BOOTSTRAP V2 FINAL ACCEPTANCE AND RELEASE, 2026-10-16; conditional approval gates satisfied; no additional approval required by Rule 14 / Framework Learning register.",
   "test_suite_counts": [
-    38,
+    41,
     8,
     27
   ],
-  "total_tests": 73,
+  "total_tests": 76,
   "all_suite_exit_codes_zero": true,
-  "actual_scaffold_acceptance": "PASS",
-  "negative_acceptance_stops": [
+  "mode_a_actual_scaffold_acceptance": "PASS",
+  "mode_b_original_and_fresh_release_recheck": "PASS",
+  "mode_a_required_negative_cases": {
+    "result": "PASS",
+    "cases": [
+      {
+        "case": "missing-approval",
+        "result": "PASS",
+        "guardrail_outcome": "STOP_REQUIRED",
+        "reason": "MISSING_APPROVAL",
+        "derived_from": "before-promote",
+        "no_writes_after_stop": true
+      },
+      {
+        "case": "invalid-source-hash",
+        "result": "PASS",
+        "guardrail_outcome": "STOP_REQUIRED",
+        "reason": "SOURCE_HASH",
+        "derived_from": "before-promote",
+        "no_writes_after_stop": true
+      },
+      {
+        "case": "unauthorized-writer",
+        "result": "PASS",
+        "guardrail_outcome": "STOP_REQUIRED",
+        "reason": "WRITER",
+        "derived_from": "before-promote",
+        "no_writes_after_stop": true
+      },
+      {
+        "case": "duplicate-or-previous-promotion",
+        "result": "PASS",
+        "guardrail_outcome": "STOP_REQUIRED",
+        "reason": "INITIAL_STATE",
+        "derived_from": "acceptance/ADAPT",
+        "no_writes_after_stop": true
+      },
+      {
+        "case": "reset-version-to-none",
+        "result": "PASS",
+        "guardrail_outcome": "STOP_REQUIRED",
+        "reason": "PROMOTION_HISTORY",
+        "derived_from": "acceptance/ADAPT",
+        "no_writes_after_stop": true
+      },
+      {
+        "case": "invalid-context-steward-handoff",
+        "result": "PASS",
+        "guardrail_outcome": "STOP_REQUIRED",
+        "reason": "STEWARD_HANDOFF_BINDING",
+        "derived_from": "acceptance/ADAPT",
+        "no_writes_after_stop": true
+      },
+      {
+        "case": "ordinary-promotion-without-context",
+        "result": "PASS",
+        "guardrail_outcome": "STOP_REQUIRED",
+        "reason": "ORDINARY_CONTEXT_MISSING",
+        "derived_from": "acceptance/ADAPT",
+        "no_writes_after_stop": true
+      },
+      {
+        "case": "unauthorized-adjacent-action",
+        "result": "PASS",
+        "guardrail_outcome": "STOP_REQUIRED",
+        "reason": "ADJACENT_ACTION",
+        "derived_from": "before-promote",
+        "no_writes_after_stop": true
+      }
+    ],
+    "not_exercised": []
+  },
+  "frozen_source_hashes_and_artifact_diffs_verified": true,
+  "contract_consistency": "Nine canonical contracts changed; 18 commands, 21 fields, 15 stop rules; Gate 1 and writer classes preserved. Codex review, not independent certification. Final acceptance changes only validation/tests/docs; canonical contracts unchanged from implementation commit.",
+  "documentation_links": [
     {
-      "case": "Repeated bootstrap",
-      "outcome": "STOP_REQUIRED",
-      "reason": "STATE_CHANGED"
+      "document": "README.md",
+      "target": "ADAPT/START_HERE.md",
+      "result": "PASS"
     },
     {
-      "case": "Ordinary promotion without context",
-      "outcome": "STOP_REQUIRED",
-      "reason": "ORDINARY_CONTEXT_MISSING"
+      "document": "README.md",
+      "target": "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/CONTROL_PLANE_SCHEMA.md",
+      "result": "PASS"
     },
     {
-      "case": "Reset to NONE",
-      "outcome": "STOP_REQUIRED",
-      "reason": "PROMOTION_HISTORY"
+      "document": "README.md",
+      "target": "ADAPT/CANONICAL_STARTERS/00_FRAMEWORK/GOVERNANCE_RULES.md",
+      "result": "PASS"
     },
     {
-      "case": "Ordinary context stale source",
-      "outcome": "STOP_REQUIRED",
-      "reason": "ORDINARY_STALE"
+      "document": "README.md",
+      "target": "ADAPT/SCAFFOLD_WORKFLOW_AGENT.md",
+      "result": "PASS"
+    },
+    {
+      "document": "README.md",
+      "target": "ADAPT/DEPLOYMENT_MODES.md",
+      "result": "PASS"
+    },
+    {
+      "document": "README.md",
+      "target": "ADAPT/SCAFFOLD_OUTPUT_CONTRACT.md",
+      "result": "PASS"
+    },
+    {
+      "document": "README.md",
+      "target": "ADAPT/TOOLS/README.md",
+      "result": "PASS"
+    },
+    {
+      "document": "README.md",
+      "target": "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/TOOLING_DECISION_CONTRACT.md",
+      "result": "PASS"
+    },
+    {
+      "document": "README.md",
+      "target": "ADAPT/VALIDATION/TOOLING_V1_RELEASE.md",
+      "result": "PASS"
+    },
+    {
+      "document": "README.md",
+      "target": "ADAPT/VALIDATION/SCAFFOLD_TEST_RECORD.md",
+      "result": "PASS"
+    },
+    {
+      "document": "README.md",
+      "target": "ADAPT/FRAMEWORK_LEARNING_REGISTER.md",
+      "result": "PASS"
+    },
+    {
+      "document": "README.md",
+      "target": "ADAPT/VALIDATION/BOOTSTRAP_V2_REPORT.md",
+      "result": "PASS"
+    },
+    {
+      "document": "ADAPT/VALIDATION/BOOTSTRAP_V2_REPORT.md",
+      "target": "BOOTSTRAP_V2_TESTS.json",
+      "result": "PASS"
+    },
+    {
+      "document": "ADAPT/VALIDATION/BOOTSTRAP_V2_REPORT.md",
+      "target": "BOOTSTRAP_V2_ACCEPTANCE.json",
+      "result": "PASS"
     }
   ],
-  "frozen_source_hashes_verified": true,
-  "all_artifact_inverse_diffs_verified": true,
-  "contract_consistency": "Nine canonical contracts changed; 18 commands, 21 fields, 15 stop rules; Gate 1 and writer classes preserved. Codex review, not independent certification.",
+  "whitespace_check": "PASS",
   "protected_instance_files_unchanged": 132,
   "protected_directory_inventory_unchanged": true,
   "worktree_sha256_unchanged": "3a65c16636d08333e318d380b807e6014af98d51f6fa13ce50bf18363d7073fb",
   "exclude_sha256_unchanged": "4659c9a6d796f50dea541e08f9373fe5864c12164a2779277811ee551d4fd16e",
-  "remote_heads_before_commit": [
-    "37f465782ef1fb69bc58da46bcc5969d6bea8220\trefs/heads/feat/deterministic-state-reader",
-    "37f465782ef1fb69bc58da46bcc5969d6bea8220\trefs/heads/main"
-  ],
-  "local_main_unchanged": "37f465782ef1fb69bc58da46bcc5969d6bea8220",
   "unchanged_runtime_and_schema_paths": [
     "ADAPT/TOOLS/adapt.py",
     "ADAPT/TOOLS/supporting_modules",
@@ -78,17 +196,115 @@
     "ADAPT/VALIDATION/run_bootstrap_tests.py",
     "README.md"
   ],
-  "temporary_instances_or_protected_state_staged": false,
-  "publication_or_merge_authorized": false,
-  "certification": "NOT_PERFORMED; separate publication/adoption review required",
   "validation_source_hashes": {
-    "ADAPT/TOOLS/tests/test_bootstrap.py": "53fb7723bb4b576b11a6fd7c7b8c960787d5c8e7bf6203eb8d9975f4471a92c4",
-    "ADAPT/VALIDATION/bootstrap_case.py": "2417b30cf6bfe8a500521d88b32a3937b41bb9cf8ab1da89ee5e4360cd22fed8",
-    "ADAPT/VALIDATION/run_bootstrap_tests.py": "859c22381d357b10ab6c7d58f88cbd3848693665d750b1cb3179ea535fb03ce4"
+    "ADAPT/TOOLS/tests/test_bootstrap.py": "349e180cbcb0e5af8e49ccc4e2bccc3676ffde4d424e4eed8d6adbd61203efc3",
+    "ADAPT/VALIDATION/bootstrap_case.py": "d8cd7eb08728b234742a6fed049a697b09ef00a7d256d3aa26cbf813eb623064",
+    "ADAPT/VALIDATION/run_bootstrap_tests.py": "55f22411c2e2f98399d7bfd881202f4d370a3ff95e5d8f21d7a1a351a3f2809d"
   },
   "evidence_hashes": {
-    "ADAPT/VALIDATION/BOOTSTRAP_V2_ACCEPTANCE.json": "6e6ad3805cecd1ed54783c5bc032c4c0052117e2cfaaa19d3f6c313e183ee02d",
-    "ADAPT/VALIDATION/BOOTSTRAP_V2_TESTS.json": "bfbac9ca1b9804c9d06c3f27f29d29d8bc5b59502e477de5a6d4f1906b6418c9"
+    "ADAPT/VALIDATION/BOOTSTRAP_V2_ACCEPTANCE.json": "513cfa3d70765ba9520aacd79efdb04e63489d23492fbfd05d5b1e3f18593d77",
+    "ADAPT/VALIDATION/BOOTSTRAP_V2_TESTS.json": "07903c86d5c9ea436e1b78a5196d51cc07e36fbedf9aaf730820db6d11215174"
   },
-  "evidence_line_endings": "LF; staged Git blob SHA256 verified against recorded evidence/source digests"
+  "publication_gate": "AUTHORIZED_TO_PUBLISH; this prepublication record does not claim remote push completion",
+  "adoption": "NOT_AUTHORIZED; NOT_PERFORMED",
+  "certification": "Independent QA and full framework certification NOT_PERFORMED; no self-hosted lane completion claimed.",
+  "evidence_line_endings": "LF; staged source/evidence Git blob digests must match before commit.",
+  "historical_local_gate": {
+    "commit": "5e85373f76581d19fcfd19687c62a511be83370b",
+    "note": "Original local-only approval and digests apply at this historical commit, not current mutable files.",
+    "record": {
+      "status": "ALL_REQUIRED_LOCAL_DELIVERY_GATES_PASS",
+      "baseline": "37f465782ef1fb69bc58da46bcc5969d6bea8220",
+      "local_version_candidate": "ADAPT-FW-0003",
+      "branch": "fix/initial-source-truth-bootstrap-v2",
+      "test_suite_counts": [
+        38,
+        8,
+        27
+      ],
+      "total_tests": 73,
+      "all_suite_exit_codes_zero": true,
+      "actual_scaffold_acceptance": "PASS",
+      "negative_acceptance_stops": [
+        {
+          "case": "Repeated bootstrap",
+          "outcome": "STOP_REQUIRED",
+          "reason": "STATE_CHANGED"
+        },
+        {
+          "case": "Ordinary promotion without context",
+          "outcome": "STOP_REQUIRED",
+          "reason": "ORDINARY_CONTEXT_MISSING"
+        },
+        {
+          "case": "Reset to NONE",
+          "outcome": "STOP_REQUIRED",
+          "reason": "PROMOTION_HISTORY"
+        },
+        {
+          "case": "Ordinary context stale source",
+          "outcome": "STOP_REQUIRED",
+          "reason": "ORDINARY_STALE"
+        }
+      ],
+      "frozen_source_hashes_verified": true,
+      "all_artifact_inverse_diffs_verified": true,
+      "contract_consistency": "Nine canonical contracts changed; 18 commands, 21 fields, 15 stop rules; Gate 1 and writer classes preserved. Codex review, not independent certification.",
+      "protected_instance_files_unchanged": 132,
+      "protected_directory_inventory_unchanged": true,
+      "worktree_sha256_unchanged": "3a65c16636d08333e318d380b807e6014af98d51f6fa13ce50bf18363d7073fb",
+      "exclude_sha256_unchanged": "4659c9a6d796f50dea541e08f9373fe5864c12164a2779277811ee551d4fd16e",
+      "remote_heads_before_commit": [
+        "37f465782ef1fb69bc58da46bcc5969d6bea8220\trefs/heads/feat/deterministic-state-reader",
+        "37f465782ef1fb69bc58da46bcc5969d6bea8220\trefs/heads/main"
+      ],
+      "local_main_unchanged": "37f465782ef1fb69bc58da46bcc5969d6bea8220",
+      "unchanged_runtime_and_schema_paths": [
+        "ADAPT/TOOLS/adapt.py",
+        "ADAPT/TOOLS/supporting_modules",
+        "ADAPT/TOOLS/MANIFEST.json",
+        "ADAPT/TOOLS/README.md",
+        "ADAPT/VALIDATION/distribute_tools.py",
+        "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/CONTROL_PLANE_SCHEMA.md",
+        "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/COMMAND_REGISTRY.md",
+        "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/HUMAN_APPROVAL_GATES.md",
+        "ADAPT/SCAFFOLD_OUTPUT_CONTRACT.md"
+      ],
+      "authorized_changed_file_inventory_including_this_record": [
+        "ADAPT/CANONICAL_STARTERS/00_FRAMEWORK/GOVERNANCE_RULES.md",
+        "ADAPT/CANONICAL_STARTERS/00_FRAMEWORK/SOURCE_AUTHORITY_POLICY.md",
+        "ADAPT/CANONICAL_STARTERS/07_GUARDRAILS/CONTEXT_GUARDRAIL.md",
+        "ADAPT/CANONICAL_STARTERS/10_CONTEXT_ECONOMY/CONTEXT_RULES.md",
+        "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_CONTEXT_STEWARD.md",
+        "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_DIRECTOR.md",
+        "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_MASTER.md",
+        "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/MUTATION_PERMISSION_MATRIX.md",
+        "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/STOP_RULES.md",
+        "ADAPT/FRAMEWORK_LEARNING_REGISTER.md",
+        "ADAPT/SCAFFOLD_WORKFLOW_AGENT.md",
+        "ADAPT/TOOLS/tests/test_bootstrap.py",
+        "ADAPT/VALIDATION/BOOTSTRAP_V2_ACCEPTANCE.json",
+        "ADAPT/VALIDATION/BOOTSTRAP_V2_GATE.json",
+        "ADAPT/VALIDATION/BOOTSTRAP_V2_REPORT.md",
+        "ADAPT/VALIDATION/BOOTSTRAP_V2_TESTS.json",
+        "ADAPT/VALIDATION/SCAFFOLD_TEST_RECORD.md",
+        "ADAPT/VALIDATION/bootstrap_case.py",
+        "ADAPT/VALIDATION/run_bootstrap_tests.py",
+        "README.md"
+      ],
+      "temporary_instances_or_protected_state_staged": false,
+      "publication_or_merge_authorized": false,
+      "certification": "NOT_PERFORMED; separate publication/adoption review required",
+      "validation_source_hashes": {
+        "ADAPT/TOOLS/tests/test_bootstrap.py": "53fb7723bb4b576b11a6fd7c7b8c960787d5c8e7bf6203eb8d9975f4471a92c4",
+        "ADAPT/VALIDATION/bootstrap_case.py": "2417b30cf6bfe8a500521d88b32a3937b41bb9cf8ab1da89ee5e4360cd22fed8",
+        "ADAPT/VALIDATION/run_bootstrap_tests.py": "859c22381d357b10ab6c7d58f88cbd3848693665d750b1cb3179ea535fb03ce4"
+      },
+      "evidence_hashes": {
+        "ADAPT/VALIDATION/BOOTSTRAP_V2_ACCEPTANCE.json": "6e6ad3805cecd1ed54783c5bc032c4c0052117e2cfaaa19d3f6c313e183ee02d",
+        "ADAPT/VALIDATION/BOOTSTRAP_V2_TESTS.json": "bfbac9ca1b9804c9d06c3f27f29d29d8bc5b59502e477de5a6d4f1906b6418c9"
+      },
+      "evidence_line_endings": "LF; staged Git blob SHA256 verified against recorded evidence/source digests"
+    }
+  }
 }

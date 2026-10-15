@@ -101,8 +101,8 @@ separately describes its scope and pending live agent-run validation.
 Framework Maintainer decisions and versions are recorded in the
 [framework learning register](ADAPT/FRAMEWORK_LEARNING_REGISTER.md). The current
 version is **ADAPT-FW-0003** with Tooling v1 and the
-[locally validated first-promotion correction](ADAPT/VALIDATION/BOOTSTRAP_V2_REPORT.md),
-pending separate publication review. Changes are
+[first-promotion correction and its MODE_A/MODE_B acceptance evidence](ADAPT/VALIDATION/BOOTSTRAP_V2_REPORT.md).
+Changes are
 prospective; existing instances require explicit upgrade/backport authorization.
 No second authority database is introduced.
 

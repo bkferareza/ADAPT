@@ -1,10 +1,15 @@
-# ADAPT Bootstrap Recovery Implementation Report
+# ADAPT Bootstrap v2 Implementation and Release Evidence
 
 Date: 2026-10-16 (Asia/Manila). External Framework Maintainer correction.
 Source experiment: ADAPT-SELF-HOST-001. Finding: FRAMEWORK_BOOTSTRAP_CONTRACT_GAP.
 This document is an ASSERTED implementation/validation interpretation; the raw
 mechanically checkable records are linked below. It is not independent QA or
 framework release certification, and is not a successful self-hosted development lane.
+
+The implementation sections retain the local delivery record at `5e85373`.
+The final acceptance and release gate section below supersedes its local-only
+publication boundary and MODE_B-only coverage. Publication itself requires
+successful remote-ref verification; this prepared evidence does not assert a push.
 
 ## Framework and authority
 
@@ -13,7 +18,7 @@ Original version: ADAPT-FW-0002, commit
 Branch: `fix/initial-source-truth-bootstrap-v2`.
 Corrected local version candidate: ADAPT-FW-0003.
 
-The current Human Owner BOOTSTRAP RECOVERY MILESTONE directive reaffirms the
+The initial Human Owner BOOTSTRAP RECOVERY MILESTONE directive reaffirmed the
 previously accepted bounded disposition: correct the generic first-promotion
 context deadlock, validate, document through Framework Learning, and create a
 local maintenance commit. Publication, merging main, ADAPT-DEV initialization/
@@ -112,8 +117,8 @@ are unchanged. No file was changed merely because it appeared in the input list.
    boundary. Raw file artifacts, input/approval, commands, hashes/diffs, stage
    evidence and STOP decisions are in
    [BOOTSTRAP_V2_ACCEPTANCE.json](BOOTSTRAP_V2_ACCEPTANCE.json).
-4. **Framework release certification:** not performed. Publication and controlled
-   adoption require the separate review the Human Owner specified.
+4. **Independent framework certification:** not performed. The subsequent release
+   directive supplies conditional publication approval; adoption remains separate.
 
 Reproduce automated suites with:
 
@@ -188,6 +193,8 @@ publication review is not bypassed by this local version candidate.
 
 ## Integrity, repository boundary and limitations
 
+This section describes the initial local delivery; final acceptance follows below.
+
 The local commit includes only this scoped patch, deliberate validation source,
 sanitized synthetic evidence and documentation. Disposable instances, temporary
 logs, protected-path snapshots and recovery backups remain outside the repository.
@@ -205,3 +212,99 @@ solo operator's checkable claims under Rule 13. The original example-project tes
 remains pending. No broad framework certification or successful self-hosted
 development lane is claimed. ADAPT-DEV remains governed by frozen ADAPT-FW-0002;
 future controlled upgrade/adoption and its initialization are separate operations.
+
+## Final MODE_A acceptance and release gate — 2026-10-16
+
+The Human Owner / Framework Maintainer's BOOTSTRAP V2 FINAL ACCEPTANCE AND RELEASE
+directive explicitly authorizes publication after the listed gates pass. The live
+Framework Learning register and GOVERNANCE_RULES Rule 14 require that human
+disposition and versioned generic incorporation, not another independent QA or
+release signature. FLC-002 retains the original ADAPT-SELF-HOST-001 finding,
+PROMOTED disposition and Introduced In ADAPT-FW-0003. This completion of the same
+patch does not advance the version again. ADAPT-DEV did not govern this maintenance.
+
+Codex executed the actual updated scaffold as separate inspected stages against
+a fresh disposable existing-solution Git fixture outside the live repository:
+
+```text
+python -B ADAPT/VALIDATION/bootstrap_case.py scaffold --deployment MODE_A_EXISTING_SOLUTION --disposable <DISPOSABLE>
+python -B ADAPT/VALIDATION/bootstrap_case.py promote --disposable <DISPOSABLE>
+python -B ADAPT/VALIDATION/bootstrap_case.py negatives --disposable <DISPOSABLE>
+python -B ADAPT/VALIDATION/bootstrap_case.py context --disposable <DISPOSABLE>
+python -B ADAPT/VALIDATION/bootstrap_case.py verify --disposable <DISPOSABLE>
+```
+
+All stages exited 0. FULL_EXTERNAL_ADAPT_INSTANCE_SCAFFOLD / PROTECTED_DEFAULT
+copied all 112 canonical starters, populated prescribed fields, distributed and
+verified the official tools, and emitted the startup report. No scaffold contract
+was repaired. Read-only MODE_A discovery recorded language, layout, documentation,
+absent build configuration and a candidate unittest file. Observed code remains
+OBSERVED_EVIDENCE / CANDIDATE_TRUTH in BI-002 and OQ-002. It was not promoted into
+requirements, executed, or declared as a QA oracle. The source document alone
+supplied the promotion requirement. Project bytes were unchanged after fixture setup.
+
+The explicitly synthetic Gate 1 approval binds the exact immutable source SHA256:
+`cd74a7a29b244d249751d1fde629ea6400957b81d3bd7ba5540551c4d42c6ad2`.
+Before/after artifact hashes, text and inverse-verified diffs are retained in
+the existing acceptance JSON under `mode_a_release_acceptance`. Its input,
+request, approval, frozen contract hashes and stage records are test evidence,
+not fabricated Human Owner decisions for an operational instance.
+
+The Director moved NONE / INITIALIZED through the reserved attempt to registered
+SOURCE_TRUTH_V0.1 / SOURCE_TRUTH_READY / NEEDS_CONTEXT, preserving DRAFT criteria.
+Registration consumed the initial basis. The addressed, active lane handoff
+HO-0001 passed the Steward binding check. The Steward consumed it, assembled
+ordinary CP-0001 referencing the registered version and active review HO-0002,
+retained consumed HO-0001 provenance, and emitted CD-0002. All four active
+workcell/handoff/milestone/cycle fields remain NONE. No implementation was authorized.
+
+| Required negative case | Observed STOP reason |
+|---|---|
+| Missing approval | MISSING_APPROVAL |
+| Invalid source hash | SOURCE_HASH |
+| Unauthorized writer | WRITER |
+| Duplicate / previous promotion | INITIAL_STATE |
+| Reset registered version to NONE | PROMOTION_HISTORY |
+| Invalid Context Steward handoff | STEWARD_HANDOFF_BINDING |
+| Ordinary promotion without valid context | ORDINARY_CONTEXT_MISSING |
+| Unauthorized adjacent action | ADJACENT_ACTION |
+
+All eight were exercised against clones of the actual scaffold/promoted instance,
+with no writes after rejection. Final verification also stopped repeated bootstrap,
+reset reuse, missing ordinary context and stale ordinary source. The positive
+ordinary pack passed integrity/context checks; its existence does not grant
+Director authority. No required MODE_A scenario is classified NOT_EXERCISED.
+
+The distributed MANIFEST and payload hashes were inspected before every CLI call.
+Both at scaffold and after pack delivery, state, doctor and evidence exited 0;
+prompt next exited 1 with BLOCKED because no active workcell/handoff binding exists.
+The intermediate post-promotion doctor exited 0. Exact commands, diagnostics,
+exit codes and manifest digests are in `subprocesses`. These read-only tools
+neither execute nor authorize a lane-only bootstrap. Agent actions follow the
+documented lane procedure; no tool rejection was bypassed. The unchanged Tooling v1
+manifest's ADAPT-FW-0002 identifies its build origin, not the instance's version.
+
+A second fresh MODE_B run passed scaffold, promotion, Steward delivery and final
+ordinary/reuse checks with the updated harness (`mode_b_release_recheck`). The
+original MODE_B evidence and original 73 passing tests remain retained. Final
+regressions pass **76 tests**: 28 bootstrap, 13 existing release/distribution,
+8 state-reader and 27 operator-toolkit tests, all child exit codes 0. The three
+new tests cover Steward target/workcell binding and MODE_A candidate comparison.
+No runtime, canonical contract, command, schema, writer class or distribution
+capability changed during this final acceptance. The release gate records source,
+evidence, documentation/link, whitespace and protected-file checks.
+
+Limitations: two minimal synthetic cases on Windows/Python 3.11 do not certify
+arbitrary source extraction, exhaustive history discovery or approval authenticity.
+Those semantic checks remain agent/human duties. This is not independent QA or
+full framework certification. The broader original example-project scaffold test
+remains pending. No self-hosted development lane, ADAPT-DEV initialization or
+adoption occurred. All 132 frozen instance files, directory inventory, worktree.md
+and local exclude hashes are protected by before/after comparisons.
+
+Controlled adoption impact, for a separately approved operation: assess the nine
+canonical contract changes listed above against the frozen baseline; assess
+scaffold provenance and the new framework version; retain instance state and
+history and review the first-promotion eligibility and lane handoff requirements.
+The Tooling v1 runtime/distribution is unchanged. Nothing here approves copying
+contracts, restarting promotion, or changing the frozen instance.

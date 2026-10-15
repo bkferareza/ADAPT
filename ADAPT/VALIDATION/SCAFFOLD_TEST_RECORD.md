@@ -103,11 +103,15 @@ Before running this test:
 
 ## Bounded first-promotion acceptance
 
-The separate MODE_B synthetic case for local version candidate ADAPT-FW-0003
-is documented in BOOTSTRAP_V2_REPORT.md with raw BOOTSTRAP_V2_ACCEPTANCE.json.
-It exercises current canonical copying, prescribed population, official tooling
+The separate MODE_A_EXISTING_SOLUTION and MODE_B_REQUIREMENTS_ONLY synthetic
+cases for ADAPT-FW-0003, under FULL_EXTERNAL_ADAPT_INSTANCE_SCAFFOLD and
+PROTECTED_DEFAULT, are documented in BOOTSTRAP_V2_REPORT.md with raw
+BOOTSTRAP_V2_ACCEPTANCE.json. They exercise current canonical copying, prescribed population, official tooling
 distribution, Director first promotion, Context Steward assembly and ordinary
-context/reuse rejection as separate agent-guided stages. Synthetic approval is
+context/reuse rejection as separate agent-guided stages. MODE_A includes read-only
+existing-solution discovery; observations remain candidate truth, with no QA oracle
+declared from code. All eight required MODE_A negative cases stopped, as did reset,
+repeat and stale-context checks. Both fresh acceptance runs passed. Synthetic approval is
 test data only. Structural tests and Tooling v1 regressions are recorded separately
 in BOOTSTRAP_V2_TESTS.json. These results do not close the original MODE_A
 example-project test above, certify arbitrary extraction, certify a framework

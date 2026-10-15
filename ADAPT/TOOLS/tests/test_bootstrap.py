@@ -160,6 +160,26 @@ class BootstrapTests(unittest.TestCase):
         self.assertEqual(len(re.findall(r"^### Stop Rule \d+", stop, re.M)), 15)
         self.assertIn("no-override", case.read(self.root, "07_GUARDRAILS/CONTEXT_GUARDRAIL.md"))
 
+    def test_invalid_steward_handoff_stops_before_write(self):
+        case.set_state(self.root, SourceTruthVersion=case.VERSION, CurrentAuthority="Context Steward", CurrentPhase="SOURCE_TRUTH_READY", ExecutionReadiness="NEEDS_CONTEXT")
+        case.write(self.root, case.HO, "STATUS: ACTIVE\nHANDOFF_ID: HO-0001\nFROM_LANE: Director Lane\nTO_WORKCELL / TO_LANE: Backend Workcell\nSOURCE_TRUTH_VERSION: " + case.VERSION + "\n")
+        before = case.snapshot(self.root)
+        with self.assertRaisesRegex(case.Stop, "STEWARD_HANDOFF_BINDING"):
+            case.steward_request(self.root, self.basis)
+        self.assertEqual(before, case.snapshot(self.root))
+
+    def test_steward_cannot_use_workcell_bound_handoff(self):
+        case.set_state(self.root, SourceTruthVersion=case.VERSION, CurrentAuthority="Context Steward", CurrentPhase="SOURCE_TRUTH_READY", ActiveHandoff="HO-9999")
+        with self.assertRaisesRegex(case.Stop, "STEWARD_BINDING"):
+            case.steward_request(self.root, self.basis)
+
+    def test_mode_a_candidate_comparison_counts_include_discovery(self):
+        case.extract(self.root, promoted=False)
+        case.put_row(self.root, case.REGISTERS[1], "BI-002", ["BI-002", "Discovery", "Existing Python file", "NONE", "Discovery", "LOW", "DRAFT", "OBSERVED_EVIDENCE; CANDIDATE_TRUTH"])
+        case.extract(self.root, promoted=True)
+        self.assertIn("REQ/BI/AC=1/2/1", case.read(self.root, case.REGISTERS[0]))
+        self.assertIn("OBSERVED_EVIDENCE; CANDIDATE_TRUTH", case.read(self.root, case.REGISTERS[1]))
+
 
 if __name__ == "__main__":
     unittest.main()
