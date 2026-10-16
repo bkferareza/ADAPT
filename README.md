@@ -100,11 +100,10 @@ separately describes its scope and pending live agent-run validation.
 
 Framework Maintainer decisions and versions are recorded in the
 [framework learning register](ADAPT/FRAMEWORK_LEARNING_REGISTER.md). The current
-published version is **ADAPT-FW-0003** with Tooling v1 and the
+published version is **ADAPT-FW-0004** with Tooling v1 and the
 [first-promotion correction and its MODE_A/MODE_B acceptance evidence](ADAPT/VALIDATION/BOOTSTRAP_V2_REPORT.md).
-The local **ADAPT-FW-0004** candidate adds the bounded
-[onboarding lane correction](ADAPT/VALIDATION/ONBOARDING_REPORT.md);
-it awaits separate release review and has not been merged or published.
+It also includes the bounded
+[onboarding lane correction and validation evidence](ADAPT/VALIDATION/ONBOARDING_REPORT.md).
 Changes are
 prospective; existing instances require explicit upgrade/backport authorization.
 No second authority database is introduced.

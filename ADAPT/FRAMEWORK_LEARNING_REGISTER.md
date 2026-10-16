@@ -53,12 +53,23 @@ first-workcell disposition for ADAPT-SELF-HOST-001. The confirmed conflict is
 ONBOARDING_RULES Director identity precondition versus onboarding V-01's registry
 dependency, combined with Rule 11 and master dispatch's missing onboarding lane
 identity/scope basis. This is external maintenance, not an ADAPT-DEV workcell action.
-The directive authorizes bounded implementation, focused and actual fresh-instance
+The initial directive authorized bounded implementation, focused and actual fresh-instance
 validation, Framework Learning and a local maintenance commit only. Publication,
 main merge, instance adoption and real workcell creation are not authorized.
 ADAPT-FW-0004 is the next local candidate after issued ADAPT-FW-0003, advanced
-once for this patch. PROMOTED means local incorporation; validation evidence and
+once for this patch. PROMOTED initially recorded local incorporation; validation evidence and
 limitations are in VALIDATION/ONBOARDING_REPORT.md and its linked raw records.
+
+The Human Owner / Framework Maintainer's subsequent FRAMEWORK V0004 RELEASE
+directive (2026-10-16) explicitly authorizes publication of this validated patch
+after final release checks, superseding the initial local-only limit. It also
+authorizes read-only preparation of future controlled ADAPT-DEV adoption, not
+actual adoption. No further version increment accompanies release documentation.
+Original synthetic acceptance remains evidence at db4a00cefc65838be68b758ebbca867908d5da7a;
+release reruns and the retained local gate are in VALIDATION/ONBOARDING_TESTS.json
+and VALIDATION/ONBOARDING_GATE.json. No independent QA or Director dispatch
+certification is implied. Publication completion requires remote verification;
+this authorization record alone does not claim a completed push.
 
 FLC-002 is raised from the Human Owner-confirmed FRAMEWORK_BOOTSTRAP_CONTRACT_GAP
 in ADAPT-SELF-HOST-001. The initial Human Owner / Framework Maintainer directive,
@@ -88,7 +99,7 @@ this validation/documentation completion of the same FLC-002 patch.
 | FLC-ID | Observed In | Evidence | Novelty Dimensions | Solution-Specific Portion | Proposed Generic Change | Disposition | Decision | Introduced In | Backport | Upgrade Assessment |
 |---|---|---|---|---|---|---|---|---|---|---|
 
-| FLC-003 | ADAPT-SELF-HOST-001; read-only worklane audit and Maintainer disposition, 2026-10-16 | GROUNDED: original contracts at a9082ec9267927f68bf338813e0438fb0122d510; VALIDATION/ONBOARDING_ACCEPTANCE.json and VALIDATION/ONBOARDING_TESTS.json; ASSERTED interpretation and limitations: VALIDATION/ONBOARDING_REPORT.md | EXECUTION_PATH, GOVERNANCE_COMBINATION | No frozen instance operational state incorporated; no instance adoption | Verify human Director designation from identity artifact; bind first and subsequent onboarding to existing lane authority, ordinary context, Gate 3 and exact pre-workcell governance scope | PROMOTED | Human Framework Maintainer ONBOARDING LANE GOVERNANCE CORRECTION explicitly authorizes this bounded external patch and local commit after validation; no publication, independent QA certification or adoption granted | ADAPT-FW-0004 | ELIGIBLE | REQUIRED |
+| FLC-003 | ADAPT-SELF-HOST-001; read-only worklane audit and Maintainer disposition, 2026-10-16 | GROUNDED: original contracts at a9082ec9267927f68bf338813e0438fb0122d510; VALIDATION/ONBOARDING_ACCEPTANCE.json, VALIDATION/ONBOARDING_TESTS.json and VALIDATION/ONBOARDING_GATE.json; ASSERTED interpretation and limitations: VALIDATION/ONBOARDING_REPORT.md | EXECUTION_PATH, GOVERNANCE_COMBINATION | No frozen instance operational state incorporated; no instance adoption | Verify human Director designation from identity artifact; bind first and subsequent onboarding to existing lane authority, ordinary context, Gate 3 and exact pre-workcell governance scope | PROMOTED | Human Framework Maintainer ONBOARDING LANE GOVERNANCE CORRECTION approved implementation/local commit; subsequent FRAMEWORK V0004 RELEASE explicitly approves publication after final checks and read-only adoption preparation. No actual adoption or independent certification authorized. | ADAPT-FW-0004 | ELIGIBLE | REQUIRED |
 
 | FLC-001 | Tooling v1 consolidation, 2026-10-15; owner-raised framework gap review | GROUNDED: VALIDATION/TOOLING_V1_TEST_OUTPUT.txt, TOOLS/MANIFEST.json; ASSERTED summary: VALIDATION/TOOLING_V1_RELEASE.md | GOVERNANCE_COMBINATION, VALIDATION_MECHANISM | No client instance or solution-specific changes | Align placeholder validation, lifecycle ownership and schema write precedence; distribute read-only tools with explicit handoff-bound preview and reproducible copy verification | PROMOTED | Current repository-owner/Framework Maintainer directive: ADAPT — TOOLING V1 COMPLETION AND PUBLICATION; explicitly authorizes this scoped correction, promotion and publication after validation. Recorded on behalf of that human authority, not an AI/Director self-approval or historical signature. See VALIDATION/TOOLING_V1_RELEASE.md. | ADAPT-FW-0002 | ELIGIBLE | REQUIRED |
 | FLC-002 | ADAPT-SELF-HOST-001; owner-confirmed FRAMEWORK_BOOTSTRAP_CONTRACT_GAP | GROUNDED: original contracts at 37f465782ef1fb69bc58da46bcc5969d6bea8220, VALIDATION/BOOTSTRAP_V2_ACCEPTANCE.json (original MODE_B and final MODE_A), VALIDATION/BOOTSTRAP_V2_TESTS.json, VALIDATION/BOOTSTRAP_V2_GATE.json; ASSERTED interpretation, affected contracts and limitations: VALIDATION/BOOTSTRAP_V2_REPORT.md | EXECUTION_PATH, GOVERNANCE_COMBINATION | No instance-specific operational state incorporated; frozen instance unchanged | Single-use first-promotion initial basis followed by ordinary versioned Context Steward assembly | PROMOTED | Human Owner / Framework Maintainer BOOTSTRAP RECOVERY MILESTONE approved local implementation; subsequent BOOTSTRAP V2 FINAL ACCEPTANCE AND RELEASE, 2026-10-16, explicitly authorizes publication after recorded MODE_A/MODE_B, regression, integrity and governance gates pass. Recorded on behalf of that human; no independent certification or adoption claimed. | ADAPT-FW-0003 | ELIGIBLE | REQUIRED |

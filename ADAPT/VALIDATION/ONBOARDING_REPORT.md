@@ -1,5 +1,9 @@
 # Onboarding lane correction — local validation
 
+The implementation sections below retain the validated local-delivery record at
+db4a00cefc65838be68b758ebbca867908d5da7a. The final release section supersedes
+their local-only publication boundary; all original acceptance limitations remain.
+
 Date: 2026-10-16. External Human Framework Maintainer maintenance for
 ADAPT-SELF-HOST-001, not an ADAPT-DEV workcell operation.
 Baseline: ADAPT-FW-0003 at a9082ec9267927f68bf338813e0438fb0122d510.
@@ -152,3 +156,32 @@ Release/publication and controlled ADAPT-DEV adoption require separate authority
 Future adoption must assess these seven contracts plus the prior bootstrap
 correction, preserve instance history/state, and establish actual Director
 ownership and applicable approvals. Registration never substitutes for assignment.
+
+## Final release gate — 2026-10-16
+
+The Human Owner acting as Framework Maintainer explicitly approved ADAPT-FW-0004
+publication in the FRAMEWORK V0004 RELEASE directive. This supersedes the earlier
+local-only instruction. Read-only future adoption preparation is authorized;
+actual ADAPT-DEV adoption remains outside this release.
+
+The validated correction, test/helper sources and canonical contracts are unchanged
+from db4a00c. Original acceptance bytes and hashes were verified against that
+commit, including 13 stage commands, two fifteen-artifact onboarding results,
+thirteen negative stops, four bootstrap/context stops, frozen source pins and
+inverse-verified artifact differences. No separate expensive acceptance replay
+was needed. Supplied Director fixtures remain fixtures, not an actual Director
+dispatch or independent QA certification.
+
+Final automated reruns cover the same three existing suites, with raw commands,
+outputs and exit codes retained under release_regressions in ONBOARDING_TESTS.json.
+All 101 tests passed again: 66 combined onboarding/bootstrap/release-distribution,
+8 state-reader and 27 operator-toolkit tests; all three child exit codes were 0.
+The original 101-test local record is preserved under validated_local_at_db4a00c.
+The release gate retains the original local gate and its historical hashes.
+Release documentation changes do not invalidate acceptance pinned to db4a00c;
+the updated Learning register records the subsequent human release authorization.
+
+README and Framework Learning describe the released -0004 lineage. No new
+framework version, capability, command, schema or instance mutation is introduced.
+Prepared release records do not by themselves establish push success; publication
+must be verified against fetched remote refs and content.
