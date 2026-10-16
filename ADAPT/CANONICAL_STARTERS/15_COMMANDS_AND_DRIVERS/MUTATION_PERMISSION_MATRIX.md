@@ -58,6 +58,11 @@ class permissions or explicit delegations. No toolkit command writes state.
 
 ### Onboarding Orchestrator — LIMITED
 
+ACTION_PROMPT_ONBOARDING.md, Onboarding lane identity and scope basis, restricts
+this permission to the approved target's declared files/rows and evidence paths.
+It supplies pre-workcell executor scope, never implementation authority. Director
+and Context Steward retain only their named preparation/context operations.
+
 May create the approved identity's workcell artifacts and registry/onboarding
 records after Director approval under Gate 3. A direct human Onboard command
 permits CurrentAuthority recording under the schema's direct-command delegation;

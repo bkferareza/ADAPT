@@ -42,13 +42,89 @@ still requires it.
 
 ## Pre-Onboarding Validation
 
+### Onboarding lane identity and scope basis
+
+This procedure governs the existing `Onboard {{IDENTITY}} as {{ROLE}}` command
+for both first and subsequent workcells. It creates no new command or authority
+registry. A development workcell is not required to execute this governance lane.
+
+Director presence is verified against `02_DIRECTOR_LANE/DIRECTOR_IDENTITY.md`:
+the artifact must exist, match the control-plane project, declare ROLE: Director
+and WORKCELL_TYPE: Director Lane, and identify a real human owner. Required
+identity fields must contain no unresolved placeholders or ambiguous values.
+Trace the human designation to its original human input and its reference in
+DECISION_LOG.md; verify applicability, currency and any superseding decisions.
+An AI-authored claim of designation alone is insufficient. Conflicting or
+unverifiable designation/authority is STOP_REQUIRED. A registered Director
+workcell is not required to establish this lane's presence.
+
+Before any onboarding mutation, bind the operating identity to the recognized
+Onboarding Orchestrator in COMMAND_ROUTING_MATRIX.md, this action prompt, the
+verified Director accountability, and the exact registered command/target.
+Require either an applicable Director-issued ACTIVE lane handoff with lawful
+CurrentAuthority, or the actual current human Onboard command under the existing
+direct-command delegation. A Driver prompt merely claiming a lane name, an old
+intake entry, or NextExpectedAction is not execution authority. Gate 3 requires
+traceable human approval for this exact identity and role, received and recorded
+by the Director in the existing decision/onboarding records. Direct invocation
+does not replace that approval or Director accountability.
+
+Require a current registered source-truth version and a valid ordinary context
+pack covering this onboarding task, its active handoff, approval, designation,
+governing contracts and exact scope. The first-promotion initial basis cannot be
+reused. Context Steward uses its existing self-assembly procedure for this
+specific lane request, with the registered source and Director-issued scope;
+it does not need a fictitious development workcell or a prior pack to build the
+ordinary pack. Its context must remain versioned, traceable and checked for
+staleness. Do not reuse the first promotion-review pack for a different task.
+
+Record the bounded scope in the existing Director decision/request and reference
+it from the ordinary pack and onboarding evidence; do not create a parallel scope
+database. Name the approved target folder, all 15 required files, any operator
+binding section within its action prompt, registry/map/report rows, intake trace,
+evidence, context delta, incoming discharge and outgoing handoff paths, and named
+control fields. List before hashes and the exact permitted differences. Existing
+rows and unrelated workcells remain protected. Paths must stay inside the
+instance; protected repository routing is unchanged.
+
+For this onboarding only, that scope replaces the executor's pre-existing
+development SCOPE_CONTRACT.md at master dispatch steps 4-8 and scope checks.
+The generated workcell still requires its own identity, scope, effective workflow,
+guardrail/operator bindings and action prompt. All 15 files must pass the existing
+role-specific quality checks before final registration. No invented identities,
+placeholder blueprints, unauthorized customization or scope expansion is allowed.
+Registry identity/path must agree with the generated identity and action prompt.
+
+The identified Director Lane may perform only the registered intake, approval
+recording and routing needed for this exact onboarding; it retains ordinary
+context and human-approval requirements. Context Steward may perform only the
+associated context assembly/delta delivery. Each lane has its own bounded action,
+evidence, context delta, valid handoff and STOP; this is not sequence clearance.
+
+Onboarding may create only the approved workcell artifacts and listed governance
+records. It cannot implement product changes, edit framework contracts, execute a
+milestone, certify QA/release, assign business items or expand mutation scope.
+Completion leaves assigned BI-IDs NONE and ActiveWorkcell/ActiveHandoff unchanged;
+lane handoffs never become a workcell binding. Discharge the incoming request
+before emitting completion to Director. No self-addressed handoff or automatic
+implementation activation. The same rules apply to every later onboarding.
+
+Control writes are limited to LastAction, LastContextDelta (actual CD-ID),
+NextExpectedAction; CurrentPhase = ONBOARDING only when beginning this activity;
+and CurrentAuthority only under the schema's actual direct-command delegation.
+Discovered State conditions retain schema permissions and register reconciliation.
+Do not set READY, bind work, or change any other Authority/Identity field.
+Existing STOP rules, all thirteen stages and the one-correction limit still apply.
+Partial generation is not registration; preserve failed-attempt evidence and do
+not overwrite an existing target or invent retry authority.
+
 Before creating any workcell artifacts, the Onboarding Orchestrator must verify all of the following. If any check fails, stop and route to the Director.
 
 | # | Check | Stop Action If Failed |
 |---|-------|-----------------------|
-| V-01 | Director Lane exists and is active in this ADAPT instance (check WORKCELL_REGISTRY.md) | Stop — ADAPT cannot onboard without Director Lane |
+| V-01 | Verify Director identity, human designation and authority using the onboarding lane identity and scope basis above; no Director workcell entry required | Stop — missing, unresolved, conflicting or unverifiable Director accountability |
 | V-02 | Source truth has been promoted (check `SourceTruthVersion` in control plane — must not be `NONE`) | Stop — record GAP-T11; onboarding cannot proceed without source truth |
-| V-03 | Director approval for this onboarding is on record (check INTAKE_REGISTER.md or DECISION_LOG.md for the approval entry) | Stop — request Director approval; do not create workcell without approval |
+| V-03 | Applicable Gate 3 human approval for the exact identity and role is received and recorded by Director; trace INTAKE_REGISTER.md or DECISION_LOG.md to approval and ONBOARDING_REPORTS.md | Stop — request applicable approval; no workcell creation |
 | V-04 | The role provided in the command is a valid ADAPT role (check 00_FRAMEWORK/ROLE_MODEL.md or equivalent) | Stop — return to Director with invalid role error |
 | V-05 | The identity name is not already registered for an active workcell with the same role (check WORKCELL_REGISTRY.md) | Stop — duplicate workcell detection; route to Director for resolution |
 | V-06 | A workcell folder template exists for the role in 08_TEMPLATES or 11_ONBOARDING | Stop — record gap; no template available; route to Director |
@@ -64,7 +140,8 @@ Run all 6 pre-onboarding checks (V-01 through V-06). Record results. If any chec
 
 **Step 2 — Create Workcell Folder**
 Create the workcell folder at the path: `ADAPT/03_WORKCELLS/{{ROLE}}_{{IDENTITY}}/`
-Assign a Workcell ID: `WC-{IDENTITY_UPPER}-{ROLE_CODE}` (e.g., `WC-ANA-BACKEND`).
+Use the ROLE_ABBREVIATION_IDENTITY_SHORTNAME identifier defined by
+WORKCELL_REGISTRY.md consistently in the folder, identity, prompt and registry.
 
 **Step 3 — Generate 15 Workcell Files**
 Create the following 15 files in the workcell folder. All files must be populated with operational content appropriate to the role — not empty stubs:
@@ -118,7 +195,9 @@ Emit an onboarding completion handoff to the Director Lane with:
 - Onboarding report reference (ONBOARDING_REPORTS.md entry)
 - Notes on any pre-onboarding warnings (gaps, capacity flags, etc.)
 
-Record the onboarding in ONBOARDING_REPORTS.md. Onboarding writes no control-plane field; it registers the workcell in `WORKCELL_REGISTRY.md` and `ROLE_TO_WORKCELL_MAP.md` only. Onboarding a workcell does not make it active.
+Record onboarding in ONBOARDING_REPORTS.md and ROLE_TO_WORKCELL_MAP.md. Only the
+named control writes in the lane basis above are permitted, under schema class
+precedence. Registration does not assign or activate the workcell for execution.
 
 ---
 

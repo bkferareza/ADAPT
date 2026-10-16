@@ -83,6 +83,14 @@ this promotion and the subsequent first Context Steward assembly only, the human
 request / Director-routed lane handoff supplies scope without an invented workcell
 scope contract. All ordinary operations retain their context/authority stops.
 
+For the existing Onboard command and its bounded Director/Context Steward
+preparation only, use ACTION_PROMPT_ONBOARDING.md, Onboarding lane identity and
+scope basis, at steps 3-8 and scope checks. Its exact approved governance scope
+replaces an executor's pre-existing development scope contract; ordinary versioned
+context, Gate 3, actual invocation/routing, guardrails and all thirteen steps
+remain mandatory. This does not extend the first-promotion context exception or
+authorize implementation. Generated workcells retain every ordinary binding.
+
 Before beginning Step 8 (Execute), confirm all of the following:
 
 - [ ] Control plane has been read (Step 1 complete)

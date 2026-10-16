@@ -23,7 +23,7 @@ This command, issued to the Director, initiates the onboarding sequence.
 
 Before onboarding can begin, all of the following must be true:
 
-1. The Director Lane must exist and be active (DIRECTOR_IDENTITY.md must be present and populated)
+1. Verify Director presence through DIRECTOR_IDENTITY.md, its real human owner and traceable human designation under ACTION_PROMPT_ONBOARDING.md, Onboarding lane identity and scope basis. No pre-registered Director workcell is required; unresolved or conflicting identity/authority causes STOP.
 2. A source truth version must have been promoted in SOURCE_TRUTH_VERSION_LOG.md
 3. The requested role must be defined in ROLE_MODEL.md — roles not listed in ROLE_MODEL.md cannot be onboarded
 
@@ -49,7 +49,7 @@ All 15 required files are generated within that folder during onboarding.
 4. Create the workcell folder at `ADAPT/03_WORKCELLS/{{ROLE}}_{{IDENTITY}}/`
 5. Generate all 15 required workcell files (see below)
 6. Register the workcell in WORKCELL_REGISTRY.md
-7. Emit the first handoff from the Director to the new workcell
+7. Discharge the incoming onboarding handoff and emit completion from Onboarding to Director. Director assignment to the new workcell is a separate governed action.
 
 ---
 
@@ -80,7 +80,7 @@ The following 15 files must be present upon completion of onboarding. Any file m
 After the 15 files are generated and the quality check passes:
 
 1. Update WORKCELL_REGISTRY.md with the new workcell entry
-2. Update the project control plane (PROJECT_CONTROL_PLANE.md)
+2. Record only the control-plane fields named by ACTION_PROMPT_ONBOARDING.md, subject to CONTROL_PLANE_SCHEMA.md class permissions; do not bind or activate the new workcell
 3. Record the completed onboarding in ONBOARDING_REPORTS.md
 
 ---

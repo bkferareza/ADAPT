@@ -42,6 +42,11 @@ still requires it.
 
 ## Director Authority
 
+Intake, Gate 3 approval recording and routing for an exact Onboard request use
+ACTION_PROMPT_ONBOARDING.md, Onboarding lane identity and scope basis. Verify the
+human Director designation and ordinary task context. This permits no product
+mutation, implementation assignment or unrelated Director operation under that basis.
+
 For the first Promote command, the Source Truth Agent must apply
 SOURCE_AUTHORITY_POLICY.md, First-Promotion Initial Context Basis, in full before
 any write. That procedure governs the reservation, source preservation, existing

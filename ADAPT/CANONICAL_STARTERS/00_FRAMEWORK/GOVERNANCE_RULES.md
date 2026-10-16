@@ -75,6 +75,15 @@ For only the first promotion and its first ordinary context assembly under
 SOURCE_AUTHORITY_POLICY.md, the identified Director Lane / Context Steward lane
 identities satisfy this rule. No implementation workcell is created or implied.
 
+For the existing Onboard command only, ACTION_PROMPT_ONBOARDING.md, Onboarding
+lane identity and scope basis, governs identified Director intake/approval/routing,
+Onboarding Orchestrator execution and associated Context Steward assembly.
+Their verified lane identities satisfy this rule only within that bounded
+procedure, with ordinary versioned context and Gate 3 intact. A claimed lane name
+alone is insufficient. Development execution still requires an onboarded workcell,
+its approved scope, effective workflow, assignment and handoff. No blanket lane
+exception or product mutation authority is created.
+
 ### Rule 12 — No Workcell Self-Assignment
 Workcells must not assign themselves new work. Work assignments come from the Director Lane via handoffs. A workcell that encounters unassigned work must record a gap or blocker and route to the Director.
 

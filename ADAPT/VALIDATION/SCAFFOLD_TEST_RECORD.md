@@ -119,6 +119,15 @@ release, or count as a successful self-hosted development lane.
 
 ## Related Files
 
+The separate local ADAPT-FW-0004 onboarding acceptance is recorded in
+[ONBOARDING_REPORT.md](ONBOARDING_REPORT.md) and
+[ONBOARDING_ACCEPTANCE.json](ONBOARDING_ACCEPTANCE.json). It exercises a fresh
+MODE_A scaffold, first promotion and ordinary pack, supplied synthetic Director/
+Gate 3 inputs, Steward onboarding context, and first/subsequent onboarding.
+Both workcells have 15 artifacts; no assignment or implementation occurs.
+Director input preparation is a labeled fixture, not a claimed Director dispatch.
+This does not close the original example-project test or demonstrate self-hosting.
+
 - `START_HERE.md` — entry point
 - `SCAFFOLD_WORKFLOW_AGENT.md` — scaffold workflow
 - `SCAFFOLD_OUTPUT_CONTRACT.md` — required output files

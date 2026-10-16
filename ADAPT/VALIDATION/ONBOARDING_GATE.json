@@ -1,0 +1,149 @@
+{
+  "status": "ALL_REQUIRED_LOCAL_GATES_PASS",
+  "baseline": "a9082ec9267927f68bf338813e0438fb0122d510",
+  "framework_candidate": "ADAPT-FW-0004",
+  "learning": "FLC-003",
+  "branch": "fix/onboarding-lane-governance",
+  "authorization": "Human Framework Maintainer ONBOARDING LANE GOVERNANCE CORRECTION; local commit only, no main merge, push or adoption.",
+  "suite_counts": [
+    66,
+    8,
+    27
+  ],
+  "total_tests": 101,
+  "focused_onboarding_tests": 25,
+  "fresh_mode_a_acceptance": "PASS",
+  "first_and_subsequent_onboarding": "PASS; 15 artifacts each, no implementation assignment",
+  "negative_acceptance_cases": 13,
+  "bootstrap_stop_cases": 4,
+  "independence": "GROUNDED mechanical evidence; ASSERTED interpretation; no independent QA certification",
+  "fixture_boundary": "Synthetic human/Director records and route transitions supplied inputs; no separate Director dispatch execution claimed.",
+  "unchanged_paths": [
+    "ADAPT/TOOLS/adapt.py",
+    "ADAPT/TOOLS/supporting_modules",
+    "ADAPT/TOOLS/MANIFEST.json",
+    "ADAPT/TOOLS/README.md",
+    "ADAPT/VALIDATION/bootstrap_case.py",
+    "ADAPT/VALIDATION/distribute_tools.py",
+    "ADAPT/VALIDATION/BOOTSTRAP_V2_ACCEPTANCE.json",
+    "ADAPT/VALIDATION/BOOTSTRAP_V2_TESTS.json",
+    "ADAPT/VALIDATION/BOOTSTRAP_V2_GATE.json",
+    "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/COMMAND_REGISTRY.md",
+    "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/COMMAND_ROUTING_MATRIX.md",
+    "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/CONTROL_PLANE_SCHEMA.md",
+    "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/HUMAN_APPROVAL_GATES.md",
+    "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/STOP_RULES.md",
+    "ADAPT/CANONICAL_STARTERS/00_FRAMEWORK/SOURCE_AUTHORITY_POLICY.md",
+    "ADAPT/WORKCELL_ONBOARDING_CONTRACT.md"
+  ],
+  "canonical_inventory": 112,
+  "approved_changed_file_inventory": [
+    "ADAPT/CANONICAL_STARTERS/00_FRAMEWORK/GOVERNANCE_RULES.md",
+    "ADAPT/CANONICAL_STARTERS/11_ONBOARDING/ONBOARDING_RULES.md",
+    "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_CONTEXT_STEWARD.md",
+    "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_DIRECTOR.md",
+    "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_MASTER.md",
+    "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_ONBOARDING.md",
+    "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/MUTATION_PERMISSION_MATRIX.md",
+    "ADAPT/FRAMEWORK_LEARNING_REGISTER.md",
+    "ADAPT/TOOLS/tests/test_onboarding.py",
+    "ADAPT/VALIDATION/ONBOARDING_ACCEPTANCE.json",
+    "ADAPT/VALIDATION/ONBOARDING_GATE.json",
+    "ADAPT/VALIDATION/ONBOARDING_REPORT.md",
+    "ADAPT/VALIDATION/ONBOARDING_TESTS.json",
+    "ADAPT/VALIDATION/SCAFFOLD_TEST_RECORD.md",
+    "ADAPT/VALIDATION/onboarding_case.py",
+    "ADAPT/VALIDATION/run_onboarding_tests.py",
+    "README.md"
+  ],
+  "protected_instance_files_unchanged": 132,
+  "protected_directory_inventory_unchanged": true,
+  "worktree_sha256_unchanged": "3a65c16636d08333e318d380b807e6014af98d51f6fa13ce50bf18363d7073fb",
+  "exclude_sha256_unchanged": "4659c9a6d796f50dea541e08f9373fe5864c12164a2779277811ee551d4fd16e",
+  "remote_refs_unchanged": true,
+  "main_unchanged": "a9082ec9267927f68bf338813e0438fb0122d510",
+  "documentation_links_checked": [
+    [
+      "README.md",
+      "ADAPT/START_HERE.md"
+    ],
+    [
+      "README.md",
+      "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/CONTROL_PLANE_SCHEMA.md"
+    ],
+    [
+      "README.md",
+      "ADAPT/CANONICAL_STARTERS/00_FRAMEWORK/GOVERNANCE_RULES.md"
+    ],
+    [
+      "README.md",
+      "ADAPT/SCAFFOLD_WORKFLOW_AGENT.md"
+    ],
+    [
+      "README.md",
+      "ADAPT/DEPLOYMENT_MODES.md"
+    ],
+    [
+      "README.md",
+      "ADAPT/SCAFFOLD_OUTPUT_CONTRACT.md"
+    ],
+    [
+      "README.md",
+      "ADAPT/TOOLS/README.md"
+    ],
+    [
+      "README.md",
+      "ADAPT/CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/TOOLING_DECISION_CONTRACT.md"
+    ],
+    [
+      "README.md",
+      "ADAPT/VALIDATION/TOOLING_V1_RELEASE.md"
+    ],
+    [
+      "README.md",
+      "ADAPT/VALIDATION/SCAFFOLD_TEST_RECORD.md"
+    ],
+    [
+      "README.md",
+      "ADAPT/FRAMEWORK_LEARNING_REGISTER.md"
+    ],
+    [
+      "README.md",
+      "ADAPT/VALIDATION/BOOTSTRAP_V2_REPORT.md"
+    ],
+    [
+      "README.md",
+      "ADAPT/VALIDATION/ONBOARDING_REPORT.md"
+    ],
+    [
+      "ADAPT/VALIDATION/ONBOARDING_REPORT.md",
+      "ONBOARDING_TESTS.json"
+    ],
+    [
+      "ADAPT/VALIDATION/ONBOARDING_REPORT.md",
+      "ONBOARDING_ACCEPTANCE.json"
+    ],
+    [
+      "ADAPT/VALIDATION/ONBOARDING_REPORT.md",
+      "ONBOARDING_GATE.json"
+    ],
+    [
+      "ADAPT/VALIDATION/SCAFFOLD_TEST_RECORD.md",
+      "ONBOARDING_REPORT.md"
+    ],
+    [
+      "ADAPT/VALIDATION/SCAFFOLD_TEST_RECORD.md",
+      "ONBOARDING_ACCEPTANCE.json"
+    ]
+  ],
+  "whitespace_check": "PASS",
+  "source_and_evidence_hashes": {
+    "ADAPT/VALIDATION/onboarding_case.py": "2463e729efe5d1165e48d927e924e19c55071d37a6654cb68ba3662064e2c7ef",
+    "ADAPT/VALIDATION/run_onboarding_tests.py": "57d81cad25ae3fe56c6513050b6f86dd360b307a2dc4afdd923b45fc9bbbdc09",
+    "ADAPT/TOOLS/tests/test_onboarding.py": "3f9c21a41266f804897b79983dd96d3c6284e301dc57081a3c4b2344227a968e",
+    "ADAPT/VALIDATION/ONBOARDING_ACCEPTANCE.json": "9a109e155394eaea8c688aa27e31ba8d170b10b4bb9685709670926d6d1cd460",
+    "ADAPT/VALIDATION/ONBOARDING_TESTS.json": "bad19f445826e6aae95e8c7d8a1403339434a720d2f318f884d41f527584cf1f"
+  },
+  "publication": "NOT_AUTHORIZED; NOT_PERFORMED",
+  "adoption": "NOT_AUTHORIZED_BY_THIS_MILESTONE; NOT_PERFORMED"
+}

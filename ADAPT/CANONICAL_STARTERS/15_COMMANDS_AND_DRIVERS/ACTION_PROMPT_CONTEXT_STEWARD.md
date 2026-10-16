@@ -42,6 +42,12 @@ still requires it.
 
 ## Context Steward Authority
 
+For ordinary context supporting an approved Onboard request, apply the bounded
+lane scope in ACTION_PROMPT_ONBOARDING.md. Use the registered source, actual
+Director request/handoff, Gate 3 and scope evidence; no development workcell is
+invented. Index CP-ID in CONTEXT_INDEX.md instead of the builder's step 4 below;
+LastContextDelta contains only the actual CD-ID. No Authority field is written.
+
 For the first ordinary pack after registration, follow SOURCE_AUTHORITY_POLICY.md,
 First-Promotion Initial Context Basis, first ordinary context procedure. The explicit
 Director handoff in ACTIVE/ addressed to Context Steward supplies the lane-only
