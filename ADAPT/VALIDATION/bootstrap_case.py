@@ -111,6 +111,11 @@ def real_rows(path):
     return "\n".join(line for line in path.read_text(encoding="utf-8").splitlines() if line.startswith("| "))
 
 
+def next_decision_id(root):
+    used = [int(n) for n in re.findall(r'^\| DEC-(\d+) \|', real_rows(root / DEC), re.M)]
+    return f"DEC-{max(used, default=0)+1:03}"
+
+
 def fresh(root, basis):
     """Read-only checks for this explicitly synthetic case; semantic checks are agent assessments."""
     values = state(root)
@@ -152,11 +157,12 @@ def fresh(root, basis):
     return "PASS_INITIAL_BASIS"
 
 
-def inputs(root):
+def inputs(root, populate_director=True):
     """Only synthetic input artifacts, never approvals for real instances."""
     write(root, SOURCE, DOCUMENT)
     identity = "02_DIRECTOR_LANE/DIRECTOR_IDENTITY.md"
-    write(root, identity, read(root, identity).replace("{{DIRECTOR_IDENTITY}}", "SYNTHETIC TEST OWNER"))
+    if populate_director:
+        write(root, identity, read(root, identity).replace("{{DIRECTOR_IDENTITY}}", "SYNTHETIC TEST OWNER"))
     version = re.search(r"Current Framework Version: (\S+)", read(FRAMEWORK, "FRAMEWORK_LEARNING_REGISTER.md"))[1]
     write(root, REQUEST, f"SYNTHETIC FIXTURE ONLY: Promote {SOURCE} as {VERSION}.\nScope: first promotion only; SHA256 {sha(root / SOURCE)}.\n")
     approval = {"synthetic_fixture_only": True, "approved": True, "gate": 1, "document": SOURCE, "version": VERSION,
@@ -227,7 +233,7 @@ def checkpoint(base, root, name, before):
     write(base, name + ".json", json.dumps({"state": state(root), "before": before, "after": after, "changes": changes}, indent=2) + "\n")
 
 
-def scaffold(base, deployment="MODE_B_REQUIREMENTS_ONLY"):
+def scaffold(base, deployment="MODE_B_REQUIREMENTS_ONLY", prepare_promotion=True):
     """Codex scaffold file actions, independent of the unittest fresh-instance fixture."""
     root = base / "acceptance/ADAPT"
     need(not root.exists(), "NO_OVERWRITE")
@@ -286,7 +292,9 @@ def scaffold(base, deployment="MODE_B_REQUIREMENTS_ONLY"):
     append(root, "11_ONBOARDING/ONBOARDING_REPORTS.md", "\nSynthetic initialization under maintainer acceptance directive; no person-owned workcells; see STARTUP.md.\n")
     for flags in ([], ["--verify"]):
         command(base, [sys.executable, "-B", FRAMEWORK / "VALIDATION/distribute_tools.py", "--framework", FRAMEWORK, "--instance", root, *flags])
-    basis = inputs(root)
+    # Director-initialization acceptance must stop at the real unresolved scaffold;
+    # older bootstrap cases retain their explicitly pre-designated input fixture.
+    basis = inputs(root) if prepare_promotion else None
     source_pins = {"CANONICAL_STARTERS/" + ref: sha(FRAMEWORK / "CANONICAL_STARTERS" / ref) for ref in CONTRACTS}
     for ref in ("START_HERE.md", "SCAFFOLD_WORKFLOW_AGENT.md", "SCAFFOLD_OUTPUT_CONTRACT.md", "WORKCELL_ONBOARDING_CONTRACT.md", "DEPLOYMENT_MODES.md", "FRAMEWORK_LEARNING_REGISTER.md"):
         source_pins[ref] = sha(FRAMEWORK / ref)
@@ -302,12 +310,13 @@ def scaffold(base, deployment="MODE_B_REQUIREMENTS_ONLY"):
     need(not live_survivors, "POPULATION_FAILURE")
     startup = {"framework": "<FRAMEWORK>", "project": "<DISPOSABLE>/project", "instance": "<DISPOSABLE>/acceptance/ADAPT", "document": "project/REQUIREMENTS.txt", "project_name": "Bootstrap Acceptance", "mode": deployment, "routing": "PROTECTED_DEFAULT (explicit test input)", "project_source_mutation": "NO", "canonical_files": len(list((FRAMEWORK / "CANONICAL_STARTERS").rglob("*.md"))), "missing": [], "governance_directories": 16, "tool_files": 7, "instance_survivors": live_survivors, "template_survivors": template_count, "questions": ["OQ-001", "OQ-002"] if discovery else ["OQ-001"], "gaps": ["GAP-T10-001"], "blockers": [], "state": state(root), "version": version, "frozen_source_hashes": source_pins, "discovery": discovery, "next_command": "Run Director intake", "status": "SCAFFOLDED; STOP", "approval_notice": "Synthetic Gate 1 input is for the later promotion; not exercised during scaffold."}
     write(root, "STARTUP.md", "# ADAPT Startup / Initialization Report\nSYNTHETIC ONLY\n```json\n" + json.dumps(startup, indent=2) + "\n```\n")
-    write(base, "basis.json", json.dumps(basis, indent=2))
+    if basis is not None:
+        write(base, "basis.json", json.dumps(basis, indent=2))
     write(base, "scaffold.json", json.dumps({"startup": startup, "hashes": snapshot(root)}, indent=2))
     for args, expected in ((("state",), 0), (("doctor",), 0), (("prompt", "next"), 1), (("evidence", "--repo", project), 0)):
         cli(base, root, *args, expected=expected)
     need(snapshot(project) == json.loads(read(base, "project-before.json")), "PROJECT_MUTATED")
-    print(json.dumps({"stage": "scaffold", "version": version, "source": basis["source_sha256"], "state": state(root)}))
+    print(json.dumps({"stage": "scaffold", "version": version, "source": basis["source_sha256"] if basis else "NONE (no promotion input yet)", "state": state(root)}))
 
 
 def extract(root, promoted):
@@ -338,10 +347,11 @@ def handoff(root, identifier, target, er, delta, pack, completed, scope):
 
 def promote(base, root, basis):
     print(fresh(root, basis))
+    decision_id = next_decision_id(root)
     before = snapshot(root)
     shutil.copytree(root, base / "before-promote")
     append(root, INTAKE, "\n| INT-001 | " + DATE + " | SYNTHETIC-GATE1-001 | Promote SYNTHETIC_SOURCE.txt as SOURCE_TRUTH_V0.1 | Source Truth Promotion | Director Lane | RECEIVED | BOOTSTRAP_ATTEMPT: BT-001; ER-0001; synthetic only |\n")
-    append(root, DEC, "\n| DEC-001 | Reserve first-promotion attempt BT-001 | Governed initial basis | Director recording synthetic approval | " + DATE + " | SOURCE_TRUTH_V0.1 | No fresh retry | ACTIVE | BOOTSTRAP_ATTEMPT: BT-001; binding in ER-0001; fixture only |\n")
+    append(root, DEC, "\n| " + decision_id + " | Reserve first-promotion attempt BT-001 | Governed initial basis | Director recording synthetic approval | " + DATE + " | SOURCE_TRUTH_V0.1 | No fresh retry | ACTIVE | BOOTSTRAP_ATTEMPT: BT-001; binding in ER-0001; fixture only |\n")
     write(root, ER, "# ER-0001\nWORKCELL_ID: NONE\nLANE: Director Lane\nSYNTHETIC ONLY\n## Initial Context Basis\n```json\n" + json.dumps(dict(basis, before_hashes=before), indent=2) + "\n```\n")
     set_state(root, CurrentPhase="SOURCE_TRUTH_LOADING", ExecutionReadiness="NOT_READY")
     shutil.copyfile(root / SOURCE, root / PRESERVED)
@@ -355,7 +365,7 @@ def promote(base, root, basis):
     stages = "\n## Stage Record\n| # | Stage | Inputs | Outputs / evidence | Evidence class | Attempts | Result |\n|---|---|---|---|---|---|---|\n"
     for i, agent in enumerate(suites, 1):
         engaged = i <= 2
-        stages += f"| {i} | {agent} | Request/source/basis if engaged | " + ("INT-001, DEC-001, extraction, version log, hashes; zero new duplicate IDs" if engaged else "Not engaged: no assignment, dependency mapping, routing, certification or cycle work authorized") + f" | GROUNDED | 1 | {'COMPLETE' if engaged else 'NOT_APPLICABLE'} |\n"
+        stages += f"| {i} | {agent} | Request/source/basis if engaged | " + ("INT-001, " + decision_id + ", extraction, version log, hashes; zero new duplicate IDs" if engaged else "Not engaged: no assignment, dependency mapping, routing, certification or cycle work authorized") + f" | GROUNDED | 1 | {'COMPLETE' if engaged else 'NOT_APPLICABLE'} |\n"
     append(root, ER, stages + "\n## Dispatch and guardrails\nSteps 1-3: state/current synthetic request/Director identity. Step 4 M; 5-6 verified initial basis; 7-8 promotion only; 9 evidence; 10 CD-0001; 11 canonical HO-0001; 12 named policy fields; 13 STOP.\nContext PASS on initial basis; scope/mutation permit only declared instance artifacts. Source/approval/hash match; evidence traces BT-001 and contracts, extraction REQ-001/BI-001/AC-001. Handoff/evidence checks pass at completion. Contract and QA independence triggers not exercised (no implementation or QA). No override.\n## Integrity\nExternal promote checkpoint seals every changed file including this report with before/after hashes, exact diffs and inverse checks. All actual paths equal the initial allowlist.\n## Limitations\nSynthetic approval only; no independent QA, release certification or self-hosted lane success.\n")
     write(root, HO, handoff(root, "HO-0001", "Context Steward", ER, CD, "NONE (initial basis, ER-0001)", "First synthetic promotion registered; REQ-001/BI-001/AC-001 quote verified.", "Director routing: assemble first ordinary pack for promotion review only using registered source, logs, approval, contracts, ER-0001 and CD-0001; no implementation. Retain consumed HO-0001 provenance and deliver review pack under HO-0002."))
     set_state(root, SourceTruthVersion=VERSION, CurrentPhase="SOURCE_TRUTH_READY", ExecutionReadiness="NEEDS_CONTEXT", CurrentAuthority="Context Steward", LastAction="First promotion complete; ER-0001", LastContextDelta="CD-0001", NextExpectedAction="Context Steward assembly under HO-0001")
@@ -385,6 +395,8 @@ def steward_request(root, basis):
 
 def context(base, root, basis):
     print(steward_request(root, basis))
+    reservations = re.findall(r'^\| (DEC-\d+) \|.*BOOTSTRAP_ATTEMPT: BT-001', real_rows(root / DEC), re.M)
+    need(len(reservations) == 1, "PROMOTION_DECISION_REFERENCE")
     before = snapshot(root)
     shutil.copytree(root, base / "before-context")
     append(root, CD, "\nContext Steward processed CD-0001; no prior packs exist to invalidate; CP-0001 follows this delta.\n")
@@ -404,6 +416,7 @@ def context(base, root, basis):
         required += f"| {ref} | {reason} | CURRENT; SHA256 verified below |\n"
     required += "\n## Relevant Decisions\nDEC-001 reserves this first attempt under the synthetic Gate 1 evidence; no implementation or scope approval.\n## Open Gaps and Blockers\nOQ-001 / GAP-T10-001: undecided technical choices block future implementation only. No blocker to this assembly.\n## Constraints\nUse SOURCE_TRUTH_V0.1 only. AC-001 remains DRAFT; no implementation, milestone acceptance, QA signoff or adjacent execution. Director must lawfully acquire authority before review.\n"
     pack = pack.replace("\n## File Integrity", required + "\n## File Integrity")
+    pack = pack.replace("DEC-001 reservation", reservations[0] + " reservation").replace("DEC-001 reserves", reservations[0] + " reserves")
     if state(root)["DeploymentMode"] == "MODE_A_EXISTING_SOLUTION":
         pack += "\n## Existing solution discovery limitation\nOQ-002 and BI-002 retain OBSERVED_EVIDENCE / CANDIDATE_TRUTH only. No observed code behavior was promoted. QA oracle remains UNDECLARED; no QA action is authorized.\n"
     write(root, PACK, pack)

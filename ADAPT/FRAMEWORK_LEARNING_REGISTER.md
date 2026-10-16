@@ -1,6 +1,6 @@
 # FRAMEWORK LEARNING REGISTER
 
-Current Framework Version: ADAPT-FW-0004
+Current Framework Version: ADAPT-FW-0005
 
 ## Purpose
 
@@ -46,6 +46,26 @@ Evidence lists the references and their evidence class (GOVERNANCE_RULES.md, Rul
 A disposed candidate is never deleted. Introduced In (an ADAPT-FW-NNNN label), Backport (ELIGIBLE or NOT_ELIGIBLE) and Upgrade Assessment (REQUIRED or NOT_REQUIRED) apply only to PROMOTED candidates and are `—` otherwise. Candidate IDs follow FLC-NNN.
 
 ## Candidates
+
+FLC-004 records the Human Owner / Framework Maintainer's POST-SCAFFOLD DIRECTOR
+INITIALIZATION CORRECTION directive (2026-10-16) for ADAPT-SELF-HOST-001. The
+confirmed FRAMEWORK_INITIALIZATION_PATH_GAP is evidenced by the frozen FW-0004
+instance's unresolved Director owner and rejection of the unregistered standalone
+initialization request. Its local preflight report and original human inputs
+remain in the workspace's ignored .adapt-local storage; no instance data is
+incorporated into generic contracts.
+
+The directive authorizes bounded external implementation, focused/regression and
+fresh-scaffold validation, Framework Learning and one local maintenance commit.
+It does not authorize main merge, push, instance adoption or real Director
+initialization. FLC-004 is PROMOTED as local incorporation only. ADAPT-FW-0005 is
+the next local candidate after published ADAPT-FW-0004 at
+f499d709dfdcda9fa2f869e6675bcc152d6f5bd4; no issued label is reused or historical
+FLC disposition rewritten. The initial 27 focused cases, 128 regression tests and
+actual disposable MODE_A sequence passed before advancing this candidate.
+Final candidate-version acceptance, exact contract scope and limitations are
+recorded in VALIDATION/DIRECTOR_INITIALIZATION_REPORT.md and its linked records.
+Synthetic human inputs are fixtures, not real approvals or independent QA.
 
 FLC-003 records the Human Framework Maintainer's ONBOARDING LANE GOVERNANCE
 CORRECTION directive (2026-10-16), following the read-only worklane audit and
@@ -98,6 +118,8 @@ this validation/documentation completion of the same FLC-002 patch.
 
 | FLC-ID | Observed In | Evidence | Novelty Dimensions | Solution-Specific Portion | Proposed Generic Change | Disposition | Decision | Introduced In | Backport | Upgrade Assessment |
 |---|---|---|---|---|---|---|---|---|---|---|
+
+| FLC-004 | ADAPT-SELF-HOST-001; Human Owner-confirmed FRAMEWORK_INITIALIZATION_PATH_GAP, 2026-10-16 | GROUNDED: original contracts at f499d709dfdcda9fa2f869e6675bcc152d6f5bd4; VALIDATION/DIRECTOR_INITIALIZATION_ACCEPTANCE.json, VALIDATION/DIRECTOR_INITIALIZATION_TESTS.json, VALIDATION/DIRECTOR_INITIALIZATION_GATE.json; ASSERTED interpretation: VALIDATION/DIRECTOR_INITIALIZATION_REPORT.md | EXECUTION_PATH, GOVERNANCE_COMBINATION | Named human and frozen ADAPT-DEV state remain local; no instance adoption or real designation | Bounded initial Director designation through existing Run Director intake, exact identity/decision scope and traceable human input before first promotion; qualify initial lane/context/completion requirements only for that stage | PROMOTED | Human Owner acting as Framework Maintainer explicitly approved POST-SCAFFOLD DIRECTOR INITIALIZATION CORRECTION: bounded implementation, validation and one local maintenance commit only; no main merge, push, instance adoption or real initialization. Recorded supplied human authority, not AI self-approval or an invented signature. | ADAPT-FW-0005 | ELIGIBLE | REQUIRED |
 
 | FLC-003 | ADAPT-SELF-HOST-001; read-only worklane audit and Maintainer disposition, 2026-10-16 | GROUNDED: original contracts at a9082ec9267927f68bf338813e0438fb0122d510; VALIDATION/ONBOARDING_ACCEPTANCE.json, VALIDATION/ONBOARDING_TESTS.json and VALIDATION/ONBOARDING_GATE.json; ASSERTED interpretation and limitations: VALIDATION/ONBOARDING_REPORT.md | EXECUTION_PATH, GOVERNANCE_COMBINATION | No frozen instance operational state incorporated; no instance adoption | Verify human Director designation from identity artifact; bind first and subsequent onboarding to existing lane authority, ordinary context, Gate 3 and exact pre-workcell governance scope | PROMOTED | Human Framework Maintainer ONBOARDING LANE GOVERNANCE CORRECTION approved implementation/local commit; subsequent FRAMEWORK V0004 RELEASE explicitly approves publication after final checks and read-only adoption preparation. No actual adoption or independent certification authorized. | ADAPT-FW-0004 | ELIGIBLE | REQUIRED |
 

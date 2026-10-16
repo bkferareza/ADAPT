@@ -8,6 +8,12 @@ GUARDRAIL_ID: {{GUARDRAIL_ID_HANDOFF}}
 
 A lane must emit a handoff before stopping; silent continuation past the handoff boundary is forbidden.
 
+Only the eligible Initial Director designation stage in ACTION_PROMPT_DIRECTOR.md
+uses evidenced completion returned to the human instead of a lane handoff. Its
+decision row records the identity delta, completion and next registered action;
+no lane execution is routed or continued. This explicit setup qualification
+does not waive any ordinary incoming/outgoing handoff or discharge check.
+
 ## Trigger Conditions
 
 - A bounded action reaches its natural completion point without a handoff artifact having been emitted and placed in 06_HANDOFFS/ACTIVE/
@@ -64,7 +70,7 @@ authorized work has demonstrably completed must report it to the Director.
 
 There is no override that permits silent stopping. A blocked lane must always emit a "BLOCKED" handoff artifact rather than stopping without a trace. The BLOCKED handoff serves as the override mechanism — it records the blocked state, the reason, and routes control to the Director, who then decides how to unblock and re-route.
 
-Even if all handoff fields cannot be fully populated, a minimal BLOCKED handoff must be emitted with at minimum: source lane, block reason, and route-to: Director. This is a hard requirement with no exceptions.
+Even if all handoff fields cannot be fully populated, a minimal BLOCKED handoff must be emitted with at minimum: source lane, block reason, and route-to: Director. Outside the explicitly bounded initial designation stage above, this is a hard requirement with no exceptions.
 
 ## References
 

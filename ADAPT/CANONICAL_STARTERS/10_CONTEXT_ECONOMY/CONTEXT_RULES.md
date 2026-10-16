@@ -13,7 +13,13 @@ These rules govern how context is assembled, used, validated, and retired within
 
 Every bounded ADAPT action requires a context pack assembled by the Context Steward. Ad-hoc context pulled directly from memory or training knowledge is not permitted as the basis for ADAPT actions.
 
-The sole alternate initial basis is SOURCE_AUTHORITY_POLICY.md, First-Promotion
+For only the eligible Initial Director designation stage of `Run Director intake`,
+ACTION_PROMPT_DIRECTOR.md supplies minimum setup evidence and the exact two-file
+boundary instead of an ordinary context pack. Its single decision row records
+the identity delta and human completion, qualifying Rule 9 for this stage only.
+This is not a pack, general intake permission or a first-promotion approval.
+
+The separate first-promotion basis is SOURCE_AUTHORITY_POLICY.md, First-Promotion
 Initial Context Basis, for its eligible Director promotion and required completion
 evidence only. It is not a context pack. Rule 2 applies to every ordinary pack,
 including the first pack built by Context Steward after version registration

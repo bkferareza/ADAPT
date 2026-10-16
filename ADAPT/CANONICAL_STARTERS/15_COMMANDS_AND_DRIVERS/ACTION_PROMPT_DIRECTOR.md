@@ -42,6 +42,9 @@ still requires it.
 
 ## Director Authority
 
+Before ordinary intake on a newly scaffolded instance, apply the Initial Director
+designation stage below. It is part of `Run Director intake`, not a new command.
+
 Intake, Gate 3 approval recording and routing for an exact Onboard request use
 ACTION_PROMPT_ONBOARDING.md, Onboarding lane identity and scope basis. Verify the
 human Director designation and ordinary task context. This permits no product
@@ -71,6 +74,103 @@ The Director Lane is authorized to:
 
 When approving a milestone plan, record the approval in DECISION_LOG.md and set
 `ActiveMilestone` in the control plane to the approved milestone ID.
+
+---
+
+## Initial Director designation stage
+
+This is the first, single bounded stage of the existing `Run Director intake`
+command when the human Director is unresolved. It establishes human accountability
+only. It never continues into general intake, promotion, planning or onboarding
+in the same dispatch. `INITIALIZE_DIRECTOR_IDENTITY` is not a registered command.
+
+### Eligibility and minimum setup evidence
+
+Verify all conditions before any write; absent, ambiguous, conflicting or
+unverifiable evidence is STOP_REQUIRED. Do not infer a value to make a check pass.
+
+- The instance completed the official scaffold workflow. Read its startup report,
+  frozen framework reference/version and governing hashes; verify required
+  instance artifacts and full control-plane consistency. Incomplete scaffolds
+  must use scaffold recovery, not this qualification.
+- The actual current human invocation is exactly `Run Director intake`, with
+  separately supplied explicit Human Owner designation of one responsible human
+  for this project and Director Lane. Check COMMAND_REGISTRY.md,
+  COMMAND_SYNTAX.md and COMMAND_ROUTING_MATRIX.md. A Driver assertion, old intake
+  row, proposed command or NextExpectedAction is not the current invocation or
+  original human authorization. Never infer identity from Git, account or machine.
+- CurrentPhase is INITIALIZED, SourceTruthVersion NONE, CurrentAuthority Director
+  Lane, ExecutionReadiness NEEDS_PLANNING; ActiveWorkcell, ActiveHandoff,
+  ActiveMilestone and ActiveCycle are NONE. Registers and retained history must
+  also show no prior promotion, active workcell, development handoff, cycle or
+  milestone, or ordinary context pack. Check open items for this setup scope.
+- DIRECTOR_IDENTITY.md matches ProjectName, declares ROLE: Director and
+  WORKCELL_TYPE: Director Lane, and its only unresolved required identity field
+  is HUMAN_OWNER: {{DIRECTOR_IDENTITY}}. All other required fields are resolved.
+  No existing or historical designation, superseding decision or uncertain
+  ownership may conflict. A populated owner, even the same human, is not a fresh
+  initialization; reassignment/retry must not reuse this qualification.
+- Bind the original human input by reference, exact designation text, SHA256 and
+  applicability to this project/person/lane. Preserve access to that original
+  evidence; an AI-authored approval claim or synthetic fixture is not real human
+  authority. Synthetic inputs are valid only in explicitly disposable tests.
+- Read the identity, decision log and relevant retained history, control plane,
+  source-version log, registry, scaffold evidence, governance/role model,
+  master/Director prompts, command registry/syntax/routing, mutation matrix,
+  stop rules and relevant guardrails. Record hashes, history results, job size,
+  exact two-file scope and before hashes. This is minimum setup evidence, not
+  an ordinary unversioned context pack or a reusable execution token.
+
+### Execution, evidence and completion boundary
+
+The identified executor is Director Lane, accountable to the expressly designating
+Human Owner; any AI operator acts only as that lane's executor, never as the
+human Director or approver. This lane basis applies only to this eligible stage.
+No development workcell, workcell scope contract or ordinary context pack is
+required. Other authority, guardrail and human-approval requirements remain.
+
+Only two existing instance files may change:
+
+1. `02_DIRECTOR_LANE/DIRECTOR_IDENTITY.md`: replace only the HUMAN_OWNER placeholder
+   with the explicitly designated human. Preserve PROJECT, ROLE, WORKCELL_TYPE,
+   scaffold INITIALIZED date, STATUS, all other fields and body bytes. Add no
+   operator or approval schema field. The AI operator belongs in evidence.
+2. `02_DIRECTOR_LANE/DECISION_LOG.md`: append exactly one fresh DEC-NNN row using
+   its existing columns. Preserve all prior bytes/rows. Record the human's actual
+   designation and reference/hash/excerpt; project/person/role/lane; AI executor;
+   effective timestamp; SourceTruthVersion NONE; eligibility/history/contract
+   evidence and hashes; exact permitted identity substitution and before/after
+   identity hashes; decision before hash; stage attempts; completion and next
+   registered action. The row is governance designation evidence before source
+   truth exists, not source promotion or an invented approval/signature.
+
+Stage the two results before writing, verify original evidence and before hashes
+again, then verify exact final differences and reverse the substitution/row
+insertion to reproduce the original hashes. Preserve mechanically checkable
+before/after evidence through the operator's evidence capture. If a partial
+attempt or failed verification is found, STOP and preserve evidence; no fresh
+initialization, silent overwrite or automatic repair is authorized.
+
+All thirteen master steps remain, with only this stage's explicit qualifications:
+steps 1-3 recover state/current invocation and bind the designation/lane; 4-7
+classify size, verify minimum setup evidence/scope and decide; 8 performs only
+the two writes; 9 records completion evidence in the decision row; 10 records
+the identity change and downstream impact in that same row, with no invented
+CD-ID or context artifact; 11 returns the evidenced completion and next action
+to the human, with no fabricated lane handoff; 12 verifies the control plane
+unchanged; 13 STOP. No intake-register write, control-field write, CP-ID, workcell,
+assignment or handoff is permitted under this stage. This exact two-file boundary
+qualifies the general intake outputs and master steps 9-12 for this stage only.
+
+On success the human owner is resolved and designation is traceable through the
+decision record and original human input. SourceTruthVersion stays NONE,
+CurrentPhase stays INITIALIZED, and all control-plane bytes stay unchanged.
+The qualification expires on this completion and cannot be reused for ordinary
+intake or implementation. Next registered action is
+`Promote {{DOCUMENT}} as {{SOURCE_TRUTH_VERSION}}`, only on a separate current
+invocation with exact source/hash, unused version, Gate 1 approval and every
+First-Promotion Initial Context Basis check. Designation never approves that
+promotion. Ordinary context and Gate 3 remain required for later onboarding.
 
 ---
 
@@ -124,6 +224,10 @@ did not open must be named in the intake record as deferred, with a reason.
 **Actions**
 1. Read the incoming command or request.
 2. Validate the command against COMMAND_REGISTRY.md — exact match required. If not matched, record as INVALID_COMMAND and return to the human with an explanation.
+   For `Run Director intake` with an unresolved initial Director, perform only
+   the eligible Initial Director designation stage above, then STOP. If it fails
+   eligibility, STOP without falling through to ordinary intake. A designated
+   Director's later intake retains the ordinary context and authority requirements.
 3. Check that all `{{PLACEHOLDER}}` values in the command are filled.
 4. Classify the command type: `ONBOARDING` / `PLANNING` / `ASSIGNMENT` / `GAP` / `BLOCKER` / `CHALLENGE` / `CONSOLIDATION` / `QA` / `INTEGRATION` / `CONTEXT` / `JANITOR` / `SOURCE_TRUTH` / `INITIALIZATION`.
 5. Determine routing target from COMMAND_ROUTING_MATRIX.md.

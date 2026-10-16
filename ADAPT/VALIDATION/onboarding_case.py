@@ -66,18 +66,19 @@ def fixture_inputs(base, root, n):
     these supplied records, not a new Director intake implementation.
     """
     t = target(n)
+    decision_id = b.next_decision_id(root)
     need((root / b.PACK).is_file(), "FIRST_ORDINARY_PACK")
     need(metadata(read(root, IDENTITY), "HUMAN_OWNER") == DIRECTOR, "DIRECTOR_FIXTURE")
-    doc = {"synthetic_fixture_only": True, "designation": {"human_owner": DIRECTOR, "project": state(root)["ProjectName"], "reference": "SYNTHETIC-HUMAN-DESIGNATION-001"},
+    doc = {"synthetic_fixture_only": True, "decision_id": decision_id, "designation": {"human_owner": DIRECTOR, "project": state(root)["ProjectName"], "reference": "SYNTHETIC-HUMAN-DESIGNATION-001"},
            "approval": {"gate": 3, "approved": True, "identity": t["identity"], "role": t["role"], "reference": f"SYNTHETIC-GATE3-{n}", "director": DIRECTOR},
            "command": f"Onboard {t['identity']} as {t['role']}", "scope": scope_paths(t), "source_version": b.VERSION,
            "control_fields": ["CurrentPhase", "LastAction", "LastContextDelta", "NextExpectedAction"],
            "notice": "Synthetic external input fixture only; no genuine Human Owner approved these identities. Director records are supplied inputs, not a claimed Director dispatch."}
     write(root, t["input"], json.dumps(doc, indent=2) + "\n")
-    b.put_row(root, b.DEC, f"DEC-{n+1:03}", [f"DEC-{n+1:03}", "Synthetic Director designation and Gate 3 onboarding scope", "Governance preparation only", DIRECTOR, b.DATE, t["id"], "No implementation", "ACTIVE", t["input"] + "; " + doc["approval"]["reference"] + "; SYNTHETIC-HUMAN-DESIGNATION-001"])
-    b.put_row(root, b.INTAKE, f"INT-{n+1:03}", [f"INT-{n+1:03}", b.DATE, "Synthetic human fixture", doc["command"], "Onboarding Command", "Onboarding Orchestrator", "ROUTED", t["input"] + f"; exact scope in DEC-{n+1:03}"])
+    b.put_row(root, b.DEC, f"{decision_id}", [f"{decision_id}", "Synthetic Director designation and Gate 3 onboarding scope", "Governance preparation only", DIRECTOR, b.DATE, t["id"], "No implementation", "ACTIVE", t["input"] + "; " + doc["approval"]["reference"] + "; SYNTHETIC-HUMAN-DESIGNATION-001"])
+    b.put_row(root, b.INTAKE, f"INT-{n+1:03}", [f"INT-{n+1:03}", b.DATE, "Synthetic human fixture", doc["command"], "Onboarding Command", "Onboarding Orchestrator", "ROUTED", t["input"] + f"; exact scope in {decision_id}"])
     b.put_row(root, "11_ONBOARDING/ONBOARDING_REPORTS.md", f"ONB-{n:03}", [f"ONB-{n:03}", t["id"], t["role"], "0", "15", "NOT_CHECKED", "REQUESTED", doc["approval"]["reference"] + "; " + t["input"]])
-    write(root, t["request"], handoff(root, f"HO-{3*n:04}", "Director Lane", "Onboarding Orchestrator", "PENDING ordinary pack", t["input"], "NONE", doc["command"] + "; " + t["input"] + f"; DEC-{n+1:03}"))
+    write(root, t["request"], handoff(root, f"HO-{3*n:04}", "Director Lane", "Onboarding Orchestrator", "PENDING ordinary pack", t["input"], "NONE", doc["command"] + "; " + t["input"] + f"; {decision_id}"))
     # Fixture includes the Director's routed lane authority; it never binds a workcell.
     b.set_state(root, CurrentAuthority="Context Steward")
     write(base, f"inputs-{n}.json", json.dumps({"classification": "SYNTHETIC_HUMAN_AND_DIRECTOR_INPUT_FIXTURES", "target": t, "input": doc, "hashes": snapshot(root)}, indent=2))
@@ -126,6 +127,7 @@ def preflight(root, t, executor="Onboarding Orchestrator", planned=None):
 
 def context(base, root, n):
     t = target(n); d = director_check(root, t)
+    decision_id = d["decision_id"]
     need(state(root)["CurrentAuthority"] == "Context Steward", "STEWARD_AUTHORITY")
     need(state(root)["SourceTruthVersion"] == b.VERSION and (root / t["request"]).is_file(), "STEWARD_INPUT")
     need(d["approval"]["approved"] and set(d["scope"]) == set(scope_paths(t)), "STEWARD_SCOPE")
@@ -140,7 +142,7 @@ def context(base, root, n):
                 content = re.sub(r'(^\| '+re.escape(identifier[1])+r' \|.*)\| ACTIVE \|',r'\1| STALE |',content,flags=re.M)
     write(root,index,content)
     refs = [IDENTITY, b.PRESERVED, b.LOG, b.DEC, b.INTAKE, REGISTRY, t["input"], t["request"], *PINS]
-    pack = f"# Ordinary onboarding context\nSTATUS: ACTIVE\nCONTEXT_PACK_ID: CP-{n+1:04}\nASSEMBLED_BY: Context Steward\nWORKCELL_ID: NONE\nLANE: Onboarding Orchestrator\nHANDOFF_ID: HO-{3*n:04}\nSOURCE_TRUTH_VERSION: {b.VERSION}\nCONTEXT_SIZE: M\n## Authoritative State\n{json.dumps(state(root), indent=2)}\n## Active Task\n{read(root,t['request'])}\n## Scope Contract Summary\nPre-workcell governance scope from DEC-{n+1:03}; exact paths in {t['input']}. Assigned BI-IDs NONE. No product mutation, framework editing, QA or implementation assignment.\n## Required Artifacts / Inclusion Reasons\nIdentity and designation establish accountability; source/log bind truth; decision/input bind Gate 3 and exact scope; registry detects duplicates; contracts govern lane protocol. All SHA256 checked.\n## Decisions, Gaps and Blockers\nDEC-{n+1:03}; synthetic approval. Existing technical choices concern future product implementation, not onboarding. No blocking item names this onboarding.\n## Exclusions\nUnrelated source history, product source and implementation authority excluded. No superseded inputs.\n## Staleness\nReview prior CD and current hashes before delivery; ordinary checks required again before execution.\n## File Integrity\n| Path | SHA256 |\n|---|---|\n" + "".join(f"| {p} | {sha(root/p)} |\n" for p in refs)
+    pack = f"# Ordinary onboarding context\nSTATUS: ACTIVE\nCONTEXT_PACK_ID: CP-{n+1:04}\nASSEMBLED_BY: Context Steward\nWORKCELL_ID: NONE\nLANE: Onboarding Orchestrator\nHANDOFF_ID: HO-{3*n:04}\nSOURCE_TRUTH_VERSION: {b.VERSION}\nCONTEXT_SIZE: M\n## Authoritative State\n{json.dumps(state(root), indent=2)}\n## Active Task\n{read(root,t['request'])}\n## Scope Contract Summary\nPre-workcell governance scope from {decision_id}; exact paths in {t['input']}. Assigned BI-IDs NONE. No product mutation, framework editing, QA or implementation assignment.\n## Required Artifacts / Inclusion Reasons\nIdentity and designation establish accountability; source/log bind truth; decision/input bind Gate 3 and exact scope; registry detects duplicates; contracts govern lane protocol. All SHA256 checked.\n## Decisions, Gaps and Blockers\n{decision_id}; synthetic approval. Existing technical choices concern future product implementation, not onboarding. No blocking item names this onboarding.\n## Exclusions\nUnrelated source history, product source and implementation authority excluded. No superseded inputs.\n## Staleness\nReview prior CD and current hashes before delivery; ordinary checks required again before execution.\n## File Integrity\n| Path | SHA256 |\n|---|---|\n" + "".join(f"| {p} | {sha(root/p)} |\n" for p in refs)
     write(root, t["pack"], pack)
     b.put_row(root, "10_CONTEXT_ECONOMY/CONTEXT_INDEX.md", f"CP-{n+1:04}", [f"CP-{n+1:04}", "NONE (Onboarding lane)", f"HO-{3*n:04}", b.VERSION, "M", b.DATE, "ACTIVE", "Exact synthetic Gate 3 scope; no implementation"])
     # Context delivery addresses Onboarding; the Director's task request remains its task.
@@ -210,15 +212,16 @@ def quality(root,t):
 
 def onboard(base,root,n):
     t=target(n);print(preflight(root,t));before=snapshot(root)
+    decision_id = data(root, t["input"])["decision_id"]
     shutil.copytree(root,base/f'before-onboard-{n}')
     b.set_state(root,CurrentPhase='ONBOARDING')
     generate(root,t);print(quality(root,t))
-    b.put_row(root,REGISTRY,t['id'],[t['id'],t['role'],t['identity'],t['folder'],b.DATE,'ACTIVE',f'SYNTHETIC-GATE3-{n}; DEC-{n+1:03}; no implementation assigned'])
+    b.put_row(root,REGISTRY,t['id'],[t['id'],t['role'],t['identity'],t['folder'],b.DATE,'ACTIVE',f'SYNTHETIC-GATE3-{n}; {decision_id}; no implementation assigned'])
     b.put_row(root,'11_ONBOARDING/ROLE_TO_WORKCELL_MAP.md',t['role'],[t['role'],t['id'],t['identity'],t['folder'],'ACTIVE'])
     b.put_row(root,'11_ONBOARDING/ONBOARDING_REPORTS.md',f'ONB-{n:03}',[f'ONB-{n:03}',t['id'],t['role'],'15','NONE','PASS','COMPLETE',f'SYNTHETIC-GATE3-{n}; '+t['er']])
     for incoming in [t['request'],f'06_HANDOFFS/ACTIVE/HO-{3*n+1:04}.md']:
         write(root,incoming.replace('/ACTIVE/','/CONSUMED/'),read(root,incoming).replace('STATUS: ACTIVE','STATUS: CONSUMED',1));(root/incoming).unlink()
-    write(root,t['er'],f"# Onboarding evidence\nSYNTHETIC ONLY\nDirector designation and Gate 3: {t['input']}; DEC-{n+1:03}.\n## Stage Record\n| Stage | Attempts | Result |\n|---|---|---|\n"+'\n'.join(f'| {i} | 1 | COMPLETE |' for i in ['1 Recover state','2 Locate addressed handoff','3 Verify lane authority, designation and Gate 3','4 Size M','5 Select minimum context','6 Verify ordinary context and exact scope','7 Execute decision','8 Generate and quality-check 15 files before registration','9 Evidence and before/after differences','10 Context delta','11 Discharge requests and emit Director completion','12 Named Trace fields and ONBOARDING phase','13 STOP'])+"\nAll planned paths checked against approved scope. Source version, human fixture approval, identity, ordinary context hashes and guardrails verified. No product, QA or implementation executed. External checkpoint records exact differences and inverse hashes, including this report.\n")
+    write(root,t['er'],f"# Onboarding evidence\nSYNTHETIC ONLY\nDirector designation and Gate 3: {t['input']}; {decision_id}.\n## Stage Record\n| Stage | Attempts | Result |\n|---|---|---|\n"+'\n'.join(f'| {i} | 1 | COMPLETE |' for i in ['1 Recover state','2 Locate addressed handoff','3 Verify lane authority, designation and Gate 3','4 Size M','5 Select minimum context','6 Verify ordinary context and exact scope','7 Execute decision','8 Generate and quality-check 15 files before registration','9 Evidence and before/after differences','10 Context delta','11 Discharge requests and emit Director completion','12 Named Trace fields and ONBOARDING phase','13 STOP'])+"\nAll planned paths checked against approved scope. Source version, human fixture approval, identity, ordinary context hashes and guardrails verified. No product, QA or implementation executed. External checkpoint records exact differences and inverse hashes, including this report.\n")
     write(root,t['delta'],f"# CD-{2*n+2:04}\nCreated {t['id']} with 15 checked artifacts and registry/map/report entries. Assigned BI-IDs NONE. Consumed onboarding and context-delivery requests. Ordinary input packs referencing changed registry/report are now stale; refresh before further use. No implementation authority.\n")
     write(root,t['out'],handoff(root,f'HO-{3*n+2:04}','Onboarding Orchestrator','Director Lane',t['pack'],t['er'],t['delta'],'Review completed onboarding only; assignment is a separate Director action.'))
     b.set_state(root,LastAction=f'{t["id"]} onboarded; '+t['er'],LastContextDelta=f'CD-{2*n+2:04}',NextExpectedAction='Director to review onboarding; no implementation assigned')

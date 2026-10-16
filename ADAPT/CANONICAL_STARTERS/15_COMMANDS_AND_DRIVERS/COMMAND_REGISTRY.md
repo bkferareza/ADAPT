@@ -31,6 +31,17 @@ This registry defines every supported ADAPT command: its authority requirements,
 
 ---
 
+## Initial Director intake stage
+
+The existing row 4 `Run Director intake` first performs only the eligible
+Initial Director designation stage in ACTION_PROMPT_DIRECTOR.md when the initial
+human Director is unresolved, then stops. Its allowed outputs are limited to
+DIRECTOR_IDENTITY.md and one existing-schema DECISION_LOG.md row, qualifying
+row 4's general intake output only for that stage. Explicit Human Owner
+designation is mandatory input even though ordinary routing needs no new gate.
+No standalone initialization command, new registry row or promotion approval is
+created. All other invocations retain row 4's ordinary requirements.
+
 ## Optional read-only operator interface
 
 `TOOLS/adapt.py` offers state, doctor, prompt next and evidence. These inspect or

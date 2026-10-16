@@ -23,6 +23,15 @@ Defines exactly what each ADAPT role may and may not write, modify, or create. E
 
 ---
 
+## Initial Director designation boundary
+
+The separate Initial Director designation stage in ACTION_PROMPT_DIRECTOR.md
+permits Director Lane only the HUMAN_OWNER substitution in DIRECTOR_IDENTITY.md
+and one append-only designation row in DECISION_LOG.md. Its verified human
+input and exact setup scope replace a pre-existing workcell scope for this stage
+only. No control field or other artifact may change; no reassignment, source
+promotion, workcell registration or product/framework mutation follows.
+
 ## First-promotion boundary
 
 Under SOURCE_AUTHORITY_POLICY.md, First-Promotion Initial Context Basis, the

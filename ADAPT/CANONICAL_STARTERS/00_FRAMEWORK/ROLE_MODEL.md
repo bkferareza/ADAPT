@@ -66,6 +66,11 @@ Defines all roles available in this ADAPT instance, their lane, authority scope,
 
 ## Role Assignment
 
+Initial human Director accountability is established by `Run Director intake`
+under ACTION_PROMPT_DIRECTOR.md, Initial Director designation stage. This is not
+development-workcell onboarding or identity reassignment. Other workcell roles
+retain the onboarding procedure below.
+
 Roles are assigned to individuals through the onboarding command:
 `Onboard {{IDENTITY}} as {{ROLE}}`
 

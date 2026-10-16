@@ -10,6 +10,14 @@ Agents do not continue past a stop condition to "fix it and keep going." Stoppin
 
 ## Universal Stop Rules
 
+For only the fully eligible Initial Director designation stage of
+`Run Director intake`, ACTION_PROMPT_DIRECTOR.md defines the verified lane,
+minimum setup evidence and exact two-file scope used when checking Rules 1, 3-6.
+There is no business/source-truth execution or ordinary context pack in this
+stage. Missing/conflicting human input, another command, uncertain history,
+reassignment, partial attempt or reuse is STOP_REQUIRED. This is no blanket
+guardrail override; ordinary stops resume at its completion.
+
 Rules 3 and 4 admit only the fully eligible Director action under
 SOURCE_AUTHORITY_POLICY.md, First-Promotion Initial Context Basis, in place of
 the pre-existing registered source/context prerequisite. No other stop is waived.

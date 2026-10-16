@@ -8,12 +8,20 @@ GUARDRAIL_ID: {{GUARDRAIL_ID_CONTEXT}}
 
 Execution must not proceed with stale, superseded, or untraced context.
 
+For only the eligible Initial Director designation stage of `Run Director intake`,
+evaluate ACTION_PROMPT_DIRECTOR.md before ordinary pack triggers. Its traceable
+human designation, governing hashes, history/state checks and two-file scope
+are minimum setup evidence, never an ordinary unversioned pack. PASS requires
+every condition; missing, conflicting, changed or reused evidence is
+STOP_REQUIRED. This qualification authorizes no other action or pack reuse.
+
 Before ordinary pack triggers, evaluate SOURCE_AUTHORITY_POLICY.md,
 First-Promotion Initial Context Basis, for the exact first-promotion action.
 PASS on that recorded basis requires every eligibility/scope/hash check; it is
 not an override or a valid unversioned pack. Uncertain eligibility, reuse, changed
 binding, adjacent action or unlawful partial-attempt recovery is STOP_REQUIRED.
-All ordinary triggers and the no-override rule below apply to every other action.
+All ordinary triggers and the no-override rule below apply outside these two
+separately bounded initial procedures.
 After registration Context Steward uses its existing self-assembly rule against
 the registered version; failed assembly never reopens the initial basis.
 

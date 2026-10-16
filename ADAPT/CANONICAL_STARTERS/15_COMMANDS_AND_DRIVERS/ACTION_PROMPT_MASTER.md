@@ -74,6 +74,17 @@ Do not continue past Step 13. Do not begin the next action. Do not process the n
 
 ## Pre-Execution Checklist
 
+For only the eligible Initial Director designation stage of `Run Director intake`,
+apply ACTION_PROMPT_DIRECTOR.md at steps 1-13 and this checklist. Its verified
+minimum setup evidence and exact two-file scope replace the pre-existing
+workcell/context/scope prerequisites; its same decision row records evidence and
+the identity delta, completion returns to the human without a lane handoff, and
+step 12 verifies all control fields unchanged. Do not create an intake entry,
+context pack, CD-ID or handoff to satisfy the general steps. No step is skipped:
+record all stage attempts and STOP. Qualification never extends to ordinary
+intake, first promotion, onboarding or implementation; their existing procedures,
+approval gates, evidence and retry limits remain.
+
 For the first Promote command only, apply SOURCE_AUTHORITY_POLICY.md,
 First-Promotion Initial Context Basis, at Steps 3-8 and this checklist. The verified
 basis replaces only the pre-existing source-version/context-pack prerequisite.

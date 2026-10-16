@@ -442,6 +442,14 @@ Next recommended command:
 
 `Run Director intake`
 
+When DIRECTOR_IDENTITY.md still has its initial human-owner placeholder, that
+command performs only ACTION_PROMPT_DIRECTOR.md's Initial Director designation
+stage, using explicit Human Owner designation supplied with the invocation.
+Scaffolding must not infer or prepopulate that human identity. The stage records
+identity and designation evidence, preserves INITIALIZED / source truth NONE,
+and stops before a separately approved first promotion. No development workcell
+or ordinary context pack is required to establish this initial accountability.
+
 ## Stop Rule
 
 After scaffold initialization and the final report, stop.

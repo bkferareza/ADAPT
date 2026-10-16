@@ -59,6 +59,10 @@ apply together. This never validates an ordinary unversioned context pack.
 ### Rule 7 — Handoff Completion
 A lane must emit a handoff before stopping. Silent continuation past the next handoff boundary is forbidden. If a handoff cannot be emitted (missing state, blocked, incomplete evidence), the lane must stop and record a blocker.
 
+Only the eligible Initial Director designation stage in ACTION_PROMPT_DIRECTOR.md
+returns its recorded completion to the human without a lane handoff; it writes
+only identity/designation evidence, then STOP. Ordinary handoffs are unchanged.
+
 ### Rule 8 — Human Approval Gates
 Certain actions require explicit human approval before proceeding. See HUMAN_APPROVAL_GATES.md in 15_COMMANDS_AND_DRIVERS/. Required approval gates include: source truth promotion, workcell onboarding, milestone plan approval, code mutation scope approval, release certification, and guardrail override.
 
@@ -70,6 +74,12 @@ Memory Bank documents in 14_MEMORY_BANK/ are reference-only. Memory Bank content
 
 ### Rule 11 — Workcell Identity
 Every ADAPT execution must occur under a single, identified workcell identity. Executing under an ambiguous or missing identity is forbidden. See WORKCELL_ONBOARDING_CONTRACT.md for identity binding rules.
+
+For only the eligible Initial Director designation stage of `Run Director intake`,
+ACTION_PROMPT_DIRECTOR.md binds Director Lane to the actual Human Owner designation
+before the identity is populated. That verified lane basis satisfies this rule
+only for its two-file setup scope. It creates no workcell and authorizes no
+other Director operation. A lane name or Driver assertion alone is insufficient.
 
 For only the first promotion and its first ordinary context assembly under
 SOURCE_AUTHORITY_POLICY.md, the identified Director Lane / Context Steward lane

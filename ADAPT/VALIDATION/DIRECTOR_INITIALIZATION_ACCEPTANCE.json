@@ -1,0 +1,1176 @@
+{
+  "status": "PASS_ACTUAL_DISPOSABLE_SEQUENCE",
+  "framework_candidate": "ADAPT-FW-0005",
+  "synthetic_fixture_only": true,
+  "classification": "Actual agent-guided scaffold and contract-defined artifact transitions on a disposable fixture; not independent QA or approval authentication",
+  "disposable_root": "D:\\Project\\ADAPT\\.adapt-local\\maintenance\\director-correction-20261016\\acceptance-final",
+  "startup": {
+    "framework": "<FRAMEWORK>",
+    "project": "<DISPOSABLE>/project",
+    "instance": "<DISPOSABLE>/acceptance/ADAPT",
+    "document": "project/REQUIREMENTS.txt",
+    "project_name": "Bootstrap Acceptance",
+    "mode": "MODE_A_EXISTING_SOLUTION",
+    "routing": "PROTECTED_DEFAULT (explicit test input)",
+    "project_source_mutation": "NO",
+    "canonical_files": 112,
+    "missing": [],
+    "governance_directories": 16,
+    "tool_files": 7,
+    "instance_survivors": [],
+    "template_survivors": 577,
+    "questions": [
+      "OQ-001",
+      "OQ-002"
+    ],
+    "gaps": [
+      "GAP-T10-001"
+    ],
+    "blockers": [],
+    "state": {
+      "ProjectName": "Bootstrap Acceptance",
+      "ProjectType": "Web App",
+      "DeploymentMode": "MODE_A_EXISTING_SOLUTION",
+      "RoutingMode": "PROTECTED_DEFAULT",
+      "InitializationMode": "FULL_EXTERNAL_ADAPT_INSTANCE_SCAFFOLD",
+      "SourceTruthVersion": "NONE",
+      "ActiveMilestone": "NONE",
+      "ActiveCycle": "NONE",
+      "ActiveHandoff": "NONE",
+      "CurrentAuthority": "Director Lane",
+      "ExecutionReadiness": "NEEDS_PLANNING",
+      "CurrentPhase": "INITIALIZED",
+      "ActiveWorkcell": "NONE",
+      "Blocked": "NO",
+      "ActiveBlockers": "NONE",
+      "ActiveGaps": "GAP-T10-001",
+      "LastAction": "Synthetic scaffold 2026-10-16; STARTUP.md",
+      "LastContextDelta": "NONE",
+      "NextExpectedAction": "Run Director intake",
+      "LastConsolidatedAt": "NEVER",
+      "Notes": "SYNTHETIC ONLY; current maintainer acceptance directive authorizes this disposable scaffold; project/REQUIREMENTS.txt; no product writes; STARTUP.md records frozen provenance"
+    },
+    "version": "ADAPT-FW-0005",
+    "frozen_source_hashes": {
+      "CANONICAL_STARTERS/00_FRAMEWORK/SOURCE_AUTHORITY_POLICY.md": "91a8b94e6feed46f0379925dd4a4a9336b85cd15ec3238d632dbac938ba7017c",
+      "CANONICAL_STARTERS/00_FRAMEWORK/GOVERNANCE_RULES.md": "38a00a050d6a16b9e063d11ef279f9be9d7ef616d359f201f50ec953103b5c98",
+      "CANONICAL_STARTERS/10_CONTEXT_ECONOMY/CONTEXT_RULES.md": "046b4d30844c820ca973b2f1ca5bf79d03787f774ed678413acd1a2cb7eab6ae",
+      "CANONICAL_STARTERS/10_CONTEXT_ECONOMY/CONTEXT_BUDGETS.md": "ced7af6a3720109339d1f1920f6885c69de6575360a5648fde7c16d0d6bd3916",
+      "CANONICAL_STARTERS/07_GUARDRAILS/CONTEXT_GUARDRAIL.md": "5345c40038d9622ae493909988865e68206604fa8a3905c703b7def3e3bda909",
+      "CANONICAL_STARTERS/07_GUARDRAILS/SCOPE_GUARDRAIL.md": "49714d7bbc024cc74dab3762e2b78468be61e5f677bb6d159c314cb0d933b803",
+      "CANONICAL_STARTERS/07_GUARDRAILS/MUTATION_GUARDRAIL.md": "ed6d268e8f0c868c80d3fddef1ed702d87cd9b412f01d118ab2e98519e35a239",
+      "CANONICAL_STARTERS/07_GUARDRAILS/HANDOFF_GUARDRAIL.md": "c1416b572342109e020f9f22313e84673e2ffdada0fae83a61f87449b9d427e7",
+      "CANONICAL_STARTERS/07_GUARDRAILS/EVIDENCE_GUARDRAIL.md": "c7f1d617c3079c4c04923d5e548aa368140747c6ccd5c09f20c1f62a51caaed4",
+      "CANONICAL_STARTERS/07_GUARDRAILS/CONTRACT_GUARDRAIL.md": "d2508b6d84df4989fb023e3fb36f023c06c3ff25bec08dd518c2a550f9ed5d23",
+      "CANONICAL_STARTERS/07_GUARDRAILS/QA_INDEPENDENCE_GUARDRAIL.md": "f4ab695c963c053340e82dea8548d9a72ddad284e2408ee12cc96aae71bc2871",
+      "CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_MASTER.md": "64eebe79952023e71e701876ec169a546015c06b22ccb6085cf7af2d86ef3a6d",
+      "CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_DIRECTOR.md": "568db6d6e5a858ed3530ef7caf59fef86b78bcce25cbb1f80e87a552616de856",
+      "CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_CONTEXT_STEWARD.md": "bd519a549705000f69eac1df7e9fe60d1ce2376fd08d2cea08bdd3c6cea35f10",
+      "CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/COMMAND_REGISTRY.md": "28c21cb884da6a1a22533cf88edca9539b88654615f1f89ac03312afba76d446",
+      "CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/CONTROL_PLANE_SCHEMA.md": "9a5fc51d9f9496170c9eb916f83bcb0adaab8a89380730f7f87d5c78b76bec94",
+      "CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/MUTATION_PERMISSION_MATRIX.md": "73bc3e556e740aed66b57d23e5586bb42bade49950f672acc9e3bfb72749ee53",
+      "CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/HUMAN_APPROVAL_GATES.md": "741ec787d0f1bf28a035aeaafa720a9d7a1c24034ed4ecd4571b0ee6ae63c4c2",
+      "CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/STOP_RULES.md": "58207c0cd1a6fdf7368a7962ff86d298562440e7b3cec623dfdfda40d7551f6c",
+      "CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/CONTEXT_BUDGET_POLICY.md": "fcb429bd4a3a8625c79bc1a03fc477075408b2898995be1a6d73d91f46ba903e",
+      "CANONICAL_STARTERS/15_COMMANDS_AND_DRIVERS/EVIDENCE_STANDARD_BY_ROLE.md": "6be252c67b7fdb9da60ccf52ea2004eb51b95c88ddcdca588d7402b7a5af7811",
+      "CANONICAL_STARTERS/08_TEMPLATES/HANDOFF_TEMPLATE.md": "a6dbbc8c6513b86de18c54392a1617608359048e0167c840993ae55566710179",
+      "CANONICAL_STARTERS/08_TEMPLATES/CONTEXT_PACK_TEMPLATE.md": "b85386364cbb7ee3073732eea646caf4cc82841106a0a27f4bfc4a99b8c952dd",
+      "CANONICAL_STARTERS/08_TEMPLATES/CONTEXT_DELTA_TEMPLATE.md": "269f84cbc8cce3b31ad7ef911fab9c84dfa28fdf362e819ab0dd5edde7c86a99",
+      "CANONICAL_STARTERS/08_TEMPLATES/EVIDENCE_REPORT_TEMPLATE.md": "a15c49d6b193b4c0ac319654f044a3da765c505aeca81d292d5060e76ce9fc47",
+      "START_HERE.md": "da56b4d84889a127d488e4954e4a0d87b37a4cac56105f186387813dadd7477d",
+      "SCAFFOLD_WORKFLOW_AGENT.md": "f575c799c097963bf44cc9ee1cbad3d21dd3e660718ffb44b5b7b56ad23b85ff",
+      "SCAFFOLD_OUTPUT_CONTRACT.md": "ba7c6a229723e0bfd0911c3dc52a7aed08b436e818a63221b74a559fd5c144f6",
+      "WORKCELL_ONBOARDING_CONTRACT.md": "d5494e3b1c83c80be9d150fe646390e9e2d6bfe2b7ba10bc0eb919817755634b",
+      "DEPLOYMENT_MODES.md": "92e4b99a08b058c4453ca55d89459085748edbf67a5ddb47d367daeb5b1e5c5a",
+      "FRAMEWORK_LEARNING_REGISTER.md": "a66ddd4c49acfe548ca4f877c8ec435d739fdca519c8964bca99386a7651ad37"
+    },
+    "discovery": {
+      "deployment": "MODE_A_EXISTING_SOLUTION",
+      "read_only": true,
+      "files": {
+        "README.md": "8d1a2fe41be4388accec9abd1ebd4c22f5dc8b557189dd4cd00afe5fcc531c77",
+        "REQUIREMENTS.txt": "511441773139726f4800d6ad6f8e02546f3b89fceebd88063e597580b93023c4",
+        "src/greeting.py": "6bed5f86aaab9c12431fd46d0e31dbb133e5033c853220a66ca639981fe1dd2d",
+        "tests/test_greeting.py": "eb257247ff5758adfad39d7172004d7e23acafa81b26c7dfb7cfca220cf7127f"
+      },
+      "observations": {
+        "language": "Python (.py source)",
+        "platform_framework": "Python; no application framework declared in fixture files",
+        "build": "No build configuration or dependency manifest present",
+        "validation_candidate": "tests/test_greeting.py imports unittest; presence observed, tests not run or declared as QA oracle",
+        "layout": "src/ and tests/",
+        "documentation": "README.md and REQUIREMENTS.txt",
+        "requirements_origin": "Explicit REQUIREMENTS.txt; no ticket reference found",
+        "code_observation": "src/greeting.py contains return 'Hello'; no runtime behavior or intended requirement inferred"
+      },
+      "truth_class": "OBSERVED_EVIDENCE; any derived interpretation stays CANDIDATE_TRUTH",
+      "qa_oracle": "UNDECLARED"
+    },
+    "next_command": "Run Director intake",
+    "status": "SCAFFOLDED; STOP",
+    "approval_notice": "Synthetic Gate 1 input is for the later promotion; not exercised during scaffold."
+  },
+  "initial_unresolved": {
+    "state": {
+      "ProjectName": "Bootstrap Acceptance",
+      "ProjectType": "Web App",
+      "DeploymentMode": "MODE_A_EXISTING_SOLUTION",
+      "RoutingMode": "PROTECTED_DEFAULT",
+      "InitializationMode": "FULL_EXTERNAL_ADAPT_INSTANCE_SCAFFOLD",
+      "SourceTruthVersion": "NONE",
+      "ActiveMilestone": "NONE",
+      "ActiveCycle": "NONE",
+      "ActiveHandoff": "NONE",
+      "CurrentAuthority": "Director Lane",
+      "ExecutionReadiness": "NEEDS_PLANNING",
+      "CurrentPhase": "INITIALIZED",
+      "ActiveWorkcell": "NONE",
+      "Blocked": "NO",
+      "ActiveBlockers": "NONE",
+      "ActiveGaps": "GAP-T10-001",
+      "LastAction": "Synthetic scaffold 2026-10-16; STARTUP.md",
+      "LastContextDelta": "NONE",
+      "NextExpectedAction": "Run Director intake",
+      "LastConsolidatedAt": "NEVER",
+      "Notes": "SYNTHETIC ONLY; current maintainer acceptance directive authorizes this disposable scaffold; project/REQUIREMENTS.txt; no product writes; STARTUP.md records frozen provenance"
+    },
+    "identity": "# Director Identity\n\nSTATUS: DRAFT\nPROJECT: Bootstrap Acceptance\nROLE: Director\nHUMAN_OWNER: {{DIRECTOR_IDENTITY}}\nWORKCELL_TYPE: Director Lane\nINITIALIZED: 2026-10-16\n\n## Authority\n\nThe Director Lane has the following authority in this ADAPT instance:\n\n- **Intake:** Accept, classify, and route incoming work requests\n- **Source Truth:** Promote documents as source truth (with human approval)\n- **Assignment:** Assign work to workcells via handoffs\n- **Gap Classification:** Classify and route gaps (GAP-T10 Decision, GAP-T11 Context)\n- **Blocker Routing:** Record and escalate blockers to appropriate authority\n- **Certification:** Certify accepted work meets evidence and handoff requirements\n- **Consolidation:** Combine workcell state into the Director control plane view\n\n## Forbidden Actions\n\n- Mutating application source code\n- Producing QA signoff\n- Bypassing evidence requirements\n- Routing work without an active handoff artifact\n- Making implementation decisions for workcells\n\n## Operational Files\n\n- PROJECT_CONTROL_PLANE.md — current project state\n- INTAKE_REGISTER.md — incoming work\n- WORKCELL_REGISTRY.md — all onboarded workcells\n- GAP_REGISTER.md — open gaps\n- BLOCKER_REGISTER.md — active blockers\n- DECISION_LOG.md — accepted decisions\n",
+    "hashes": {
+      "00_FRAMEWORK/ADAPT_FRAMEWORK.md": "27a3ced63cd9bce49d2f70c5f35c3dd588c00f8b246da93a13546c689ece02ef",
+      "00_FRAMEWORK/ARTIFACT_STANDARDS.md": "b452a2fd2ca0f6de285bd4dd269421cddae86e4c69d0a704362d18bb01907e30",
+      "00_FRAMEWORK/GLOSSARY.md": "e581ff1eaa3efdaf2678820fc3330ac095e0208b1b43921e13bf96a823018143",
+      "00_FRAMEWORK/GOVERNANCE_RULES.md": "bf3bf8f5b887f932d65f8bf090da720cee6df09be7b06ff156f552e3b59d877e",
+      "00_FRAMEWORK/ROLE_MODEL.md": "4cea2e5a7f4cda9c305afe91b5996c253c9006cf80c430c2fe274b4b2606e14c",
+      "00_FRAMEWORK/SOURCE_AUTHORITY_POLICY.md": "bd7ad61a2a0f1278e50581df00daa2548b856bed4b76246974ac5bf26324b82e",
+      "01_SOURCE_TRUTH/ACCEPTANCE_CRITERIA.md": "59a309e47f6f8ddebf23eeb95254ed695063492fdd66e4f0ab8b130867e25dc7",
+      "01_SOURCE_TRUTH/BUSINESS_ITEMS.md": "3c5e6fd07f0dd7420b841bae89a3c759b47c01491ffd55f0d4adf42681fbac83",
+      "01_SOURCE_TRUTH/OPEN_QUESTIONS.md": "4f0ec615a1a012e7ed642b8d8b65a741366ec8e6f56ff828ba0cb1da0935212e",
+      "01_SOURCE_TRUTH/REQUIREMENT_SECTION_MAP.md": "daec3271c6953fc4cd4a56ec62945627501ab19e98e1dae309994aa07dd922dd",
+      "01_SOURCE_TRUTH/REQUIREMENTS_INDEX.md": "51ec5172cad86cfd1e57661301aa31f76e146ecab15b35d67f1fdc7aaea17d47",
+      "01_SOURCE_TRUTH/SOURCE_TRUTH_VERSION_LOG.md": "70c63c6ce13bd7205f13a12dc552dae1f0e0b222d9ab6315a3efd3fc75059c4a",
+      "02_DIRECTOR_LANE/ACCEPTED_WORK_REGISTER.md": "9571ff9d820371f4c618a20e164749140c4c53170d9ee4a09e392f3b6c0afa2f",
+      "02_DIRECTOR_LANE/BLOCKER_REGISTER.md": "89e7aeebe8b9a3d101af5461c91258eb81738e00a9fb51a3782ad67a4c343553",
+      "02_DIRECTOR_LANE/CARRY_OVER_REGISTER.md": "1f109c718fc78a1e039bd820c13f7b02c9413f4b90ab0015543a6579b2e4eb12",
+      "02_DIRECTOR_LANE/DECISION_LOG.md": "35f22c0a207eab4b3ff348eb4cce3cf9a2d91149499c0219ac3053c3ce4367df",
+      "02_DIRECTOR_LANE/DEPENDENCY_MAP.md": "b59835cce2b6771fca1940e3b51a138b1d357be7afd12873e99debdeeece83fd",
+      "02_DIRECTOR_LANE/DIRECTOR_IDENTITY.md": "ea9784b3c0c4d4eeeab14f39764a168fccfe88b969f4bdb15e3e76c714280442",
+      "02_DIRECTOR_LANE/GAP_REGISTER.md": "367ddf853378c26c0ccf3ad8c59384bdaec6f57a78a7d2a8e07de84dc4ef3b30",
+      "02_DIRECTOR_LANE/INTAKE_REGISTER.md": "46c83624e54779ef37a39a6fdaa9e523d5ae4579ce0a77b7370eccd3c8c21faa",
+      "02_DIRECTOR_LANE/LANE_ASSIGNMENT_MATRIX.md": "48690605aaf5e9f757c8975b37acb48266cb333c418c5ae0518e4070f89c6459",
+      "02_DIRECTOR_LANE/PROJECT_CONTROL_PLANE.md": "0a09966266876dd91b9655b7026eacd97971942bdd543dcafb15ebdfcdeb8664",
+      "02_DIRECTOR_LANE/WORKCELL_REGISTRY.md": "b5c8c3d39a94b762351705b235156085f29152b303605519ee385ee9b4bbb609",
+      "03_WORKCELLS/README.md": "09c6af1bcdaccc7a6206b423d91085f0be46c45281e0cc48a91dc9319b4995fd",
+      "03_WORKCELLS/ROLE_WORKCELL_BLUEPRINTS.md": "4fdd81f9b8dc4a0c5248c7008e20f58d9053bc2f119478fcefbb8b0c1edda4ae",
+      "04_INTEGRATION/API_CONTRACTS.md": "2e23ee929de004e64e7df8fe58492357426a3981174565f03b99e6c7957743a9",
+      "04_INTEGRATION/INTEGRATION_CONTRACTS.md": "2f72297d604495a4e950cf1a7d25b5fa9cfd9a332a3b260b6390ee286cbd6d31",
+      "04_INTEGRATION/INTEGRATION_GAPS.md": "b781604198f234d187bcb92216e2b5d30341130475b32cd8cc9df72e2817ab64",
+      "04_INTEGRATION/MERGE_READINESS.md": "172db582a57db58e13baf92be6fadab33f7c27de9896d7ad1d2f91e8b97b5271",
+      "04_INTEGRATION/PIPELINE_STATUS.md": "1ce4a5489e0017b23df0243859dfcdb62301cc9c64d8b7c6e1977ef240a06774",
+      "04_INTEGRATION/RELEASE_READINESS.md": "8d47caea0f8f95ce4c26d40dead8aa76f3326d017ee4ef5ca0ff0eb74a2e3534",
+      "04_INTEGRATION/UI_BE_CONTRACTS.md": "82b22bc8ff5462572c559a27b2ad9798cdaedb3c779099feb71c0c0425610db9",
+      "05_VALIDATION/DEFECT_REGISTER.md": "3854ec01dfac50e2f1135c9e22369bb49363feaf339836224e019895253aabe8",
+      "05_VALIDATION/QA_STRATEGY.md": "d09cd8118d5acf8fd334542b4534ef696d6c3aab105e380cb14cc21f48424459",
+      "05_VALIDATION/REGRESSION_RISK_MAP.md": "b3bdbb83eb861ac23cb384ff11be4825d27932b3f2e0d826924fae9295558ddb",
+      "05_VALIDATION/SIGNOFF_REGISTER.md": "e628665a53d06f70d57ec2b4485040e73607689aea34e61ec6a050d507e92f8b",
+      "05_VALIDATION/TEST_CASE_INDEX.md": "aec3959f907751705f5302aaf1be208cb0030d2ed25e6f7105cdcbb87a51430f",
+      "05_VALIDATION/VALIDATION_EVIDENCE.md": "abe1404a4b30b42584380e5cf04ebfbcb43d001be1b421a7940b11ceceb88342",
+      "06_HANDOFFS/ACTIVE/README.md": "a8bc0e96d437b3284ec881c35b1e29595ecf7607bea65fa8febc03c2ead3a0c8",
+      "06_HANDOFFS/ARCHIVE/README.md": "45ab66729653fe52bcf08a11a4d01e633a21deadbb6de5e251f95fbeee4cdb37",
+      "06_HANDOFFS/CONSUMED/README.md": "03f245504979a2ed259453653523cd80beafe7b90854afdcdfb5ae87d4dd0d98",
+      "06_HANDOFFS/README.md": "d9bb04bb483e35a846cb2dc345a4a6a38b2260e884cc90b0677c7326ca49a46c",
+      "07_GUARDRAILS/CONTEXT_GUARDRAIL.md": "76b46d34965cac763dfe97cb357283e03d347d595f7ea1417167ad42bd1b8b9d",
+      "07_GUARDRAILS/CONTRACT_GUARDRAIL.md": "bf696268b2c56918bae9b18557dccae886f99bb8bfa80243b88cf6e2406d20a9",
+      "07_GUARDRAILS/EVIDENCE_GUARDRAIL.md": "6226b6857f91bf3072c328f4fca11567d857c12e7213a2740ffd5dfa57d41d0a",
+      "07_GUARDRAILS/HANDOFF_GUARDRAIL.md": "29e78fa25d150c4466a947155f967daea33d70bd9bc36672ee1b20fbfa5e59d4",
+      "07_GUARDRAILS/MUTATION_GUARDRAIL.md": "3272ef7351dc556cdbec216de47318af9706bb51c02fedf622a560284a3eb066",
+      "07_GUARDRAILS/QA_INDEPENDENCE_GUARDRAIL.md": "8a5e60fe79f14ca992a44d6e902a0b48e788722ed258a6c5d789a1dfbc523834",
+      "07_GUARDRAILS/SCOPE_GUARDRAIL.md": "ca0bd3cd6b0c225fb3c1fdcfea1f9d016995f33203c194be746e43e460cced15",
+      "08_TEMPLATES/ACTION_PROMPT_ROLE_IDENTITY_TEMPLATE.md": "70e0e7f3a16a9bf605b6f442ec02a87d5779d64d87eda81ee50aeb7edbd1eebd",
+      "08_TEMPLATES/BLOCKER_TEMPLATE.md": "f57c85332d5f3638aa5a325fbd822d446db4facd5082da9dfc7d503e59980f34",
+      "08_TEMPLATES/CONTEXT_DELTA_TEMPLATE.md": "269f84cbc8cce3b31ad7ef911fab9c84dfa28fdf362e819ab0dd5edde7c86a99",
+      "08_TEMPLATES/CONTEXT_PACK_TEMPLATE.md": "b85386364cbb7ee3073732eea646caf4cc82841106a0a27f4bfc4a99b8c952dd",
+      "08_TEMPLATES/DEFAULT_AGENT_BLUEPRINT_TEMPLATE.md": "b61768548ea4643af32c08ac233b2f254939d287798baf11aa7ec55d3f132a97",
+      "08_TEMPLATES/EFFECTIVE_WORKFLOW_TEMPLATE.md": "4526a4001e3be32c371cfdecfcbe6edf9206c81ad4cb7268628025f2692b8c08",
+      "08_TEMPLATES/EVIDENCE_REPORT_TEMPLATE.md": "a15c49d6b193b4c0ac319654f044a3da765c505aeca81d292d5060e76ce9fc47",
+      "08_TEMPLATES/GAP_TEMPLATE.md": "92397dff64d7eec94b300b2c81ed65a2d7c4624411e7692551171730eb8fa00f",
+      "08_TEMPLATES/GUARDRAIL_BINDINGS_TEMPLATE.md": "337cbcb3049c862757e291ef849b3f00694c808bf2b1d9b0c3af5be52396c611",
+      "08_TEMPLATES/HANDOFF_TEMPLATE.md": "a6dbbc8c6513b86de18c54392a1617608359048e0167c840993ae55566710179",
+      "08_TEMPLATES/OPERATOR_BINDING_TEMPLATE.md": "72701827b9f12af931f3a72aa286ec5e589403bf3aea59347f56e34787cabfa6",
+      "08_TEMPLATES/SCOPE_CONTRACT_TEMPLATE.md": "4da32ed65506bbd4c95e93ec40537eb871c0a37206cd987fe4e0f853d60b0038",
+      "08_TEMPLATES/VALIDATION_REPORT_TEMPLATE.md": "caef437131bd30686233a0b75f4d01de0d47232d93ae7671487004fed4a3d849",
+      "08_TEMPLATES/WORKCELL_IDENTITY_TEMPLATE.md": "2c61657cbe619faa8a1d5d76a148555855b6335da4bfa2e059bafd433a6c52d0",
+      "08_TEMPLATES/WORKFLOW_CHANGE_LOG_TEMPLATE.md": "411e20996e88bb9d3502f5c0fb3f800c604075048e6ff967b97894787cf91e90",
+      "08_TEMPLATES/WORKFLOW_CHANGE_REQUEST_TEMPLATE.md": "a4904264d51254273a44e2c9de9c22b138788dbf654fab9ce2b9bc1de4c7e09b",
+      "08_TEMPLATES/WORKFLOW_CUSTOMIZATION_TEMPLATE.md": "d5e188cfd095c03739ef764b759e956ed567fa7f4e73860c12d981c9bb3f1641",
+      "09_CHALLENGE_LANE/CHALLENGE_IDENTITY.md": "7a579c3b00fc05bb2ded5cd0bccd1f7f30aa75148da4ef4497b5820e65e6f5a8",
+      "09_CHALLENGE_LANE/CHALLENGE_REGISTER.md": "81b38fb4a92e0a7c556430b2ed48b9092913c4eeb10830a7266e04383313dd83",
+      "09_CHALLENGE_LANE/CHALLENGE_REPORT_TEMPLATE.md": "eea63beecd1df3d4af53d2952bbf28207ef6d52cf5381a30fd772e0b7f47300a",
+      "10_CONTEXT_ECONOMY/CONTEXT_BUDGETS.md": "85636bdc8f2453592b67ab4b83cf74ba315ebf39f53cc13cdfa11dd8d15a243b",
+      "10_CONTEXT_ECONOMY/CONTEXT_INDEX.md": "01ce293d0d9c3fcb3e3b3a001727cd2b65aa8662a565c6e870199406c9f8ca35",
+      "10_CONTEXT_ECONOMY/CONTEXT_RULES.md": "69877031f63a9f95a1974d2f0d8aa94f26e337aca49dc8f5cf51371d654470b9",
+      "10_CONTEXT_ECONOMY/STALE_CONTEXT_REGISTER.md": "2eb2fa2495a78a868c1b5a006acd8320e6b501f4bcd14601bd0eba4720674fd0",
+      "11_ONBOARDING/ONBOARDING_REPORTS.md": "8859b4f85df7327b4bef4a2527d2cbd176396e2236da41b404f42dea491f89b5",
+      "11_ONBOARDING/ONBOARDING_REQUESTS.md": "d6032060ea73d7c28f96794fae0c1a9bf636e8acc1d90f20ff103bd66b5a1f4e",
+      "11_ONBOARDING/ONBOARDING_RULES.md": "b3fb6a2e1bde425c7fdcf71b37dacc380e1f631f5022cacb7e2b90e0835ef071",
+      "11_ONBOARDING/ROLE_TO_WORKCELL_MAP.md": "4a2b4828971a247ada9d35ea036bcb804c53f7fe5ee9fcf27f5dee7280ae9db6",
+      "12_JANITOR/ARCHIVE_CANDIDATES.md": "d2c8de56a3f88e5adcbed6e5431bf214fdd84430b0467214c2c398e81ef3025c",
+      "12_JANITOR/CLEANUP_REPORTS.md": "c5709d70b1cabc019613e44cf981d2838b75a7d4cc2e7e29cf0481e2e8378801",
+      "12_JANITOR/COMPACTION_SUMMARIES.md": "e0d630bdecf4303cbccd76a492c48a4426c97ab911b0b08dd37c549e432ee57b",
+      "12_JANITOR/JANITOR_RULES.md": "ee6a7d8bee367a43859a5549d65c18e378163ad33745a954bbac22be1c3493e9",
+      "12_JANITOR/STALE_ARTIFACT_REGISTER.md": "1cbf48e815d940047efa96fa0e529dcaa05a418d4c2d4402b7279aa22c56290d",
+      "13_PLANNING/CAPACITY_MODEL.md": "e77037c9775378c087fa79ff3b2e03cfaf15296044ff883ff057f202082a1631",
+      "13_PLANNING/DEPENDENCY_SEQUENCES.md": "b872a722f82bdd86dc0aa75cfea6591bccad0e067e8a3a70f442e63b77b84a52",
+      "13_PLANNING/MILESTONE_PLANS.md": "b47173ba4179ec4b9770af76657f6c26663565100b479981802f284437004863",
+      "13_PLANNING/MILESTONE_REGISTER.md": "c2220df1c38a3e535a497261607656bf3d5407c6aa3e0d00967bd18d627bcb7c",
+      "13_PLANNING/OVEREXTENSION_RISK_REPORTS.md": "bc7064e20aa514044de8b8cc4e9cdaa822f5bda9d170706ac3e33a2005dca6d5",
+      "13_PLANNING/PLANNING_RULES.md": "fe9286a781add75987f71571f489669e41cda35e60a2cb411bf0076e317b6696",
+      "13_PLANNING/WORKCELL_ROADMAPS.md": "e2145716d2cd54bd9c05fbb67455a1dfa957e3adda3dd069d93a6c83b60d4a78",
+      "14_MEMORY_BANK/NOTES.md": "70f069af126a01f8bdc6390889ffd0e80974bb4b18d234cfc6bf8b303664e814",
+      "14_MEMORY_BANK/REFERENCES_INDEX.md": "07b8a4054b36ee8aad6d066b12bc9ff52ab4712fd64d41e7ce5fa62f43b22a3c",
+      "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_CHALLENGE.md": "57b8b01eab1bfa56c00d93b6837b2e50cc3648fcf35082ad2dc826c8a86367cb",
+      "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_CONTEXT_STEWARD.md": "bd519a549705000f69eac1df7e9fe60d1ce2376fd08d2cea08bdd3c6cea35f10",
+      "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_DIRECTOR.md": "568db6d6e5a858ed3530ef7caf59fef86b78bcce25cbb1f80e87a552616de856",
+      "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_INTEGRATOR.md": "23bf3b68ec59926dfad360c6095fa10b7e912993a9e61239202ae738be02ddff",
+      "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_JANITOR.md": "62dcdb72679206f0a7c193c46cd73f1deee7836db6750fbe1d3449b60827b365",
+      "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_MASTER.md": "64eebe79952023e71e701876ec169a546015c06b22ccb6085cf7af2d86ef3a6d",
+      "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_ONBOARDING.md": "8893594269a39a89647c04451c016a3e826c7de2c72a246fb59586cd8851c8a2",
+      "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_PLANNING.md": "1f5f32112da4f5edfae44eda493d6d2e60f76de5ce71c3f82b77cafb59df1d30",
+      "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_QA.md": "d47344c1830399879ea834116e60501828507e0b86fc1072cefc3ad39afab6c9",
+      "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_WORKCELL.md": "19254c7bf2752f3f45021170344b0315a3c695add413ef2e3799da5af5938a6e",
+      "15_COMMANDS_AND_DRIVERS/COMMAND_REGISTRY.md": "28c21cb884da6a1a22533cf88edca9539b88654615f1f89ac03312afba76d446",
+      "15_COMMANDS_AND_DRIVERS/COMMAND_ROUTING_MATRIX.md": "6cc222ea6e1d99ef537aa31253d51464b0086f9da4705b3c4d81504d7cc447d5",
+      "15_COMMANDS_AND_DRIVERS/COMMAND_SYNTAX.md": "f2b2435274a1ebcaf76921cb74ce73f130754b2c0f180cb7b01be3a63fbd5f9e",
+      "15_COMMANDS_AND_DRIVERS/CONTEXT_BUDGET_POLICY.md": "fcb429bd4a3a8625c79bc1a03fc477075408b2898995be1a6d73d91f46ba903e",
+      "15_COMMANDS_AND_DRIVERS/CONTROL_PLANE_SCHEMA.md": "9a5fc51d9f9496170c9eb916f83bcb0adaab8a89380730f7f87d5c78b76bec94",
+      "15_COMMANDS_AND_DRIVERS/EVIDENCE_STANDARD_BY_ROLE.md": "6be252c67b7fdb9da60ccf52ea2004eb51b95c88ddcdca588d7402b7a5af7811",
+      "15_COMMANDS_AND_DRIVERS/HUMAN_APPROVAL_GATES.md": "741ec787d0f1bf28a035aeaafa720a9d7a1c24034ed4ecd4571b0ee6ae63c4c2",
+      "15_COMMANDS_AND_DRIVERS/MINIMAL_VIABLE_ADAPT_MODE.md": "aaa17d0d5aceab3087aaed69652d9c863682cc4e58b5b149566ad0a7cab8aef9",
+      "15_COMMANDS_AND_DRIVERS/MUTATION_PERMISSION_MATRIX.md": "73bc3e556e740aed66b57d23e5586bb42bade49950f672acc9e3bfb72749ee53",
+      "15_COMMANDS_AND_DRIVERS/STOP_RULES.md": "58207c0cd1a6fdf7368a7962ff86d298562440e7b3cec623dfdfda40d7551f6c",
+      "15_COMMANDS_AND_DRIVERS/TOOLING_DECISION_CONTRACT.md": "743d57b8ce7ff4537693a16f9d3ba22e9e349a8493b9fe1e44bea07b9c234ee6",
+      "STARTUP.md": "6d25d8419c971b74c8e854a0549c5924fee5ba65641139a6e43f2e7fc080274b",
+      "TOOLS/adapt.py": "b86eee3f0667bda819d836ed50ed5b9c6b6a51834a44f158d8540c253df4e6c8",
+      "TOOLS/MANIFEST.json": "356b7eb0fd73ef3106308158564353444a82c24e7079a794ff0adb3abbbf1e78",
+      "TOOLS/README.md": "8cda0093f151955c974414b110ec0d6726978310021b34a3f2404c46b05de2e9",
+      "TOOLS/supporting_modules/__init__.py": "80955242325b35a9f4e5ad4a1a1ed6ab75d108fd72a7ed1605d5023ca2db3deb",
+      "TOOLS/supporting_modules/instance_inventory.json": "84b9cb3fe34c9a162edf34ac5c1e432c7b753906fbb4fa8b2ed24e357bb5f1f7",
+      "TOOLS/supporting_modules/operator.py": "ab2473795a969de4f40dc7a0baddbe5a2999fcb25300c9b0a870570432be10c6",
+      "TOOLS/supporting_modules/state_reader.py": "aca049abc4caac9cecb99948c19202243bc305f8f035e5f4c12a0aedb6ddc05b"
+    },
+    "notice": "Actual scaffold completed before designation, Gate 1 or context input."
+  },
+  "stage_invocations": [
+    {
+      "stage": "scaffold",
+      "command": [
+        "C:\\Users\\bkfer\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "-B",
+        "D:\\Project\\ADAPT\\ADAPT\\VALIDATION\\director_case.py",
+        "scaffold",
+        "--disposable",
+        "D:\\Project\\ADAPT\\.adapt-local\\maintenance\\director-correction-20261016\\acceptance-final"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"stage\": \"scaffold\", \"version\": \"ADAPT-FW-0005\", \"source\": \"NONE (no promotion input yet)\", \"state\": {\"ProjectName\": \"Bootstrap Acceptance\", \"ProjectType\": \"Web App\", \"DeploymentMode\": \"MODE_A_EXISTING_SOLUTION\", \"RoutingMode\": \"PROTECTED_DEFAULT\", \"InitializationMode\": \"FULL_EXTERNAL_ADAPT_INSTANCE_SCAFFOLD\", \"SourceTruthVersion\": \"NONE\", \"ActiveMilestone\": \"NONE\", \"ActiveCycle\": \"NONE\", \"ActiveHandoff\": \"NONE\", \"CurrentAuthority\": \"Director Lane\", \"ExecutionReadiness\": \"NEEDS_PLANNING\", \"CurrentPhase\": \"INITIALIZED\", \"ActiveWorkcell\": \"NONE\", \"Blocked\": \"NO\", \"ActiveBlockers\": \"NONE\", \"ActiveGaps\": \"GAP-T10-001\", \"LastAction\": \"Synthetic scaffold 2026-10-16; STARTUP.md\", \"LastContextDelta\": \"NONE\", \"NextExpectedAction\": \"Run Director intake\", \"LastConsolidatedAt\": \"NEVER\", \"Notes\": \"SYNTHETIC ONLY; current maintainer acceptance directive authorizes this disposable scaffold; project/REQUIREMENTS.txt; no product writes; STARTUP.md records frozen provenance\"}}\n",
+      "stderr": "",
+      "synthetic_fixture_only": true
+    },
+    {
+      "stage": "designation-input",
+      "command": [
+        "C:\\Users\\bkfer\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "-B",
+        "D:\\Project\\ADAPT\\ADAPT\\VALIDATION\\director_case.py",
+        "designation-input",
+        "--disposable",
+        "D:\\Project\\ADAPT\\.adapt-local\\maintenance\\director-correction-20261016\\acceptance-final"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "synthetic_fixture_only": true
+    },
+    {
+      "stage": "designate",
+      "command": [
+        "C:\\Users\\bkfer\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "-B",
+        "D:\\Project\\ADAPT\\ADAPT\\VALIDATION\\director_case.py",
+        "designate",
+        "--disposable",
+        "D:\\Project\\ADAPT\\.adapt-local\\maintenance\\director-correction-20261016\\acceptance-final"
+      ],
+      "exit_code": 0,
+      "stdout": "PASS_DIRECTOR_DESIGNATION; STOP\n",
+      "stderr": "",
+      "synthetic_fixture_only": true
+    },
+    {
+      "stage": "promotion-input",
+      "command": [
+        "C:\\Users\\bkfer\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "-B",
+        "D:\\Project\\ADAPT\\ADAPT\\VALIDATION\\director_case.py",
+        "promotion-input",
+        "--disposable",
+        "D:\\Project\\ADAPT\\.adapt-local\\maintenance\\director-correction-20261016\\acceptance-final"
+      ],
+      "exit_code": 0,
+      "stdout": "SYNTHETIC_GATE1_INPUT_READY; no promotion executed\n",
+      "stderr": "",
+      "synthetic_fixture_only": true
+    },
+    {
+      "stage": "promote",
+      "command": [
+        "C:\\Users\\bkfer\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "-B",
+        "D:\\Project\\ADAPT\\ADAPT\\VALIDATION\\director_case.py",
+        "promote",
+        "--disposable",
+        "D:\\Project\\ADAPT\\.adapt-local\\maintenance\\director-correction-20261016\\acceptance-final"
+      ],
+      "exit_code": 0,
+      "stdout": "PASS_INITIAL_BASIS\nPASS_PROMOTION; STOP\n",
+      "stderr": "",
+      "synthetic_fixture_only": true
+    },
+    {
+      "stage": "first-context",
+      "command": [
+        "C:\\Users\\bkfer\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "-B",
+        "D:\\Project\\ADAPT\\ADAPT\\VALIDATION\\director_case.py",
+        "first-context",
+        "--disposable",
+        "D:\\Project\\ADAPT\\.adapt-local\\maintenance\\director-correction-20261016\\acceptance-final"
+      ],
+      "exit_code": 0,
+      "stdout": "PASS_STEWARD_REQUEST\nPASS_ORDINARY_CONTEXT\nPASS_CONTEXT; STOP\n",
+      "stderr": "",
+      "synthetic_fixture_only": true
+    },
+    {
+      "stage": "onboarding-input",
+      "command": [
+        "C:\\Users\\bkfer\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "-B",
+        "D:\\Project\\ADAPT\\ADAPT\\VALIDATION\\director_case.py",
+        "onboarding-input",
+        "--disposable",
+        "D:\\Project\\ADAPT\\.adapt-local\\maintenance\\director-correction-20261016\\acceptance-final"
+      ],
+      "exit_code": 0,
+      "stdout": "SYNTHETIC_INPUTS_READY; not a Director dispatch claim; STOP\n",
+      "stderr": "",
+      "synthetic_fixture_only": true
+    },
+    {
+      "stage": "onboarding-context",
+      "command": [
+        "C:\\Users\\bkfer\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "-B",
+        "D:\\Project\\ADAPT\\ADAPT\\VALIDATION\\director_case.py",
+        "onboarding-context",
+        "--disposable",
+        "D:\\Project\\ADAPT\\.adapt-local\\maintenance\\director-correction-20261016\\acceptance-final"
+      ],
+      "exit_code": 0,
+      "stdout": "PASS_ORDINARY_ONBOARDING_CONTEXT; STOP\n",
+      "stderr": "",
+      "synthetic_fixture_only": true
+    },
+    {
+      "stage": "onboarding-route",
+      "command": [
+        "C:\\Users\\bkfer\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "-B",
+        "D:\\Project\\ADAPT\\ADAPT\\VALIDATION\\director_case.py",
+        "onboarding-route",
+        "--disposable",
+        "D:\\Project\\ADAPT\\.adapt-local\\maintenance\\director-correction-20261016\\acceptance-final"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "synthetic_fixture_only": true
+    },
+    {
+      "stage": "onboard",
+      "command": [
+        "C:\\Users\\bkfer\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "-B",
+        "D:\\Project\\ADAPT\\ADAPT\\VALIDATION\\director_case.py",
+        "onboard",
+        "--disposable",
+        "D:\\Project\\ADAPT\\.adapt-local\\maintenance\\director-correction-20261016\\acceptance-final"
+      ],
+      "exit_code": 0,
+      "stdout": "PASS_ONBOARDING_BASIS\nPASS_WORKCELL_QUALITY\nPASS_ONBOARDING; no assignment; STOP\n",
+      "stderr": "",
+      "synthetic_fixture_only": true
+    },
+    {
+      "stage": "verify",
+      "command": [
+        "C:\\Users\\bkfer\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "-B",
+        "D:\\Project\\ADAPT\\ADAPT\\VALIDATION\\director_case.py",
+        "verify",
+        "--disposable",
+        "D:\\Project\\ADAPT\\.adapt-local\\maintenance\\director-correction-20261016\\acceptance-final"
+      ],
+      "exit_code": 0,
+      "stdout": "PASS_ACTUAL_DISPOSABLE_SEQUENCE; STOP\n",
+      "stderr": "",
+      "synthetic_fixture_only": true
+    }
+  ],
+  "result": {
+    "status": "PASS_ACTUAL_DISPOSABLE_SEQUENCE",
+    "classification": "Agent-guided documented file actions, not independent QA or human-approval authentication",
+    "initial_director_unresolved": true,
+    "registered_entry": "Run Director intake",
+    "designation": {
+      "status": "DIRECTOR_IDENTITY_INITIALIZED",
+      "decision_id": "DEC-001",
+      "input_sha256": "fd28ba45c3c131e954c92444927592f750b4bf1f5a6b9dbe711eefefbc6d46b1",
+      "next_action": "Promote {{DOCUMENT}} as {{SOURCE_TRUTH_VERSION}}",
+      "state": {
+        "ProjectName": "Bootstrap Acceptance",
+        "ProjectType": "Web App",
+        "DeploymentMode": "MODE_A_EXISTING_SOLUTION",
+        "RoutingMode": "PROTECTED_DEFAULT",
+        "InitializationMode": "FULL_EXTERNAL_ADAPT_INSTANCE_SCAFFOLD",
+        "SourceTruthVersion": "NONE",
+        "ActiveMilestone": "NONE",
+        "ActiveCycle": "NONE",
+        "ActiveHandoff": "NONE",
+        "CurrentAuthority": "Director Lane",
+        "ExecutionReadiness": "NEEDS_PLANNING",
+        "CurrentPhase": "INITIALIZED",
+        "ActiveWorkcell": "NONE",
+        "Blocked": "NO",
+        "ActiveBlockers": "NONE",
+        "ActiveGaps": "GAP-T10-001",
+        "LastAction": "Synthetic scaffold 2026-10-16; STARTUP.md",
+        "LastContextDelta": "NONE",
+        "NextExpectedAction": "Run Director intake",
+        "LastConsolidatedAt": "NEVER",
+        "Notes": "SYNTHETIC ONLY; current maintainer acceptance directive authorizes this disposable scaffold; project/REQUIREMENTS.txt; no product writes; STARTUP.md records frozen provenance"
+      },
+      "identity_reverse_verified": true,
+      "decision_inverse_verified": true,
+      "changed": [
+        "02_DIRECTOR_LANE/DECISION_LOG.md",
+        "02_DIRECTOR_LANE/DIRECTOR_IDENTITY.md"
+      ],
+      "fixture_notice": "Synthetic test only; not a real designation or human approval."
+    },
+    "first_promotion": "Registered SOURCE_TRUTH_V0.1 through bounded initial basis",
+    "first_context": "10_CONTEXT_ECONOMY/CONTEXT_PACKS/CP-0001.md",
+    "first_workcell": {
+      "id": "PLANNER_TESTALPHA",
+      "files": [
+        "WORKCELL_IDENTITY.md",
+        "SCOPE_CONTRACT.md",
+        "DEFAULT_AGENT_BLUEPRINT.md",
+        "WORKFLOW_CUSTOMIZATION.md",
+        "EFFECTIVE_WORKFLOW.md",
+        "GUARDRAIL_BINDINGS.md",
+        "WORKFLOW_CHANGE_REQUESTS.md",
+        "WORKFLOW_CHANGE_LOG.md",
+        "ROADMAP.md",
+        "TASK_REGISTER.md",
+        "EVIDENCE_LOG.md",
+        "HANDOFFS.md",
+        "BLOCKERS.md",
+        "CONTEXT_DELTAS.md",
+        "ACTION_PROMPT_PLANNER_TESTALPHA.md"
+      ],
+      "all_15_present": true,
+      "no_implementation_assignment": true
+    },
+    "unique_decisions": [
+      "DEC-001",
+      "DEC-003",
+      "DEC-002"
+    ],
+    "ordinary_stop_checks": [
+      {
+        "case": "implementation-without-assignment",
+        "result": "STOP_REQUIRED",
+        "reason": "IMPLEMENTATION_UNASSIGNED"
+      },
+      {
+        "case": "initialization-qualification-reuse",
+        "result": "STOP_REQUIRED",
+        "reason": "EXECUTOR_AUTHORITY"
+      }
+    ],
+    "project_unchanged": true,
+    "final_state": {
+      "ProjectName": "Bootstrap Acceptance",
+      "ProjectType": "Web App",
+      "DeploymentMode": "MODE_A_EXISTING_SOLUTION",
+      "RoutingMode": "PROTECTED_DEFAULT",
+      "InitializationMode": "FULL_EXTERNAL_ADAPT_INSTANCE_SCAFFOLD",
+      "SourceTruthVersion": "SOURCE_TRUTH_V0.1",
+      "ActiveMilestone": "NONE",
+      "ActiveCycle": "NONE",
+      "ActiveHandoff": "NONE",
+      "CurrentAuthority": "Onboarding Orchestrator",
+      "ExecutionReadiness": "NEEDS_CONTEXT",
+      "CurrentPhase": "ONBOARDING",
+      "ActiveWorkcell": "NONE",
+      "Blocked": "NO",
+      "ActiveBlockers": "NONE",
+      "ActiveGaps": "GAP-T10-001",
+      "LastAction": "PLANNER_TESTALPHA onboarded; 11_ONBOARDING/ER-0004.md",
+      "LastContextDelta": "CD-0004",
+      "NextExpectedAction": "Director to review onboarding; no implementation assigned",
+      "LastConsolidatedAt": "NEVER",
+      "Notes": "SYNTHETIC ONLY; current maintainer acceptance directive authorizes this disposable scaffold; project/REQUIREMENTS.txt; no product writes; STARTUP.md records frozen provenance"
+    },
+    "final_instance_hashes": {
+      "00_FRAMEWORK/ADAPT_FRAMEWORK.md": "27a3ced63cd9bce49d2f70c5f35c3dd588c00f8b246da93a13546c689ece02ef",
+      "00_FRAMEWORK/ARTIFACT_STANDARDS.md": "b452a2fd2ca0f6de285bd4dd269421cddae86e4c69d0a704362d18bb01907e30",
+      "00_FRAMEWORK/GLOSSARY.md": "e581ff1eaa3efdaf2678820fc3330ac095e0208b1b43921e13bf96a823018143",
+      "00_FRAMEWORK/GOVERNANCE_RULES.md": "bf3bf8f5b887f932d65f8bf090da720cee6df09be7b06ff156f552e3b59d877e",
+      "00_FRAMEWORK/ROLE_MODEL.md": "4cea2e5a7f4cda9c305afe91b5996c253c9006cf80c430c2fe274b4b2606e14c",
+      "00_FRAMEWORK/SOURCE_AUTHORITY_POLICY.md": "bd7ad61a2a0f1278e50581df00daa2548b856bed4b76246974ac5bf26324b82e",
+      "01_SOURCE_TRUTH/ACCEPTANCE_CRITERIA.md": "44e9823f2beddaa93c72326d09b3cb46a79e0237200806ab819410a4d1ec9152",
+      "01_SOURCE_TRUTH/BUSINESS_ITEMS.md": "d56eb98814dbb9168a8a41d21a657075e41410a4abc6f3fef98a3f1d66e0fbf6",
+      "01_SOURCE_TRUTH/OPEN_QUESTIONS.md": "4f0ec615a1a012e7ed642b8d8b65a741366ec8e6f56ff828ba0cb1da0935212e",
+      "01_SOURCE_TRUTH/REQUIREMENT_SECTION_MAP.md": "671d915834c08ea32925dcf08d929ecf64bb7df098146f0363deee26b8e1a7bf",
+      "01_SOURCE_TRUTH/REQUIREMENTS_INDEX.md": "23ac6b7f97c28c5192a9bb5bd37ec1914e6bb73ed463f20462bec50edbb9406a",
+      "01_SOURCE_TRUTH/SOURCE_TRUTH_VERSION_LOG.md": "040ee9c918838872dd2e1c0d2108221035822559877b820929757c2910e3f788",
+      "01_SOURCE_TRUTH/SYNTHETIC_SOURCE.txt": "cd74a7a29b244d249751d1fde629ea6400957b81d3bd7ba5540551c4d42c6ad2",
+      "02_DIRECTOR_LANE/ACCEPTED_WORK_REGISTER.md": "9571ff9d820371f4c618a20e164749140c4c53170d9ee4a09e392f3b6c0afa2f",
+      "02_DIRECTOR_LANE/BLOCKER_REGISTER.md": "89e7aeebe8b9a3d101af5461c91258eb81738e00a9fb51a3782ad67a4c343553",
+      "02_DIRECTOR_LANE/CARRY_OVER_REGISTER.md": "1f109c718fc78a1e039bd820c13f7b02c9413f4b90ab0015543a6579b2e4eb12",
+      "02_DIRECTOR_LANE/DECISION_LOG.md": "c30f62ed634cf68bbd174fa354eb3b14893f7f543f8877a5b27cf40f67e58f6e",
+      "02_DIRECTOR_LANE/DEPENDENCY_MAP.md": "b59835cce2b6771fca1940e3b51a138b1d357be7afd12873e99debdeeece83fd",
+      "02_DIRECTOR_LANE/DIRECTOR_IDENTITY.md": "3c7fd3efc3d8ec71acb868346b32017d043838959b85149b97337b080dd17a30",
+      "02_DIRECTOR_LANE/ER-0001.md": "aaf181b678b5646bed9241e7a996a276b8d62240da97cea3c7869b25c12b5e81",
+      "02_DIRECTOR_LANE/GAP_REGISTER.md": "367ddf853378c26c0ccf3ad8c59384bdaec6f57a78a7d2a8e07de84dc4ef3b30",
+      "02_DIRECTOR_LANE/INTAKE_REGISTER.md": "0f6b86df6019235bcc9c07bd809796d353e4f0f270995a01e37254f7050d1aeb",
+      "02_DIRECTOR_LANE/LANE_ASSIGNMENT_MATRIX.md": "48690605aaf5e9f757c8975b37acb48266cb333c418c5ae0518e4070f89c6459",
+      "02_DIRECTOR_LANE/PROJECT_CONTROL_PLANE.md": "e7743a296aa3e29b7db4e454e5e5baf139ce82ddc6bc838fcd369b56f483450e",
+      "02_DIRECTOR_LANE/SYNTHETIC_APPROVAL.json": "f9d1f983e02401afea25b02c1f738e92463d678fd9517ec57d59b8de32739ada",
+      "02_DIRECTOR_LANE/SYNTHETIC_REQUEST.txt": "a12f56b41f5be12bc19abdf104bec514ff51f87a5f3f73ac626f759587adc1e8",
+      "02_DIRECTOR_LANE/SYNTHETIC_SOURCE.txt": "cd74a7a29b244d249751d1fde629ea6400957b81d3bd7ba5540551c4d42c6ad2",
+      "02_DIRECTOR_LANE/WORKCELL_REGISTRY.md": "b822d7117e274e314bce9eddba2e8f2a9e6d70b25db8815383f582f279b73d65",
+      "03_WORKCELLS/PLANNER_TESTALPHA/ACTION_PROMPT_PLANNER_TESTALPHA.md": "a1ecb58dd111a476c1ff9cd99e83964db4e66119afd4d44a164415a11cae4fb4",
+      "03_WORKCELLS/PLANNER_TESTALPHA/BLOCKERS.md": "f94b9c959553c0be9d5cca1f184b40f3ccea1fc6d8b1faaf730879ce05b1468b",
+      "03_WORKCELLS/PLANNER_TESTALPHA/CONTEXT_DELTAS.md": "5af796df4772c266c72f95d8403a26510e3a8bd04c14ce162339e1e6c0c0cdf8",
+      "03_WORKCELLS/PLANNER_TESTALPHA/DEFAULT_AGENT_BLUEPRINT.md": "24abbd171d6ed277d77e56059317376c2c7c8f80212162c55a8416231f2443ed",
+      "03_WORKCELLS/PLANNER_TESTALPHA/EFFECTIVE_WORKFLOW.md": "b038c3af2a3cdb289d0539f0c619257fdd26f00a04c8bd308db18ab86ee648b4",
+      "03_WORKCELLS/PLANNER_TESTALPHA/EVIDENCE_LOG.md": "83f473388c50357c68ed3f46bf664ef89b4c4e8057894bba8593578f0976d01a",
+      "03_WORKCELLS/PLANNER_TESTALPHA/GUARDRAIL_BINDINGS.md": "a335efcc2fd8baf6ae08b66fdb54ce5f8f6475650ede479399ec77dab3341fcb",
+      "03_WORKCELLS/PLANNER_TESTALPHA/HANDOFFS.md": "a1d34a00a6c5e17880660f573652ee553e731293d50ea6d1b0d6206afcfab955",
+      "03_WORKCELLS/PLANNER_TESTALPHA/ROADMAP.md": "a287f5cc5f36e72fdaa9dbd24aa53897551b3b8540c4f103961021eb0eef15b7",
+      "03_WORKCELLS/PLANNER_TESTALPHA/SCOPE_CONTRACT.md": "7014021d8ea9dea75dcd2ddaacbf177d68f8e0360a8e02a1305c207d1b54a6da",
+      "03_WORKCELLS/PLANNER_TESTALPHA/TASK_REGISTER.md": "86287dceb1a2cfa5aa78926170d1a5de6e50b90ef8d2be3e6511fe5296c626e9",
+      "03_WORKCELLS/PLANNER_TESTALPHA/WORKCELL_IDENTITY.md": "804fcaba3737a5dd05e528b4387db06caaca57b91acd08242c865b6972631180",
+      "03_WORKCELLS/PLANNER_TESTALPHA/WORKFLOW_CHANGE_LOG.md": "2f6e3d0358b9752fe38e5ff723e605ca7b05fb717ccc4558c7c5865592a515f8",
+      "03_WORKCELLS/PLANNER_TESTALPHA/WORKFLOW_CHANGE_REQUESTS.md": "f65a837066d7dba3e837b5f1df505c0b3d0b095d56df080a848db85c4e54a133",
+      "03_WORKCELLS/PLANNER_TESTALPHA/WORKFLOW_CUSTOMIZATION.md": "c15fd28eb409a4450259eecaa33d27689c5410529feab05676bfee7558ad2d48",
+      "03_WORKCELLS/README.md": "09c6af1bcdaccc7a6206b423d91085f0be46c45281e0cc48a91dc9319b4995fd",
+      "03_WORKCELLS/ROLE_WORKCELL_BLUEPRINTS.md": "4fdd81f9b8dc4a0c5248c7008e20f58d9053bc2f119478fcefbb8b0c1edda4ae",
+      "04_INTEGRATION/API_CONTRACTS.md": "2e23ee929de004e64e7df8fe58492357426a3981174565f03b99e6c7957743a9",
+      "04_INTEGRATION/INTEGRATION_CONTRACTS.md": "2f72297d604495a4e950cf1a7d25b5fa9cfd9a332a3b260b6390ee286cbd6d31",
+      "04_INTEGRATION/INTEGRATION_GAPS.md": "b781604198f234d187bcb92216e2b5d30341130475b32cd8cc9df72e2817ab64",
+      "04_INTEGRATION/MERGE_READINESS.md": "172db582a57db58e13baf92be6fadab33f7c27de9896d7ad1d2f91e8b97b5271",
+      "04_INTEGRATION/PIPELINE_STATUS.md": "1ce4a5489e0017b23df0243859dfcdb62301cc9c64d8b7c6e1977ef240a06774",
+      "04_INTEGRATION/RELEASE_READINESS.md": "8d47caea0f8f95ce4c26d40dead8aa76f3326d017ee4ef5ca0ff0eb74a2e3534",
+      "04_INTEGRATION/UI_BE_CONTRACTS.md": "82b22bc8ff5462572c559a27b2ad9798cdaedb3c779099feb71c0c0425610db9",
+      "05_VALIDATION/DEFECT_REGISTER.md": "3854ec01dfac50e2f1135c9e22369bb49363feaf339836224e019895253aabe8",
+      "05_VALIDATION/QA_STRATEGY.md": "d09cd8118d5acf8fd334542b4534ef696d6c3aab105e380cb14cc21f48424459",
+      "05_VALIDATION/REGRESSION_RISK_MAP.md": "b3bdbb83eb861ac23cb384ff11be4825d27932b3f2e0d826924fae9295558ddb",
+      "05_VALIDATION/SIGNOFF_REGISTER.md": "e628665a53d06f70d57ec2b4485040e73607689aea34e61ec6a050d507e92f8b",
+      "05_VALIDATION/TEST_CASE_INDEX.md": "aec3959f907751705f5302aaf1be208cb0030d2ed25e6f7105cdcbb87a51430f",
+      "05_VALIDATION/VALIDATION_EVIDENCE.md": "abe1404a4b30b42584380e5cf04ebfbcb43d001be1b421a7940b11ceceb88342",
+      "06_HANDOFFS/ACTIVE/HO-0002.md": "44760ec67a57a914bf4d1a22c183efdcd5914481c7e48c73420ea342a9b1028b",
+      "06_HANDOFFS/ACTIVE/HO-0005.md": "fb6f739d0ce494d7035fbc97ee152ae58f78ffd3dd7199f103069ff14228bae7",
+      "06_HANDOFFS/ACTIVE/README.md": "a8bc0e96d437b3284ec881c35b1e29595ecf7607bea65fa8febc03c2ead3a0c8",
+      "06_HANDOFFS/ARCHIVE/README.md": "45ab66729653fe52bcf08a11a4d01e633a21deadbb6de5e251f95fbeee4cdb37",
+      "06_HANDOFFS/CONSUMED/HO-0001.md": "0027943686bcecd766563c513a5e89cb4d9174c421f3cab093f8bf3fed2b28af",
+      "06_HANDOFFS/CONSUMED/HO-0003.md": "9d840efcc9555deba6e2de267ec3b36e69f4a66646801c43cac35ac196ed891a",
+      "06_HANDOFFS/CONSUMED/HO-0004.md": "b74f9e0221938c4deccb8cba4de94fe0c20e3cd39836b90f3c54ea98f275e8ae",
+      "06_HANDOFFS/CONSUMED/README.md": "03f245504979a2ed259453653523cd80beafe7b90854afdcdfb5ae87d4dd0d98",
+      "06_HANDOFFS/README.md": "d9bb04bb483e35a846cb2dc345a4a6a38b2260e884cc90b0677c7326ca49a46c",
+      "07_GUARDRAILS/CONTEXT_GUARDRAIL.md": "76b46d34965cac763dfe97cb357283e03d347d595f7ea1417167ad42bd1b8b9d",
+      "07_GUARDRAILS/CONTRACT_GUARDRAIL.md": "bf696268b2c56918bae9b18557dccae886f99bb8bfa80243b88cf6e2406d20a9",
+      "07_GUARDRAILS/EVIDENCE_GUARDRAIL.md": "6226b6857f91bf3072c328f4fca11567d857c12e7213a2740ffd5dfa57d41d0a",
+      "07_GUARDRAILS/HANDOFF_GUARDRAIL.md": "29e78fa25d150c4466a947155f967daea33d70bd9bc36672ee1b20fbfa5e59d4",
+      "07_GUARDRAILS/MUTATION_GUARDRAIL.md": "3272ef7351dc556cdbec216de47318af9706bb51c02fedf622a560284a3eb066",
+      "07_GUARDRAILS/QA_INDEPENDENCE_GUARDRAIL.md": "8a5e60fe79f14ca992a44d6e902a0b48e788722ed258a6c5d789a1dfbc523834",
+      "07_GUARDRAILS/SCOPE_GUARDRAIL.md": "ca0bd3cd6b0c225fb3c1fdcfea1f9d016995f33203c194be746e43e460cced15",
+      "08_TEMPLATES/ACTION_PROMPT_ROLE_IDENTITY_TEMPLATE.md": "70e0e7f3a16a9bf605b6f442ec02a87d5779d64d87eda81ee50aeb7edbd1eebd",
+      "08_TEMPLATES/BLOCKER_TEMPLATE.md": "f57c85332d5f3638aa5a325fbd822d446db4facd5082da9dfc7d503e59980f34",
+      "08_TEMPLATES/CONTEXT_DELTA_TEMPLATE.md": "269f84cbc8cce3b31ad7ef911fab9c84dfa28fdf362e819ab0dd5edde7c86a99",
+      "08_TEMPLATES/CONTEXT_PACK_TEMPLATE.md": "b85386364cbb7ee3073732eea646caf4cc82841106a0a27f4bfc4a99b8c952dd",
+      "08_TEMPLATES/DEFAULT_AGENT_BLUEPRINT_TEMPLATE.md": "b61768548ea4643af32c08ac233b2f254939d287798baf11aa7ec55d3f132a97",
+      "08_TEMPLATES/EFFECTIVE_WORKFLOW_TEMPLATE.md": "4526a4001e3be32c371cfdecfcbe6edf9206c81ad4cb7268628025f2692b8c08",
+      "08_TEMPLATES/EVIDENCE_REPORT_TEMPLATE.md": "a15c49d6b193b4c0ac319654f044a3da765c505aeca81d292d5060e76ce9fc47",
+      "08_TEMPLATES/GAP_TEMPLATE.md": "92397dff64d7eec94b300b2c81ed65a2d7c4624411e7692551171730eb8fa00f",
+      "08_TEMPLATES/GUARDRAIL_BINDINGS_TEMPLATE.md": "337cbcb3049c862757e291ef849b3f00694c808bf2b1d9b0c3af5be52396c611",
+      "08_TEMPLATES/HANDOFF_TEMPLATE.md": "a6dbbc8c6513b86de18c54392a1617608359048e0167c840993ae55566710179",
+      "08_TEMPLATES/OPERATOR_BINDING_TEMPLATE.md": "72701827b9f12af931f3a72aa286ec5e589403bf3aea59347f56e34787cabfa6",
+      "08_TEMPLATES/SCOPE_CONTRACT_TEMPLATE.md": "4da32ed65506bbd4c95e93ec40537eb871c0a37206cd987fe4e0f853d60b0038",
+      "08_TEMPLATES/VALIDATION_REPORT_TEMPLATE.md": "caef437131bd30686233a0b75f4d01de0d47232d93ae7671487004fed4a3d849",
+      "08_TEMPLATES/WORKCELL_IDENTITY_TEMPLATE.md": "2c61657cbe619faa8a1d5d76a148555855b6335da4bfa2e059bafd433a6c52d0",
+      "08_TEMPLATES/WORKFLOW_CHANGE_LOG_TEMPLATE.md": "411e20996e88bb9d3502f5c0fb3f800c604075048e6ff967b97894787cf91e90",
+      "08_TEMPLATES/WORKFLOW_CHANGE_REQUEST_TEMPLATE.md": "a4904264d51254273a44e2c9de9c22b138788dbf654fab9ce2b9bc1de4c7e09b",
+      "08_TEMPLATES/WORKFLOW_CUSTOMIZATION_TEMPLATE.md": "d5e188cfd095c03739ef764b759e956ed567fa7f4e73860c12d981c9bb3f1641",
+      "09_CHALLENGE_LANE/CHALLENGE_IDENTITY.md": "7a579c3b00fc05bb2ded5cd0bccd1f7f30aa75148da4ef4497b5820e65e6f5a8",
+      "09_CHALLENGE_LANE/CHALLENGE_REGISTER.md": "81b38fb4a92e0a7c556430b2ed48b9092913c4eeb10830a7266e04383313dd83",
+      "09_CHALLENGE_LANE/CHALLENGE_REPORT_TEMPLATE.md": "eea63beecd1df3d4af53d2952bbf28207ef6d52cf5381a30fd772e0b7f47300a",
+      "10_CONTEXT_ECONOMY/CONTEXT_BUDGETS.md": "85636bdc8f2453592b67ab4b83cf74ba315ebf39f53cc13cdfa11dd8d15a243b",
+      "10_CONTEXT_ECONOMY/CONTEXT_DELTAS/CD-0001.md": "b81c5208d85d1ad4a316bf7e8a8ed5a0ece05fee4a98fd1b9ad6719dcfc19b04",
+      "10_CONTEXT_ECONOMY/CONTEXT_DELTAS/CD-0002.md": "e124fe4f5084311a2a7cff6be6aca7e921479651722a4f42cdfa55a431ba9b42",
+      "10_CONTEXT_ECONOMY/CONTEXT_DELTAS/CD-0003.md": "5aa1c06cef86b5238387405ba9522f5a052b4ce97df04249e13153b4e1a17b98",
+      "10_CONTEXT_ECONOMY/CONTEXT_DELTAS/CD-0004.md": "cd4de274aa8c44aec2c1637ed305e5411caf2ea18b4589cdd2087b11eb1bea46",
+      "10_CONTEXT_ECONOMY/CONTEXT_INDEX.md": "50a1046409aa3b4d521a5b4ada6f2711f32209897782e630e8eca0006abe3bf7",
+      "10_CONTEXT_ECONOMY/CONTEXT_PACKS/CP-0001.md": "d8297a5834b7485b6fa229a6ebdd3b1ec5d54a09f52fdb1774234f91da7ccec1",
+      "10_CONTEXT_ECONOMY/CONTEXT_PACKS/CP-0002.md": "20579331e4bed02566b8b9b4173ab974976ea6646260b431b4221d2f601c82b1",
+      "10_CONTEXT_ECONOMY/CONTEXT_RULES.md": "69877031f63a9f95a1974d2f0d8aa94f26e337aca49dc8f5cf51371d654470b9",
+      "10_CONTEXT_ECONOMY/CONTEXT_SUMMARIES/ER-0002.md": "97d0543c86f00f812d67877b054b3a12e57053c4d0d84c060ad3f001ca2d6350",
+      "10_CONTEXT_ECONOMY/CONTEXT_SUMMARIES/ER-0003.md": "1de8db9c88e7cc5d2ef1d34687feb69efec5aebed7d0d77cbbdbb16ef564af54",
+      "10_CONTEXT_ECONOMY/STALE_CONTEXT_REGISTER.md": "2eb2fa2495a78a868c1b5a006acd8320e6b501f4bcd14601bd0eba4720674fd0",
+      "11_ONBOARDING/ER-0004.md": "32c9f28985af877c376df0d91d5e317ab8287c2c21d6283d8b0fd8431c5e3674",
+      "11_ONBOARDING/ONBOARDING_REPORTS.md": "dd38ff2b2e3e29f873296f4aa745795354c6467d371908ecdcd40f46f15b31a0",
+      "11_ONBOARDING/ONBOARDING_REQUESTS.md": "d6032060ea73d7c28f96794fae0c1a9bf636e8acc1d90f20ff103bd66b5a1f4e",
+      "11_ONBOARDING/ONBOARDING_RULES.md": "b3fb6a2e1bde425c7fdcf71b37dacc380e1f631f5022cacb7e2b90e0835ef071",
+      "11_ONBOARDING/ROLE_TO_WORKCELL_MAP.md": "cada532cd6471184d4edffbda634ae27de931fc21cc1bed83b2dce5226b7db98",
+      "11_ONBOARDING/SYNTHETIC_INPUT_1.json": "e0e8f4399dd1326b321bd2a713b1417a4a356a939485c5642bb9a3f72c02d12b",
+      "12_JANITOR/ARCHIVE_CANDIDATES.md": "d2c8de56a3f88e5adcbed6e5431bf214fdd84430b0467214c2c398e81ef3025c",
+      "12_JANITOR/CLEANUP_REPORTS.md": "c5709d70b1cabc019613e44cf981d2838b75a7d4cc2e7e29cf0481e2e8378801",
+      "12_JANITOR/COMPACTION_SUMMARIES.md": "e0d630bdecf4303cbccd76a492c48a4426c97ab911b0b08dd37c549e432ee57b",
+      "12_JANITOR/JANITOR_RULES.md": "ee6a7d8bee367a43859a5549d65c18e378163ad33745a954bbac22be1c3493e9",
+      "12_JANITOR/STALE_ARTIFACT_REGISTER.md": "1cbf48e815d940047efa96fa0e529dcaa05a418d4c2d4402b7279aa22c56290d",
+      "13_PLANNING/CAPACITY_MODEL.md": "e77037c9775378c087fa79ff3b2e03cfaf15296044ff883ff057f202082a1631",
+      "13_PLANNING/DEPENDENCY_SEQUENCES.md": "b872a722f82bdd86dc0aa75cfea6591bccad0e067e8a3a70f442e63b77b84a52",
+      "13_PLANNING/MILESTONE_PLANS.md": "b47173ba4179ec4b9770af76657f6c26663565100b479981802f284437004863",
+      "13_PLANNING/MILESTONE_REGISTER.md": "c2220df1c38a3e535a497261607656bf3d5407c6aa3e0d00967bd18d627bcb7c",
+      "13_PLANNING/OVEREXTENSION_RISK_REPORTS.md": "bc7064e20aa514044de8b8cc4e9cdaa822f5bda9d170706ac3e33a2005dca6d5",
+      "13_PLANNING/PLANNING_RULES.md": "fe9286a781add75987f71571f489669e41cda35e60a2cb411bf0076e317b6696",
+      "13_PLANNING/WORKCELL_ROADMAPS.md": "e2145716d2cd54bd9c05fbb67455a1dfa957e3adda3dd069d93a6c83b60d4a78",
+      "14_MEMORY_BANK/NOTES.md": "70f069af126a01f8bdc6390889ffd0e80974bb4b18d234cfc6bf8b303664e814",
+      "14_MEMORY_BANK/REFERENCES_INDEX.md": "07b8a4054b36ee8aad6d066b12bc9ff52ab4712fd64d41e7ce5fa62f43b22a3c",
+      "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_CHALLENGE.md": "57b8b01eab1bfa56c00d93b6837b2e50cc3648fcf35082ad2dc826c8a86367cb",
+      "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_CONTEXT_STEWARD.md": "bd519a549705000f69eac1df7e9fe60d1ce2376fd08d2cea08bdd3c6cea35f10",
+      "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_DIRECTOR.md": "568db6d6e5a858ed3530ef7caf59fef86b78bcce25cbb1f80e87a552616de856",
+      "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_INTEGRATOR.md": "23bf3b68ec59926dfad360c6095fa10b7e912993a9e61239202ae738be02ddff",
+      "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_JANITOR.md": "62dcdb72679206f0a7c193c46cd73f1deee7836db6750fbe1d3449b60827b365",
+      "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_MASTER.md": "64eebe79952023e71e701876ec169a546015c06b22ccb6085cf7af2d86ef3a6d",
+      "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_ONBOARDING.md": "8893594269a39a89647c04451c016a3e826c7de2c72a246fb59586cd8851c8a2",
+      "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_PLANNING.md": "1f5f32112da4f5edfae44eda493d6d2e60f76de5ce71c3f82b77cafb59df1d30",
+      "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_QA.md": "d47344c1830399879ea834116e60501828507e0b86fc1072cefc3ad39afab6c9",
+      "15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_WORKCELL.md": "19254c7bf2752f3f45021170344b0315a3c695add413ef2e3799da5af5938a6e",
+      "15_COMMANDS_AND_DRIVERS/COMMAND_REGISTRY.md": "28c21cb884da6a1a22533cf88edca9539b88654615f1f89ac03312afba76d446",
+      "15_COMMANDS_AND_DRIVERS/COMMAND_ROUTING_MATRIX.md": "6cc222ea6e1d99ef537aa31253d51464b0086f9da4705b3c4d81504d7cc447d5",
+      "15_COMMANDS_AND_DRIVERS/COMMAND_SYNTAX.md": "f2b2435274a1ebcaf76921cb74ce73f130754b2c0f180cb7b01be3a63fbd5f9e",
+      "15_COMMANDS_AND_DRIVERS/CONTEXT_BUDGET_POLICY.md": "fcb429bd4a3a8625c79bc1a03fc477075408b2898995be1a6d73d91f46ba903e",
+      "15_COMMANDS_AND_DRIVERS/CONTROL_PLANE_SCHEMA.md": "9a5fc51d9f9496170c9eb916f83bcb0adaab8a89380730f7f87d5c78b76bec94",
+      "15_COMMANDS_AND_DRIVERS/EVIDENCE_STANDARD_BY_ROLE.md": "6be252c67b7fdb9da60ccf52ea2004eb51b95c88ddcdca588d7402b7a5af7811",
+      "15_COMMANDS_AND_DRIVERS/HUMAN_APPROVAL_GATES.md": "741ec787d0f1bf28a035aeaafa720a9d7a1c24034ed4ecd4571b0ee6ae63c4c2",
+      "15_COMMANDS_AND_DRIVERS/MINIMAL_VIABLE_ADAPT_MODE.md": "aaa17d0d5aceab3087aaed69652d9c863682cc4e58b5b149566ad0a7cab8aef9",
+      "15_COMMANDS_AND_DRIVERS/MUTATION_PERMISSION_MATRIX.md": "73bc3e556e740aed66b57d23e5586bb42bade49950f672acc9e3bfb72749ee53",
+      "15_COMMANDS_AND_DRIVERS/STOP_RULES.md": "58207c0cd1a6fdf7368a7962ff86d298562440e7b3cec623dfdfda40d7551f6c",
+      "15_COMMANDS_AND_DRIVERS/TOOLING_DECISION_CONTRACT.md": "743d57b8ce7ff4537693a16f9d3ba22e9e349a8493b9fe1e44bea07b9c234ee6",
+      "STARTUP.md": "6d25d8419c971b74c8e854a0549c5924fee5ba65641139a6e43f2e7fc080274b",
+      "TOOLS/adapt.py": "b86eee3f0667bda819d836ed50ed5b9c6b6a51834a44f158d8540c253df4e6c8",
+      "TOOLS/MANIFEST.json": "356b7eb0fd73ef3106308158564353444a82c24e7079a794ff0adb3abbbf1e78",
+      "TOOLS/README.md": "8cda0093f151955c974414b110ec0d6726978310021b34a3f2404c46b05de2e9",
+      "TOOLS/supporting_modules/__init__.py": "80955242325b35a9f4e5ad4a1a1ed6ab75d108fd72a7ed1605d5023ca2db3deb",
+      "TOOLS/supporting_modules/instance_inventory.json": "84b9cb3fe34c9a162edf34ac5c1e432c7b753906fbb4fa8b2ed24e357bb5f1f7",
+      "TOOLS/supporting_modules/operator.py": "ab2473795a969de4f40dc7a0baddbe5a2999fcb25300c9b0a870570432be10c6",
+      "TOOLS/supporting_modules/state_reader.py": "aca049abc4caac9cecb99948c19202243bc305f8f035e5f4c12a0aedb6ddc05b"
+    }
+  },
+  "checkpoints": {
+    "designate": {
+      "state": {
+        "ProjectName": "Bootstrap Acceptance",
+        "ProjectType": "Web App",
+        "DeploymentMode": "MODE_A_EXISTING_SOLUTION",
+        "RoutingMode": "PROTECTED_DEFAULT",
+        "InitializationMode": "FULL_EXTERNAL_ADAPT_INSTANCE_SCAFFOLD",
+        "SourceTruthVersion": "NONE",
+        "ActiveMilestone": "NONE",
+        "ActiveCycle": "NONE",
+        "ActiveHandoff": "NONE",
+        "CurrentAuthority": "Director Lane",
+        "ExecutionReadiness": "NEEDS_PLANNING",
+        "CurrentPhase": "INITIALIZED",
+        "ActiveWorkcell": "NONE",
+        "Blocked": "NO",
+        "ActiveBlockers": "NONE",
+        "ActiveGaps": "GAP-T10-001",
+        "LastAction": "Synthetic scaffold 2026-10-16; STARTUP.md",
+        "LastContextDelta": "NONE",
+        "NextExpectedAction": "Run Director intake",
+        "LastConsolidatedAt": "NEVER",
+        "Notes": "SYNTHETIC ONLY; current maintainer acceptance directive authorizes this disposable scaffold; project/REQUIREMENTS.txt; no product writes; STARTUP.md records frozen provenance"
+      },
+      "changes": [
+        {
+          "path": "02_DIRECTOR_LANE/DECISION_LOG.md",
+          "before_sha256": "35f22c0a207eab4b3ff348eb4cce3cf9a2d91149499c0219ac3053c3ce4367df",
+          "after_sha256": "aea2e865746c51da6c62bb6aecda08b2ab3eb61b44d35e1c71d21f3157952357",
+          "inverse_verified": true
+        },
+        {
+          "path": "02_DIRECTOR_LANE/DIRECTOR_IDENTITY.md",
+          "before_sha256": "ea9784b3c0c4d4eeeab14f39764a168fccfe88b969f4bdb15e3e76c714280442",
+          "after_sha256": "3c7fd3efc3d8ec71acb868346b32017d043838959b85149b97337b080dd17a30",
+          "inverse_verified": true
+        }
+      ],
+      "full_checkpoint_path": "D:\\Project\\ADAPT\\.adapt-local\\maintenance\\director-correction-20261016\\acceptance-final\\designate.json",
+      "full_checkpoint_sha256": "df631ec43859480e00c838571590d80cd3c3643d34876e59cf87f07f7084c972"
+    },
+    "promote": {
+      "state": {
+        "ProjectName": "Bootstrap Acceptance",
+        "ProjectType": "Web App",
+        "DeploymentMode": "MODE_A_EXISTING_SOLUTION",
+        "RoutingMode": "PROTECTED_DEFAULT",
+        "InitializationMode": "FULL_EXTERNAL_ADAPT_INSTANCE_SCAFFOLD",
+        "SourceTruthVersion": "SOURCE_TRUTH_V0.1",
+        "ActiveMilestone": "NONE",
+        "ActiveCycle": "NONE",
+        "ActiveHandoff": "NONE",
+        "CurrentAuthority": "Context Steward",
+        "ExecutionReadiness": "NEEDS_CONTEXT",
+        "CurrentPhase": "SOURCE_TRUTH_READY",
+        "ActiveWorkcell": "NONE",
+        "Blocked": "NO",
+        "ActiveBlockers": "NONE",
+        "ActiveGaps": "GAP-T10-001",
+        "LastAction": "First promotion complete; ER-0001",
+        "LastContextDelta": "CD-0001",
+        "NextExpectedAction": "Context Steward assembly under HO-0001",
+        "LastConsolidatedAt": "NEVER",
+        "Notes": "SYNTHETIC ONLY; current maintainer acceptance directive authorizes this disposable scaffold; project/REQUIREMENTS.txt; no product writes; STARTUP.md records frozen provenance"
+      },
+      "changes": [
+        {
+          "path": "01_SOURCE_TRUTH/ACCEPTANCE_CRITERIA.md",
+          "before_sha256": "59a309e47f6f8ddebf23eeb95254ed695063492fdd66e4f0ab8b130867e25dc7",
+          "after_sha256": "44e9823f2beddaa93c72326d09b3cb46a79e0237200806ab819410a4d1ec9152",
+          "inverse_verified": true
+        },
+        {
+          "path": "01_SOURCE_TRUTH/BUSINESS_ITEMS.md",
+          "before_sha256": "3c5e6fd07f0dd7420b841bae89a3c759b47c01491ffd55f0d4adf42681fbac83",
+          "after_sha256": "d56eb98814dbb9168a8a41d21a657075e41410a4abc6f3fef98a3f1d66e0fbf6",
+          "inverse_verified": true
+        },
+        {
+          "path": "01_SOURCE_TRUTH/REQUIREMENTS_INDEX.md",
+          "before_sha256": "51ec5172cad86cfd1e57661301aa31f76e146ecab15b35d67f1fdc7aaea17d47",
+          "after_sha256": "23ac6b7f97c28c5192a9bb5bd37ec1914e6bb73ed463f20462bec50edbb9406a",
+          "inverse_verified": true
+        },
+        {
+          "path": "01_SOURCE_TRUTH/REQUIREMENT_SECTION_MAP.md",
+          "before_sha256": "daec3271c6953fc4cd4a56ec62945627501ab19e98e1dae309994aa07dd922dd",
+          "after_sha256": "671d915834c08ea32925dcf08d929ecf64bb7df098146f0363deee26b8e1a7bf",
+          "inverse_verified": true
+        },
+        {
+          "path": "01_SOURCE_TRUTH/SOURCE_TRUTH_VERSION_LOG.md",
+          "before_sha256": "70c63c6ce13bd7205f13a12dc552dae1f0e0b222d9ab6315a3efd3fc75059c4a",
+          "after_sha256": "040ee9c918838872dd2e1c0d2108221035822559877b820929757c2910e3f788",
+          "inverse_verified": true
+        },
+        {
+          "path": "01_SOURCE_TRUTH/SYNTHETIC_SOURCE.txt",
+          "before_sha256": "NONE",
+          "after_sha256": "cd74a7a29b244d249751d1fde629ea6400957b81d3bd7ba5540551c4d42c6ad2",
+          "inverse_verified": true
+        },
+        {
+          "path": "02_DIRECTOR_LANE/DECISION_LOG.md",
+          "before_sha256": "aea2e865746c51da6c62bb6aecda08b2ab3eb61b44d35e1c71d21f3157952357",
+          "after_sha256": "5d691646d40d98a244f105e64c96905cdd19dcb2dc045e315e1b00e7c7713e0e",
+          "inverse_verified": true
+        },
+        {
+          "path": "02_DIRECTOR_LANE/ER-0001.md",
+          "before_sha256": "NONE",
+          "after_sha256": "aaf181b678b5646bed9241e7a996a276b8d62240da97cea3c7869b25c12b5e81",
+          "inverse_verified": true
+        },
+        {
+          "path": "02_DIRECTOR_LANE/INTAKE_REGISTER.md",
+          "before_sha256": "46c83624e54779ef37a39a6fdaa9e523d5ae4579ce0a77b7370eccd3c8c21faa",
+          "after_sha256": "03c98615b6df674b6ae3bdbb307db3a63728602a7153a2fbca0f092a71805893",
+          "inverse_verified": true
+        },
+        {
+          "path": "02_DIRECTOR_LANE/PROJECT_CONTROL_PLANE.md",
+          "before_sha256": "0a09966266876dd91b9655b7026eacd97971942bdd543dcafb15ebdfcdeb8664",
+          "after_sha256": "aa2dee7a1c2288541b76a7f716752accc079fb24e8fcb032345fe4ed98b06b81",
+          "inverse_verified": true
+        },
+        {
+          "path": "06_HANDOFFS/ACTIVE/HO-0001.md",
+          "before_sha256": "NONE",
+          "after_sha256": "86e822c2fd9cded0874524ecff5a87cf49e72354c63a4e2e31be6e2ff23641bb",
+          "inverse_verified": true
+        },
+        {
+          "path": "10_CONTEXT_ECONOMY/CONTEXT_DELTAS/CD-0001.md",
+          "before_sha256": "NONE",
+          "after_sha256": "9feb3d0cbcfff04e6a547642c5d56e3d4bf41b7d05b3c2158e3cf67a328dcf83",
+          "inverse_verified": true
+        }
+      ],
+      "full_checkpoint_path": "D:\\Project\\ADAPT\\.adapt-local\\maintenance\\director-correction-20261016\\acceptance-final\\promote.json",
+      "full_checkpoint_sha256": "cad2bf02119729b9bdcfaf057e3ec3220b0e8e65ee23a2062e1122d244b35ef9"
+    },
+    "context": {
+      "state": {
+        "ProjectName": "Bootstrap Acceptance",
+        "ProjectType": "Web App",
+        "DeploymentMode": "MODE_A_EXISTING_SOLUTION",
+        "RoutingMode": "PROTECTED_DEFAULT",
+        "InitializationMode": "FULL_EXTERNAL_ADAPT_INSTANCE_SCAFFOLD",
+        "SourceTruthVersion": "SOURCE_TRUTH_V0.1",
+        "ActiveMilestone": "NONE",
+        "ActiveCycle": "NONE",
+        "ActiveHandoff": "NONE",
+        "CurrentAuthority": "Context Steward",
+        "ExecutionReadiness": "NEEDS_CONTEXT",
+        "CurrentPhase": "SOURCE_TRUTH_READY",
+        "ActiveWorkcell": "NONE",
+        "Blocked": "NO",
+        "ActiveBlockers": "NONE",
+        "ActiveGaps": "GAP-T10-001",
+        "LastAction": "CP-0001 delivered; ER-0002",
+        "LastContextDelta": "CD-0002",
+        "NextExpectedAction": "Director to acquire lawful authority and review HO-0002",
+        "LastConsolidatedAt": "NEVER",
+        "Notes": "SYNTHETIC ONLY; current maintainer acceptance directive authorizes this disposable scaffold; project/REQUIREMENTS.txt; no product writes; STARTUP.md records frozen provenance"
+      },
+      "changes": [
+        {
+          "path": "02_DIRECTOR_LANE/PROJECT_CONTROL_PLANE.md",
+          "before_sha256": "aa2dee7a1c2288541b76a7f716752accc079fb24e8fcb032345fe4ed98b06b81",
+          "after_sha256": "b3973f7216223d43a8afa685ae3142b93f1c8d2bcd0a951206a64610d2ee19ef",
+          "inverse_verified": true
+        },
+        {
+          "path": "06_HANDOFFS/ACTIVE/HO-0001.md",
+          "before_sha256": "86e822c2fd9cded0874524ecff5a87cf49e72354c63a4e2e31be6e2ff23641bb",
+          "after_sha256": "NONE",
+          "inverse_verified": true
+        },
+        {
+          "path": "06_HANDOFFS/ACTIVE/HO-0002.md",
+          "before_sha256": "NONE",
+          "after_sha256": "44760ec67a57a914bf4d1a22c183efdcd5914481c7e48c73420ea342a9b1028b",
+          "inverse_verified": true
+        },
+        {
+          "path": "06_HANDOFFS/CONSUMED/HO-0001.md",
+          "before_sha256": "NONE",
+          "after_sha256": "0027943686bcecd766563c513a5e89cb4d9174c421f3cab093f8bf3fed2b28af",
+          "inverse_verified": true
+        },
+        {
+          "path": "10_CONTEXT_ECONOMY/CONTEXT_DELTAS/CD-0001.md",
+          "before_sha256": "9feb3d0cbcfff04e6a547642c5d56e3d4bf41b7d05b3c2158e3cf67a328dcf83",
+          "after_sha256": "b81c5208d85d1ad4a316bf7e8a8ed5a0ece05fee4a98fd1b9ad6719dcfc19b04",
+          "inverse_verified": true
+        },
+        {
+          "path": "10_CONTEXT_ECONOMY/CONTEXT_DELTAS/CD-0002.md",
+          "before_sha256": "NONE",
+          "after_sha256": "e124fe4f5084311a2a7cff6be6aca7e921479651722a4f42cdfa55a431ba9b42",
+          "inverse_verified": true
+        },
+        {
+          "path": "10_CONTEXT_ECONOMY/CONTEXT_INDEX.md",
+          "before_sha256": "01ce293d0d9c3fcb3e3b3a001727cd2b65aa8662a565c6e870199406c9f8ca35",
+          "after_sha256": "5d9202a8d4c97a79f582f055749ae185a2f5e64cd0792ba409e978ac3860c3de",
+          "inverse_verified": true
+        },
+        {
+          "path": "10_CONTEXT_ECONOMY/CONTEXT_PACKS/CP-0001.md",
+          "before_sha256": "NONE",
+          "after_sha256": "d8297a5834b7485b6fa229a6ebdd3b1ec5d54a09f52fdb1774234f91da7ccec1",
+          "inverse_verified": true
+        },
+        {
+          "path": "10_CONTEXT_ECONOMY/CONTEXT_SUMMARIES/ER-0002.md",
+          "before_sha256": "NONE",
+          "after_sha256": "97d0543c86f00f812d67877b054b3a12e57053c4d0d84c060ad3f001ca2d6350",
+          "inverse_verified": true
+        }
+      ],
+      "full_checkpoint_path": "D:\\Project\\ADAPT\\.adapt-local\\maintenance\\director-correction-20261016\\acceptance-final\\context.json",
+      "full_checkpoint_sha256": "4b009998e3cc90207519bebb1381e28c7dbcdcf11c787d45d284c5dab0cd652c"
+    },
+    "onb-context-1": {
+      "state": {
+        "ProjectName": "Bootstrap Acceptance",
+        "ProjectType": "Web App",
+        "DeploymentMode": "MODE_A_EXISTING_SOLUTION",
+        "RoutingMode": "PROTECTED_DEFAULT",
+        "InitializationMode": "FULL_EXTERNAL_ADAPT_INSTANCE_SCAFFOLD",
+        "SourceTruthVersion": "SOURCE_TRUTH_V0.1",
+        "ActiveMilestone": "NONE",
+        "ActiveCycle": "NONE",
+        "ActiveHandoff": "NONE",
+        "CurrentAuthority": "Context Steward",
+        "ExecutionReadiness": "NEEDS_CONTEXT",
+        "CurrentPhase": "SOURCE_TRUTH_READY",
+        "ActiveWorkcell": "NONE",
+        "Blocked": "NO",
+        "ActiveBlockers": "NONE",
+        "ActiveGaps": "GAP-T10-001",
+        "LastAction": "CP-0002 delivered",
+        "LastContextDelta": "CD-0003",
+        "NextExpectedAction": "Director to route lawful Onboarding authority",
+        "LastConsolidatedAt": "NEVER",
+        "Notes": "SYNTHETIC ONLY; current maintainer acceptance directive authorizes this disposable scaffold; project/REQUIREMENTS.txt; no product writes; STARTUP.md records frozen provenance"
+      },
+      "changes": [
+        {
+          "path": "02_DIRECTOR_LANE/PROJECT_CONTROL_PLANE.md",
+          "before_sha256": "b3973f7216223d43a8afa685ae3142b93f1c8d2bcd0a951206a64610d2ee19ef",
+          "after_sha256": "ecc744ad14130c0aa36c81ad22be9025a3ecc921fa2f813d70b45b277ffce89d",
+          "inverse_verified": true
+        },
+        {
+          "path": "06_HANDOFFS/ACTIVE/HO-0004.md",
+          "before_sha256": "NONE",
+          "after_sha256": "b6d5d9402fd4c3be163d5efa9ef6bf318605a2d69a4393745f3cdc4f84c8ccfa",
+          "inverse_verified": true
+        },
+        {
+          "path": "10_CONTEXT_ECONOMY/CONTEXT_DELTAS/CD-0003.md",
+          "before_sha256": "NONE",
+          "after_sha256": "5aa1c06cef86b5238387405ba9522f5a052b4ce97df04249e13153b4e1a17b98",
+          "inverse_verified": true
+        },
+        {
+          "path": "10_CONTEXT_ECONOMY/CONTEXT_INDEX.md",
+          "before_sha256": "5d9202a8d4c97a79f582f055749ae185a2f5e64cd0792ba409e978ac3860c3de",
+          "after_sha256": "50a1046409aa3b4d521a5b4ada6f2711f32209897782e630e8eca0006abe3bf7",
+          "inverse_verified": true
+        },
+        {
+          "path": "10_CONTEXT_ECONOMY/CONTEXT_PACKS/CP-0002.md",
+          "before_sha256": "NONE",
+          "after_sha256": "20579331e4bed02566b8b9b4173ab974976ea6646260b431b4221d2f601c82b1",
+          "inverse_verified": true
+        },
+        {
+          "path": "10_CONTEXT_ECONOMY/CONTEXT_SUMMARIES/ER-0003.md",
+          "before_sha256": "NONE",
+          "after_sha256": "1de8db9c88e7cc5d2ef1d34687feb69efec5aebed7d0d77cbbdbb16ef564af54",
+          "inverse_verified": true
+        }
+      ],
+      "full_checkpoint_path": "D:\\Project\\ADAPT\\.adapt-local\\maintenance\\director-correction-20261016\\acceptance-final\\onb-context-1.json",
+      "full_checkpoint_sha256": "706233fb20ffb291245fb083a943e1b9ef28e1eafac1aea0ed3a335c2ddabb74"
+    },
+    "onboard-1": {
+      "state": {
+        "ProjectName": "Bootstrap Acceptance",
+        "ProjectType": "Web App",
+        "DeploymentMode": "MODE_A_EXISTING_SOLUTION",
+        "RoutingMode": "PROTECTED_DEFAULT",
+        "InitializationMode": "FULL_EXTERNAL_ADAPT_INSTANCE_SCAFFOLD",
+        "SourceTruthVersion": "SOURCE_TRUTH_V0.1",
+        "ActiveMilestone": "NONE",
+        "ActiveCycle": "NONE",
+        "ActiveHandoff": "NONE",
+        "CurrentAuthority": "Onboarding Orchestrator",
+        "ExecutionReadiness": "NEEDS_CONTEXT",
+        "CurrentPhase": "ONBOARDING",
+        "ActiveWorkcell": "NONE",
+        "Blocked": "NO",
+        "ActiveBlockers": "NONE",
+        "ActiveGaps": "GAP-T10-001",
+        "LastAction": "PLANNER_TESTALPHA onboarded; 11_ONBOARDING/ER-0004.md",
+        "LastContextDelta": "CD-0004",
+        "NextExpectedAction": "Director to review onboarding; no implementation assigned",
+        "LastConsolidatedAt": "NEVER",
+        "Notes": "SYNTHETIC ONLY; current maintainer acceptance directive authorizes this disposable scaffold; project/REQUIREMENTS.txt; no product writes; STARTUP.md records frozen provenance"
+      },
+      "changes": [
+        {
+          "path": "02_DIRECTOR_LANE/PROJECT_CONTROL_PLANE.md",
+          "before_sha256": "22b3579844e4aa71fbb648b596aa2807d4f31635f411bcf62b9a85781c184d94",
+          "after_sha256": "e7743a296aa3e29b7db4e454e5e5baf139ce82ddc6bc838fcd369b56f483450e",
+          "inverse_verified": true
+        },
+        {
+          "path": "02_DIRECTOR_LANE/WORKCELL_REGISTRY.md",
+          "before_sha256": "b5c8c3d39a94b762351705b235156085f29152b303605519ee385ee9b4bbb609",
+          "after_sha256": "b822d7117e274e314bce9eddba2e8f2a9e6d70b25db8815383f582f279b73d65",
+          "inverse_verified": true
+        },
+        {
+          "path": "03_WORKCELLS/PLANNER_TESTALPHA/ACTION_PROMPT_PLANNER_TESTALPHA.md",
+          "before_sha256": "NONE",
+          "after_sha256": "a1ecb58dd111a476c1ff9cd99e83964db4e66119afd4d44a164415a11cae4fb4",
+          "inverse_verified": true
+        },
+        {
+          "path": "03_WORKCELLS/PLANNER_TESTALPHA/BLOCKERS.md",
+          "before_sha256": "NONE",
+          "after_sha256": "f94b9c959553c0be9d5cca1f184b40f3ccea1fc6d8b1faaf730879ce05b1468b",
+          "inverse_verified": true
+        },
+        {
+          "path": "03_WORKCELLS/PLANNER_TESTALPHA/CONTEXT_DELTAS.md",
+          "before_sha256": "NONE",
+          "after_sha256": "5af796df4772c266c72f95d8403a26510e3a8bd04c14ce162339e1e6c0c0cdf8",
+          "inverse_verified": true
+        },
+        {
+          "path": "03_WORKCELLS/PLANNER_TESTALPHA/DEFAULT_AGENT_BLUEPRINT.md",
+          "before_sha256": "NONE",
+          "after_sha256": "24abbd171d6ed277d77e56059317376c2c7c8f80212162c55a8416231f2443ed",
+          "inverse_verified": true
+        },
+        {
+          "path": "03_WORKCELLS/PLANNER_TESTALPHA/EFFECTIVE_WORKFLOW.md",
+          "before_sha256": "NONE",
+          "after_sha256": "b038c3af2a3cdb289d0539f0c619257fdd26f00a04c8bd308db18ab86ee648b4",
+          "inverse_verified": true
+        },
+        {
+          "path": "03_WORKCELLS/PLANNER_TESTALPHA/EVIDENCE_LOG.md",
+          "before_sha256": "NONE",
+          "after_sha256": "83f473388c50357c68ed3f46bf664ef89b4c4e8057894bba8593578f0976d01a",
+          "inverse_verified": true
+        },
+        {
+          "path": "03_WORKCELLS/PLANNER_TESTALPHA/GUARDRAIL_BINDINGS.md",
+          "before_sha256": "NONE",
+          "after_sha256": "a335efcc2fd8baf6ae08b66fdb54ce5f8f6475650ede479399ec77dab3341fcb",
+          "inverse_verified": true
+        },
+        {
+          "path": "03_WORKCELLS/PLANNER_TESTALPHA/HANDOFFS.md",
+          "before_sha256": "NONE",
+          "after_sha256": "a1d34a00a6c5e17880660f573652ee553e731293d50ea6d1b0d6206afcfab955",
+          "inverse_verified": true
+        },
+        {
+          "path": "03_WORKCELLS/PLANNER_TESTALPHA/ROADMAP.md",
+          "before_sha256": "NONE",
+          "after_sha256": "a287f5cc5f36e72fdaa9dbd24aa53897551b3b8540c4f103961021eb0eef15b7",
+          "inverse_verified": true
+        },
+        {
+          "path": "03_WORKCELLS/PLANNER_TESTALPHA/SCOPE_CONTRACT.md",
+          "before_sha256": "NONE",
+          "after_sha256": "7014021d8ea9dea75dcd2ddaacbf177d68f8e0360a8e02a1305c207d1b54a6da",
+          "inverse_verified": true
+        },
+        {
+          "path": "03_WORKCELLS/PLANNER_TESTALPHA/TASK_REGISTER.md",
+          "before_sha256": "NONE",
+          "after_sha256": "86287dceb1a2cfa5aa78926170d1a5de6e50b90ef8d2be3e6511fe5296c626e9",
+          "inverse_verified": true
+        },
+        {
+          "path": "03_WORKCELLS/PLANNER_TESTALPHA/WORKCELL_IDENTITY.md",
+          "before_sha256": "NONE",
+          "after_sha256": "804fcaba3737a5dd05e528b4387db06caaca57b91acd08242c865b6972631180",
+          "inverse_verified": true
+        },
+        {
+          "path": "03_WORKCELLS/PLANNER_TESTALPHA/WORKFLOW_CHANGE_LOG.md",
+          "before_sha256": "NONE",
+          "after_sha256": "2f6e3d0358b9752fe38e5ff723e605ca7b05fb717ccc4558c7c5865592a515f8",
+          "inverse_verified": true
+        },
+        {
+          "path": "03_WORKCELLS/PLANNER_TESTALPHA/WORKFLOW_CHANGE_REQUESTS.md",
+          "before_sha256": "NONE",
+          "after_sha256": "f65a837066d7dba3e837b5f1df505c0b3d0b095d56df080a848db85c4e54a133",
+          "inverse_verified": true
+        },
+        {
+          "path": "03_WORKCELLS/PLANNER_TESTALPHA/WORKFLOW_CUSTOMIZATION.md",
+          "before_sha256": "NONE",
+          "after_sha256": "c15fd28eb409a4450259eecaa33d27689c5410529feab05676bfee7558ad2d48",
+          "inverse_verified": true
+        },
+        {
+          "path": "06_HANDOFFS/ACTIVE/HO-0003.md",
+          "before_sha256": "b1c2eefb10ff3500079f08f2cd551a42a7ae6c0565628dfef1fb9007c06e5077",
+          "after_sha256": "NONE",
+          "inverse_verified": true
+        },
+        {
+          "path": "06_HANDOFFS/ACTIVE/HO-0004.md",
+          "before_sha256": "b6d5d9402fd4c3be163d5efa9ef6bf318605a2d69a4393745f3cdc4f84c8ccfa",
+          "after_sha256": "NONE",
+          "inverse_verified": true
+        },
+        {
+          "path": "06_HANDOFFS/ACTIVE/HO-0005.md",
+          "before_sha256": "NONE",
+          "after_sha256": "fb6f739d0ce494d7035fbc97ee152ae58f78ffd3dd7199f103069ff14228bae7",
+          "inverse_verified": true
+        },
+        {
+          "path": "06_HANDOFFS/CONSUMED/HO-0003.md",
+          "before_sha256": "NONE",
+          "after_sha256": "9d840efcc9555deba6e2de267ec3b36e69f4a66646801c43cac35ac196ed891a",
+          "inverse_verified": true
+        },
+        {
+          "path": "06_HANDOFFS/CONSUMED/HO-0004.md",
+          "before_sha256": "NONE",
+          "after_sha256": "b74f9e0221938c4deccb8cba4de94fe0c20e3cd39836b90f3c54ea98f275e8ae",
+          "inverse_verified": true
+        },
+        {
+          "path": "10_CONTEXT_ECONOMY/CONTEXT_DELTAS/CD-0004.md",
+          "before_sha256": "NONE",
+          "after_sha256": "cd4de274aa8c44aec2c1637ed305e5411caf2ea18b4589cdd2087b11eb1bea46",
+          "inverse_verified": true
+        },
+        {
+          "path": "11_ONBOARDING/ER-0004.md",
+          "before_sha256": "NONE",
+          "after_sha256": "32c9f28985af877c376df0d91d5e317ab8287c2c21d6283d8b0fd8431c5e3674",
+          "inverse_verified": true
+        },
+        {
+          "path": "11_ONBOARDING/ONBOARDING_REPORTS.md",
+          "before_sha256": "d609375a62cd918cb82496afb3c9b83796676d351f4c68ad9eb28a2027d22a06",
+          "after_sha256": "dd38ff2b2e3e29f873296f4aa745795354c6467d371908ecdcd40f46f15b31a0",
+          "inverse_verified": true
+        },
+        {
+          "path": "11_ONBOARDING/ROLE_TO_WORKCELL_MAP.md",
+          "before_sha256": "4a2b4828971a247ada9d35ea036bcb804c53f7fe5ee9fcf27f5dee7280ae9db6",
+          "after_sha256": "cada532cd6471184d4edffbda634ae27de931fc21cc1bed83b2dce5226b7db98",
+          "inverse_verified": true
+        }
+      ],
+      "full_checkpoint_path": "D:\\Project\\ADAPT\\.adapt-local\\maintenance\\director-correction-20261016\\acceptance-final\\onboard-1.json",
+      "full_checkpoint_sha256": "f6ac52d98070e5b21b1a7bd98b7c9943ff78f5331cab3b924ef4f6af5d65e51e"
+    }
+  },
+  "limitations": [
+    "Minimal greeting source; no arbitrary requirement extraction guarantee.",
+    "Synthetic Gate 1/Gate 3/human designation only; no actual Human Owner approval fabricated.",
+    "Existing onboarding human/Director approval/routing records are supplied synthetic fixtures, not a claim of independently executed general Director intake/dispatch certification.",
+    "Validation helpers are not official runtime tools."
+  ]
+}

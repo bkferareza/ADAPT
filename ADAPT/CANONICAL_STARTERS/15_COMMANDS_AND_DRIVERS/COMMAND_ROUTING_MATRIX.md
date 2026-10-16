@@ -33,6 +33,12 @@ This matrix maps every ADAPT command to its primary and secondary orchestrators,
 
 ## Routing Rules
 
+The Initial Director designation stage of the existing `Run Director intake`
+stays in Director Lane, governed by ACTION_PROMPT_DIRECTOR.md. Only that eligible
+stage returns completion directly to the human without secondary-lane routing;
+it never creates or onboards a Director workcell. R-01 through R-06 otherwise
+remain in force. No command syntax or routing row is added.
+
 ### R-01 — Primary Orchestrator Has Exclusive Initial Authority
 The Primary Orchestrator is the only entity authorized to begin processing a command. The Secondary Orchestrator is engaged only when the Primary explicitly routes work to it or when the Primary is blocked and escalation is required.
 
