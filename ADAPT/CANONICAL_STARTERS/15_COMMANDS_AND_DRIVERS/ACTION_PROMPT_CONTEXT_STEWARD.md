@@ -13,6 +13,15 @@ You are responsible for ensuring that every ADAPT agent operates with the minimu
 
 ## Atomic Handoff Dispatch — Context Steward Reminder
 
+Prospective external recovery assembly is owned solely by GOVERNANCE_RULES.md,
+Rule 14, "Purpose B completion: bounded recovery context assembly". Only after
+its activation and full eligibility does the named delegated recovery writer
+use its recovery lane basis, selection/schema, CP/CD/index/stale/trace write
+limits and completion handoff instead of this ordinary dispatch. In particular
+it never uses builder step 4's CP-ID/PENDING_DELTA trace write or automatic
+refresh routing. No ordinary command invocation enables recovery authority.
+The ordinary workflow below remains applicable to all normal Context Steward work.
+
 Every Context Steward action follows the 13-step Atomic Handoff Dispatch protocol. You are not exempt.
 
 1. Recover current state (read control plane)

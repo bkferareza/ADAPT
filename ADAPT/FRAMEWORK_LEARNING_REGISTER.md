@@ -1,6 +1,6 @@
 # FRAMEWORK LEARNING REGISTER
 
-Current Framework Version: ADAPT-FW-0005
+Current Framework Version: ADAPT-FW-0006
 
 ## Purpose
 
@@ -45,7 +45,47 @@ Evidence lists the references and their evidence class (GOVERNANCE_RULES.md, Rul
 
 A disposed candidate is never deleted. Introduced In (an ADAPT-FW-NNNN label), Backport (ELIGIBLE or NOT_ELIGIBLE) and Upgrade Assessment (REQUIRED or NOT_REQUIRED) apply only to PROMOTED candidates and are `—` otherwise. Candidate IDs follow FLC-NNN.
 
+## FW-0006 release incorporation
+
+FLC-005 is PROMOTED under the final exact-revision Human Framework Maintainer
+decision retained with review package FW0006-RELEASE-20261103. This advances the
+single framework declaration to ADAPT-FW-0006. VALIDATION/FW0006_RELEASE.md binds
+the candidate, corrected acceptance evidence, metadata patch and publication scope.
+The dated scope/development records below retain their historical DEFERRED and
+FW-0005 statements; this prospective disposition supersedes their release status.
+Existing-instance adoption and every recovery action require separate approval.
+
 ## Candidates
+
+FLC-005 final prospective scope correction, 2026-11-02 (Asia/Manila), under
+Rule 14: the Human Framework Maintainer directs HUMAN_GOVERNED as the sole
+recovery model and removes autonomous privileged recovery and mandatory operator
+isolation/authentication infrastructure. This is an explicit scope-change decision,
+not a waiver inferred from tests. Requirement C and SC-03/SC-07/SC-12 now test
+normal-interaction human approval plus existing bounded execution safety, using
+clearly labelled simulated decisions for engineering acceptance. Exact decision,
+authority hash, historical requirement mapping, preserved safeguards and revised
+A-O acceptance are in VALIDATION/FW0006_HUMAN_GOVERNED_SCOPE.md and local evidence
+.adapt-local/maintenance/fw0006-human-governed-final/MAINTAINER_SCOPE_DECISION.json.
+Historical registration, failed acceptance and journals remain unchanged. No
+independent authentication, cryptographic provenance or malicious-agent resistance
+is claimed. FLC-005 remains DEFERRED; effective framework remains ADAPT-FW-0005.
+Final exact-revision promotion/publication and existing-instance adoption require
+separate decisions. This direction authorizes implementation, validation and an
+incremental candidate commit/push and draft PR update, not official release.
+
+
+FLC-005 prospective scope correction, 2026-10-24 (Asia/Manila): the Human
+Framework Maintainer explicitly removed provider-specific trust infrastructure
+and retained human-supervised authorization and bounded recovery safety
+requirements. This supersedes that development direction prospectively; prior
+decisions and evidence remain preserved under .adapt-local/maintenance.
+The supplied scope decision, exact mutation hashes, focused validation and finite
+remaining-work checklist are recorded in
+.adapt-local/maintenance/fw0006-scope-consolidation/MAINTAINER_SCOPE_DECISION.json
+and REPORT.md. FLC-005 remains DEFERRED; effective version remains ADAPT-FW-0005.
+No promotion, version advance, publication, adoption, operational recovery or
+blocker resolution is authorized by this cleanup. SC-05 is not implemented here.
 
 FLC-004 records the Human Owner / Framework Maintainer's POST-SCAFFOLD DIRECTOR
 INITIALIZATION CORRECTION directive (2026-10-16) for ADAPT-SELF-HOST-001. The
@@ -125,3 +165,4 @@ this validation/documentation completion of the same FLC-002 patch.
 
 | FLC-001 | Tooling v1 consolidation, 2026-10-15; owner-raised framework gap review | GROUNDED: VALIDATION/TOOLING_V1_TEST_OUTPUT.txt, TOOLS/MANIFEST.json; ASSERTED summary: VALIDATION/TOOLING_V1_RELEASE.md | GOVERNANCE_COMBINATION, VALIDATION_MECHANISM | No client instance or solution-specific changes | Align placeholder validation, lifecycle ownership and schema write precedence; distribute read-only tools with explicit handoff-bound preview and reproducible copy verification | PROMOTED | Current repository-owner/Framework Maintainer directive: ADAPT — TOOLING V1 COMPLETION AND PUBLICATION; explicitly authorizes this scoped correction, promotion and publication after validation. Recorded on behalf of that human authority, not an AI/Director self-approval or historical signature. See VALIDATION/TOOLING_V1_RELEASE.md. | ADAPT-FW-0002 | ELIGIBLE | REQUIRED |
 | FLC-002 | ADAPT-SELF-HOST-001; owner-confirmed FRAMEWORK_BOOTSTRAP_CONTRACT_GAP | GROUNDED: original contracts at 37f465782ef1fb69bc58da46bcc5969d6bea8220, VALIDATION/BOOTSTRAP_V2_ACCEPTANCE.json (original MODE_B and final MODE_A), VALIDATION/BOOTSTRAP_V2_TESTS.json, VALIDATION/BOOTSTRAP_V2_GATE.json; ASSERTED interpretation, affected contracts and limitations: VALIDATION/BOOTSTRAP_V2_REPORT.md | EXECUTION_PATH, GOVERNANCE_COMBINATION | No instance-specific operational state incorporated; frozen instance unchanged | Single-use first-promotion initial basis followed by ordinary versioned Context Steward assembly | PROMOTED | Human Owner / Framework Maintainer BOOTSTRAP RECOVERY MILESTONE approved local implementation; subsequent BOOTSTRAP V2 FINAL ACCEPTANCE AND RELEASE, 2026-10-16, explicitly authorizes publication after recorded MODE_A/MODE_B, regression, integrity and governance gates pass. Recorded on behalf of that human; no independent certification or adoption claimed. | ADAPT-FW-0003 | ELIGIBLE | REQUIRED |
+| FLC-005 | ADAPT-SELF-HOST-001; BLOCKED_STATE_RECOVERY_ENTRY_DEADLOCK; current exceptional Human Director escalation, 2026-10-18 | GROUNDED bytes/hashes: .adapt-local/maintenance/fw0006-governance-bootstrap/evidence-manifest.json, ORIGINAL_HUMAN_REQUEST.txt, EXCEPTIONAL_DECISION.json, DIRECTOR_ESCALATION.json, MAINTAINER_RECEIPT.json; historical BLK-001 / Step 1 completion / Step 2 refusal; registration diagnosis, prospective entry/context contracts, recovery_preflight.py and focused tests referenced therein. ASSERTED qualification and remaining acceptance: .adapt-local/maintenance/fw0006-governance-bootstrap/REPORT.md; SC-01 through SC-12 remain proposed, not full runtime passes | EXECUTION_PATH, GOVERNANCE_COMBINATION | Historical local CRLF parser failure and repaired blocker register placement are supporting local evidence; named human, BLK-001 HIGH OPEN, HO-007 exhausted attempts and ADAPT-DEV state remain local and unchanged | Bounded Recovery Bootstrap and Blocked-State Framework Escalation Entry. Missing governance invariant / recovery execution-path deficiency: lawful bounded recovery and escalation independent of unavailable ordinary execution prerequisites; recovery-purpose authorization and context; canonical integrity/evidence; genuine Director-origin exceptional escalation; human approval and writer restrictions; existing blocker-resolution handback; no retry-history loss; mandatory FUTURE ADAPT SCAFFOLDS contracts, supported tooling, original approval traceability and regression protection SC-01 through SC-12 plus linked escalation-entry acceptance; ordinary guardrails/lifecycle preserved; no historical OPEN BLK-001 or ADAPT-DEV gaps in fresh scaffolds; separate existing-instance adoption and operational handback | PROMOTED | Final Human Framework Maintainer exact-revision decision recorded separately in .adapt-local/maintenance/fw0006-release-review-20261103/FINAL_MAINTAINER_DECISION.json; incorporation under revised HUMAN_GOVERNED scope and validated source/evidence inventory. No instance adoption or recovery operation is included. | ADAPT-FW-0006 | ELIGIBLE | REQUIRED |

@@ -35,6 +35,15 @@ The generated instance must include:
 
 * ADAPT_FRAMEWORK.md
 * GOVERNANCE_RULES.md
+
+  Copy the complete canonical file, including Rule 14's bounded
+  external recovery/escalation entry, Purpose B completion: bounded recovery
+  context assembly, and their activation gates. Copy the relevant context,
+  guardrail, mutation and STOP cross-references with their canonical files.
+  Existing templates and governance paths remain sufficient. Proposed FW-0006
+  scaffolds also receive the disabled prototype payload described below;
+  no historical recovery evidence is supplied. Do not maintain
+  a separate recovery rule or populate historical blockers, OPEN gaps or approvals.
 * ROLE_MODEL.md
 * ARTIFACT_STANDARDS.md
 * GLOSSARY.md
@@ -295,6 +304,44 @@ directories), copied verbatim from the framework's `TOOLS/`, not generated.
 * TOOLS/supporting_modules/instance_inventory.json
 * TOOLS/README.md
 * TOOLS/MANIFEST.json
+
+The same manifest's `instance_files` maps instance-relative paths to source SHA256:
+
+* VALIDATION/recovery_preflight.py
+* VALIDATION/recovery_assembly.py
+* VALIDATION/recovery_runtime.py
+* VALIDATION/recovery_structural.py
+* VALIDATION/recovery_supervised.py
+* VALIDATION/recovery_authority.py
+* VALIDATION/recovery_plan_review.py
+* VALIDATION/recovery_execution.py
+* VALIDATION/recovery_operational.py
+
+Copy only these allowlisted VALIDATION files, preserving source bytes and relative
+layout. Required dependencies are the nine sibling modules and existing
+TOOLS/supporting_modules/operator.py, state_reader.py and instance_inventory.json;
+all use Python 3.10+ standard library. Both modes deliver identical payloads.
+The packaged instance inventory lists these files and VALIDATION directory.
+Framework-anchored `distribute_tools.py --verify` checks all payload hashes and
+the distributed manifest itself, refusing absent or changed files. Doctor checks
+inventory presence; hash verification requires the explicit distribution verifier.
+
+Both MODE_A and MODE_B inherit the Rule 14 HUMAN_SUPERVISED
+authorization contract from the canonical governance starter. Neither mode
+requires GitHub approval infrastructure, Windows authentication/host enrollment,
+or external trust-policy configuration. Explicit human maintenance authorization,
+plan review, applicable governance gates and evidence remain required; distribution
+grants no canonical writes or recovery action approval. Keep the
+complete nine-module recovery payload and existing distribution verification.
+
+FW-0006 release evidence is VALIDATION/FW0006_RELEASE.md at framework source.
+The effective version comes only from FRAMEWORK_LEARNING_REGISTER.md. The original writers remain synthetic-only. The separate operational entry
+requires explicit human approval captured through normal ADAPT interaction and
+separately governed release/installation/adoption. No isolated process/account,
+TrustedHost or external authentication service is required. Test responses are
+fixtures, never predefined approvals in a fresh scaffold. Module presence
+does not confer operational recovery. Keep runtime refusal unchanged; never seed
+historical blockers, exhausted handoffs, approval/capability fixtures or locks.
 
 MANIFEST.json declares all runtime/documentation file SHA256 hashes. The scaffold
 must execute the tooling distribution and verification steps specified in

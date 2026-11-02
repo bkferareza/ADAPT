@@ -132,6 +132,14 @@ The Janitor may: move consumed handoffs from CONSUMED/ to ARCHIVE/ when their mi
 
 ## Absolute Prohibitions (All Roles)
 
+Prospective FW-0006 recovery writer: only the effective, fully eligible
+GOVERNANCE_RULES.md Rule 14 "Purpose B completion: bounded recovery context
+assembly" supplies the named external executor's exact canonical allowlist.
+It qualifies ordinary lane ownership only for those CP/CD/index/stale/completion
+and trace operations. It grants no governance-register, source, application,
+Authority/Identity/State-field or unrelated handoff mutation. Every actual path,
+field and operation also requires express human authorization under that rule.
+
 Regardless of role, the following are prohibited for all AI agents:
 
 | Prohibition | Applies To |

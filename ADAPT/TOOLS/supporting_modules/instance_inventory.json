@@ -24,7 +24,8 @@
     "14_MEMORY_BANK",
     "15_COMMANDS_AND_DRIVERS",
     "TOOLS",
-    "TOOLS/supporting_modules"
+    "TOOLS/supporting_modules",
+    "VALIDATION"
   ],
   "files": [
     "00_FRAMEWORK/ADAPT_FRAMEWORK.md",
@@ -145,7 +146,16 @@
     "TOOLS/supporting_modules/__init__.py",
     "TOOLS/supporting_modules/operator.py",
     "TOOLS/supporting_modules/state_reader.py",
-    "TOOLS/supporting_modules/instance_inventory.json"
+    "TOOLS/supporting_modules/instance_inventory.json",
+    "VALIDATION/recovery_preflight.py",
+    "VALIDATION/recovery_assembly.py",
+    "VALIDATION/recovery_runtime.py",
+    "VALIDATION/recovery_structural.py",
+    "VALIDATION/recovery_supervised.py",
+    "VALIDATION/recovery_authority.py",
+    "VALIDATION/recovery_plan_review.py",
+    "VALIDATION/recovery_execution.py",
+    "VALIDATION/recovery_operational.py"
   ],
   "role_agents": {
     "Director": [

@@ -310,11 +310,35 @@ python {{ADAPT_FRAMEWORK_PATH}}/VALIDATION/distribute_tools.py --framework {{ADA
 
 Quote all paths in the calling shell. If the resolved instance path already names
 the inner ADAPT directory, pass that directory directly. This narrow copy step
-creates only its TOOLS directory and verifies manifest hashes; it does not populate
-source truth, approve anything or scaffold the governance tree. Python 3.9+ is
+creates its TOOLS directory and the manifest's instance-relative VALIDATION files
+and verifies manifest hashes; it does not populate
+source truth, approve anything or scaffold the governance tree. Python 3.10+ is
 required; inability to copy/verify tooling is a scaffold failure, not a silent skip.
 TOOLS is copied verbatim: never substitute framework/template tokens in tool code
 or documentation. Source manifest and distributed file hashes must agree.
+
+Both MODE_A and MODE_B inherit the Rule 14 HUMAN_SUPERVISED
+authorization contract from the canonical governance starter. Neither mode
+requires GitHub approval infrastructure, Windows authentication/host enrollment,
+or external trust-policy configuration. Explicit human maintenance authorization,
+plan review, applicable governance gates and evidence remain required; distribution
+grants no canonical writes or recovery action approval. Keep the
+complete nine-module recovery payload and existing distribution verification.
+
+Both MODE_A and MODE_B use this same distribution step. The FW-0006
+release payload includes VALIDATION/recovery_preflight.py, recovery_assembly.py
+recovery_runtime.py, recovery_structural.py, recovery_supervised.py,
+recovery_authority.py, recovery_plan_review.py, recovery_execution.py and recovery_operational.py using `instance_files` in TOOLS/MANIFEST.json. Preserve
+their sibling layout and TOOLS/supporting_modules dependencies. The original synthetic
+prototypes remain bounded. The operational entry has no default host or approvals
+and requires the human approval and installation conditions documented in distributed TOOLS/README.md. The runtime's fixed
+synthetic boundary and real-instance refusal must remain intact. No release,
+adoption, Director designation or recovery authorization is generated. Effective
+framework version still comes from FRAMEWORK_LEARNING_REGISTER.md (FW-0006);
+payload presence never activates FW-0006. Do not copy development VALIDATION
+evidence, tests, .adapt-local records or ADAPT-DEV state. Preflight's historical
+NON_DISTRIBUTED_PROTOTYPE label describes its original development API, not an
+installation attestation; manifest verification describes the delivered payload.
 
 During recovery of an EXISTING instance, do not add or overwrite TOOLS. A tooling
 upgrade is an explicitly authorized framework upgrade/backport, not recovery.
