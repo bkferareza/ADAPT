@@ -39,7 +39,7 @@ class RecoveryContextContractTests(unittest.TestCase):
             self.assertIn(clause, body)
 
     def test_rc01_effective_applicable_authorization_contract(self):
-        self.require("PROPOSAL ONLY", "lawful release and installation/adoption",
+        self.require("FW-0006: This is the single normative assembly contract", "lawful release and installation/adoption",
                      "external authorization alone cannot enable it",
                      "original Human Maintainer direction", "all applicable human gates",
                      "DEPLOYMENT_ACCEPTANCE_REQUIRED")
@@ -135,7 +135,7 @@ class RecoveryContextContractTests(unittest.TestCase):
         self.assertIn("Every Context Steward action follows the 13-step Atomic Handoff Dispatch protocol", steward)
         self.assertIn("For ordinary context supporting an approved Onboard request", steward)
         register = (FRAMEWORK / "FRAMEWORK_LEARNING_REGISTER.md").read_text(encoding="utf-8")
-        self.assertIn("Current Framework Version: ADAPT-FW-0005", register)
+        self.assertIn("Current Framework Version: ADAPT-FW-0006", register)
         owners = [p for p in STARTERS.rglob("*.md") if TITLE in p.read_text(encoding="utf-8")]
         self.assertEqual([STARTERS / OWNER], owners)
 

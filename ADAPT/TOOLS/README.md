@@ -5,13 +5,13 @@ for evidence. New scaffolds copy this directory verbatim; no development
 repository, experiments, absolute developer paths or network services are needed.
 The operator commands are optional and read-only; distribution is mandatory.
 
-Proposed FW-0006 development scaffolds additionally distribute the three
-`VALIDATION/recovery_*.py` modules declared in this manifest's `instance_files`.
-Their relative imports use the sibling modules and this TOOLS distribution;
-Python 3.9+ standard library is sufficient. They remain synthetic-only prototypes.
-No production recovery, human authentication, release or instance adoption is
-approved by distribution. Effective FW-0005 and real-instance execution refusal
-remain in force. Preflight retains its historical NON_DISTRIBUTED_PROTOTYPE API
+FW-0006 scaffolds additionally distribute all nine `VALIDATION/recovery_*.py`
+modules declared in this manifest's `instance_files`. Their relative imports use
+the sibling modules and this TOOLS distribution; recovery requires Python 3.10+.
+Original prototype APIs retain their synthetic-only boundaries. The separate
+HUMAN_GOVERNED operational entry requires verified release/installation evidence,
+separately governed existing-instance adoption and exact human action approval.
+Distribution itself grants no execution authority or human authentication. Preflight retains its historical NON_DISTRIBUTED_PROTOTYPE API
 label; this is not capability evidence. Windows file fsync does not establish
 directory-entry durability on power loss. Hash chains do not authenticate humans.
 Use the framework's `VALIDATION/distribute_tools.py --framework <source>
@@ -100,24 +100,25 @@ upgrade/backport for old instances. No command grants human approval, QA signoff
 release certification or action execution authority.
 
 
-## Prospective recovery payload
+## FW-0006 recovery payload
 
 Both scaffold modes install nine sibling VALIDATION modules: recovery_preflight,
 recovery_assembly, recovery_runtime, recovery_structural, recovery_supervised,
 recovery_authority, recovery_plan_review, recovery_execution and recovery_operational. They share the
 existing operator/state reader and use only the Python 3.10+ standard library.
-MANIFEST.json instance_files verifies their exact source bytes. These development
-APIs do not grant production execution, publication or adoption. The default
+MANIFEST.json instance_files verifies their exact source bytes. These
+APIs do not grant action approval, publication or adoption. The default
 contract is HUMAN_SUPERVISED: one separately reviewed and authorized plan per
 action, then validation and STOP. Human authentication is the deployment
 operator's responsibility. Installed prototypes retain fixed synthetic boundaries;
 no machine-specific permission, historical approval or operational history ships.
 The manifest framework_version identifies the original tooling baseline; the
-learning register alone declares the effective framework version. Proposed
-recovery metadata does not advance that version.
+learning register alone declares the effective framework version. The manifest
+release_framework_version identifies this distribution. Release evidence is
+VALIDATION/FW0006_RELEASE.md at framework source; distribution grants no adoption.
 
 
-## Operational recovery operator instructions (prospective FW-0006)
+## Operational recovery operator instructions (FW-0006)
 
 `VALIDATION/recovery_operational.py` exposes the existing `MaintenanceEntry`.
 The sole model is HUMAN_GOVERNED; HUMAN_SUPERVISED remains the compatible API
@@ -217,4 +218,4 @@ resolution, current ordinary context and handback procedures afterward.
 Distribution never enables recovery. After lawful FW-0006 publication, install
 through the existing exact-scope installation/adoption process, verify source and
 installed bytes and contracts, then capture the exact human-approved action. A version header
-or this proposed payload alone cannot substitute for publication or adoption.
+or this payload alone cannot substitute for publication or adoption.

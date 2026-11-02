@@ -36,7 +36,7 @@ The generated instance must include:
 * ADAPT_FRAMEWORK.md
 * GOVERNANCE_RULES.md
 
-  Copy the complete canonical file, including Rule 14's prospective bounded
+  Copy the complete canonical file, including Rule 14's bounded
   external recovery/escalation entry, Purpose B completion: bounded recovery
   context assembly, and their activation gates. Copy the relevant context,
   guardrail, mutation and STOP cross-references with their canonical files.
@@ -326,16 +326,16 @@ Framework-anchored `distribute_tools.py --verify` checks all payload hashes and
 the distributed manifest itself, refusing absent or changed files. Doctor checks
 inventory presence; hash verification requires the explicit distribution verifier.
 
-Both MODE_A and MODE_B inherit the prospective Rule 14 HUMAN_SUPERVISED
+Both MODE_A and MODE_B inherit the Rule 14 HUMAN_SUPERVISED
 authorization contract from the canonical governance starter. Neither mode
 requires GitHub approval infrastructure, Windows authentication/host enrollment,
 or external trust-policy configuration. Explicit human maintenance authorization,
-plan review, applicable governance gates and evidence remain required; cleanup
-grants no canonical writes and production recovery remains disabled. Keep the
+plan review, applicable governance gates and evidence remain required; distribution
+grants no canonical writes or recovery action approval. Keep the
 complete nine-module recovery payload and existing distribution verification.
 
-This is prospective development distribution, not FW-0006 publication/adoption.
-Effective version remains FW-0005. The original writers remain synthetic-only. The separate operational entry
+FW-0006 release evidence is VALIDATION/FW0006_RELEASE.md at framework source.
+The effective version comes only from FRAMEWORK_LEARNING_REGISTER.md. The original writers remain synthetic-only. The separate operational entry
 requires explicit human approval captured through normal ADAPT interaction and
 separately governed release/installation/adoption. No isolated process/account,
 TrustedHost or external authentication service is required. Test responses are

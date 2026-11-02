@@ -141,7 +141,8 @@ overwrite existing files (DEPLOYMENT_MODES.md).
 
 #### Prospective amendment: bounded external recovery/escalation entry
 
-PROPOSAL ONLY: FW-0006 entry slice, not promoted or effective in FW-0005.
+FW-0006: FLC-005 promoted under Rule 14; release evidence is
+VALIDATION/FW0006_RELEASE.md at framework source.
 Use requires lawful candidate registration, Maintainer promotion and release;
 existing instances additionally require separately authorized adoption. Presence
 in an unreleased source tree or test scaffold is not activation or authority.
@@ -220,8 +221,8 @@ and adoption prerequisites above apply even when testing prospective scaffolds.
 
 ##### Human-supervised recovery authorization contract
 
-PROPOSAL ONLY: FW-0006 scope consolidation. Effective framework remains
-FW-0005; FLC-005 remains DEFERRED. DEFAULT AUTHORIZATION: HUMAN_SUPERVISED.
+FW-0006 human-governed recovery contract. FLC-005: PROMOTED.
+DEFAULT AUTHORIZATION: HUMAN_SUPERVISED.
 RECOVERY_MODEL: HUMAN_GOVERNED. This is the sole recovery model.
 Autonomous privileged recovery is removed, including optional or future modes.
 The 2026-11-02 Rule 14 Maintainer scope correction is recorded prospectively in
@@ -329,15 +330,15 @@ Acceptance fixtures simulate human responses and never establish actual consent.
 **Release, adoption and scaffolds.** Lawful FLC-005 promotion, FW-0006 publication,
 installation and separately governed existing-instance adoption remain required
 before operational use. Local headers or evidence claims alone cannot satisfy
-these gates. MODE_A and MODE_B inherit this prospective contract through the
+these gates. MODE_A and MODE_B inherit this contract through the
 canonical starter and receive all nine recovery modules through verified distribution. They require no
 approval provider infrastructure, host enrollment or external trust-policy
 configuration. Never seed historical approvals, blockers or recovery tasks in
-fresh scaffolds. This cleanup neither publishes nor adopts FW-0006.
+fresh scaffolds. Distribution grants no action approval or existing-instance adoption.
 
 ##### Purpose B completion: bounded recovery context assembly
 
-PROPOSAL ONLY: FW-0006 Slice 2. This is the single normative assembly contract.
+FW-0006: This is the single normative assembly contract.
 It becomes applicable only after lawful release and installation/adoption of
 this capability in the exact target. FW-0005, a proposal copy, version text alone
 or an external authorization alone cannot enable it. It cannot authorize its

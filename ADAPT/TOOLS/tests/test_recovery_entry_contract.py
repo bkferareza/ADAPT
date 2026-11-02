@@ -66,12 +66,12 @@ class RecoveryEntryContractTests(unittest.TestCase):
                 text = re.sub(r"<!--.*?-->", "", text, flags=re.S)
                 self.assertNotIn("BLK-001", text)
                 self.assertNotIn("GAP-T14-", text)
-            self.assertIn("PROPOSAL ONLY", copied)
+            self.assertIn("FLC-005: PROMOTED", copied)
 
     def test_08_normal_scaffold_sources_and_version_not_redefined(self):
         register = (FRAMEWORK / "FRAMEWORK_LEARNING_REGISTER.md").read_text(encoding="utf-8")
-        self.assertIn("Current Framework Version: ADAPT-FW-0005", register)
-        self.require("not promoted or effective in FW-0005", "Presence",
+        self.assertIn("Current Framework Version: ADAPT-FW-0006", register)
+        self.require("FLC-005 promoted under Rule 14", "Presence",
                      "in an unreleased source tree or test scaffold is not activation or authority")
         output = (FRAMEWORK / "SCAFFOLD_OUTPUT_CONTRACT.md").read_text(encoding="utf-8")
         self.assertIn("Copy the complete canonical file", output)
