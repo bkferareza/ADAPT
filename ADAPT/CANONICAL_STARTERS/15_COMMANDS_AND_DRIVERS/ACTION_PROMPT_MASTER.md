@@ -11,6 +11,48 @@ This is the master entry point for any ADAPT session. Read this document fully b
 
 ## The 13-Step Atomic Handoff Dispatch Sequence
 
+### Human decision pause and ordinary re-entry
+
+Before ordinary dispatch, recognize a response to an existing reviewed action.
+Use HUMAN_APPROVAL_GATES.md, Human action review and continuation below. This
+recognition grants no mutation authority and never advances to another handoff.
+For bounded human-governed recovery, use the existing Rule 14 maintenance entry
+even when ordinary context is unusable; do not require an ordinary context pack
+to diagnose the failure that prevents assembling it.
+
+The bound ADAPT interaction supplies the independently obtained installation
+record and external ledger to VALIDATION/recovery_operational.py MaintenanceEntry.
+Use interact(request) to preserve the exact review and render its returned text;
+STOP the execution turn. On the next ordinary invocation use interact(response=the
+actual human message, human=the recorded human, source_reference=the original
+message reference). Do not ask humans to provide those technical argument fields.
+The interaction obtains identity/capacity evidence through existing mechanisms;
+conversational approval is not independently authenticated by this adapter.
+
+Literal APPROVE, REJECT and SHOW DETAILS work directly. For natural language,
+the existing model-assisted interpreter may supply interpreted_decision as
+APPROVE, REJECT, SHOW DETAILS or CLARIFY only after interpreting the actual
+message in the current review context. Conditional, conflicting, quoted,
+hypothetical or uncertain approval requires CLARIFY; never strip conditions to
+make approval fit. Classification alone is not authority. No broad approval reuse.
+
+On multiple pending actions, present their task names and request selection;
+pass the selected task as action on re-entry. Do not choose the newest action.
+SHOW DETAILS renders the existing exact technical review without changing the
+pending decision. Changed source/plan requires a new exact review and fresh
+operation reference prepared internally. No human writes fingerprints or JSON.
+
+Render the returned text after execution, validation and evidence preservation,
+then STOP. A later reporting check may be passed as reporting_check; a failure
+must retain the validated recovery outcome and forbid recovery replay. Read
+existing audit/outcome evidence to report a consumed action after interruption;
+never invoke its writer again. No successful recovery closes a blocker, activates
+context, grants handback or authorizes a subsequent action.
+
+Other gates retain their existing decision records and writer permissions.
+Apply the same readable review and outcome requirements using those records;
+this bounded maintenance adapter is not a new general command dispatcher.
+
 Every ADAPT run executes exactly these steps in order. No step may be skipped. A step may be corrected at most once: one initial attempt and one corrected attempt. Record the attempts in the Stage Record of the evidence report. If the corrected attempt also fails, stop — record a blocker and route to the Director Lane; any further attempt requires new lawful authorization. This bound makes extra attempts observable and their continuation unlawful; it does not physically prevent an extra write.
 
 **Step 1 — Recover current state (read control plane)**

@@ -464,8 +464,7 @@ class OperationalAcceptance:
             failed_action='ordinary dispatch', observed_error='Malformed Blockers placement', request=request)
         self.assertEqual('READY_FOR_HUMAN_REVIEW', report['status'])
         self.assertEqual(before, self.m.snapshot(self.root))
-        for label in ('ISSUE:', 'CAUSE:', 'IMPACT:', 'RECOMMENDED ACTION:', 'FILES AFFECTED:',
-                      'EXPECTED RESULT:', 'RISK:', 'APPROVAL REQUIRED:'):
+        for label in ('ISSUE:', 'IMPACT:', 'RECOMMENDATION:', 'CHANGES:', 'RISK:', 'DECISION:'):
             self.assertIn(label, report['review'])
         result = self.entry.execute(report['plan'])
         self.assertEqual('RECOVERY_VALIDATED', result['recovery_status'], result)
