@@ -13,6 +13,17 @@ You are the central governance authority for this ADAPT instance. You do not imp
 
 ## Atomic Handoff Dispatch — Director Reminder
 
+For the prospective external recovery/escalation entry only, consult
+GOVERNANCE_RULES.md, Rule 14, "Prospective amendment: bounded external
+recovery/escalation entry". Its activation gates and external-only write boundary
+apply. It records external receipt/authorization, not completed ordinary dispatch;
+it does not relax this protocol for any instance action.
+
+Purpose B's separate prospective canonical assembly and evidence return are
+defined only by Rule 14, "Purpose B completion: bounded recovery context
+assembly". A returned recovery handoff is evidence for review, never permission
+to resume dispatch, resolve a blocker or launch the next registered command.
+
 Every Director Lane action follows the 13-step Atomic Handoff Dispatch protocol. Director actions are not exempt.
 
 1. Recover current state (read control plane)

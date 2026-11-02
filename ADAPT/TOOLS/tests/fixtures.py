@@ -6,15 +6,62 @@ from pathlib import Path
 import re
 import shutil
 import sys
+import types
 
 
 FRAMEWORK = Path(__file__).resolve().parents[2]
+QUALIFICATION = FRAMEWORK.parent / ".adapt-local/maintenance/fw0006-final-closure"
+
+
+def isolate_recovery(module, seen=None):
+    """Test-only relocation of fixed disposable roots; never packet configuration.
+
+    Keep WORKSPACE intact so real framework/ADAPT-DEV refusal tests retain their
+    actual targets. Distributed code has no access to this test helper.
+    """
+    seen = set() if seen is None else seen
+    if id(module) in seen:
+        return
+    seen.add(id(module))
+    maintenance = FRAMEWORK.parent / ".adapt-local/maintenance"
+    filename = Path(getattr(module, "__file__", "") or "").name
+    if filename == "recovery_runtime.py":
+        module.WORKSPACE = FRAMEWORK.parent
+        module.MAINTENANCE = QUALIFICATION / "fw0006-runtime"
+        module.SYNTHETIC_ROOT = module.MAINTENANCE / "synthetic"
+        module.ACCEPTANCE_ROOT = QUALIFICATION / "fw0006-end-to-end/synthetic"
+        module.LOCK_ROOT = module.MAINTENANCE / "locks"
+    elif filename == "recovery_structural.py":
+        module.EVIDENCE_ROOT = QUALIFICATION / "fw0006-structural-repair"
+        module.SYNTHETIC_ROOT = module.EVIDENCE_ROOT / "synthetic"
+    elif filename == "recovery_execution.py":
+        module.EVIDENCE_ROOT = QUALIFICATION / "fw0006-safe-execution"
+    if hasattr(module, "_load") and not getattr(module, "_qualification_loader", False):
+        original_load = module._load
+        def fixture_load(name):
+            loaded = original_load(name)
+            isolate_recovery(loaded)
+            return loaded
+        module._load = fixture_load
+        module._qualification_loader = True
+    for key, value in list(vars(module).items()):
+        if isinstance(value, types.ModuleType) and getattr(value, "__file__", None):
+            if any(Path(value.__file__).resolve().is_relative_to(root) for root in (FRAMEWORK, QUALIFICATION)):
+                isolate_recovery(value, seen)
+        elif isinstance(value, Path) and value.is_relative_to(maintenance) and not value.is_relative_to(QUALIFICATION):
+            setattr(module, key, QUALIFICATION / value.relative_to(maintenance))
+
+
+def runtime_child_setup(runtime):
+    """Pass identical test boundaries to a real child process, outside its packet."""
+    return "".join(f"r.{key}=pathlib.Path({str(getattr(runtime, key))!r});" for key in
+                   ("MAINTENANCE", "SYNTHETIC_ROOT", "ACCEPTANCE_ROOT", "LOCK_ROOT"))
 spec = importlib.util.spec_from_file_location("distribution", FRAMEWORK / "VALIDATION/distribute_tools.py")
 distribution = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(distribution)
 
 
-def fresh_instance(target):
+def fresh_instance(target, mode="MODE_B_REQUIREMENTS_ONLY"):
     """Replay the documented mechanical new-instance steps; not a product scaffold engine."""
     target = Path(target)
     shutil.copytree(FRAMEWORK / "CANONICAL_STARTERS", target)
@@ -32,7 +79,7 @@ def fresh_instance(target):
                     lines[i] = lines[i].replace("{{" + token + "}}", value)
         file.write_text("".join(lines), encoding="utf-8")
     values = {
-        "ProjectName": "Fixture", "ProjectType": "Web App", "DeploymentMode": "MODE_B_REQUIREMENTS_ONLY",
+        "ProjectName": "Fixture", "ProjectType": "Web App", "DeploymentMode": mode,
         "RoutingMode": "PROTECTED_DEFAULT", "InitializationMode": "FULL_EXTERNAL_ADAPT_INSTANCE_SCAFFOLD",
         "SourceTruthVersion": "NONE", "ActiveMilestone": "NONE", "ActiveCycle": "NONE", "ActiveHandoff": "NONE",
         "CurrentAuthority": "Director Lane", "ExecutionReadiness": "NEEDS_PLANNING", "CurrentPhase": "INITIALIZED",

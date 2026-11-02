@@ -20,12 +20,24 @@ First-Promotion Initial Context Basis, for the exact first-promotion action.
 PASS on that recorded basis requires every eligibility/scope/hash check; it is
 not an override or a valid unversioned pack. Uncertain eligibility, reuse, changed
 binding, adjacent action or unlawful partial-attempt recovery is STOP_REQUIRED.
-All ordinary triggers and the no-override rule below apply outside these two
-separately bounded initial procedures.
+All ordinary triggers and the no-override rule below apply outside these
+separately bounded initial procedures and the eligible recovery assembly below.
 After registration Context Steward uses its existing self-assembly rule against
 the registered version; failed assembly never reopens the initial basis.
 
 ## Trigger Conditions
+
+Prospective FW-0006 recovery assembly only: evaluate GOVERNANCE_RULES.md,
+Rule 14, "Purpose B completion: bounded recovery context assembly" before
+ordinary pack triggers. Only its fully effective, installed, human-authorized
+task may use the freshly verified canonical snapshot and hashed recovery basis
+to build the recovery-only pack and record completion. This basis is not stale
+ordinary context; it never permits ordinary execution. PASS is limited to that
+exact assembly/write set and requires every eligibility/hash/scope check.
+Missing evidence, changed hashes or failed eligibility is STOP_REQUIRED with
+external refusal evidence and no canonical mutation. The no-override rule
+remains absolute; outside this bounded procedure all ordinary triggers apply.
+An archived recovery pack cannot satisfy ordinary context requirements.
 
 - The active context pack does not reference a specific source truth version identifier from 01_SOURCE_TRUTH/SOURCE_TRUTH_VERSION_LOG.md
 - One or more artifacts in the context pack are tagged to a superseded source truth version (i.e., a version that has been replaced by a newer entry in SOURCE_TRUTH_VERSION_LOG.md)

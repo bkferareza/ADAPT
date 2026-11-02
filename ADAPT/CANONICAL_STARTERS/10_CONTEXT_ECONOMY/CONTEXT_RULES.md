@@ -27,6 +27,14 @@ using its existing self-assembly rule. No other bounded action is exempted.
 
 ## Rule 2 — Source Truth Version Reference
 
+Prospective FW-0006 qualification to Rules 1, 4, 7 and 9: only the fully
+eligible, effective procedure in GOVERNANCE_RULES.md, Rule 14, "Purpose B
+completion: bounded recovery context assembly" defines recovery self-assembly,
+selection of explicitly hashed historical evidence, external refusal recording
+without canonical write authority, and CP/CD/completion ownership. It preserves
+current registered source requirements and stale ordinary context invalidity.
+It authorizes no ordinary Context Steward dispatch or operational execution.
+
 Context packs must reference a specific source truth version from SOURCE_TRUTH_VERSION_LOG.md. Unversioned context is not valid.
 
 ## Rule 3 — Scope Declaration

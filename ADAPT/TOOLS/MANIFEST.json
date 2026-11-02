@@ -3,10 +3,42 @@
   "framework_version": "ADAPT-FW-0002",
   "files": {
     "adapt.py": "b86eee3f0667bda819d836ed50ed5b9c6b6a51834a44f158d8540c253df4e6c8",
-    "README.md": "8cda0093f151955c974414b110ec0d6726978310021b34a3f2404c46b05de2e9",
+    "README.md": "6e90534dda5542e266d1aba8a2051d2261d14ad73d66d0808403e04a65bd4f78",
     "supporting_modules/__init__.py": "80955242325b35a9f4e5ad4a1a1ed6ab75d108fd72a7ed1605d5023ca2db3deb",
-    "supporting_modules/instance_inventory.json": "84b9cb3fe34c9a162edf34ac5c1e432c7b753906fbb4fa8b2ed24e357bb5f1f7",
+    "supporting_modules/instance_inventory.json": "efe3357642cdd7df00f8d4bcab13c8415e6373390b812be78169d2b52f9c0f75",
     "supporting_modules/operator.py": "ab2473795a969de4f40dc7a0baddbe5a2999fcb25300c9b0a870570432be10c6",
     "supporting_modules/state_reader.py": "aca049abc4caac9cecb99948c19202243bc305f8f035e5f4c12a0aedb6ddc05b"
+  },
+  "instance_files": {
+    "VALIDATION/recovery_preflight.py": "e0fa1f883f30cb24eb495ceb2969743f35915934dc2a9d70d89372f4dc805ab4",
+    "VALIDATION/recovery_assembly.py": "ae0451604b8eeee16a20515d8b78d2edeb3fe99067a85a94a45973c48761d1b1",
+    "VALIDATION/recovery_runtime.py": "8eba37224d41db0c86b1a0d08a232300a3accaa797896b47be5ea5039e799bf6",
+    "VALIDATION/recovery_structural.py": "c364dc14856fa1de354e8c649d24770772c33a6bae37df340c8ada10e600e578",
+    "VALIDATION/recovery_supervised.py": "41843094e1853752f9f47d6e30a955b18f32fddc2a655ede1e8e535ec0de7a1b",
+    "VALIDATION/recovery_authority.py": "d6122b6cb6cd321bc782e7c84f8ed66b56d2771c0f736601d648517f6957ef3d",
+    "VALIDATION/recovery_plan_review.py": "100ce0bffc5942538c00d14c1c9b5299d84c7158c8ec3a7dd9d5f89c94614da2",
+    "VALIDATION/recovery_execution.py": "c51e7a16bfaa3af5c19a1eb31db96d08190436a0acfa62c7299121562265ea2c",
+    "VALIDATION/recovery_operational.py": "cbc3e2c53b85f36777e9454f26aa63662ce5a313898e34601479c262a8994af7"
+  },
+  "recovery_distribution": "PROSPECTIVE_RECOVERY_NOT_ADOPTED",
+  "recovery_capabilities": {
+    "proposed_framework": "ADAPT-FW-0006",
+    "authorization": "HUMAN_SUPERVISED",
+    "production_execution": false,
+    "adopted": false,
+    "python_minimum": "3.10",
+    "components": [
+      "preflight",
+      "assembly",
+      "runtime",
+      "structural",
+      "supervised",
+      "authority",
+      "plan_review",
+      "execution",
+      "operational"
+    ],
+    "operational_entry": "DEPLOYMENT_CONTROLLED_HOST_REQUIRED",
+    "technical_writer_available": true
   }
 }

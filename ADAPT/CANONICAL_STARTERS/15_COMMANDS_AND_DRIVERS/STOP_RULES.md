@@ -10,6 +10,16 @@ Agents do not continue past a stop condition to "fix it and keep going." Stoppin
 
 ## Universal Stop Rules
 
+Prospective FW-0006 external recovery assembly: only the effective and fully
+eligible GOVERNANCE_RULES.md Rule 14 "Purpose B completion: bounded recovery
+context assembly" supplies the recovery lane/task/scope and fresh canonical
+self-assembly basis when evaluating Rules 1, 4-6. It permits no work advancing
+the blocked operational item (Rule 15), no source inference, inconsistent-state
+repair or human-gate override. All other stops apply. Failed eligibility or
+changed hashes means STOP before canonical mutation; record refusal externally.
+The ordinary stop-response summary cannot expand the recovery write allowlist
+to create canonical gaps/blockers or alter unrelated control-plane fields.
+
 For only the fully eligible Initial Director designation stage of
 `Run Director intake`, ACTION_PROMPT_DIRECTOR.md defines the verified lane,
 minimum setup evidence and exact two-file scope used when checking Rules 1, 3-6.
