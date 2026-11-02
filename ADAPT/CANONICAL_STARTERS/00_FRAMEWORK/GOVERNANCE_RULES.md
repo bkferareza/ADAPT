@@ -222,6 +222,11 @@ and adoption prerequisites above apply even when testing prospective scaffolds.
 
 PROPOSAL ONLY: FW-0006 scope consolidation. Effective framework remains
 FW-0005; FLC-005 remains DEFERRED. DEFAULT AUTHORIZATION: HUMAN_SUPERVISED.
+RECOVERY_MODEL: HUMAN_GOVERNED. This is the sole recovery model.
+Autonomous privileged recovery is removed, including optional or future modes.
+The 2026-11-02 Rule 14 Maintainer scope correction is recorded prospectively in
+FRAMEWORK_LEARNING_REGISTER.md and VALIDATION/FW0006_HUMAN_GOVERNED_SCOPE.md
+at framework source; historical FLC-005 evidence remains intact.
 This cleanup grants no recovery permissions and leaves real execution disabled.
 All existing Rule 14 entry, assembly, mutation, gate and handback safeguards
 remain mandatory. Ordinary ADAPT workflows remain unchanged.
@@ -237,23 +242,32 @@ conflicting evidence requires STOP. Existing workcell identities and roles apply
 
 Recovery follows this sequence:
 
-1. Identify the blocked condition.
-2. Obtain explicit human recovery authorization.
-3. Validate exact instance identity and recovery evidence.
-4. Generate a bounded recovery plan.
-5. Present the plan for human review.
-6. Execute only separately authorized changes.
-7. Validate the resulting canonical state.
-8. Preserve recovery evidence and history.
-9. Return to existing blocker-resolution and operational handback procedures.
+1. Detect error or deadlock and stop the affected action.
+2. Capture available evidence and report the failure, scope, known cause or uncertainty.
+3. Recommend the smallest supported bounded action and generate the exact plan.
+4. Present issue, cause, impact, recommended action, files, expected result and risk.
+5. Capture explicit human approval for this exact plan in each applicable capacity.
+6. Execute only the approved action with current-byte and scope checks.
+7. Independently validate the final state and preserve journal/evidence.
+8. Report the result and STOP. Blocker resolution and handback remain separate.
 
-**Human-controlled maintenance entry.** The deployment operator authenticates
-humans through the organization's existing access controls and supplies explicit
-Human Framework Maintainer authorization and applicable Human Director approval.
-ADAPT validates declared scope, applicable gates and evidence. No GitHub API,
-Windows authentication, external trust-policy enrollment, provider-specific
-release verification or provider selection is required. No replacement identity
-provider, authentication framework or trust chain is introduced.
+Read-only reporting requires no special approval or valid ordinary context.
+Unsupported recovery yields a diagnostic report and human resolution instructions;
+never fabricate a generic fixer. Reports distinguish DIAGNOSTIC_ONLY,
+READY_FOR_HUMAN_REVIEW, APPROVED_FOR_EXACT_ACTION, RECOVERY_VALIDATED,
+RECOVERY_REFUSED and RECOVERY_INTERRUPTED using existing result fields.
+
+**Normal human interaction.** ADAPT prepares plan and approval evidence; humans
+review readable changes and explicitly approve or reject through normal ADAPT
+interaction. No separate application, terminal, OS account, operator isolation,
+TrustedHost, approval server, GitHub trust chain, identity provider, cryptographic
+ceremony, manually composed JSON or manual hash calculation is required.
+ADAPT records the actual response; a model may capture it but must never invent it.
+Missing approval: STOP, no mutation. Ambiguous approval: STOP, request clarification.
+Changed plan: STOP, new review required. The organization owns human identity and
+access to the normal interaction. Conversational approval is not independently
+authenticated. This design claims no cryptographic provenance or protection
+against a hostile agent with unrestricted filesystem and approval-record access.
 
 A recovery packet must never authorize itself. A packet, Decision Log entry,
 local approved=true value, filesystem access or version header cannot enable
@@ -267,8 +281,9 @@ and task, approved paths/fields/operations, current source and before-image
 SHA256 hashes, applicable approved gates, evidence references, completion
 destination, operation reference and preserved audit. Preserve human authority
 and role/designation evidence for each applicable capacity, validity and current
-withdrawal checks. One human may exercise both capacities with explicit records
-for each. A local declaration establishes neither identity nor permission to write.
+withdrawal checks. One human may exercise both capacities in one interaction with explicit records
+for each, sharing the original response reference. Distinct actual authorities
+require distinct approvals and response references. A local declaration establishes neither identity nor permission to write.
 
 Missing, conflicting, expired, withdrawn or out-of-scope authorization, missing
 evidence/gates, or changed source/before-image hashes requires STOP. Review the
@@ -290,11 +305,11 @@ The request binds `target`, `workcell`, `purpose`, `task`, `executor`, `writes`,
 Authorization includes `binding`, `synthetic`, `approved_at`, `checked_at`,
 `not_before`, `expires_at`, `withdrawn`, `audit_reference`,
 `audit_preservation_reference` and explicit capacity `approvals`. Each approval
-names `role`, `human`, `approved`, `approved_at`, `role_basis_reference` and a
-separate `approval_reference`; Director approval also names `designation_reference`.
+names `role`, `human`, `approved`, `approved_at`, `role_basis_reference` and an
+`approval_reference`; Director approval also names `designation_reference`.
 These are human-controlled declarations and evidence references, not an ADAPT
 authentication protocol. The operator remains responsible for authenticating
-the human and ensuring the entry receives their actual current instruction.
+the human under its normal access policy and ensuring the entry captures their actual instruction.
 
 Missing or conflicting declarations return AUTHORITY_UNVERIFIED. Consistent
 ones return SUPERVISED_EVIDENCE_VALID (SYNTHETIC_VALID for fixtures, otherwise
@@ -305,10 +320,11 @@ source/before-image hashes and governance capability claims; it authenticates
 no humans and never grants writes. Preflight and assembly remain required.
 The original plan-review and execution APIs retain their synthetic-only writer
 boundaries. VALIDATION/recovery_operational.py separately provides a bounded
-maintenance entry and writer. It requires an operator-controlled host outside
-ordinary agent access; a Python object or local declaration alone cannot establish
-that control. See distributed TOOLS/README.md for the host contract, supported
-conditions and preserve/STOP policy. Genuine deployment acceptance remains required.
+maintenance entry and writer. It prepares the existing authorization shape from
+actual responses captured through normal ADAPT interaction. The existing host
+interface remains an integration option for this same model, with no isolation
+requirement. See distributed TOOLS/README.md for usage and preserve/STOP policy.
+Acceptance fixtures simulate human responses and never establish actual consent.
 
 **Release, adoption and scaffolds.** Lawful FLC-005 promotion, FW-0006 publication,
 installation and separately governed existing-instance adoption remain required
@@ -326,7 +342,9 @@ It becomes applicable only after lawful release and installation/adoption of
 this capability in the exact target. FW-0005, a proposal copy, version text alone
 or an external authorization alone cannot enable it. It cannot authorize its
 own candidate registration, release or adoption. The separate operational entry implements bounded assembly, scope validation
-and journaled writes: DEPLOYMENT_ACCEPTANCE_REQUIRED. These mechanisms do not
+and journaled writes: DEPLOYMENT_ACCEPTANCE_REQUIRED means applicable release,
+installation/adoption and supported filesystem conditions, not human authentication
+or a separate operator deployment. These mechanisms do not
 authenticate human identity in a shared agent process. Multi-file atomicity and
 unconditional power-loss durability are unsupported. The requirements below
 remain mandatory for every separately authorized executor.

@@ -47,6 +47,24 @@ A disposed candidate is never deleted. Introduced In (an ADAPT-FW-NNNN label), B
 
 ## Candidates
 
+FLC-005 final prospective scope correction, 2026-11-02 (Asia/Manila), under
+Rule 14: the Human Framework Maintainer directs HUMAN_GOVERNED as the sole
+recovery model and removes autonomous privileged recovery and mandatory operator
+isolation/authentication infrastructure. This is an explicit scope-change decision,
+not a waiver inferred from tests. Requirement C and SC-03/SC-07/SC-12 now test
+normal-interaction human approval plus existing bounded execution safety, using
+clearly labelled simulated decisions for engineering acceptance. Exact decision,
+authority hash, historical requirement mapping, preserved safeguards and revised
+A-O acceptance are in VALIDATION/FW0006_HUMAN_GOVERNED_SCOPE.md and local evidence
+.adapt-local/maintenance/fw0006-human-governed-final/MAINTAINER_SCOPE_DECISION.json.
+Historical registration, failed acceptance and journals remain unchanged. No
+independent authentication, cryptographic provenance or malicious-agent resistance
+is claimed. FLC-005 remains DEFERRED; effective framework remains ADAPT-FW-0005.
+Final exact-revision promotion/publication and existing-instance adoption require
+separate decisions. This direction authorizes implementation, validation and an
+incremental candidate commit/push and draft PR update, not official release.
+
+
 FLC-005 prospective scope correction, 2026-10-24 (Asia/Manila): the Human
 Framework Maintainer explicitly removed provider-specific trust infrastructure
 and retained human-supervised authorization and bounded recovery safety

@@ -1,18 +1,16 @@
 ﻿"""Prospective FW-0006 HUMAN_SUPERVISED operational maintenance entry.
 
-The deployment-owned host is executable operator integration, NEVER packet data.
-Its interpreter, code, installation/adoption evidence, ledger and human input
-channel must be inaccessible to the ordinary agent. There is no default host,
-file-based approval loader, terminal consent prompt or execute CLI. Python object
-separation is not a security boundary in a shared interpreter/account. Such a
-deployment is INELIGIBLE. See RECOVERY_OPERATOR.md before deployment.
+Human decisions arrive through the normal ADAPT interaction, separately from
+packet data. MaintenanceEntry prepares the existing authorization evidence; the
+interaction must capture an actual explicit human response. No independent human
+authentication, protected account or malicious-agent resistance is claimed.
 
 Local exclusive-create ownership and fsynced evidence; no network filesystems,
 external concurrent writers, power-loss recovery, resume, retry or rollback.
 Synthetic hosts exercise this identical writer but establish no human consent.
 """
 from copy import deepcopy
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 import importlib.util
 import json
 import os
@@ -117,7 +115,7 @@ def normalize_index(data):
 
 
 class MaintenanceEntry:
-    """Construct ONLY in the separately controlled operator process.
+    """One human-governed entry, usable in the normal ADAPT interaction.
 
     host.installation(target) returns an independently obtained deployment record:
     target, version, release/adoption references, installed immutable file hashes,
@@ -128,10 +126,106 @@ class MaintenanceEntry:
 
     host.ledger is fixed deployment configuration, outside the instance/packet.
     host.evidence_class is TECHNICAL_TEST or HUMAN_SUPERVISED. Neither value
-    authenticates a human; only the protected deployment can establish origin.
+    authenticates a human. The organization owns identity and interaction access.
     """
-    def __init__(self, host=None):
-        self.host = host
+    def __init__(self, host=None, *, installation=None, ledger=None,
+                 interaction=None, synthetic=False):
+        # Existing integrations remain compatible. The built-in adapter uses
+        # the SAME verifier and writer; neither packets nor saved approvals are
+        # an input channel for human decisions.
+        need(host is None or all(v is None for v in (installation, ledger, interaction)),
+             'ONE_INTERACTION_REQUIRED')
+        need(type(synthetic) is bool, 'EVIDENCE_CLASS_REQUIRED')
+        self.host = host if host is not None else (self if installation is not None else None)
+        self._record = deepcopy(installation)
+        self.ledger = ledger
+        self.interaction = interaction
+        self.evidence_class = 'TECHNICAL_TEST' if synthetic else 'HUMAN_SUPERVISED'
+        self._authorization = None
+
+    def installation(self, target):
+        return deepcopy(self._record)
+
+    def withdraw(self):
+        """Capture withdrawal through the same interaction before any next write."""
+        self._authorization = None
+
+    def authorize(self, review):
+        """Prepare evidence from explicit captured decisions, never invent consent.
+
+        ADAPT supplies the callback. Humans review readable text and respond in
+        the normal interaction; they need not compose JSON, hashes or timestamps.
+        Responses name decision, plan_sha256, human, capacities and an original
+        source_reference. Role evidence comes from existing installation scope.
+        One response may exercise multiple capacities of the same actual human.
+        """
+        self.withdraw()
+        need(callable(self.interaction), 'EXPLICIT_HUMAN_AUTHORIZATION_REQUIRED')
+        responses = deepcopy(self.interaction(deepcopy(review)))
+        need(isinstance(responses, list) and bool(responses), 'EXPLICIT_HUMAN_AUTHORIZATION_REQUIRED')
+        scope = review['installation']['scope']
+        now = datetime.now(timezone.utc)
+        stamp = now.isoformat()
+        approvals = []
+        for response in responses:
+            need(response['decision'] == 'APPROVE_EXACT_ACTION' and
+                 response['plan_sha256'] == review['plan_sha256'] and
+                 supervised._text(response['source_reference']), 'EXACT_HUMAN_DECISION_REQUIRED')
+            capacities = response['capacities']
+            need(isinstance(capacities, list) and bool(capacities) and
+                 len(capacities) == len(set(capacities)), 'EXPLICIT_CAPACITIES_REQUIRED')
+            for role in capacities:
+                need(role in scope['authorities'] and
+                     response['human'] == scope['authorities'][role], 'WRONG_GOVERNANCE_CAPACITY')
+                basis = scope['role_evidence'][role]
+                approvals.append({'role': role, 'human': response['human'], 'approved': True,
+                    'approved_at': stamp, 'approval_reference': response['source_reference'],
+                    'role_basis_reference': basis['role_basis_reference'],
+                    'designation_reference': basis.get('designation_reference', '')})
+        binding = deepcopy(review['authorization_binding'])
+        self._authorization = {'maintenance_scope': deepcopy(scope), 'human_authorization': {
+            'binding': binding, 'synthetic': self.evidence_class == 'TECHNICAL_TEST',
+            'approved_at': stamp, 'checked_at': stamp, 'not_before': stamp,
+            'expires_at': (now + timedelta(hours=1)).isoformat(), 'withdrawn': False,
+            'audit_reference': binding['audit_reference'],
+            'audit_preservation_reference': str(checked(self.ledger)),
+            'approvals': approvals, 'interaction_responses': responses}}
+        return deepcopy(self._authorization)
+
+    def current(self, review):
+        return deepcopy(self._authorization)
+
+    def diagnose(self, instance, *, failure_id, failed_action, observed_error,
+                 evidence=None, cause='Cause not established', request=None):
+        """Read-only reporting works even without valid ordinary context/entry."""
+        report = {'status': 'DIAGNOSTIC_ONLY', 'action': 'STOP', 'failure_identifier': failure_id,
+            'failed_action': failed_action, 'observed_error': observed_error,
+            'relevant_evidence': deepcopy(evidence or []), 'root_cause_or_uncertainty': cause,
+            'current_state': None, 'recovery_eligibility': 'UNSUPPORTED_OR_UNVERIFIED',
+            'recommended_action': 'Preserve evidence and request human resolution',
+            'proposed_mutation_scope': [], 'expected_result': 'Affected action remains stopped',
+            'governance_restrictions': 'Release/adoption and applicable capacities remain required; '
+                'no resolution, activation, retry or handback',
+            'human_approval_requirement': 'Explicit approval of this exact plan before mutation',
+            'stop_conditions': ['Missing, rejected or ambiguous approval', 'Changed plan or bytes',
+                'Wrong scope/instance/capacity', 'Interrupted ownership or invalid journal']}
+        try:
+            root = checked(instance)
+            report['current_state'] = op.state(root)
+            report['diagnostics'] = op.doctor(root)
+        except Exception as error:
+            report['state_uncertainty'] = str(error)
+        if request is not None:
+            try:
+                need(request['request']['target']['root'] == str(checked(instance)), 'WRONG_INSTANCE')
+                plan = self.preview(request)
+                report.update(status='READY_FOR_HUMAN_REVIEW', recovery_eligibility='BOUNDED_OPERATION',
+                    recommended_action=request['kind'], proposed_mutation_scope=deepcopy(plan['operations']),
+                    expected_result=plan['rendered'].get('completion', 'Recovery-only artifacts; STOP'),
+                    plan=plan, review=plan['text'])
+            except Exception as error:
+                report.update(status='RECOVERY_REFUSED', refusal=str(error))
+        return report
 
     def _installation(self, target):
         need(self.host is not None, 'CONTROLLED_MAINTENANCE_ENTRY_REQUIRED')
@@ -150,7 +244,7 @@ class MaintenanceEntry:
         need(op.headers(op.text(root, pre.DIRECTOR), ['HUMAN_OWNER'])['HUMAN_OWNER'] ==
              record['scope']['authorities']['Human Director'], 'CURRENT_DIRECTOR_MISMATCH')
         need(supervised._exact(record['conditions'], {'filesystem': 'LOCAL', 'exclusive_operator': True,
-             'power_loss_uncertainty': False, 'agent_access': 'EXCLUDED'}), 'UNSUPPORTED_DEPLOYMENT_CONDITION')
+             'power_loss_uncertainty': False}), 'UNSUPPORTED_DEPLOYMENT_CONDITION')
         manifest = pre.load_json(file(root, 'TOOLS/MANIFEST.json').read_bytes())
         expected = {'TOOLS/' + p for p in manifest['files']} | {'TOOLS/MANIFEST.json'} | set(manifest['instance_files'])
         expected |= {pre.GOVERNANCE, op.SCHEMA, '15_COMMANDS_AND_DRIVERS/MUTATION_PERMISSION_MATRIX.md',
@@ -299,7 +393,16 @@ class MaintenanceEntry:
             ref = operation['path']
             descriptions.append({k: operation[k] for k in ('sequence', 'path', 'before_sha256', 'after_sha256')})
             images[ref] = operation['after_sha256']
-        body['text'] = ('# Operational recovery review\n\n' + assembly.canonical(approved_binding) +
+        body['text'] = ('# Human-governed recovery review\n\n'
+                        'ISSUE: ' + request['kind'] + ' recovery requested.\n'
+                        'CAUSE: See original failure evidence; unestablished causes remain uncertain.\n'
+                        'IMPACT: Affected action is stopped; ordinary execution remains gated.\n'
+                        'RECOMMENDED ACTION: Execute only the following bounded operations.\n'
+                        'FILES AFFECTED: ' + ', '.join(f['path'] for f in files) + '\n'
+                        'EXPECTED RESULT: Validated placement or recovery-only assembly; STOP.\n'
+                        'RISK: Partial completion or changed sources; preserve evidence and STOP.\n'
+                        'APPROVAL REQUIRED: Approve this exact proposed action in each applicable capacity.\n\n' +
+                        assembly.canonical(approved_binding) +
                         '\n\nExact operations and SHA256:\n' + json.dumps(descriptions, indent=2) +
                         '\n\n' + '\n'.join(f['diff'] for f in files) +
                         '\nExact before/after bytes are in files and operations of this plan.\n'
@@ -320,7 +423,8 @@ class MaintenanceEntry:
 
     def execute(self, plan):
         """Review via host, execute one exact bounded action, preserve evidence, STOP."""
-        result = {'status': 'REFUSED', 'action': 'STOP', 'operational_authority': False,
+        result = {'status': 'REFUSED', 'recovery_status': 'RECOVERY_REFUSED',
+                  'action': 'STOP', 'operational_authority': False,
                   'genuine_human_authority': 'NOT_TESTED'}
         owned, external = False, None
         try:
@@ -328,6 +432,7 @@ class MaintenanceEntry:
             need(supervised._exact(self.preview(plan['request']), plan), 'CHANGED_PLAN_OR_SOURCE')
             root, installation, ledger = self._installation(plan['request']['request']['target'])
             auth = self._authority(plan, initial=True)
+            result['recovery_status'] = 'APPROVED_FOR_EXACT_ACTION'
             target_key = pre.digest(str(root).casefold().encode())
             target_ledger = checked(ledger / target_key)
             target_ledger.mkdir(exist_ok=True)
@@ -421,7 +526,7 @@ class MaintenanceEntry:
                 final_reader._file = file
                 final_reader._final(root, plan['rendered'], plan['baseline'])
             append('FINAL_VALIDATED', final_hashes=expected)
-            result.update(status='TECHNICAL_EXECUTION_ACCEPTED', final_hashes=expected,
+            result.update(status='TECHNICAL_EXECUTION_ACCEPTED', recovery_status='RECOVERY_VALIDATED', final_hashes=expected,
                           journal=str(journal), journal_sha256=pre.digest(journal_bytes),
                           authorization_class=self.host.evidence_class)
             if self.host.evidence_class == 'HUMAN_SUPERVISED':
@@ -444,6 +549,7 @@ class MaintenanceEntry:
             rt._persist_new(claim.with_name(claim.name.replace('.claim.', '.outcome.')), rt._encoded(result))
         except Exception as error:
             result.update(status='INTERRUPTED' if owned else 'REFUSED',
+                          recovery_status='RECOVERY_INTERRUPTED' if owned else 'RECOVERY_REFUSED',
                           reason=str(error) if type(error) is ValueError else 'PRECONDITION_OR_IO_FAILURE')
             if owned and external is not None and external.is_dir():
                 try:

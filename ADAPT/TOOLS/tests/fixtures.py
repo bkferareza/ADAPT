@@ -10,7 +10,7 @@ import types
 
 
 FRAMEWORK = Path(__file__).resolve().parents[2]
-QUALIFICATION = FRAMEWORK.parent / ".adapt-local/maintenance/fw0006-final-closure"
+QUALIFICATION = FRAMEWORK.parent / ".adapt-local/maintenance/fw0006-human-governed-final"
 
 
 def isolate_recovery(module, seen=None):

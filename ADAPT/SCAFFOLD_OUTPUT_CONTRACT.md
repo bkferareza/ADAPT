@@ -336,8 +336,10 @@ complete nine-module recovery payload and existing distribution verification.
 
 This is prospective development distribution, not FW-0006 publication/adoption.
 Effective version remains FW-0005. The original writers remain synthetic-only. The separate operational entry
-requires deployment-controlled human authority and independent installation/adoption;
-genuine deployment acceptance remains outstanding. Module presence
+requires explicit human approval captured through normal ADAPT interaction and
+separately governed release/installation/adoption. No isolated process/account,
+TrustedHost or external authentication service is required. Test responses are
+fixtures, never predefined approvals in a fresh scaffold. Module presence
 does not confer operational recovery. Keep runtime refusal unchanged; never seed
 historical blockers, exhausted handoffs, approval/capability fixtures or locks.
 

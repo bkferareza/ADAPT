@@ -143,6 +143,11 @@ class PlanReviewTests(unittest.TestCase):
             approval["human"] = "same-synthetic-human"
         self.valid()
         approvals[1]["approval_reference"] = approvals[0]["approval_reference"]
+        self.valid()
+        # One human can exercise both capacities in one explicit interaction.
+        # Distinct actual authorities still require distinct response sources.
+        config['authorities'][approvals[1]['role']] = 'different-synthetic-human'
+        approvals[1]['human'] = 'different-synthetic-human'
         self.refused()
 
     def test_PR07_changed_plan_fingerprint_and_artifact_bytes(self):

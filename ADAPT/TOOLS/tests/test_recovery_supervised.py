@@ -168,6 +168,9 @@ class SupervisedTests(unittest.TestCase):
         response["approvals"] = response["approvals"][:1]
         self.refused(response=response)
         self.response["approvals"][1]["approval_reference"] = self.response["approvals"][0]["approval_reference"]
+        self.assertEqual("SUPERVISED_EVIDENCE_VALID", self.verify()["status"])
+        self.config['authorities']['Human Framework Maintainer'] = 'different-human'
+        self.response['approvals'][1]['human'] = 'different-human'
         self.refused()
 
     def test_HS10_no_provider_or_network_dependency(self):

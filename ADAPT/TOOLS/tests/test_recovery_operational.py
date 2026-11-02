@@ -49,7 +49,7 @@ class TestHost:
                 p: module.pre.digest((root / p).read_bytes()) for p in refs},
             'scope': self.scope, 'evidence_class': self.evidence_class,
             'conditions': {'filesystem': 'LOCAL', 'exclusive_operator': True,
-                           'power_loss_uncertainty': False, 'agent_access': 'EXCLUDED'}}
+                           'power_loss_uncertainty': False}}
         self.authorization = None
         self.reviews = []
         self.alter = lambda a: a
@@ -284,8 +284,8 @@ class OperationalAcceptance:
     def test_O24_unsupported_conditions(self):
         self.host.record['conditions']['power_loss_uncertainty']=True; self.refused()
 
-    def test_O25_no_agent_account_authentication(self):
-        self.host.record['conditions']['agent_access']='SHARED'; self.refused()
+    def test_O25_shared_interaction_needs_no_account_isolation(self):
+        self.accepted(self.structural_request())
 
     def test_O26_interruption_boundaries(self):
         # Entire production writer boundary sweep on fresh disposable targets.
@@ -441,6 +441,128 @@ class OperationalAcceptance:
         evidence['path']=' '+evidence['path']+' '
         self.request['request']['evidence']=deepcopy(packet['evidence'])
         self.refused()
+
+    def normal_entry(self):
+        # Explicit simulated human responses, exclusively disposable test fixtures.
+        self.host.record['scope']['role_evidence'] = {
+            role: {'role_basis_reference': 'TEST-ROLE-' + role,
+                   'designation_reference': 'TEST-DESIGNATION'}
+            for role in self.host.scope['authorities']}
+        self.decisions = lambda review: [
+            {'decision': 'APPROVE_EXACT_ACTION', 'human': human, 'capacities': [role],
+             'source_reference': 'TEST-SIMULATED-HUMAN-' + role,
+             'plan_sha256': review['plan_sha256']}
+            for role, human in self.host.scope['authorities'].items()]
+        self.entry = self.m.MaintenanceEntry(installation=self.host.record, ledger=self.ledger,
+            interaction=lambda review: self.decisions(review), synthetic=True)
+
+    def test_HG01_malformed_register_report_review_approval_write_audit_stop(self):
+        self.normal_entry()
+        request = self.structural_request()
+        before = self.m.snapshot(self.root)
+        report = self.entry.diagnose(self.root, failure_id='TEST-MALFORMED-REGISTER',
+            failed_action='ordinary dispatch', observed_error='Malformed Blockers placement', request=request)
+        self.assertEqual('READY_FOR_HUMAN_REVIEW', report['status'])
+        self.assertEqual(before, self.m.snapshot(self.root))
+        for label in ('ISSUE:', 'CAUSE:', 'IMPACT:', 'RECOMMENDED ACTION:', 'FILES AFFECTED:',
+                      'EXPECTED RESULT:', 'RISK:', 'APPROVAL REQUIRED:'):
+            self.assertIn(label, report['review'])
+        result = self.entry.execute(report['plan'])
+        self.assertEqual('RECOVERY_VALIDATED', result['recovery_status'], result)
+        self.assertEqual('STOP', result['action'])
+        self.entry.audit(result['claim'])
+        self.assertIn('| OPEN |', (self.root/self.m.pre.BLOCKERS).read_text())
+
+    def test_HG02_interrupted_index_separate_fresh_context_approval(self):
+        self.normal_entry()
+        first = self.entry.preview(self.index_request())
+        result = self.entry.execute(first)
+        self.assertEqual('RECOVERY_VALIDATED', result['recovery_status'], result)
+        self.entry.audit(result['claim'])
+        self.f.packet['ids']['CP'] = 'CP-092'
+        self.request = self.context_request()
+        report = self.entry.diagnose(self.root, failure_id='TEST-EXHAUSTED-CONTEXT',
+            failed_action='context assembly', observed_error='Stale context; exhausted retries', request=self.request)
+        self.assertEqual('READY_FOR_HUMAN_REVIEW', report['status'], report.get('refusal'))
+        self.assertNotEqual(first['plan_sha256'], report['plan']['plan_sha256'])
+        result = self.entry.execute(report['plan'])
+        self.assertEqual('RECOVERY_VALIDATED', result['recovery_status'], result)
+        self.entry.audit(result['claim'])
+        self.assertEqual('YES', self.m.op.state(self.root)['Blocked'])
+        self.assertEqual('ARCHIVED', self.m.op.table(self.m.op.text(self.root,self.m.pre.INDEX),
+            'Index',['Status'])[-1]['Status'])
+        with self.assertRaises(self.m.op.Problem): self.m.op.prompt_next(self.root)
+
+    def test_HG03_missing_rejected_ambiguous_wrong_capacity_or_plan_refuse(self):
+        self.normal_entry()
+        plan = self.entry.preview(self.structural_request())
+        decisions = self.decisions(plan)
+        variants = [None, [], [{'decision': 'REJECT'}], [{'decision': 'maybe'}]]
+        for field, value in (('human','wrong-human'), ('capacities',['Unknown Role']),
+                             ('plan_sha256','0'*64), ('source_reference','')):
+            variant = deepcopy(decisions); variant[0][field] = value; variants.append(variant)
+        before = self.m.snapshot(self.root)
+        for variant in variants:
+            self.decisions = lambda review, value=variant: value
+            result = self.entry.execute(plan)
+            self.assertEqual('RECOVERY_REFUSED', result['recovery_status'], result)
+            self.assertEqual(before, self.m.snapshot(self.root))
+            self.assertEqual({}, self.m.snapshot(self.ledger))
+
+    def test_HG04_no_production_approval_from_packet(self):
+        self.normal_entry()
+        # Exercise genuine-input declaration branch without claiming real consent.
+        self.entry.evidence_class = 'HUMAN_SUPERVISED'
+        self.entry._record['evidence_class'] = 'HUMAN_SUPERVISED'
+        self.entry.interaction = None
+        plan = self.entry.preview(self.structural_request())
+        self.refused(plan)
+
+    def test_HG05_same_human_two_explicit_capacities_one_response(self):
+        self.host.scope['authorities']['Human Framework Maintainer'] = 'Synthetic Director'
+        self.normal_entry()
+        self.decisions = lambda review: [{'human': 'Synthetic Director',
+            'capacities': ['Human Director','Human Framework Maintainer'],
+            'source_reference':'TEST-ONE-EXPLICIT-DUAL-CAPACITY-RESPONSE',
+            'decision':'APPROVE_EXACT_ACTION','plan_sha256':review['plan_sha256']}]
+        result = self.entry.execute(self.entry.preview(self.structural_request()))
+        self.assertEqual('RECOVERY_VALIDATED', result['recovery_status'], result)
+        self.entry.audit(result['claim'])
+
+    def test_HG06_report_without_entry_or_valid_ordinary_state(self):
+        path = self.root/self.m.op.CP
+        path.write_bytes(b'Malformed ordinary state\n')
+        before = self.m.snapshot(self.root)
+        report = self.m.MaintenanceEntry().diagnose(self.root, failure_id='TEST-UNKNOWN',
+            failed_action='ordinary action', observed_error='Unsupported failure')
+        self.assertEqual('DIAGNOSTIC_ONLY', report['status'])
+        self.assertEqual('STOP', report['action'])
+        self.assertEqual([], report['proposed_mutation_scope'])
+        self.assertEqual(before, self.m.snapshot(self.root))
+
+    def test_HG07_withdraw_normal_decision_before_write(self):
+        self.normal_entry()
+        plan = self.entry.preview(self.structural_request())
+        original = self.entry.authorize
+        def withdraw(review):
+            auth = original(review); self.entry.withdraw(); return auth
+        self.entry.authorize = withdraw
+        before = self.m.snapshot(self.root)
+        result = self.entry.execute(plan)
+        self.assertEqual('RECOVERY_INTERRUPTED', result['recovery_status'], result)
+        self.assertEqual(before, self.m.snapshot(self.root))
+
+    def test_HG08_unsupported_recovery_report_refuses_mutation(self):
+        self.normal_entry()
+        request = deepcopy(self.request); request['kind'] = 'GENERIC_FIX'
+        before = self.m.snapshot(self.root)
+        report = self.entry.diagnose(self.root, failure_id='TEST-UNSUPPORTED',
+            failed_action='unknown action', observed_error='No supported repair', request=request)
+        self.assertEqual('RECOVERY_REFUSED', report['status'])
+        self.assertEqual('STOP', report['action'])
+        self.assertEqual([], report['proposed_mutation_scope'])
+        self.assertEqual(before, self.m.snapshot(self.root))
+        self.assertEqual({}, self.m.snapshot(self.ledger))
 
     def test_O39_claim_reference_and_current_state_tampering_refuse(self):
         for tamper in ('claim','reference','current_state'):

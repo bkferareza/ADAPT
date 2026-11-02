@@ -60,7 +60,7 @@ class SupervisedVerifier:
         """Scope supplied by the human-controlled maintenance entry, never packet data.
 
         It binds target, workcell, executor, required_gates and authorities.
-        The operator is responsible for authenticating the humans externally.
+        The organization is responsible for identity and access to normal ADAPT interaction.
         """
         self._scope = deepcopy(maintenance_scope)
 
@@ -180,13 +180,16 @@ class SupervisedVerifier:
             approvals = attestation["approvals"]
             _need(isinstance(approvals, list) and len(approvals) == 2 and
                   {a["role"] for a in approvals} == ROLES, "SEPARATE_CAPACITY_APPROVALS_REQUIRED")
-            references = set()
+            references = {}
             for approval in approvals:
                 _need(approval["human"] == authorities[approval["role"]] and
                       approval["approved"] is True and _text(approval["role_basis_reference"]), "GOVERNANCE_CAPACITY_UNVERIFIED")
-                _need(_text(approval["approval_reference"]) and
-                      approval["approval_reference"] not in references, "SEPARATE_APPROVAL_EVENTS_REQUIRED")
-                references.add(approval["approval_reference"])
+                reference = approval["approval_reference"]
+                _need(_text(reference) and (reference not in references or
+                      references[reference] == approval['human']), "SEPARATE_APPROVAL_EVENTS_REQUIRED")
+                # One interaction can explicitly exercise multiple capacities
+                # of one human. Distinct authorities retain distinct sources.
+                references[reference] = approval['human']
                 _need(_time(attestation["not_before"]) <= _time(approval["approved_at"]) <=
                       _time(attestation["checked_at"]), "CAPACITY_APPROVAL_TIME_INVALID")
                 if approval["role"] == "Human Director":

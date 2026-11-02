@@ -12,7 +12,7 @@ Optional revocation evidence contains target, task, original_approval (reference
 checked_at, expires_at and revoked (bool). Its authenticity remains unverified.
 
 Human authentication belongs to deployment access controls. This module only
-checks local evidence consistency; use the separate human-controlled maintenance
+checks local evidence consistency; use the human-governed maintenance
 entry in recovery_supervised.py for declared authorization scope. No writer or
 production authorization exists.
 """

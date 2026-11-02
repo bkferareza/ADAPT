@@ -119,59 +119,62 @@ recovery metadata does not advance that version.
 
 ## Operational recovery operator instructions (prospective FW-0006)
 
-`VALIDATION/recovery_operational.py` exposes `MaintenanceEntry(host)`; no default
-host exists. `preview(request)` reads the exact instance and returns the plan,
-raw before/after hex, unified diffs, current inventory, installation bindings and
-SHA256. `execute(plan)` calls `host.authorize(plan)` to present that exact review,
-requires both explicit capacity decisions, rechecks `host.current(plan)` before
-every mutation, validates actual results and returns STOP. `audit(claim)` checks
-persisted completion/journal consistency; it never resumes an operation.
+`VALIDATION/recovery_operational.py` exposes the existing `MaintenanceEntry`.
+The sole model is HUMAN_GOVERNED; HUMAN_SUPERVISED remains the compatible API
+label. ADAPT detects and stops, diagnoses, proposes an exact action, presents
+readable review, captures human approval, executes, validates, reports and STOPs.
+`diagnose(instance, failure_id=..., failed_action=..., observed_error=...,
+evidence=..., cause=..., request=...)` is read-only. It works without an entry
+or valid ordinary context. Unsupported actions produce diagnostic-only human
+resolution guidance; failed bounded prerequisites produce RECOVERY_REFUSED.
 
-The host belongs in the organization's existing operator-controlled maintenance
-process/account. That process must protect its Python interpreter and imports,
-host code/configuration, current human input and withdrawal channel, original
-role/designation evidence, published-release/installation/adoption evidence and
-fixed external ledger from ordinary agent access. Only the separately authorized
-operator may launch it. Reuse existing deployment permissions. No identity
-provider, new service, GitHub approval infrastructure or Windows TrustedHost is
-required. A shared interpreter/account, terminal prompt, OS username, JSON file
-or `agent_access=EXCLUDED` declaration does not establish this boundary. The
-host contract assumes independently established controls; it does not verify ACLs
-or authenticate people. A deployment without those controls is INELIGIBLE.
-This source workspace has no demonstrated protected entry. Do not use its shared
-agent session to create real approval records or claim genuine consent acceptance.
+Normal integration constructs `MaintenanceEntry(installation=record,
+ledger=external_directory, interaction=capture_actual_human_responses)`.
+ADAPT prepares the record from existing release/adoption, inventory and role
+records. Humans do not compose JSON or hashes. `preview(request)` produces the
+readable summary, exact diffs, before/after bytes and fingerprints automatically.
+`execute(plan)` presents that exact review through the callback. The callback
+captures actual human input in the normal ADAPT interaction as a list of decisions
+with `decision=APPROVE_EXACT_ACTION`, the presented `plan_sha256`, `human`, explicitly
+exercised `capacities`, and `source_reference` to the original response. Rejection,
+ambiguity, silence and wrong capacity yield no mutation. A changed plan requires
+new review. Never infer approval from packet content or an AI-created claim.
 
-Host interface (operator integration, never recovery-packet configuration):
+The existing scope binds target, workcell, executor, required_gates, authorities;
+normal integration also supplies `role_evidence` by capacity with existing
+role_basis_reference and Director designation_reference. The adapter prepares
+validity timestamps, each capacity record, exact binding and audit references.
+One actual human may explicitly exercise both capacities in one response; distinct
+authorities require distinct responses. Original responses are preserved with
+authorization in the existing claim. `current(plan)` rechecks the captured decision;
+`withdraw()` records a withdrawal and stops subsequent writes. Existing host
+integrations can still provide installation/authorize/current using the same
+verifier/writer. No extra approval subsystem or dispatcher is introduced.
 
-- `ledger`: fixed resolved external directory on the same local volume as targets;
-  preserve it for the full adoption lifetime. Never rotate it to permit replay.
-- `evidence_class`: HUMAN_SUPERVISED for actual protected human input;
-  TECHNICAL_TEST exclusively for disposable acceptance with simulated decisions.
-- `installation(target)`: independently read current adopted release and exact
-  installation, returning target, version, release_reference, adoption_reference,
-  installation_reference, installed_hashes, evidence_class, scope and conditions.
-  The source module docstring/API lists exact required fields. Installed hashes
-  cover all manifest files, manifest itself and six governing contracts. References
-  point to original existing release/adoption decisions; packet claims cannot
-  replace them. `scope` is the existing SupervisedVerifier configuration.
-- `authorize(review)`: show the full exact review including changes, fingerprints,
-  target, sources, gates, risks and completion to the human. Return separately
-  captured existing `{maintenance_scope, human_authorization}` evidence only after
-  both Human Director and Human Framework Maintainer explicitly approve. The same
-  human may make the two separate decisions. Never generate that evidence on behalf
-  of a human. Bind `review.authorization_binding` exactly. Refusal returns no grant.
-- `current(review)`: reread current approval/withdrawal state and return the existing
-  authorization shape; missing, expired, changed or withdrawn decisions STOP.
+There is no requirement for process isolation, protected OS accounts, a separate
+terminal or application, TrustedHost, GitHub trust infrastructure, approval
+servers or identity providers. Organization access policies own human identity.
+Conversational approval is not independently authenticated, cryptographically
+proven or tamper-proof. This design does not protect against a hostile agent with
+unrestricted filesystem and approval-record access. This is the explicit reduced
+assurance selected by the Maintainer, not a completed authentication test.
 
-Supported conditions are LOCAL filesystem, exclusive operator access, excluded
-ordinary agent access and no unresolved power-loss uncertainty. The host declares
-these as `{filesystem: LOCAL, exclusive_operator: true,
-power_loss_uncertainty: false, agent_access: EXCLUDED}` only after verifying the
-actual deployment. Network/multi-host filesystems, concurrent outside writers,
-untrusted interpreters, aliases/reparse/hardlinked files and uncertain power-loss
-recovery are unsupported. File fsync and local exclusive create are used; Windows
-directory-entry persistence on power failure is not guaranteed. There is no
-multi-file atomicity, hostile-OS protection or automatic recovery from power loss.
+The installation record still binds target, version, release_reference,
+adoption_reference, installation_reference, installed_hashes, scope,
+evidence_class and conditions. Hashes cover manifest payload, manifest and six
+governing contracts. Publication/adoption decisions are not inferred from local
+headers. Evidence class HUMAN_SUPERVISED denotes captured human declarations;
+TECHNICAL_TEST (constructor `synthetic=True`) labels simulated acceptance fixtures.
+Neither label authenticates identity or authorizes release/adoption.
+
+Use a fixed, resolved external ledger on the same local volume, preserved for the
+adoption lifetime. Conditions are exactly `{filesystem: LOCAL,
+exclusive_operator: true, power_loss_uncertainty: false}`. Exclusive ownership,
+source/byte checks, aliases/reparse/hardlink refusals, fsynced evidence and replay
+refusal remain mandatory. Concurrent outside writers and network filesystems are
+unsupported. File fsync does not promise identical directory durability on every
+OS; Windows power-loss directory persistence and multi-file atomicity are not
+guaranteed. Interrupted evidence must be preserved for human assessment.
 
 Request envelope: kind STRUCTURAL or CONTEXT, request (the existing supervised
 BINDING_KEYS), evidence_root (disjoint current evidence), parameters. STRUCTURAL
@@ -184,7 +187,7 @@ and exactly the blocker-register placement write. CONTEXT parameters are the
 existing six-path assembly packet plus gates. Its assembly selection uses
 `format=operational-v1`; its authorization evidence is only a task basis containing
 purpose, target, task, executor and gates. It grants no authority. Human decisions
-arrive later through the protected host, bound to the rendered exact plan. The
+arrive later through the normal human interaction, bound to the rendered exact plan. The
 recovery pack links the durable operation reference to those original decisions.
 Original diagnostic history and current source/inventory must be hash bound.
 The only supported size selection is the existing justified XL tier and byte
@@ -213,5 +216,5 @@ resolution, current ordinary context and handback procedures afterward.
 
 Distribution never enables recovery. After lawful FW-0006 publication, install
 through the existing exact-scope installation/adoption process, verify source and
-installed bytes and contracts, then establish the protected host. A version header
+installed bytes and contracts, then capture the exact human-approved action. A version header
 or this proposed payload alone cannot substitute for publication or adoption.

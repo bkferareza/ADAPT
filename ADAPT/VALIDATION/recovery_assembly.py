@@ -274,7 +274,7 @@ def _build(root, external, packet, *, operational=False, authority_reference=Non
         "Stale or Excluded Items": table(["Item", "Reason for Exclusion"],
             [[p, "Inventory checked; outside selected recovery purpose"] for p in excluded]) +
             "\n\nHistorical selection is evidence only; stale ordinary packs remain invalid.",
-        "Known Limitations": ("Human consent is supplied by the separately controlled maintenance entry. " if operational else "Synthetic evidence cannot authenticate humans. ") + "No ordinary context, blocker resolution or operational handback. " + config["size_reason"],
+        "Known Limitations": ("Human consent is captured through the normal ADAPT interaction; identity is not independently authenticated. " if operational else "Synthetic evidence cannot authenticate humans. ") + "No ordinary context, blocker resolution or operational handback. " + config["size_reason"],
         "Context Steward Note": "Recovery assembly by " + packet["executor"] + " delegated as " + LANE +
             "; external task basis: " + auth_ref + ". No ordinary dispatch. STOP.",
     }
