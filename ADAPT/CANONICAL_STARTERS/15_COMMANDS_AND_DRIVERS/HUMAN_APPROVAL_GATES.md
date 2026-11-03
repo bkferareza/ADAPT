@@ -8,6 +8,49 @@ Lists every action in the ADAPT framework that requires explicit human approval 
 
 ## Approval Gate Definitions
 
+### Human action review and continuation
+
+Apply ACTION_PROMPT_MASTER.md's shared human-facing chat response contract at
+every gate. The review and result must be explained in the conversation itself;
+an evidence artifact or tool response alone is insufficient. Ask a direct decision
+question and await the actual reply. The labels below describe meaning, not
+mandatory headings; use natural language appropriate to the action.
+
+For every approval gate, default to a concise review: ISSUE (what happened),
+IMPACT (why it matters), RECOMMENDATION (the exact proposed action), CHANGES
+(affected files and meaningful effects), RISK (failure and preservation limits),
+DECISION (APPROVE / REJECT / SHOW DETAILS). Technical evidence remains available
+through SHOW DETAILS; hashes, bindings, JSON, role checks and journals are
+managed internally. The operator must not construct an authorization object.
+
+Preserve exactly one reviewed action in the applicable existing decision/evidence
+mechanism, present the review and STOP the turn. Accept the human's actual reply
+through the same ACTION_PROMPT entry on a later turn; session memory alone is
+insufficient. Natural language counts only when explicit and unambiguous, with
+original message provenance and all required capacity evidence. Request
+clarification on ambiguity, and selection when several reviews are pending.
+Details leave the decision pending; rejection causes no protected mutation.
+Do not manufacture identity, consent, source references or independent authentication.
+
+Before execution recheck source, plan, scope, target, currency, capacities and
+withdrawal. Changed plans need fresh review. Missing capacity requires a readable
+explanation and STOP. One human legitimately holding both required capacities
+may approve once; retain separate capacity records referencing that interaction.
+Distinct humans retain distinct approval evidence under existing contracts.
+No review bypasses the existing verifier, writer, exclusive ownership, operation
+reference, allowlist, before-image, audit or final-state checks.
+
+Finish with STATUS (SUCCEEDED / FAILED / PARTIAL / BLOCKED), ACTION attempted,
+CHANGES made, VALIDATION established, REMAINING ISSUES, NEXT ACTION and APPROVAL
+needed. Preserve uncertainty after interruption. Distinguish RECOVERY: SUCCEEDED
+from REPORTING: FAILED when validated recovery is followed by a wrapper error;
+do not retry completed recovery. Keep full technical evidence available without
+dumping it by default. Always STOP at the existing action boundary.
+
+The installed bounded maintenance implementation is MaintenanceEntry.interact;
+ACTION_PROMPT_MASTER.md defines its ordinary re-entry. Existing gate definitions
+below remain authoritative for who approves, what is recorded and who writes it.
+
 ---
 
 ### Gate 1 — Promote Source Truth

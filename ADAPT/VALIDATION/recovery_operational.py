@@ -30,7 +30,112 @@ structural = _load('recovery_structural')
 rt = structural.runtime
 assembly, pre, op = rt.assembly, rt.pre, rt.op
 supervised = _load('recovery_supervised')
-VERSION = 'ADAPT-FW-0006'
+VERSION = 'ADAPT-FW-0007'
+
+
+def human_review(plan):
+    structural = plan['request']['kind'] == 'STRUCTURAL'
+    action = ('Repair the register table structure' if structural else
+              'Prepare recovery-only context artifacts')
+    return ('ISSUE: ' + ('The register table structure is invalid.' if structural else
+            'Ordinary context cannot support the stopped action.') +
+            '\nIMPACT: Ordinary execution remains blocked.\nRECOMMENDATION: ' + action +
+            '.\nCHANGES: ' + str(len(plan['files'])) + ' file(s): ' +
+            ', '.join(f['path'] for f in plan['files']) +
+            ('. Row placement only; record contents and statuses stay unchanged.' if structural else
+             '. Recovery artifacts only; ordinary context will not be activated.') +
+            '\nRISK: A write may fail partway through; evidence will be preserved and execution stopped.'
+            '\nThe existing blocker remains open.\nDECISION: APPROVE, REJECT or SHOW DETAILS.'
+            '\nApproval requires the recorded Director and Framework Maintainer capacities;'
+            ' one person holding both may approve once for both.'
+            '\nDo you approve this exact action? Execution remains blocked until approval.'
+            '\nReply here, or invoke the ordinary ADAPT entry again with your response. STOP.\n')
+
+
+def human_outcome(result, plan=None, reporting_error=None):
+    """Keep completed recovery distinct from a later reporting failure."""
+    success = result.get('recovery_status') == 'RECOVERY_VALIDATED'
+    status = 'SUCCEEDED' if success else ('PARTIAL' if result.get('status') == 'INTERRUPTED' else 'BLOCKED')
+    reason = result.get('reason', 'Approval or prerequisites missing.')
+    reason = {'HUMAN_APPROVAL_REFUSED': 'Required human approval is missing, withdrawn or invalid.',
+              'PRECONDITION_OR_IO_FAILURE': 'An execution check or file operation failed; the exact cause is not established.'}.get(reason, reason)
+    return ('STATUS: ' + status + '\nRECOVERY: ' + ('SUCCEEDED' if success else status) +
+            '\nREPORTING: ' + ('FAILED' if reporting_error else 'SUCCEEDED') +
+            '\nACTION: ' + (('Repair register structure' if plan['request']['kind'] == 'STRUCTURAL'
+                              else 'Prepare recovery-only context artifacts') if plan else 'Bounded recovery') +
+            '\nCHANGES: ' + (', '.join(f['path'] for f in plan['files']) if success and plan else
+                              'Execution was interrupted; files may have changed. The exact completed write extent '
+                              'has not been established; no unchanged-state claim is made.' if status == 'PARTIAL' else 'None.') +
+            ('\nRESULT: Register rows are now in a readable contiguous table; record contents and statuses were preserved.'
+             if success and plan and plan['request']['kind'] == 'STRUCTURAL' else
+             '\nRESULT: Recovery-only context artifacts were prepared; ordinary context was not activated.'
+             if success and plan else '') +
+            '\nVALIDATION: ' + ('Recovery completed and validated.' if success else
+                                  'Action stopped: ' + reason) +
+            ('\nFinal reporting failed; the validated changes remain successful. Technical error evidence is preserved where available.' if reporting_error else '') +
+            '\nREMAINING ISSUES: Existing blocker remains open; ordinary execution remains gated.' +
+            '\nNEXT ACTION: ' + ('Review the reporting failure. No recovery retry is necessary.' if success and reporting_error else
+                'Have the responsible human assess the interrupted writes and preserved evidence; do not retry or resume.' if status == 'PARTIAL' else
+                'Request review of the next separate recovery action.' if success else 'Review the missing condition and preserved evidence.') +
+            '\nAPPROVAL: A separate action requires its own applicable human decision. STOP.\n')
+
+
+def reporting_fallback(outcome, error, *, reentry=False):
+    """Report retained evidence without invoking the renderer or any writer.
+
+    Outcome fields remain authoritative; reporting failure supplies no additional
+    mutation or validation evidence. In particular, interruption can precede the
+    writer's completion record even when replacement already changed bytes.
+    """
+    result = dict(outcome) if isinstance(outcome, dict) else {}
+    recovery = result.get('recovery_status')
+    recorded_validation = (isinstance(result.get('final_hashes'), dict) and bool(result['final_hashes']) and
+                           all(result.get(key) for key in ('claim', 'claim_sha256', 'journal', 'journal_sha256')))
+    validated = recovery == 'RECOVERY_VALIDATED' and recorded_validation
+    status = ('SUCCEEDED' if validated else 'INTERRUPTED' if recovery == 'RECOVERY_INTERRUPTED'
+              else 'REFUSED' if recovery == 'RECOVERY_REFUSED' else 'UNKNOWN')
+    if validated:
+        changes = 'The approved changes were completed.'
+        validation = 'Recovery completed and validated.'
+        explanation = ('The operation previously succeeded; its recorded validation passed. '
+                       'The saved outcome remains authoritative. No recovery replay is necessary. '
+                       if reentry else 'Recovery succeeded and passed validation. ')
+        next_action = 'No recovery retry is necessary; do not retry recovery. Review the reporting failure.'
+    else:
+        changes = 'UNKNOWN. No unchanged-state claim is made.'
+        validation = 'UNKNOWN; complete validation is not established by the available outcome.'
+        explanation = ('The action may have partially changed the instance. The exact completed write extent '
+                       'has not been established. ' if status == 'INTERRUPTED' else
+                       'Recovery was refused. ' if status == 'REFUSED' else
+                       ('ADAPT could not verify the previous operation because its saved execution '
+                        'reference is incomplete or unreadable. The earlier action may have changed files. '
+                        if reentry and not result.get('claim') else
+                        'Available outcome evidence is missing or incomplete. The earlier action may have changed files. '))
+        if reentry:
+            explanation += ('No action was repeated. The operation remains stopped and its available '
+                            'evidence must be inspected by the responsible human. ')
+        next_action = ('Inspect the available evidence before any further action; '
+                       'do not retry or resume, or automatically roll back.')
+        if status == 'INTERRUPTED' and recorded_validation:
+            changes = 'Writer-recorded final file hashes are available; recovery was interrupted.'
+            validation = 'Recorded file validation passed; overall recovery was interrupted.'
+    text = ('STATUS: ' + ('BLOCKED' if reentry else status) + '\nRECOVERY: ' + status +
+            '\nREPORTING: FAILED\nCHANGES: ' + changes + '\nVALIDATION: ' + validation +
+            '\n' + explanation + 'Reporting failed; the reporting renderer or check failed. '
+            'Retained outcome evidence is not invalidated by reporting failure.' +
+            '\nCLAIM: ' + str(result.get('claim', 'UNKNOWN')) +
+            ('\nOPERATION: ' + str(result['operation_reference']) if 'operation_reference' in result else '') +
+            ('\nREFERENCE: ' + str(result['reference']) if 'reference' in result else '') +
+            '\nJOURNAL: ' + str(result.get('journal', 'Inspect the claim\'s recorded evidence directory.'
+                                           if result.get('claim') else 'UNKNOWN')) +
+            '\nREMAINING ISSUES: The existing blocker remains open; ordinary execution remains gated.' +
+            '\nNEXT ACTION: ' + next_action +
+            '\nAPPROVAL: A separate action requires its own applicable human decision. STOP.\n')
+    result.update(reporting_status='FAILED', reporting_error=error, action='STOP', text=text)
+    result.setdefault('status', 'BLOCKED')
+    if reentry:
+        result.update(status='BLOCKED', reason='DECISION_ALREADY_CONSUMED')
+    return result
 
 
 def need(condition, code):
@@ -195,6 +300,176 @@ class MaintenanceEntry:
     def current(self, review):
         return deepcopy(self._authorization)
 
+    def interact(self, request=None, *, response=None, human=None, source_reference=None,
+                 action=None, interpreted_decision=None, reporting_check=None):
+        """Ordinary ACTION_PROMPT pause/re-entry using the existing approval adapter.
+
+        Installation/ledger and response provenance are supplied by the bound
+        ADAPT interaction, never packet assertions. interpreted_decision is an
+        optional model-assisted classification of the actual response, not consent
+        or authentication. Ambiguous language must be classified CLARIFY.
+        Persisted envelopes are decision context, never reusable authorization.
+        """
+        outcome, outcome_available, reentry = None, False, False
+        try:
+            need(self.host is self, 'BUILTIN_INTERACTION_ADAPTER_REQUIRED')
+            # Validate the configured ledger boundary before persisting a review.
+            self._installation(self._record['target'])
+            ledger = checked(self.ledger)
+            need(ledger.is_dir(), 'EXTERNAL_CONTROLLED_LEDGER_REQUIRED')
+            pending = checked(ledger / 'pending-reviews')
+            pending.mkdir(exist_ok=True)
+            if request is not None:
+                need(response is None, 'REVIEW_BEFORE_DECISION_REQUIRED')
+                plan = self.preview(request)
+                key = pre.digest(request['request']['operation_reference'].encode())
+                path = checked(pending / (key + '.json'))
+                need(not path.with_suffix('.used').exists(), 'DECISION_ALREADY_CONSUMED')
+                if path.exists():
+                    need(supervised._exact(pre.load_json(path.read_bytes()), plan), 'FRESH_REVIEW_REQUIRED')
+                else:
+                    rt._persist_new(path, rt._encoded(plan))
+                return {'status': 'AWAITING_HUMAN', 'action': 'STOP', 'text': human_review(plan)}
+            paths = [p for p in sorted(pending.glob('*.json')) if not p.with_suffix('.used').exists()]
+            plans = [(p, pre.load_json(checked(p).read_bytes())) for p in paths]
+            # Never bind a reply by conversational memory or by whichever plan is newest.
+            if action is not None:
+                plans = [(p, v) for p, v in plans if v['request']['request']['task'] == action]
+            if not plans:
+                consumed = [(p, pre.load_json(checked(p).read_bytes()))
+                            for p in sorted(pending.glob('*.json')) if p.with_suffix('.used').exists()]
+                if action is not None:
+                    consumed = [(p, v) for p, v in consumed if v['request']['request']['task'] == action]
+                if len(consumed) == 1:
+                    path, plan = consumed[0]
+                    # Consumption proves no prior mutation state. Enable the existing
+                    # uncertainty fallback before inspecting any saved execution evidence.
+                    outcome = {'status': 'BLOCKED',
+                               'operation_reference': plan['request']['request']['operation_reference'],
+                               'reference': str(ledger / (path.stem + '.reference.json'))}
+                    outcome_available, reentry = True, True
+                    decision = pre.load_json(checked(path.with_suffix('.used')).read_bytes())
+                    if decision['decision'] == 'REJECT':
+                        text = 'This reviewed action was rejected. No recovery was attempted. Request a new review if needed. STOP.'
+                    else:
+                        # Writer-owned evidence, not the response envelope, establishes success.
+                        reference = checked(ledger / (path.stem + '.reference.json'))
+                        record = pre.load_json(reference.read_bytes())
+                        if isinstance(record, dict) and isinstance(record.get('claim'), str) and record['claim']:
+                            outcome['claim'] = record['claim']
+                        need(isinstance(record, dict) and isinstance(record.get('claim'), str) and
+                             bool(record['claim']) and record.get('operation_reference') ==
+                             outcome['operation_reference'], 'INCOMPLETE_EXECUTION_REFERENCE')
+                        claim = checked(record['claim'])
+                        outcome_path = claim.with_name(claim.name.replace('.claim.', '.outcome.'))
+                        self.audit(claim)
+                        saved = pre.load_json(checked(outcome_path).read_bytes())
+                        outcome.update(saved)
+                        error_path = checked(path.with_suffix('.reporting'))
+                        reporting_error = (pre.load_json(error_path.read_bytes())['error']
+                                           if error_path.exists() else None)
+                        text = human_outcome(saved, plan, reporting_error)
+                    return dict(outcome if isinstance(outcome, dict) else {}, status='BLOCKED',
+                                action='STOP', reason='DECISION_ALREADY_CONSUMED', text=text)
+            if not plans and not locals().get('consumed'):
+                return {'status': 'BLOCKED', 'action': 'STOP', 'reason': 'NO_PENDING_REVIEW',
+                        'text': 'There is no pending reviewed action to decide. No recovery was attempted '
+                        'and no instance files changed. Start a bounded diagnostic or request a new '
+                        'review before approving any action. Ordinary execution remains gated. STOP.'}
+            if len(plans) != 1:
+                return {'status': 'BLOCKED', 'action': 'STOP', 'reason': 'SELECT_ONE_REVIEWED_ACTION',
+                        'text': 'Select exactly one reviewed action by task name before deciding: ' +
+                        ', '.join(v['request']['request']['task'] for p, v in
+                                  (plans or locals().get('consumed', []))) +
+                        '. No recovery attempted. STOP.'}
+            path, plan = plans[0]
+            try:
+                need(supervised._exact(self.preview(plan['request']), plan), 'FRESH_REVIEW_REQUIRED')
+            except Exception as error:
+                raise ValueError('FRESH_REVIEW_REQUIRED') from error
+            if response is None:
+                return {'status': 'AWAITING_HUMAN', 'action': 'STOP', 'text': human_review(plan)}
+            need(isinstance(response, str) and response.strip(), 'EXPLICIT_HUMAN_RESPONSE_REQUIRED')
+            literal = {'approve': 'APPROVE', 'reject': 'REJECT', 'show details': 'SHOW DETAILS',
+                       'yes, approve this action': 'APPROVE', 'do not proceed': 'REJECT',
+                       'please show the details': 'SHOW DETAILS'}
+            decision = literal.get(response.strip().casefold().removesuffix('.'), interpreted_decision or 'CLARIFY')
+            need(decision in {'APPROVE', 'REJECT', 'SHOW DETAILS', 'CLARIFY'}, 'CLARIFY_RESPONSE')
+            if decision == 'SHOW DETAILS':
+                return {'status': 'AWAITING_HUMAN', 'action': 'STOP',
+                        'text': human_review(plan) + '\nRequested technical evidence follows. '
+                        'No recovery attempted; the decision remains pending.\n' + plan['text']}
+            if decision == 'CLARIFY':
+                return {'status': 'AWAITING_HUMAN', 'action': 'STOP',
+                        'text': 'Please clarify: approve this reviewed action, reject it, or show details. No files changed. STOP.'}
+            need(supervised._text(human) and supervised._text(source_reference),
+                 'HUMAN_AND_ORIGINAL_RESPONSE_REFERENCE_REQUIRED')
+            if decision == 'REJECT':
+                rt._persist_new(path.with_suffix('.used'), rt._encoded({'decision': decision,
+                    'human': human, 'source_reference': source_reference, 'response': response}))
+                return {'status': 'BLOCKED', 'action': 'STOP',
+                        'text': 'STATUS: BLOCKED\nACTION: Reviewed recovery rejected.\nCHANGES: None.\n'
+                        'VALIDATION: No recovery attempted.\nREMAINING ISSUES: Existing blocker remains open.\n'
+                        'NEXT ACTION: Request a new review if needed.\nAPPROVAL: Required for a new action. STOP.'}
+            scope = plan['installation']['scope']
+            capacities = [role for role, owner in scope['authorities'].items() if owner == human]
+            need(bool(capacities), 'MISSING_GOVERNANCE_CAPACITY')
+            missing = [role for role in scope['authorities'] if role not in capacities]
+            if missing:
+                outcome = {'status': 'BLOCKED', 'action': 'STOP', 'reason': 'MISSING_GOVERNANCE_CAPACITY'}
+                outcome_available = True
+                return dict(outcome, text=human_outcome({'reason': 'Missing approval in the governance capacity: ' +
+                    ', '.join(missing) + '. Obtain that human decision through the existing approval adapter.'}))
+            captured = {'decision': 'APPROVE_EXACT_ACTION', 'plan_sha256': plan['plan_sha256'],
+                        'human': human, 'capacities': capacities, 'source_reference': source_reference,
+                        'response': response}
+            old_interaction = self.interaction
+            self.interaction = lambda review: [deepcopy(captured)]
+            try:
+                # Existing verifier checks every required capacity before consuming.
+                self._authority(plan, initial=True)
+                rt._persist_new(path.with_suffix('.used'), rt._encoded(captured))
+                result = self.execute(plan)
+                outcome, outcome_available = result, True
+            finally:
+                self.interaction = old_interaction
+                self.withdraw()
+            # Consumed before entering writer: reporting/process failures never replay.
+            rt._persist_new(path.with_suffix('.result'), rt._encoded(result))
+            if reporting_check is not None:
+                reporting_check(deepcopy(result))
+            return dict(result, text=human_outcome(result, plan))
+        except Exception as error:
+            if outcome_available:
+                reporting_error = type(error).__name__ + ': ' + str(error)
+                if reentry:
+                    # Keep original reference, claim and reporting bytes untouched.
+                    return reporting_fallback(outcome, reporting_error, reentry=True)
+                try:
+                    rt._persist_new(checked(path.with_suffix('.reporting')),
+                                    rt._encoded({'error': reporting_error, 'claim':
+                                        outcome.get('claim') if isinstance(outcome, dict) else None}))
+                except Exception:
+                    # Writer completion/ownership still bars replay if reporting storage fails.
+                    reporting_error += ' (Reporting evidence could not be saved.)'
+                return reporting_fallback(outcome, reporting_error, reentry=reentry)
+            code = str(error) if isinstance(error, ValueError) else 'ENTRY_REVALIDATION_FAILED'
+            messages = {'SELECT_ONE_REVIEWED_ACTION': 'Select exactly one reviewed action by its task name before deciding.',
+                        'FRESH_REVIEW_REQUIRED': 'The reviewed plan or source changed. Request a fresh review.',
+                        'HUMAN_APPROVAL_REFUSED': 'Required governance capacity approval is missing, withdrawn or invalid.',
+                        'MISSING_GOVERNANCE_CAPACITY': 'Your recorded governance capacity does not authorize this action.',
+                        'HUMAN_AND_ORIGINAL_RESPONSE_REFERENCE_REQUIRED': 'The interaction must capture the actual human and original response reference before proceeding.',
+                        'DECISION_ALREADY_CONSUMED': 'This reviewed action was already decided. Inspect its saved outcome; do not retry it.',
+                        'WRONG_INSTANCE': 'The current instance does not match the reviewed target.',
+                        'INSTALLED_BYTES_CHANGED': 'Installed framework files changed. Verify the installation and request a fresh review.'}
+            blocked = {'status': 'BLOCKED', 'action': 'STOP', 'reason': code}
+            try:
+                text = human_outcome({'reason': messages.get(code,
+                    'The action could not be verified. Request technical details about the missing prerequisite.')})
+            except Exception as rendering_error:
+                return reporting_fallback(blocked, type(rendering_error).__name__ + ': ' + str(rendering_error))
+            return dict(blocked, text=text)
+
     def diagnose(self, instance, *, failure_id, failed_action, observed_error,
                  evidence=None, cause='Cause not established', request=None):
         """Read-only reporting works even without valid ordinary context/entry."""
@@ -222,9 +497,14 @@ class MaintenanceEntry:
                 report.update(status='READY_FOR_HUMAN_REVIEW', recovery_eligibility='BOUNDED_OPERATION',
                     recommended_action=request['kind'], proposed_mutation_scope=deepcopy(plan['operations']),
                     expected_result=plan['rendered'].get('completion', 'Recovery-only artifacts; STOP'),
-                    plan=plan, review=plan['text'])
+                    plan=plan, review=human_review(plan))
             except Exception as error:
                 report.update(status='RECOVERY_REFUSED', refusal=str(error))
+        report['text'] = report.get('review',
+            'ISSUE: ' + observed_error + '\nIMPACT: The affected action is stopped.\n'
+            'RECOMMENDATION: Preserve evidence and request a bounded recovery review.\n'
+            'CHANGES: None.\nRISK: Cause may be uncertain; ordinary context is unavailable.\n'
+            'DECISION: No executable recovery plan is verified yet. STOP.')
         return report
 
     def _installation(self, target):
@@ -393,7 +673,7 @@ class MaintenanceEntry:
             ref = operation['path']
             descriptions.append({k: operation[k] for k in ('sequence', 'path', 'before_sha256', 'after_sha256')})
             images[ref] = operation['after_sha256']
-        body['text'] = ('# Human-governed recovery review\n\n'
+        body['text'] = ('# Technical details for the reviewed recovery action\n\n'
                         'ISSUE: ' + request['kind'] + ' recovery requested.\n'
                         'CAUSE: See original failure evidence; unestablished causes remain uncertain.\n'
                         'IMPACT: Affected action is stopped; ordinary execution remains gated.\n'

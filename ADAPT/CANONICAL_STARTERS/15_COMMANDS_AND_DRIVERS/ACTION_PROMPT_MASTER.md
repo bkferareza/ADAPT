@@ -9,7 +9,101 @@ This is the master entry point for any ADAPT session. Read this document fully b
 
 ---
 
+## Human-facing chat response contract (all actions)
+
+The conversation is the primary interface for the human operator. Every role,
+lane and role-specific entry inherits this contract, including direct commands,
+ordinary development, planning/intake, validation, maintenance, recovery and
+handoff/escalation. Apply it at EVERY conversational boundary: completion,
+approval, rejection, blocked or failed actions, partial/interrupted operations,
+and re-entry. An early STOP still requires a meaningful chat response.
+
+After action execution, validation and evidence preservation (or the available
+steps when stopped early), explain in the chat itself:
+
+- What actually happened and what ADAPT did or attempted.
+- What was accomplished, with the important verified findings.
+- What remains unresolved, including material risks and uncertainty.
+- The next recommended or required action, and whether human input is needed.
+
+These are semantic requirements, not mandatory headings or another report
+format. Use natural, concise language scaled to the action. For a simple action,
+a few sentences suffice. Summarize large findings; do not dump technical reports,
+JSON, fingerprints or internal mechanics unless they affect the human decision
+or the human requests details. State when no further decision is needed.
+
+Artifacts remain mandatory supporting evidence under the existing contracts:
+source references, exact decisions, before/after images, hashes, mutation scope,
+validation, journals, historical state and governance records. Creating a report
+or returning a tool's JSON does not deliver a chat response. Evidence paths are
+optional supplements. Never make the operator open a file to understand the
+basic result, blocker or next decision. "See REPORT.md" is not a complete response.
+
+For approval, explain the exact proposal, why it is needed, what changes,
+meaningful risks, the applicable authority/capacity, and that execution remains
+blocked. Ask a clear decision question the operator can answer naturally with
+Approve, Reject or Show details. Use HUMAN_APPROVAL_GATES.md and its existing
+binding/decision capture; never require the operator to build technical payloads.
+STOP and await the actual human response. Never infer consent from elapsed time,
+a recommendation or a prior unrelated approval.
+
+After execution distinguish actual mutation, validation, reporting and overall
+execution readiness. Claim only results established by evidence. If execution
+fails or is interrupted, explain what changed, what did not, the known cause,
+remaining uncertainty and next lawful action. If the exact write extent is
+unknown, say so; never imply no writes from a missing completion record.
+A reporting failure does not erase a previously validated successful operation
+or permit replay. Where the host permits, send a minimal truthful chat fallback
+with the known outcome, reporting limitation and next decision. Never claim
+successful chat delivery based solely on generated text or a saved artifact.
+
+Then STOP under the existing action boundary. A suggested next action or emitted
+handoff does not authorize its execution. This contract changes no approval,
+authority, scope, retry, replay, journal, validation or STOP safeguard.
+
 ## The 13-Step Atomic Handoff Dispatch Sequence
+
+### Human decision pause and ordinary re-entry
+
+Before ordinary dispatch, recognize a response to an existing reviewed action.
+Use HUMAN_APPROVAL_GATES.md, Human action review and continuation below. This
+recognition grants no mutation authority and never advances to another handoff.
+For bounded human-governed recovery, use the existing Rule 14 maintenance entry
+even when ordinary context is unusable; do not require an ordinary context pack
+to diagnose the failure that prevents assembling it.
+
+The bound ADAPT interaction supplies the independently obtained installation
+record and external ledger to VALIDATION/recovery_operational.py MaintenanceEntry.
+Use interact(request) to preserve the exact review and render its returned text;
+STOP the execution turn. On the next ordinary invocation use interact(response=the
+actual human message, human=the recorded human, source_reference=the original
+message reference). Do not ask humans to provide those technical argument fields.
+The interaction obtains identity/capacity evidence through existing mechanisms;
+conversational approval is not independently authenticated by this adapter.
+
+Literal APPROVE, REJECT and SHOW DETAILS work directly. For natural language,
+the existing model-assisted interpreter may supply interpreted_decision as
+APPROVE, REJECT, SHOW DETAILS or CLARIFY only after interpreting the actual
+message in the current review context. Conditional, conflicting, quoted,
+hypothetical or uncertain approval requires CLARIFY; never strip conditions to
+make approval fit. Classification alone is not authority. No broad approval reuse.
+
+On multiple pending actions, present their task names and request selection;
+pass the selected task as action on re-entry. Do not choose the newest action.
+SHOW DETAILS renders the existing exact technical review without changing the
+pending decision. Changed source/plan requires a new exact review and fresh
+operation reference prepared internally. No human writes fingerprints or JSON.
+
+Render the returned text after execution, validation and evidence preservation,
+then STOP. A later reporting check may be passed as reporting_check; a failure
+must retain the validated recovery outcome and forbid recovery replay. Read
+existing audit/outcome evidence to report a consumed action after interruption;
+never invoke its writer again. No successful recovery closes a blocker, activates
+context, grants handback or authorizes a subsequent action.
+
+Other gates retain their existing decision records and writer permissions.
+Apply the same readable review and outcome requirements using those records;
+this bounded maintenance adapter is not a new general command dispatcher.
 
 Every ADAPT run executes exactly these steps in order. No step may be skipped. A step may be corrected at most once: one initial attempt and one corrected attempt. Record the attempts in the Stage Record of the evidence report. If the corrected attempt also fails, stop — record a blocker and route to the Director Lane; any further attempt requires new lawful authorization. This bound makes extra attempts observable and their continuation unlawful; it does not physically prevent an extra write.
 
@@ -68,6 +162,8 @@ Update the following control plane fields:
 - `CurrentPhase`, `ExecutionReadiness`: update if the phase or readiness changed
 
 **Step 13 — Stop**
+Deliver the human-facing chat response above before ending this turn. This also
+applies to every earlier stop and every role-specific completion path.
 Do not continue past Step 13. Do not begin the next action. Do not process the next handoff. The current Atomic Handoff Dispatch cycle is complete. The next agent reads the control plane and begins a new cycle.
 
 ---
