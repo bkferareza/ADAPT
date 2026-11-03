@@ -30,7 +30,7 @@ structural = _load('recovery_structural')
 rt = structural.runtime
 assembly, pre, op = rt.assembly, rt.pre, rt.op
 supervised = _load('recovery_supervised')
-VERSION = 'ADAPT-FW-0006'
+VERSION = 'ADAPT-FW-0007'
 
 
 def human_review(plan):
@@ -48,6 +48,7 @@ def human_review(plan):
             '\nThe existing blocker remains open.\nDECISION: APPROVE, REJECT or SHOW DETAILS.'
             '\nApproval requires the recorded Director and Framework Maintainer capacities;'
             ' one person holding both may approve once for both.'
+            '\nDo you approve this exact action? Execution remains blocked until approval.'
             '\nReply here, or invoke the ordinary ADAPT entry again with your response. STOP.\n')
 
 
@@ -55,19 +56,86 @@ def human_outcome(result, plan=None, reporting_error=None):
     """Keep completed recovery distinct from a later reporting failure."""
     success = result.get('recovery_status') == 'RECOVERY_VALIDATED'
     status = 'SUCCEEDED' if success else ('PARTIAL' if result.get('status') == 'INTERRUPTED' else 'BLOCKED')
+    reason = result.get('reason', 'Approval or prerequisites missing.')
+    reason = {'HUMAN_APPROVAL_REFUSED': 'Required human approval is missing, withdrawn or invalid.',
+              'PRECONDITION_OR_IO_FAILURE': 'An execution check or file operation failed; the exact cause is not established.'}.get(reason, reason)
     return ('STATUS: ' + status + '\nRECOVERY: ' + ('SUCCEEDED' if success else status) +
             '\nREPORTING: ' + ('FAILED' if reporting_error else 'SUCCEEDED') +
             '\nACTION: ' + (('Repair register structure' if plan['request']['kind'] == 'STRUCTURAL'
                               else 'Prepare recovery-only context artifacts') if plan else 'Bounded recovery') +
             '\nCHANGES: ' + (', '.join(f['path'] for f in plan['files']) if success and plan else
-                              'See preserved journal for any completed writes.' if status == 'PARTIAL' else 'None.') +
+                              'Execution was interrupted; files may have changed. The exact completed write extent '
+                              'has not been established; no unchanged-state claim is made.' if status == 'PARTIAL' else 'None.') +
+            ('\nRESULT: Register rows are now in a readable contiguous table; record contents and statuses were preserved.'
+             if success and plan and plan['request']['kind'] == 'STRUCTURAL' else
+             '\nRESULT: Recovery-only context artifacts were prepared; ordinary context was not activated.'
+             if success and plan else '') +
             '\nVALIDATION: ' + ('Recovery completed and validated.' if success else
-                                  'Action stopped: ' + result.get('reason', 'Approval or prerequisites missing.')) +
-            ('\nFinal reporting check encountered an error: ' + str(reporting_error) if reporting_error else '') +
+                                  'Action stopped: ' + reason) +
+            ('\nFinal reporting failed; the validated changes remain successful. Technical error evidence is preserved where available.' if reporting_error else '') +
             '\nREMAINING ISSUES: Existing blocker remains open; ordinary execution remains gated.' +
             '\nNEXT ACTION: ' + ('Review the reporting failure. No recovery retry is necessary.' if success and reporting_error else
+                'Have the responsible human assess the interrupted writes and preserved evidence; do not retry or resume.' if status == 'PARTIAL' else
                 'Request review of the next separate recovery action.' if success else 'Review the missing condition and preserved evidence.') +
             '\nAPPROVAL: A separate action requires its own applicable human decision. STOP.\n')
+
+
+def reporting_fallback(outcome, error, *, reentry=False):
+    """Report retained evidence without invoking the renderer or any writer.
+
+    Outcome fields remain authoritative; reporting failure supplies no additional
+    mutation or validation evidence. In particular, interruption can precede the
+    writer's completion record even when replacement already changed bytes.
+    """
+    result = dict(outcome) if isinstance(outcome, dict) else {}
+    recovery = result.get('recovery_status')
+    recorded_validation = (isinstance(result.get('final_hashes'), dict) and bool(result['final_hashes']) and
+                           all(result.get(key) for key in ('claim', 'claim_sha256', 'journal', 'journal_sha256')))
+    validated = recovery == 'RECOVERY_VALIDATED' and recorded_validation
+    status = ('SUCCEEDED' if validated else 'INTERRUPTED' if recovery == 'RECOVERY_INTERRUPTED'
+              else 'REFUSED' if recovery == 'RECOVERY_REFUSED' else 'UNKNOWN')
+    if validated:
+        changes = 'The approved changes were completed.'
+        validation = 'Recovery completed and validated.'
+        explanation = ('The operation previously succeeded; its recorded validation passed. '
+                       'The saved outcome remains authoritative. No recovery replay is necessary. '
+                       if reentry else 'Recovery succeeded and passed validation. ')
+        next_action = 'No recovery retry is necessary; do not retry recovery. Review the reporting failure.'
+    else:
+        changes = 'UNKNOWN. No unchanged-state claim is made.'
+        validation = 'UNKNOWN; complete validation is not established by the available outcome.'
+        explanation = ('The action may have partially changed the instance. The exact completed write extent '
+                       'has not been established. ' if status == 'INTERRUPTED' else
+                       'Recovery was refused. ' if status == 'REFUSED' else
+                       ('ADAPT could not verify the previous operation because its saved execution '
+                        'reference is incomplete or unreadable. The earlier action may have changed files. '
+                        if reentry and not result.get('claim') else
+                        'Available outcome evidence is missing or incomplete. The earlier action may have changed files. '))
+        if reentry:
+            explanation += ('No action was repeated. The operation remains stopped and its available '
+                            'evidence must be inspected by the responsible human. ')
+        next_action = ('Inspect the available evidence before any further action; '
+                       'do not retry or resume, or automatically roll back.')
+        if status == 'INTERRUPTED' and recorded_validation:
+            changes = 'Writer-recorded final file hashes are available; recovery was interrupted.'
+            validation = 'Recorded file validation passed; overall recovery was interrupted.'
+    text = ('STATUS: ' + ('BLOCKED' if reentry else status) + '\nRECOVERY: ' + status +
+            '\nREPORTING: FAILED\nCHANGES: ' + changes + '\nVALIDATION: ' + validation +
+            '\n' + explanation + 'Reporting failed; the reporting renderer or check failed. '
+            'Retained outcome evidence is not invalidated by reporting failure.' +
+            '\nCLAIM: ' + str(result.get('claim', 'UNKNOWN')) +
+            ('\nOPERATION: ' + str(result['operation_reference']) if 'operation_reference' in result else '') +
+            ('\nREFERENCE: ' + str(result['reference']) if 'reference' in result else '') +
+            '\nJOURNAL: ' + str(result.get('journal', 'Inspect the claim\'s recorded evidence directory.'
+                                           if result.get('claim') else 'UNKNOWN')) +
+            '\nREMAINING ISSUES: The existing blocker remains open; ordinary execution remains gated.' +
+            '\nNEXT ACTION: ' + next_action +
+            '\nAPPROVAL: A separate action requires its own applicable human decision. STOP.\n')
+    result.update(reporting_status='FAILED', reporting_error=error, action='STOP', text=text)
+    result.setdefault('status', 'BLOCKED')
+    if reentry:
+        result.update(status='BLOCKED', reason='DECISION_ALREADY_CONSUMED')
+    return result
 
 
 def need(condition, code):
@@ -242,6 +310,7 @@ class MaintenanceEntry:
         or authentication. Ambiguous language must be classified CLARIFY.
         Persisted envelopes are decision context, never reusable authorization.
         """
+        outcome, outcome_available, reentry = None, False, False
         try:
             need(self.host is self, 'BUILTIN_INTERACTION_ADAPTER_REQUIRED')
             # Validate the configured ledger boundary before persisting a review.
@@ -273,25 +342,40 @@ class MaintenanceEntry:
                     consumed = [(p, v) for p, v in consumed if v['request']['request']['task'] == action]
                 if len(consumed) == 1:
                     path, plan = consumed[0]
+                    # Consumption proves no prior mutation state. Enable the existing
+                    # uncertainty fallback before inspecting any saved execution evidence.
+                    outcome = {'status': 'BLOCKED',
+                               'operation_reference': plan['request']['request']['operation_reference'],
+                               'reference': str(ledger / (path.stem + '.reference.json'))}
+                    outcome_available, reentry = True, True
                     decision = pre.load_json(checked(path.with_suffix('.used')).read_bytes())
                     if decision['decision'] == 'REJECT':
                         text = 'This reviewed action was rejected. No recovery was attempted. Request a new review if needed. STOP.'
                     else:
                         # Writer-owned evidence, not the response envelope, establishes success.
                         reference = checked(ledger / (path.stem + '.reference.json'))
-                        text = 'This approval was already consumed. Inspect preserved evidence before any new action. Do not retry recovery. STOP.'
-                        if reference.exists():
-                            claim = checked(pre.load_json(reference.read_bytes())['claim'])
-                            outcome = claim.with_name(claim.name.replace('.claim.', '.outcome.'))
-                            if outcome.exists():
-                                self.audit(claim)
-                                saved = pre.load_json(checked(outcome).read_bytes())
-                                error_path = checked(path.with_suffix('.reporting'))
-                                reporting_error = (pre.load_json(error_path.read_bytes())['error']
-                                                   if error_path.exists() else None)
-                                text = human_outcome(saved, plan, reporting_error)
-                    return {'status': 'BLOCKED', 'action': 'STOP', 'reason': 'DECISION_ALREADY_CONSUMED',
-                            'text': text}
+                        record = pre.load_json(reference.read_bytes())
+                        if isinstance(record, dict) and isinstance(record.get('claim'), str) and record['claim']:
+                            outcome['claim'] = record['claim']
+                        need(isinstance(record, dict) and isinstance(record.get('claim'), str) and
+                             bool(record['claim']) and record.get('operation_reference') ==
+                             outcome['operation_reference'], 'INCOMPLETE_EXECUTION_REFERENCE')
+                        claim = checked(record['claim'])
+                        outcome_path = claim.with_name(claim.name.replace('.claim.', '.outcome.'))
+                        self.audit(claim)
+                        saved = pre.load_json(checked(outcome_path).read_bytes())
+                        outcome.update(saved)
+                        error_path = checked(path.with_suffix('.reporting'))
+                        reporting_error = (pre.load_json(error_path.read_bytes())['error']
+                                           if error_path.exists() else None)
+                        text = human_outcome(saved, plan, reporting_error)
+                    return dict(outcome if isinstance(outcome, dict) else {}, status='BLOCKED',
+                                action='STOP', reason='DECISION_ALREADY_CONSUMED', text=text)
+            if not plans and not locals().get('consumed'):
+                return {'status': 'BLOCKED', 'action': 'STOP', 'reason': 'NO_PENDING_REVIEW',
+                        'text': 'There is no pending reviewed action to decide. No recovery was attempted '
+                        'and no instance files changed. Start a bounded diagnostic or request a new '
+                        'review before approving any action. Ordinary execution remains gated. STOP.'}
             if len(plans) != 1:
                 return {'status': 'BLOCKED', 'action': 'STOP', 'reason': 'SELECT_ONE_REVIEWED_ACTION',
                         'text': 'Select exactly one reviewed action by task name before deciding: ' +
@@ -309,10 +393,12 @@ class MaintenanceEntry:
             literal = {'approve': 'APPROVE', 'reject': 'REJECT', 'show details': 'SHOW DETAILS',
                        'yes, approve this action': 'APPROVE', 'do not proceed': 'REJECT',
                        'please show the details': 'SHOW DETAILS'}
-            decision = literal.get(response.strip().casefold(), interpreted_decision or 'CLARIFY')
+            decision = literal.get(response.strip().casefold().removesuffix('.'), interpreted_decision or 'CLARIFY')
             need(decision in {'APPROVE', 'REJECT', 'SHOW DETAILS', 'CLARIFY'}, 'CLARIFY_RESPONSE')
             if decision == 'SHOW DETAILS':
-                return {'status': 'AWAITING_HUMAN', 'action': 'STOP', 'text': plan['text']}
+                return {'status': 'AWAITING_HUMAN', 'action': 'STOP',
+                        'text': human_review(plan) + '\nRequested technical evidence follows. '
+                        'No recovery attempted; the decision remains pending.\n' + plan['text']}
             if decision == 'CLARIFY':
                 return {'status': 'AWAITING_HUMAN', 'action': 'STOP',
                         'text': 'Please clarify: approve this reviewed action, reject it, or show details. No files changed. STOP.'}
@@ -330,9 +416,10 @@ class MaintenanceEntry:
             need(bool(capacities), 'MISSING_GOVERNANCE_CAPACITY')
             missing = [role for role in scope['authorities'] if role not in capacities]
             if missing:
-                return {'status': 'BLOCKED', 'action': 'STOP', 'reason': 'MISSING_GOVERNANCE_CAPACITY',
-                        'text': human_outcome({'reason': 'Missing approval in the governance capacity: ' +
-                            ', '.join(missing) + '. Obtain that human decision through the existing approval adapter.'})}
+                outcome = {'status': 'BLOCKED', 'action': 'STOP', 'reason': 'MISSING_GOVERNANCE_CAPACITY'}
+                outcome_available = True
+                return dict(outcome, text=human_outcome({'reason': 'Missing approval in the governance capacity: ' +
+                    ', '.join(missing) + '. Obtain that human decision through the existing approval adapter.'}))
             captured = {'decision': 'APPROVE_EXACT_ACTION', 'plan_sha256': plan['plan_sha256'],
                         'human': human, 'capacities': capacities, 'source_reference': source_reference,
                         'response': response}
@@ -343,6 +430,7 @@ class MaintenanceEntry:
                 self._authority(plan, initial=True)
                 rt._persist_new(path.with_suffix('.used'), rt._encoded(captured))
                 result = self.execute(plan)
+                outcome, outcome_available = result, True
             finally:
                 self.interaction = old_interaction
                 self.withdraw()
@@ -352,16 +440,19 @@ class MaintenanceEntry:
                 reporting_check(deepcopy(result))
             return dict(result, text=human_outcome(result, plan))
         except Exception as error:
-            if 'result' in locals() and result.get('recovery_status') == 'RECOVERY_VALIDATED':
+            if outcome_available:
                 reporting_error = type(error).__name__ + ': ' + str(error)
+                if reentry:
+                    # Keep original reference, claim and reporting bytes untouched.
+                    return reporting_fallback(outcome, reporting_error, reentry=True)
                 try:
                     rt._persist_new(checked(path.with_suffix('.reporting')),
-                                    rt._encoded({'error': reporting_error, 'claim': result['claim']}))
+                                    rt._encoded({'error': reporting_error, 'claim':
+                                        outcome.get('claim') if isinstance(outcome, dict) else None}))
                 except Exception:
                     # Writer completion/ownership still bars replay if reporting storage fails.
                     reporting_error += ' (Reporting evidence could not be saved.)'
-                return dict(result, reporting_status='FAILED',
-                            text=human_outcome(result, plan, reporting_error))
+                return reporting_fallback(outcome, reporting_error, reentry=reentry)
             code = str(error) if isinstance(error, ValueError) else 'ENTRY_REVALIDATION_FAILED'
             messages = {'SELECT_ONE_REVIEWED_ACTION': 'Select exactly one reviewed action by its task name before deciding.',
                         'FRESH_REVIEW_REQUIRED': 'The reviewed plan or source changed. Request a fresh review.',
@@ -371,9 +462,13 @@ class MaintenanceEntry:
                         'DECISION_ALREADY_CONSUMED': 'This reviewed action was already decided. Inspect its saved outcome; do not retry it.',
                         'WRONG_INSTANCE': 'The current instance does not match the reviewed target.',
                         'INSTALLED_BYTES_CHANGED': 'Installed framework files changed. Verify the installation and request a fresh review.'}
-            return {'status': 'BLOCKED', 'action': 'STOP', 'reason': code,
-                    'text': human_outcome({'reason': messages.get(code,
-                        'The action could not be verified. Request technical details about the missing prerequisite.')})}
+            blocked = {'status': 'BLOCKED', 'action': 'STOP', 'reason': code}
+            try:
+                text = human_outcome({'reason': messages.get(code,
+                    'The action could not be verified. Request technical details about the missing prerequisite.')})
+            except Exception as rendering_error:
+                return reporting_fallback(blocked, type(rendering_error).__name__ + ': ' + str(rendering_error))
+            return dict(blocked, text=text)
 
     def diagnose(self, instance, *, failure_id, failed_action, observed_error,
                  evidence=None, cause='Cause not established', request=None):

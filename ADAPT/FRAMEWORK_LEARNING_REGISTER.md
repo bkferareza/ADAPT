@@ -1,6 +1,6 @@
 # FRAMEWORK LEARNING REGISTER
 
-Current Framework Version: ADAPT-FW-0006
+Current Framework Version: ADAPT-FW-0007
 
 ## Purpose
 
@@ -178,7 +178,7 @@ Version remains ADAPT-FW-0006. No issued version or prior disposition changes.
 
 | FLC-ID | Observed In | Evidence | Novelty Dimensions | Solution-Specific Portion | Proposed Generic Change | Disposition | Decision | Introduced In | Backport | Upgrade Assessment |
 |---|---|---|---|---|---|---|---|---|---|---|
-| FLC-006 | Maintainer-confirmed human approval interaction failure, 2026-11-03 | GROUNDED: current MaintenanceEntry technical review/callback, ACTION_PROMPT contracts; simulated acceptance in TOOLS/tests/test_recovery_human_interaction.py; limitations and exact review package in VALIDATION/HUMAN_COMMUNICATION_CORRECTION_REPORT.md | EXECUTION_PATH, GOVERNANCE_COMBINATION | ADAPT-DEV Context Index repair and separate local reporting-wrapper assertion remain local; no instance changes | Bounded Governor Feature B human interaction and ECON Human Operability slice: readable review/result, durable exact review pause/re-entry, plain response through existing supervised adapter, separate recovery/reporting outcomes | — | Pending Maintainer disposition and exact release review; implementation authorized by current directive, no publication or adoption | — | — | — |
+| FLC-006 | Maintainer-confirmed human approval interaction failure, 2026-11-03 | GROUNDED: reviewed source and qualification in VALIDATION/FW0007_R3_FINAL_REVIEW_PACKAGE.md; final incorporation in VALIDATION/FW0007_RELEASE.md; original local test/review/usability evidence retained | EXECUTION_PATH, GOVERNANCE_COMBINATION | ADAPT-DEV Context Index repair and separate local reporting-wrapper assertion remain local; no instance changes | Bounded Governor Feature B human interaction and ECON Human Operability slice: readable review/result, durable exact review pause/re-entry, plain response through existing supervised adapter, separate recovery/reporting outcomes; chat-first amendment: universal ACTION_PROMPT_MASTER conversational boundary, evidence remains supporting, truthful shared fallback for immediate interrupted/refused outcomes and audited completed-action re-entry; VALIDATION/FW0007_CHAT_FIRST_COMMUNICATION_CORRECTION_REPORT.md and VALIDATION/FW0007_R1_R2_RELEASE_IMAGE_REVIEW.md; bounded actual MODE_B conversation accepted, MODE_A human usability NOT_TESTED | PROMOTED | Actual Human Framework Maintainer approval in the current Codex conversation: "Approved. Proceed", following the final FW-0007 release decision review; original response and exact proposal binding retained in .adapt-local/maintenance/fw0007-publication-20261103/FINAL_MAINTAINER_DECISION.json. Approves this bounded release and publication; no instance adoption or ADAPT-DEV mutation | ADAPT-FW-0007 | ELIGIBLE | REQUIRED |
 
 Proposed next version: ADAPT-FW-0007, subject to an exact-image Maintainer
 decision. Candidate source retains the FW-0006 runtime compatibility constant
@@ -187,3 +187,16 @@ replacement. Before publication, separately reviewed release metadata must
 advance the declaration, runtime compatibility and manifest consistently and
 qualify that exact image. No approval transfers to those unreviewed bytes.
 Governor Feature A remains separate; full Feature B, ECON and FDRCB are pending.
+
+## FLC-006 release incorporation (2026-11-03)
+
+The actual Human Framework Maintainer approved the final FW-0007 release decision
+review with "Approved. Proceed" in the current Codex conversation. FLC-006 is
+PROMOTED, Introduced In ADAPT-FW-0007, Backport ELIGIBLE, Upgrade Assessment REQUIRED.
+This supersedes the dated pending-candidate statements above prospectively.
+The single current-version declaration and active runtime/manifest compatibility
+checks are aligned with the reviewed FW-0007 image. See VALIDATION/FW0007_RELEASE.md.
+Publication completion is established by verified remote main/tag/release receipts,
+not by this incorporation alone. Existing-instance adoption remains separate.
+No ADAPT-DEV change, blocker resolution, completed repair replay or ordinary
+execution handback is authorized. Broader Governor/ECON/FDRCB work remains pending.

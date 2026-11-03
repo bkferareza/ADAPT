@@ -1,25 +1,66 @@
-# Human communication manual acceptance
+# FW-0007 actual Codex conversation acceptance
 
-Status: NOT_PERFORMED. This script is optional acceptance evidence, not an operator application or an installation/adoption procedure. Use only its disposable technical fixture. Do not point anything at ADAPT-DEV.
+Status: PASS for the actual MODE_B operator conversation on 2026-11-03. The
+operator requested details and a CP terminology explanation, approved naturally,
+received the validated result and confirmed "next step clear". Evidence is in
+`.adapt-local/maintenance/fw0007-chat-first-20261103/actual-mode-b-acceptance/`.
+MODE_A human usability remains NOT_TESTED. This is bounded operator acceptance,
+not independent QA or release approval. The MODE_B decision is consumed; never
+replay it. The earlier console trial remains supporting technical evidence only.
 
-From D:\Project\ADAPT, run:
+In ordinary Codex chat in D:\Project\ADAPT, send only:
 
-```powershell
-$env:PYTHONPATH = 'ADAPT/TOOLS/tests'
-python -B -c "from test_recovery_human_interaction import manual_session; manual_session()"
-```
+> Start the FW-0007 disposable chat acceptance test.
 
-A normal operator can perform this without an AI assistant. The harness prints the actual installed maintenance adapter review, ends that call, captures each console response, creates a new entry object and re-enters the same pending action. It uses simulated governance capacities and real typed responses; it does not establish independent identity or real operational authority.
+ADAPT must drive the remaining interaction. The operator should need no shell
+commands, JSON, hashes, evidence-file reading or prompt edits. The test changes
+only a disposable sample, using explicitly simulated Director/Maintainer
+capacities; it grants no authority over a real instance.
 
-1. Read the review. Explain in your own words what file changes and why, and whether the blocker closes. Record any terms you cannot understand.
-2. Type SHOW DETAILS. Confirm evidence appears and the action still awaits your decision.
-3. Type an uncertain response such as "maybe later". Confirm clarification and no execution.
-4. Type APPROVE (or "yes, approve this action"). Confirm the result identifies changes, validation, remaining blocker, next action and future approval requirement. No fingerprint, JSON or technical continuation prompt should be necessary.
-5. Describe any difficulty in the final feedback prompt. The harness prints the path of the actual recorded session.
-6. Run it again and type REJECT. Confirm no repair occurs. Each invocation creates a fresh disposable fixture.
+## Instructions for the hosting ADAPT assistant
 
-For MODE_A, run `python -B -c "from test_recovery_human_interaction import manual_session; manual_session('MODE_A_EXISTING_SOLUTION')"`; the automated acceptance exercises both classes. A real ordinary AI-entry usability trial must additionally invoke the installed ACTION_PROMPT_MASTER in a disposable instance with legitimate installation/identity references, stop for review, then reply in a new turn. This manual console harness does not certify a particular AI client's prompt compliance or natural-language reasoning. No protected adoption is required for this trial.
+Read the prepared fixture index at
+`.adapt-local/maintenance/fw0007-chat-first-20261103/conversation-fixtures.json`.
+Default to MODE_B; MODE_A is also prepared and may be tested in another session.
+Read the selected session JSON and its instance's installed
+`15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_MASTER.md`, the human approval gates and
+existing maintenance contracts. If the fixtures no longer match current source,
+prepare a fresh one with the test-only `prepare_conversation_fixture(mode)` in
+`TOOLS/tests/test_recovery_human_interaction.py`. Never refresh a consumed action
+or change its evidence to bypass a STOP. No protected instance is a fallback.
 
-Record actual operator identity/reference where appropriate, date, mode, transcript, difficulty, relay events, prompt edits, technical fields typed, decision turns and completion steps. State whether assistance or technical documentation was required. Attach original feedback; do not convert a synthetic pass into human acceptance or invent improvement percentages.
+Load that instance's `VALIDATION/recovery_operational.py`. Construct the existing
+MaintenanceEntry with the saved installation, ledger and `synthetic=True`. Call
+`interact(saved_request)` to start the normal bounded maintenance action. Explain
+the actual review in the conversation, including the displaced sample register
+rows, preserved history, unchanged blocker, write risk, simulated capacities and
+exact decision question. STOP this turn and await the actual operator response.
+Do not feed a simulated response or run the console harness.
 
-Release reviewers must distinguish automated adapter acceptance, manual operator self-report, independent usability evidence and independent QA. No manual session was performed by the implementing assistant.
+On a later turn reconstruct the same entry with the same session and installation.
+Pass the actual response to `interact(response=..., human='Synthetic Director',
+source_reference=...)`. This human field is the explicitly simulated fixture
+capacity, not authenticated real identity. Obtain original response provenance
+from the actual interaction and retain its original text/reference; do not
+fabricate provenance. Interpret natural language only under the installed master
+contract. Show details and clarification must preserve the pending decision.
+Rejection must leave the instance unchanged. Approval permits only the exact
+sample structural repair; it never permits recovery context assembly.
+
+After approval inspect the result and audit its claim with the existing entry.
+Explain the actual mutation, validation, remaining blocker, next separate action
+and its approval requirement in chat. STOP. Do not execute the recommendation.
+Keep the technical records available without making the human read them.
+
+Ask for brief operator feedback after the action boundary: could they understand
+the proposal, decide naturally, understand the outcome and identify the next step
+without opening files or consulting another AI? Retain the actual transcript,
+feedback, date, selected mode, details/clarification turns, assistance, prompt
+edits, technical fields typed and any difficulty outside the instance in its
+fixture directory. Do not claim successful delivery merely from adapter text.
+Do not mark HUMAN_USABILITY PASS until an actual operator completes the trial
+and their recorded feedback supports acceptance. Record failure candidly.
+Independent identity authentication and independent QA remain outside this trial.
+
+The optional legacy console harness is still available as `manual_session()` in
+the existing test module. It is not a substitute for this ordinary Codex trial.

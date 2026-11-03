@@ -10,6 +10,12 @@ Lists every action in the ADAPT framework that requires explicit human approval 
 
 ### Human action review and continuation
 
+Apply ACTION_PROMPT_MASTER.md's shared human-facing chat response contract at
+every gate. The review and result must be explained in the conversation itself;
+an evidence artifact or tool response alone is insufficient. Ask a direct decision
+question and await the actual reply. The labels below describe meaning, not
+mandatory headings; use natural language appropriate to the action.
+
 For every approval gate, default to a concise review: ISSUE (what happened),
 IMPACT (why it matters), RECOMMENDATION (the exact proposed action), CHANGES
 (affected files and meaningful effects), RISK (failure and preservation limits),
