@@ -3,26 +3,26 @@
   "framework_version": "ADAPT-FW-0002",
   "files": {
     "adapt.py": "b86eee3f0667bda819d836ed50ed5b9c6b6a51834a44f158d8540c253df4e6c8",
-    "README.md": "96cecc87429ac287c13880b5c94cb58cb8f5b84b4915acdbae4c58319e79dc70",
+    "README.md": "9f80ced1ff9a4e1661a06b0d1322da6ecd48a811fb4c5df3605a214bc6d91cae",
     "supporting_modules/__init__.py": "80955242325b35a9f4e5ad4a1a1ed6ab75d108fd72a7ed1605d5023ca2db3deb",
     "supporting_modules/instance_inventory.json": "efe3357642cdd7df00f8d4bcab13c8415e6373390b812be78169d2b52f9c0f75",
     "supporting_modules/operator.py": "ab2473795a969de4f40dc7a0baddbe5a2999fcb25300c9b0a870570432be10c6",
     "supporting_modules/state_reader.py": "aca049abc4caac9cecb99948c19202243bc305f8f035e5f4c12a0aedb6ddc05b"
   },
   "instance_files": {
-    "VALIDATION/recovery_preflight.py": "718fee05cc8d6d034c7645c8a76cdb2378d555a11d93ca7cd6bc7edb4d3ea8da",
+    "VALIDATION/recovery_preflight.py": "87086f3785656e6824a8ddc2bb12dc607a3a3eeaf9811aa67a2c33ed73eb4354",
     "VALIDATION/recovery_assembly.py": "131993a79b4745d75401c80244b021f743b3a987f4824b95f833bec4e86e9153",
     "VALIDATION/recovery_runtime.py": "8eba37224d41db0c86b1a0d08a232300a3accaa797896b47be5ea5039e799bf6",
     "VALIDATION/recovery_structural.py": "c364dc14856fa1de354e8c649d24770772c33a6bae37df340c8ada10e600e578",
     "VALIDATION/recovery_supervised.py": "8c88b15c75f10f501b27a8b1c1fb13aef99adbb35007a4e97130999475bfc0ee",
-    "VALIDATION/recovery_authority.py": "0ab67035c489c14fcd3cc569d10aa643a43d039b548efa630d54b87063e6939d",
+    "VALIDATION/recovery_authority.py": "0afff64db5bca643d3fac8747f82de592bea05cca074d51a50940e4dc2f17e5f",
     "VALIDATION/recovery_plan_review.py": "100ce0bffc5942538c00d14c1c9b5299d84c7158c8ec3a7dd9d5f89c94614da2",
     "VALIDATION/recovery_execution.py": "c51e7a16bfaa3af5c19a1eb31db96d08190436a0acfa62c7299121562265ea2c",
-    "VALIDATION/recovery_operational.py": "a897f95e1a57c933fbeddfa638b4bf3bbcaacfcd9b78b7fee5e1218ac3d2f7f4"
+    "VALIDATION/recovery_operational.py": "ec6be9c5d03d2bb8ddbbf994172b68ad09fd307584ad144f6a9b3e3323c23200"
   },
   "recovery_distribution": "HUMAN_GOVERNED_RECOVERY_REQUIRES_INSTANCE_AUTHORIZATION",
   "recovery_capabilities": {
-    "proposed_framework": "ADAPT-FW-0007",
+    "proposed_framework": "ADAPT-FW-0008",
     "authorization": "HUMAN_SUPERVISED",
     "production_execution": false,
     "adopted": false,
@@ -41,5 +41,5 @@
     "operational_entry": "NORMAL_ADAPT_INTERACTION_EXPLICIT_HUMAN_APPROVAL",
     "technical_writer_available": true
   },
-  "release_framework_version": "ADAPT-FW-0007"
+  "release_framework_version": "ADAPT-FW-0008"
 }

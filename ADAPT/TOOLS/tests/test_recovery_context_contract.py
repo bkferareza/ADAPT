@@ -11,7 +11,7 @@ import re
 import tempfile
 import unittest
 
-from fixtures import FRAMEWORK, QUALIFICATION, fresh_instance, distribution
+from fixtures import FRAMEWORK, QUALIFICATION, fresh_instance, distribution, framework_version
 
 
 STARTERS = FRAMEWORK / "CANONICAL_STARTERS"
@@ -135,7 +135,7 @@ class RecoveryContextContractTests(unittest.TestCase):
         self.assertIn("Every Context Steward action follows the 13-step Atomic Handoff Dispatch protocol", steward)
         self.assertIn("For ordinary context supporting an approved Onboard request", steward)
         register = (FRAMEWORK / "FRAMEWORK_LEARNING_REGISTER.md").read_text(encoding="utf-8")
-        self.assertIn("Current Framework Version: ADAPT-FW-0006", register)
+        self.assertIn("Current Framework Version: " + framework_version(), register)
         owners = [p for p in STARTERS.rglob("*.md") if TITLE in p.read_text(encoding="utf-8")]
         self.assertEqual([STARTERS / OWNER], owners)
 

@@ -152,7 +152,7 @@ def validate(instance, evidence_root, packet):
         # Version text alone never establishes installed capability.
         raw(root, GOVERNANCE)
         installed_version = op.headers(op.text(root, GOVERNANCE), ["VERSION"])["VERSION"]
-        if installed_version != "ADAPT-FW-0007" or not {"installation", "release", "adoption"} <= packet["evidence"].keys():
+        if installed_version != "ADAPT-FW-0008" or not {"installation", "release", "adoption"} <= packet["evidence"].keys():
             raise Refusal("CAPABILITY", "No supported effective FW-0007 installation/adoption evidence")
 
         evidence = {}

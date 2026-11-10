@@ -1,6 +1,10 @@
 # FRAMEWORK LEARNING REGISTER
 
-Current Framework Version: ADAPT-FW-0007
+Current Framework Version: ADAPT-FW-0008
+
+Release Image Status: PROSPECTIVE_ISSUANCE_IMAGE_NOT_ISSUED
+Issued Baseline: ADAPT-FW-0007
+Issuance Status: NOT_PERFORMED
 
 ## Purpose
 
@@ -200,3 +204,56 @@ Publication completion is established by verified remote main/tag/release receip
 not by this incorporation alone. Existing-instance adoption remains separate.
 No ADAPT-DEV change, blocker resolution, completed repair replay or ordinary
 execution handback is authorized. Broader Governor/ECON/FDRCB work remains pending.
+
+
+## Prospective recovery ledger continuity correction (2026-11-09)
+
+Live register checked: FLC-001 through FLC-006 exist; FLC-007 is next.
+Director-origin Rule 14 Purpose A receipt completed and stopped previously.
+The recorded Human Director and Human Framework Maintainer response "Approve"
+authorizes pending registration and bounded development on this invocation.
+Receipt: .adapt-local/maintenance/recovery-continuity-review-20261109/development/FRAMEWORK_LEARNING_RECEIPT.json;
+review fingerprint: 63ed4f608cd9e22d69f8d449660f75f831247a9caaa81b30e6ee10d1bfcd7bb4.
+Current issued version remains ADAPT-FW-0007. No promotion or adoption is authorized.
+
+| FLC-ID | Observed In | Evidence | Novelty Dimensions | Solution-Specific Portion | Proposed Generic Change | Disposition | Decision | Introduced In | Backport | Upgrade Assessment |
+|---|---|---|---|---|---|---|---|---|---|---|
+| FLC-007 | ADAPT-DEV completed recovery followed by separately approved FW-0007 adoption, 2026-11-09 | GROUNDED: hash-bound Rule 14 external receipt, REVIEW.json, BOUNDED_PROPOSAL.md and findings.json under .adapt-local/maintenance/recovery-continuity-review-20261109; source and authority verified before registration | EXECUTION_PATH, VALIDATION_MECHANISM, GOVERNANCE_COMBINATION | ADAPT-DEV Context Index repair, DEC-009/DEC-010, humans, blocked state and immutable recovery/adoption evidence remain local | Preserve historical recovery validation; verify exact ordered separately authorized adoption transitions and complete inventory continuity before subsequent recovery admission, without bypassing interrupted recovery or replay protections | PROMOTED | Actual Human Framework Maintainer response "Approve" to the final FLC-007 disposition and bounded FW-0008 image review in this conversation; .adapt-local/maintenance/fw0008-release-image-20261109/HUMAN_MAINTAINER_DECISION.json. Prospective incorporation and candidate qualification only; exact-image release decision pending | ADAPT-FW-0008 | ELIGIBLE | REQUIRED |
+
+
+## FLC-007 prospective promotion and FW-0008 candidate preparation (2026-11-09)
+
+The Human Framework Maintainer approved the final disposition review with "Approve".
+FLC-007 is PROMOTED for prospective incorporation in the unissued FW-0008 candidate,
+Backport ELIGIBLE and Upgrade Assessment REQUIRED. Earlier pending statements are
+historical. Current issued baseline remains ADAPT-FW-0007. The isolated candidate
+contains its own FW-0008 declaration for exact-image qualification only. Exact-image
+release approval has not been supplied. No publication, existing-instance adoption,
+recovery or operational handback is authorized. Original failed validation evidence
+is retained unchanged under the recovery-continuity review development directory.
+
+## FW-0008 prospective issuance metadata (2026-11-10)
+
+This is a separately prepared issuance-metadata revision, not completed issuance.
+The FW-0008 declaration identifies this proposed image; the issued baseline remains
+ADAPT-FW-0007. FLC-007 remains PROMOTED for prospective incorporation, Backport
+ELIGIBLE and Upgrade Assessment REQUIRED. No candidate is newly promoted here.
+
+The actual Human Framework Maintainer approved the original exact candidate for
+issuance review, bound to archive SHA256
+305a15ae5af86064bf32336ea218717ef3d55bca99b167d3185b1784db2d07f2.
+That approval and its original source bytes remain preserved. The subsequent
+actual response beginning "Approved." authorizes preparation and verification
+of this separate revision in only FRAMEWORK_LEARNING_REGISTER.md and
+VALIDATION/FW0008_RELEASE.md. It grants no actual issuance or Git authority.
+Original response and scope: .adapt-local/maintenance/fw0008-issuance-metadata-revision-20261110/PREPARATION_AUTHORIZATION.json.
+
+The dated approval-outstanding statements above describe the earlier image and
+are preserved as history. Approval of that image does not transfer to these
+revised bytes. Final exact-image approval of this revision remains pending.
+VALIDATION/FW0008_RELEASE.md states the prospective incorporation scope and
+limitations; the external revision inventory and verification bind its exact bytes.
+Runtime code, tests, canonical contracts, manifest and payload bytes are unchanged
+from the original approved image. No issuance, publication, instance adoption,
+recovery, operational handback or Company modification has occurred under this
+preparation authority. STOP at the final exact-image decision.

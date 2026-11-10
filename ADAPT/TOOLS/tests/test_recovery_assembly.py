@@ -7,7 +7,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from fixtures import FRAMEWORK, QUALIFICATION
+from fixtures import FRAMEWORK, QUALIFICATION, framework_version
 import test_recovery_preflight as existing
 
 spec = importlib.util.spec_from_file_location("assembly", FRAMEWORK / "VALIDATION/recovery_assembly.py")
@@ -281,7 +281,7 @@ class AssemblyTests(unittest.TestCase):
         self.refused()
 
     def test_fw0005_capability_rejected(self):
-        self.fixture.change(pre.GOVERNANCE, lambda s: s.replace("VERSION: ADAPT-FW-0006", "VERSION: ADAPT-FW-0005"))
+        self.fixture.change(pre.GOVERNANCE, lambda s: s.replace("VERSION: " + framework_version(), "VERSION: ADAPT-FW-0005"))
         result = self.refused()
         self.assertEqual("UNSUPPORTED_CAPABILITY", result["preflight"]["status"])
 
