@@ -7,7 +7,7 @@ import unittest
 from unittest.mock import patch
 
 import test_recovery_preflight as fixture_module
-from fixtures import FRAMEWORK
+from fixtures import FRAMEWORK, framework_version
 
 spec = importlib.util.spec_from_file_location("authority", FRAMEWORK / "VALIDATION/recovery_authority.py")
 authority = importlib.util.module_from_spec(spec)
@@ -69,7 +69,7 @@ class AuthorityTests(unittest.TestCase):
         result = self.verify()
         self.assertEqual("PASS", result["structural_status"], result)
         self.assertEqual("UNVERIFIED", result["status"])
-        self.assertEqual("ADAPT-FW-0006", result["claimed_effective_release"])
+        self.assertEqual(framework_version(), result["claimed_effective_release"])
 
     def test_AV02_missing_original_approval(self):
         del self.packet["evidence"]["original_approval"]
@@ -233,7 +233,7 @@ class AuthorityTests(unittest.TestCase):
 
     def test_fw0005_and_changed_installed_contract(self):
         self.fixture.change(authority.pre.GOVERNANCE,
-                            lambda s: s.replace("VERSION: ADAPT-FW-0006", "VERSION: ADAPT-FW-0005"))
+                            lambda s: s.replace("VERSION: " + framework_version(), "VERSION: ADAPT-FW-0005"))
         self.verify("EFFECTIVE_RELEASE_IDENTITY")
         self.verify("INSTALLATION_EVIDENCE")
 

@@ -8,7 +8,7 @@ import sys
 import tempfile
 import unittest
 
-from fixtures import FRAMEWORK, fresh_instance
+from fixtures import FRAMEWORK, fresh_instance, framework_version
 
 spec = importlib.util.spec_from_file_location("preflight", FRAMEWORK / "VALIDATION/recovery_preflight.py")
 pre = importlib.util.module_from_spec(spec)
@@ -24,8 +24,6 @@ class PreflightTests(unittest.TestCase):
         self.external = self.base / "evidence"
         self.external.mkdir()
         fresh_instance(self.root)
-        for ref in (pre.GOVERNANCE,):
-            self.change(ref, lambda s: s.replace("VERSION: ADAPT-FW-0005", "VERSION: ADAPT-FW-0006"))
         self.change(pre.DIRECTOR, lambda s: s.replace("{{DIRECTOR_IDENTITY}}", "Synthetic Director"))
         self.change(pre.op.CP, lambda s: s.replace("| Blocked | NO |", "| Blocked | YES |")
                     .replace("| ActiveBlockers | NONE |", "| ActiveBlockers | BLK-901 |")
@@ -93,10 +91,10 @@ class PreflightTests(unittest.TestCase):
         p = self.packet
         binding = {key: p[key] for key in ("target", "purpose", "task", "executor", "writes", "ids", "completion")}
         for name in ("release", "adoption"):
-            self.evidence(name, {"synthetic": True, "target": p["target"], "version": "ADAPT-FW-0006",
+            self.evidence(name, {"synthetic": True, "target": p["target"], "version": framework_version(),
                                  "effective": True, "maintainer": "Synthetic Maintainer"})
         self.evidence("installation", {"format": "synthetic-v1", "synthetic": True, "target": p["target"],
-            "version": "ADAPT-FW-0006", "capabilities": ["rule14-entry", "purpose-b-assembly"],
+            "version": framework_version(), "capabilities": ["rule14-entry", "purpose-b-assembly"],
             "effective": True, "maintainer": "Synthetic Maintainer",
             "release": p["evidence"]["release"], "adoption": p["evidence"]["adoption"],
             "contracts": {r: pre.digest((self.root / r).read_bytes()) for r in
@@ -175,7 +173,7 @@ class PreflightTests(unittest.TestCase):
         self.check(code="RETRIES")
 
     def test_fw0005_even_with_claimed_adoption_fails(self):
-        self.change(pre.GOVERNANCE, lambda s: s.replace("VERSION: ADAPT-FW-0006", "VERSION: ADAPT-FW-0005"))
+        self.change(pre.GOVERNANCE, lambda s: s.replace("VERSION: " + framework_version(), "VERSION: ADAPT-FW-0005"))
         self.check("UNSUPPORTED_CAPABILITY", "CAPABILITY")
 
     def test_read_only_api_and_cli_success_and_refusal(self):

@@ -1,4 +1,4 @@
-﻿"""Prospective FW-0006 HUMAN_SUPERVISED operational maintenance entry.
+"""Prospective FW-0006 HUMAN_SUPERVISED operational maintenance entry.
 
 Human decisions arrive through the normal ADAPT interaction, separately from
 packet data. MaintenanceEntry prepares the existing authorization evidence; the
@@ -30,7 +30,7 @@ structural = _load('recovery_structural')
 rt = structural.runtime
 assembly, pre, op = rt.assembly, rt.pre, rt.op
 supervised = _load('recovery_supervised')
-VERSION = 'ADAPT-FW-0007'
+VERSION = 'ADAPT-FW-0008'
 
 
 def human_review(plan):
@@ -168,6 +168,187 @@ def snapshot(root):
 
 def file(root, ref):
     return checked(pre.safe(root, ref))
+
+
+def framework_transition(reference, target, ledger, dependencies=None):
+    """Read a hash-bound index of existing adoption evidence; never install.
+
+    The index adds no approval authority. Original response, reviewed operations,
+    issued bytes and completed installation must independently agree. All reads
+    become exact plan dependencies, including backup and issued-source images.
+    """
+    dependencies = {} if dependencies is None else dependencies
+
+    def read(path, digest=None):
+        path = checked(path)
+        need(not path.is_relative_to(checked(target['root'])) and
+             not path.is_relative_to(checked(ledger)), 'TRANSITION_EVIDENCE_BOUNDARY')
+        data = path.read_bytes()
+        actual = pre.digest(data)
+        need(digest is None or actual == digest, 'TRANSITION_EVIDENCE_CHANGED')
+        key = path.as_posix().casefold()
+        need(key not in dependencies or dependencies[key] == actual, 'TRANSITION_DEPENDENCY_CONFLICT')
+        dependencies[key] = actual
+        return data
+
+    def record(ref):
+        need(set(ref) == {'path', 'sha256'}, 'EXACT_TRANSITION_REFERENCE')
+        return pre.load_json(read(ref['path'], ref['sha256']))
+
+    index = record(reference)
+    need(index['target'] == target and index['ledger'] == str(checked(ledger)), 'TRANSITION_TARGET_OR_LEDGER')
+    review, approval, plan = (record(index[k]) for k in ('review', 'approval', 'plan'))
+    bound = review['bound_artifacts']
+    fingerprint = assembly.fingerprint(bound)
+    need(review['fingerprint'] == approval['fingerprint'] == fingerprint and
+         review['review_id'] == approval['review_id'] == plan['review_id'] and
+         review['review_revision'] == approval['review_revision'] == plan['review_revision'],
+         'TRANSITION_REVIEW_BINDING')
+    review_root = checked(index['review']['path']).parent
+    bound_paths = {}
+    for ref, digest in bound.items():
+        # Historical reviews may explicitly bind ../ evidence; resolve it once,
+        # then apply the same alias, external-boundary and hash checks to it.
+        path = checked((review_root / ref).resolve())
+        need(str(path).casefold() not in bound_paths, 'ALIASED_TRANSITION_REVIEW')
+        read(path, digest)
+        bound_paths[str(path).casefold()] = digest
+    need(bound_paths.get(str(checked(index['plan']['path'])).casefold()) == index['plan']['sha256'],
+         'UNREVIEWED_TRANSITION_PLAN')
+    response = read(index['response']['path'], index['response']['sha256']).decode('utf-8-sig')
+    need(approval['decision'] == 'APPROVED' and approval['capacity'] == 'Human Framework Maintainer' and
+         bool(approval['human_response_verbatim'].strip()) and
+         response == approval['human_response_verbatim'] and bool(approval['source_reference'].strip()),
+         'TRANSITION_HUMAN_APPROVAL')
+    need(plan['target'] == target['root'] and set(approval['scope_paths']) == set(review['scope_paths']) ==
+         {c['path'] for c in plan['changes']} and len(plan['changes']) == len(approval['scope_paths']),
+         'TRANSITION_SCOPE')
+    before, after = (record(index[k]) for k in ('before_inventory', 'after_inventory'))
+    prefix = index['inventory_prefix']
+    need(prefix in {'', 'ADAPT/'}, 'TRANSITION_INVENTORY_PREFIX')
+    backup = checked(index['backup_root'])
+    need(snapshot(backup) == before, 'TRANSITION_BACKUP_MISMATCH')
+    for ref, digest in before.items():
+        read(file(backup, ref), digest)
+    # Validate complete inventory names, including paths not replaced.
+    for inventory in (before, after):
+        aliases = set()
+        for ref, digest in inventory.items():
+            path = file(backup, ref)
+            need(ref == path.relative_to(backup).as_posix() and ref.casefold() not in aliases and
+                 isinstance(digest, str) and len(digest) == 64, 'TRANSITION_INVENTORY_INVALID')
+            aliases.add(ref.casefold())
+    projected = dict(before)
+    operation_root = checked(index['operation_root'])
+    source_root = checked(index['source_root'])
+    source_inventory, revision, release = (record(index[k]) for k in
+                                         ('source_inventory', 'source_revision', 'release'))
+    need(revision['version'] == index['to_version'] == release['tag_name'] ==
+         plan['source']['tag'] and revision['commit'] == plan['source']['commit'] ==
+         release['target_commitish'] and release['id'] == plan['source']['release_id'] and
+         release.get('draft') is False and release.get('prerelease') is False,
+         'TRANSITION_ISSUED_SOURCE')
+    for key in ('source_inventory', 'source_revision', 'release'):
+        need(bound_paths.get(str(checked(index[key]['path'])).casefold()) == index[key]['sha256'],
+             'UNREVIEWED_ISSUED_SOURCE')
+    need(snapshot(source_root) == source_inventory, 'TRANSITION_SOURCE_INVENTORY')
+    for ref, digest in source_inventory.items():
+        read(file(source_root, ref), digest)
+    source_framework = file(source_root, 'ADAPT')
+    source_manifest = pre.load_json(read(file(source_framework, 'TOOLS/MANIFEST.json')))
+    need(source_manifest['release_framework_version'] == index['to_version'], 'TRANSITION_SOURCE_VERSION')
+    for ref, digest in {**{'TOOLS/' + p: h for p, h in source_manifest['files'].items()},
+                        **source_manifest['instance_files']}.items():
+        need(pre.digest(read(file(source_framework, ref))) == digest, 'TRANSITION_SOURCE_MANIFEST')
+    intent, completion, validation, distribution = (record(index[k]) for k in
+                             ('intent', 'completion', 'validation', 'distribution'))
+    need(intent['status'] == 'AUTHORIZED_ONE_SHOT' and intent['fingerprint'] == fingerprint and
+         intent['changes'] == plan['changes'] and completion['status'] == 'COMPLETED' and
+         completion['fingerprint'] == fingerprint and completion['installation_validation'] == 'PASS' and
+         completion['issued_framework'] == index['to_version'] and
+         completion['commit'] == revision['commit'] and completion['failures'] == 0 and
+         completion['errors'] == 0 and validation['status'] == 'PASS' and
+         distribution['verified'] is True and distribution['files'] == source_manifest['files'] and
+         distribution['instance_files'] == source_manifest['instance_files'], 'TRANSITION_INCOMPLETE_INSTALLATION')
+    images = {}
+    for sequence, change in enumerate(plan['changes'], 1):
+        ref = change['path']
+        need(change['operation'] == 'replace' and projected.get(prefix + ref) == change['before_sha256'],
+             'TRANSITION_BEFORE_IMAGE')
+        old = read(file(operation_root / 'actual-before-images', ref), change['before_sha256'])
+        new = read(file(operation_root / 'actual-after-images', ref), change['after_sha256'])
+        need(read(file(review_root, change['after_image']), change['after_sha256']) == new,
+             'TRANSITION_REVIEWED_IMAGE')
+        one_intent = pre.load_json(read(file(operation_root, f'intent-{sequence:02d}.json')))
+        done = pre.load_json(read(file(operation_root, f'completion-{sequence:02d}.json')))
+        need(one_intent == change and done == dict(change, status='PASS',
+             actual_before_sha256=change['before_sha256'], actual_after_sha256=change['after_sha256']),
+             'TRANSITION_OPERATION_COMPLETION')
+        need(pre.digest(old) == before[prefix + ref], 'TRANSITION_BACKUP_IMAGE')
+        images[ref] = (old, new)
+        if ref != '02_DIRECTOR_LANE/DECISION_LOG.md':
+            canonical = ref.split('/')[0] in {'00_FRAMEWORK', '07_GUARDRAILS', '08_TEMPLATES',
+                                              '15_COMMANDS_AND_DRIVERS'}
+            need(canonical or ref == 'TOOLS/MANIFEST.json' or
+                 ref in source_manifest['instance_files'] or
+                 ref.removeprefix('TOOLS/') in source_manifest['files'] and ref.startswith('TOOLS/'),
+                 'TRANSITION_NON_FRAMEWORK_WRITE')
+            issued = read(file(source_framework, ('CANONICAL_STARTERS/' if canonical else '') + ref))
+            def body(data):
+                lines = data.decode('utf-8-sig').splitlines()
+                for i in range(min(8, len(lines))):
+                    if lines[i].partition(':')[0] in {'PROJECT', 'VERSION', 'INITIALIZED', 'LAST_UPDATED'}:
+                        lines[i] = lines[i].partition(':')[0] + ': <instance header>'
+                return lines
+            need(body(new) == body(issued) if canonical else new == issued, 'TRANSITION_UNISSUED_IMAGE')
+        projected[prefix + ref] = change['after_sha256']
+    need(projected == after, 'TRANSITION_UNEXPLAINED_INVENTORY')
+    decision = '02_DIRECTOR_LANE/DECISION_LOG.md'
+    old, new = images[decision]
+    row = read(index['decision_row']['path'], index['decision_row']['sha256'])
+    need(bound_paths.get(str(checked(index['decision_row']['path'])).casefold()) == index['decision_row']['sha256']
+         and row.startswith(b'| ' + plan['decision_id'].encode() + b' |') and row.endswith(b'\n') and
+         len(row.splitlines()) == 1 and new.count(row) == 1 and new.replace(row, b'', 1) == old,
+         'TRANSITION_DECISION_HISTORY')
+    columns = ['DEC-ID', 'Decision', 'Rationale', 'Made By', 'Date', 'Affects',
+               'Alternatives Considered', 'Status', 'Notes']
+    prior_rows = op.table(old.decode('utf-8-sig'), 'Decisions', columns)
+    final_rows = op.table(new.decode('utf-8-sig'), 'Decisions', columns)
+    need(len(final_rows) == len(prior_rows) + 1 and
+         [r for r in final_rows if r['DEC-ID'] != plan['decision_id']] == prior_rows and
+         sum(r['DEC-ID'] == plan['decision_id'] for r in final_rows) == 1 and
+         completion['adoption_decision'] == plan['decision_id'], 'TRANSITION_DECISION_BINDING')
+    def version(data):
+        return op.headers('\n'.join(data.decode('utf-8-sig').splitlines()), ['VERSION'])['VERSION']
+    old_governance = read(file(backup, prefix + pre.GOVERNANCE))
+    new_governance = images.get(pre.GOVERNANCE, (old_governance, old_governance))[1]
+    need(version(old_governance) == index['from_version'] and version(new_governance) == index['to_version'] and
+         index['from_version'].startswith('ADAPT-FW-') and index['to_version'].startswith('ADAPT-FW-') and
+         int(index['to_version'][9:]) > int(index['from_version'][9:]), 'TRANSITION_VERSION_CHAIN')
+    # Installed distribution includes unchanged payloads too, not just replacements.
+    installed = {p[len(prefix):]: h for p, h in after.items() if p.startswith(prefix)}
+    for ref, digest in {**{'TOOLS/' + p: h for p, h in source_manifest['files'].items()},
+                        **source_manifest['instance_files']}.items():
+        need(installed.get(ref) == digest, 'TRANSITION_INSTALLED_MANIFEST')
+    need(installed['TOOLS/MANIFEST.json'] == pre.digest(read(file(source_framework, 'TOOLS/MANIFEST.json'))),
+         'TRANSITION_INSTALLED_MANIFEST')
+    return {'before': {p[len(prefix):]: h for p, h in before.items() if p.startswith(prefix)},
+            'after': installed, 'from_version': index['from_version'], 'to_version': index['to_version']}
+
+
+def recovery_continuity(before, after, installation, target, ledger, dependencies=None):
+    """Fold exactly the supplied ordered transitions; equality is still required."""
+    current, version, seen = dict(before), None, set()
+    for reference in installation.get('framework_transitions', []):
+        need(reference['sha256'] not in seen, 'DUPLICATE_FRAMEWORK_TRANSITION')
+        seen.add(reference['sha256'])
+        transition = framework_transition(reference, target, ledger, dependencies)
+        need(current == transition['before'] and
+             (version is None or version == transition['from_version']), 'FRAMEWORK_TRANSITION_CHAIN')
+        current, version = transition['after'], transition['to_version']
+    need(current == after, 'CURRENT_COMPLETED_STATE_MISMATCH')
+    need(version is None or version == installation['version'], 'TRANSITION_INSTALLATION_VERSION')
+    return {'status': 'CONTINUITY_VALID', 'transitions': len(seen), 'operational_authority': False}
 
 
 def _checkpoint(event, sequence):
@@ -649,6 +830,11 @@ class MaintenanceEntry:
             rendered = self._context(root, external, packet, installation['scope'], binding['operation_reference'])
             operations = rendered['operations']
         need(snapshot(root) == before, 'SOURCE_CHANGED_DURING_PLAN')
+        for reference in installation.get('framework_transitions', []):
+            framework_transition(reference, binding['target'], ledger, evidence)
+        # Bind the already existing ownership/evidence prefix into this review.
+        # New slots remain exclusive-create; no historical record is rewritten.
+        evidence.update(self._history_dependencies(root, ledger))
         files = []
         for ref in dict.fromkeys(o['path'] for o in operations):
             path = file(root, ref)
@@ -719,12 +905,15 @@ class MaintenanceEntry:
             slots = sorted(target_ledger.glob('*.claim.json'))
             # Every prior slot must have an exact completed, independently
             # auditable outcome. An uncertain prefix blocks all later actions.
-            for index, claim in enumerate(slots):
-                need(claim.name == f'{index:08d}.claim.json', 'OWNERSHIP_SEQUENCE_MISMATCH')
-                self.audit(claim)
-            if slots:
-                previous = pre.load_json(slots[-1].with_name(slots[-1].name.replace('.claim.', '.outcome.')).read_bytes())
-                need(previous['final_hashes'] == plan['baseline'], 'PRIOR_COMPLETION_STATE_CHANGED')
+            self._history(root, ledger, installation, plan['baseline'])
+            history_dependencies = self._history_dependencies(root, ledger)
+            need(all(plan['evidence_hashes'].get(p) == h for p, h in history_dependencies.items()),
+                 'UNREVIEWED_RECOVERY_HISTORY')
+            for path, digest in plan['evidence_hashes'].items():
+                need(pre.digest(checked(path).read_bytes()) == digest, 'SOURCE_EVIDENCE_CHANGED')
+            need(snapshot(root) == plan['baseline'] and
+                 supervised._exact(self._installation(plan['request']['request']['target'])[1], installation),
+                 'DEPLOYMENT_CHANGED')
             claim = checked(target_ledger / f'{len(slots):08d}.claim.json')
             # Fixed deployment-wide namespace: changing target/evidence directories
             # cannot make an operation reference reusable.
@@ -759,6 +948,17 @@ class MaintenanceEntry:
                 need(supervised._exact(self._installation(plan['request']['request']['target'])[1], installation),
                      'DEPLOYMENT_CHANGED')
                 self._authority(plan)
+                need(sorted(target_ledger.glob('*.claim.json')) == slots + [claim], 'OWNERSHIP_SEQUENCE_CHANGED')
+                # Revalidate full evidence inventories as well as the bound file
+                # hashes: a newly added backup/source file is also drift.
+                for transition in installation.get('framework_transitions', []):
+                    framework_transition(transition, plan['request']['request']['target'], ledger)
+                for prior in slots:
+                    prior_record = pre.load_json(prior.read_bytes())
+                    need(not (checked(prior_record['evidence']) / 'interruption.json').exists(),
+                         'INTERRUPTED_OWNERSHIP')
+                    for transition in prior_record['plan']['installation'].get('framework_transitions', []):
+                        framework_transition(transition, plan['request']['request']['target'], ledger)
                 for path, digest in plan['evidence_hashes'].items():
                     need(pre.digest(checked(path).read_bytes()) == digest, 'SOURCE_EVIDENCE_CHANGED')
             for operation in plan['operations']:
@@ -838,8 +1038,75 @@ class MaintenanceEntry:
                     pass
         return result
 
+    def _history_dependencies(self, root, ledger):
+        dependencies = {}
+        target_ledger = checked(ledger / pre.digest(str(root).casefold().encode()))
+        for path in target_ledger.rglob('*') if target_ledger.exists() else []:
+            if checked(path).is_file():
+                dependencies[path.as_posix().casefold()] = pre.digest(path.read_bytes())
+        for claim in target_ledger.glob('*.claim.json'):
+            record = pre.load_json(claim.read_bytes())
+            reference = checked(record['reference'])
+            dependencies[reference.as_posix().casefold()] = pre.digest(reference.read_bytes())
+            for path, digest in record['plan']['evidence_hashes'].items():
+                need(pre.digest(checked(path).read_bytes()) == digest, 'HISTORICAL_EVIDENCE_CHANGED')
+                dependencies[path] = digest
+        return dependencies
+
+    def _history(self, root, ledger, installation, current):
+        target = {'root': str(root), 'identity': op.state(root)['ProjectName']}
+        folder = checked(ledger / pre.digest(str(root).casefold().encode()))
+        slots = sorted(folder.glob('*.claim.json'))
+        # Outcomes without claims and noncontiguous ownership are never ignored.
+        need({p.stem.split('.')[0] for p in folder.glob('*.outcome.json')} ==
+             {p.stem.split('.')[0] for p in slots}, 'INCOMPLETE_OWNERSHIP')
+        previous, consumed = None, []
+        for sequence, claim in enumerate(slots):
+            need(claim.name == f'{sequence:08d}.claim.json', 'OWNERSHIP_SEQUENCE_MISMATCH')
+            record = pre.load_json(claim.read_bytes())
+            plan = record['plan']
+            need(plan['request']['request']['target'] == target and
+                 record['reference'] == str(ledger / (pre.digest(
+                 plan['request']['request']['operation_reference'].encode()) + '.reference.json')) and
+                 record['evidence'] == str(folder / f'{sequence:08d}'), 'FIXED_LEDGER_OWNERSHIP')
+            result = self.audit_historical(claim)
+            if previous is not None:
+                refs = plan['installation'].get('framework_transitions', [])
+                if previous == plan['baseline']:
+                    need(not refs or refs == consumed, 'UNEXPLAINED_FRAMEWORK_TRANSITIONS')
+                else:
+                    recovery_continuity(previous, plan['baseline'], plan['installation'], target, ledger)
+            else:
+                need(not plan['installation'].get('framework_transitions'), 'TRANSITION_WITHOUT_RECOVERY_ORIGIN')
+            previous, consumed = result['final_hashes'], plan['installation'].get('framework_transitions', [])
+        refs = installation.get('framework_transitions', [])
+        if previous is None:
+            need(not refs, 'TRANSITION_WITHOUT_RECOVERY_ORIGIN')
+        elif previous == current:
+            need(not refs or refs == consumed, 'UNEXPLAINED_FRAMEWORK_TRANSITIONS')
+            for reference in refs:
+                framework_transition(reference, target, ledger)
+        else:
+            recovery_continuity(previous, current, installation, target, ledger)
+        return slots
+
     def audit(self, claim):
-        """Independent persisted-plan/journal/outcome consistency check; no writes."""
+        """Default audit also proves every boundary through today's inventory."""
+        result = self.audit_historical(claim)
+        record = pre.load_json(checked(claim).read_bytes())
+        target = record['plan']['request']['request']['target']
+        root, ledger = checked(target['root']), checked(claim).parent.parent
+        need(checked(claim).parent == ledger / pre.digest(str(root).casefold().encode()), 'FIXED_LEDGER_OWNERSHIP')
+        installation = {'version': record['plan']['installation']['version']}
+        if self.host is not None:
+            actual_root, installation, actual_ledger = self._installation(target)
+            need(actual_root == root and actual_ledger == ledger, 'FIXED_LEDGER_OWNERSHIP')
+        self._history(root, ledger, installation, snapshot(root))
+        result['current_state_checked'] = True
+        return result
+
+    def audit_historical(self, claim):
+        """Diagnostic only: validate preserved completion, never current admission."""
         claim = checked(claim)
         claim_bytes = claim.read_bytes()
         record = pre.load_json(claim_bytes)
@@ -856,6 +1123,7 @@ class MaintenanceEntry:
              record['authorization']['maintenance_scope'] == plan['installation']['scope'],
              'PERSISTED_AUTHORIZATION_MISMATCH')
         external = checked(record['evidence'])
+        need(not (external / 'interruption.json').exists(), 'INTERRUPTED_OWNERSHIP')
         need(outcome['status'] == 'TECHNICAL_EXECUTION_ACCEPTED' and outcome['claim'] == str(claim),
              'INTERRUPTED_OWNERSHIP')
         need(pre.load_json((external / 'completion.json').read_bytes()) == outcome, 'OUTCOME_MISMATCH')
@@ -885,9 +1153,7 @@ class MaintenanceEntry:
         need(outcome['final_hashes'] == expected, 'FINAL_MANIFEST_MISMATCH')
         for path, digest in outcome.get('delivery_hashes', {}).items():
             need(pre.digest(checked(path).read_bytes()) == digest, 'DELIVERY_MISMATCH')
-        latest = sorted(claim.parent.glob('*.claim.json'))[-1] == claim
-        if latest:
-            need(snapshot(checked(plan['request']['request']['target']['root'])) == expected,
-                 'CURRENT_COMPLETED_STATE_MISMATCH')
+        for path, digest in plan['evidence_hashes'].items():
+            need(pre.digest(checked(path).read_bytes()) == digest, 'HISTORICAL_EVIDENCE_CHANGED')
         return {'status': 'TECHNICAL_EXECUTION_ACCEPTED', 'final_hashes': expected,
-                'current_state_checked': latest, 'action': 'STOP'}
+                'current_state_checked': False, 'operational_authority': False, 'action': 'STOP'}

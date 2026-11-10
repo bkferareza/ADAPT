@@ -200,7 +200,7 @@ edit an approved plan. Each action needs a new task/operation reference, review
 and authorization. Structural repair and context assembly are two invocations.
 The second reads the repaired bytes after validated completion of the first.
 A successful prior slot is retained, with its journal and outcome; a later slot
-requires an exact audit and matching current prior final hashes. Any interrupted,
+requires an exact historical audit and verified current inventory continuity. Any interrupted,
 conflicting or mismatched slot blocks further entry for that target. Deployment-
 wide exclusive operation-reference claims forbid reuse, including after refusal
 following consumption. Never delete claims, outcomes, journals or locks, steal
@@ -219,3 +219,45 @@ Distribution never enables recovery. After lawful FW-0006 publication, install
 through the existing exact-scope installation/adoption process, verify source and
 installed bytes and contracts, then capture the exact human-approved action. A version header
 or this payload alone cannot substitute for publication or adoption.
+
+
+FW-0008 candidate recovery ledger continuity (FLC-007 promoted; unissued candidate):
+`audit_historical(claim)` validates preserved completion only and returns
+`current_state_checked=false`, `operational_authority=false`. Default `audit`
+and execution validate all contiguous fixed-ledger slots and every intervening
+inventory boundary. No current-state bypass is exposed to the writer.
+
+An independently supplied installation may add ordered `framework_transitions`
+references, each exactly `{path, sha256}` for an external evidence index. The
+index references existing immutable records, not a new approval API or ledger.
+It binds `target`, fixed `ledger`, `from_version`, `to_version`,
+`inventory_prefix` (empty or ADAPT/), `backup_root`, `operation_root`,
+`source_root`, plus exact path/hash references for `review`, `approval`,
+`response`, `plan`, `before_inventory`, `after_inventory`, `source_inventory`,
+`source_revision`, `release`, `intent`, `completion`, `validation`,
+`distribution`, and `decision_row`. Evidence must remain outside instance and ledger.
+
+The existing adoption-review shape binds `bound_artifacts` by its canonical
+`fingerprint`, review ID/revision and exact scope. The separate original response
+must match the APPROVED Human Framework Maintainer decision. The reviewed plan
+binds target, source commit/tag/release ID and ordered replace operations with
+before/after SHA256 and reviewed after-image paths. Each operation requires its
+existing numbered intent/completion and captured exact before/after images.
+Full backup and complete before/after inventories prove every unchanged path.
+Source inventory, released (non-draft, non-prerelease) evidence, source revision,
+source manifest and all installed payload hashes must agree. Canonical comparison
+uses only the distributor's existing first-eight-line populated header and line
+ending rules; other files must equal issued bytes. The sole non-framework write
+is one reversible Decision Log row in its existing table, preserving earlier bytes.
+No state repair can be smuggled through adoption. Versions must increase in order.
+
+Use only transitions since the preceding completed recovery. After that transition
+is consumed by a separately approved recovery, its identical references may remain
+in installation configuration or be cleared. A later adoption supplies a new chain;
+each persisted plan retains its own original dependencies for later audits.
+Missing fields do not confer continuity. Without transitions, exact inventory
+equality still applies. Interrupted or corrupt recovery cannot be bypassed.
+Preview binds all transition and historical evidence hashes into the exact reviewed
+plan; execution rechecks them before ownership and at each existing write checkpoint.
+This retains the declared-human trust model, local exclusive operator and durability
+limits. It adds no authentication and no automatic installation, retry or handback.

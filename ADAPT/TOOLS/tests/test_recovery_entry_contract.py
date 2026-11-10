@@ -8,7 +8,7 @@ import re
 import tempfile
 import unittest
 
-from fixtures import FRAMEWORK, QUALIFICATION, fresh_instance
+from fixtures import FRAMEWORK, QUALIFICATION, fresh_instance, framework_version
 
 
 class RecoveryEntryContractTests(unittest.TestCase):
@@ -70,7 +70,7 @@ class RecoveryEntryContractTests(unittest.TestCase):
 
     def test_08_normal_scaffold_sources_and_version_not_redefined(self):
         register = (FRAMEWORK / "FRAMEWORK_LEARNING_REGISTER.md").read_text(encoding="utf-8")
-        self.assertIn("Current Framework Version: ADAPT-FW-0006", register)
+        self.assertIn("Current Framework Version: " + framework_version(), register)
         self.require("FLC-005 promoted under Rule 14", "Presence",
                      "in an unreleased source tree or test scaffold is not activation or authority")
         output = (FRAMEWORK / "SCAFFOLD_OUTPUT_CONTRACT.md").read_text(encoding="utf-8")

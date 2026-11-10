@@ -61,6 +61,15 @@ distribution = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(distribution)
 
 
+def framework_version():
+    """Exact declared candidate version; this helper supplies fixture metadata only."""
+    declarations = re.findall(r"^Current Framework Version: (ADAPT-FW-\d{4})$",
+                              (FRAMEWORK / "FRAMEWORK_LEARNING_REGISTER.md").read_text(encoding="utf-8"), re.M)
+    if len(declarations) != 1:
+        raise ValueError("Expected one framework version declaration")
+    return declarations[0]
+
+
 def fresh_instance(target, mode="MODE_B_REQUIREMENTS_ONLY"):
     """Replay the documented mechanical new-instance steps; not a product scaffold engine."""
     target = Path(target)

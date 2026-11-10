@@ -21,6 +21,9 @@ class InstalledAcceptance:
     mode = None
 
     def setUp(self):
+        # Align the source fixture graph before any disposable instance is built.
+        # Installed nested readers use the same existing fixed test boundaries.
+        isolate_recovery(end.execution)
         def scaffold(root):
             fresh_instance(root, mode=self.mode)
             verified = distribution.distribute(FRAMEWORK, root, verify=True)

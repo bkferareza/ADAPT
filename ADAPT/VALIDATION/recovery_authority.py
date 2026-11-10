@@ -234,7 +234,7 @@ def verify_authority(instance, evidence_root, packet):
             pre.raw(root, pre.GOVERNANCE)
             version["value"] = op.headers(op.text(root, pre.GOVERNANCE), ["VERSION"])["VERSION"]
             result["claimed_effective_release"] = version["value"]
-            require(version["value"] == "ADAPT-FW-0007", "CAPABILITY",
+            require(version["value"] == "ADAPT-FW-0008", "CAPABILITY",
                     "Installed version does not claim the proposed recovery capability")
             return "Local governing header claims " + version["value"] + "; publication not authenticated"
         check("EFFECTIVE_RELEASE_IDENTITY", version_check)

@@ -232,6 +232,24 @@ This cleanup grants no recovery permissions and leaves real execution disabled.
 All existing Rule 14 entry, assembly, mutation, gate and handback safeguards
 remain mandatory. Ordinary ADAPT workflows remain unchanged.
 
+FW-0008 recovery ledger continuity correction (FLC-007, promoted for prospective release):
+Historical completion validation and current admission are separate. A completed
+recovery remains historically valid after a separately approved framework adoption.
+Current admission requires the complete ordered chain from every prior completed
+inventory to the next reviewed baseline and today's independently verified installation.
+Only hash-bound installation-supplied adoption references qualify: original separate
+Maintainer response and exact review, issued-source bytes, full backup and inventories,
+exact approved images, append-only decision insertion, installation intents, completion
+and distribution validation must all agree. Multiple successive upgrades are supported;
+unexplained changes or missing, corrupt, mismatched or incomplete evidence require STOP.
+Bind and recheck all dependencies through the existing plan and authorization fields.
+Version declarations and Decision Log entries alone confer no continuity or authority.
+Audit every contiguous fixed-ledger slot first; interrupted recovery always blocks entry.
+Preserve original claims, journals, outcomes, approvals, ownership and replay protections.
+Never reconstruct or rewrite historical evidence. Historical-only audit is diagnostic
+and cannot authorize execution. Every new recovery action still requires its own exact
+plan and applicable human approvals. Release and instance adoption remain separate.
+
 Governance states are distinct: NORMAL OPERATION, RECOVERY REQUEST,
 RECOVERY PLAN REVIEW, BOUNDED RECOVERY EXECUTION, RECOVERY VALIDATION,
 BLOCKER RESOLUTION and OPERATIONAL HANDBACK. A recovery result never implies
