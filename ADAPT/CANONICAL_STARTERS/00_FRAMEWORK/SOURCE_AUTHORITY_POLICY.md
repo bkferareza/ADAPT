@@ -131,6 +131,112 @@ is never fresh eligibility. After registration, reconciliation may finish only
 missing completion evidence/state, never promote again. Missing evidence or
 authority requires a stop and human route; no new recovery permission is created.
 
+### Post-Registration Completion Reconciliation
+
+This bounded procedure applies only to the SAME recorded incomplete first-promotion
+attempt whose approved version is already registered ACTIVE. It finishes missing
+completion evidence and permitted completion state; it is not a new Promote command,
+fresh intake, automatic resume or restoration of the consumed initial basis. It
+defines no independent recovery authority. Existing governance, approval gates,
+recovery contracts and release/adoption requirements remain mandatory. An external
+recovery authorization or recovery-only pack alone cannot enable these writes or
+ordinary handback; Purpose B's assembly-only write scope is unchanged.
+
+1. **Identify and verify, read-only.** Resolve exactly one original attempt from
+   its durable decision reservation, intake and promotion evidence. Verify its
+   request, attempt identity, original Gate 1 approval/reference, source document
+   identity and location, original and preserved SHA256, registered version and
+   scope against the original bindings. Verify governing contract references and
+   any separately authorized adoption without rebinding old approvals. Require
+   the matching ACTIVE registration and current SourceTruthVersion, valid existing
+   extraction/quote/duplicate evidence, readable consistent control plane, full
+   stage/correction history and no unexplained mutations. Inventory related deltas
+   and handoffs, including consumed/archived history. Missing required admission
+   evidence, changed bindings, conflicting history or exhausted/uncertain correction
+   allowance requires STOP and human routing. Only specifically identified missing
+   completion outputs may be supplied below; admission evidence cannot be invented.
+2. **Preserve history and verify existing outputs.** Retain all permission denials,
+   BLOCKED records, timestamps, attempts, approvals, journals and partial outputs.
+   Historical findings remain historical; a later artifact is not proof that the
+   denied operation was authorized. Verify actual creation authority/provenance for
+   the existing Director handoff, its unique ID, ACTIVE location/status, sender,
+   Context Steward recipient, source version, scope and evidence/CD references.
+   Uncertain handoff creation authority, a conflicting or consumed handoff, missing
+   handoff or unexplained later write requires STOP. Later approval cannot
+   retroactively authorize a denied write. An interrupted recovery-ledger claim
+   also requires STOP; never skip a slot, delete ownership or change ledgers.
+3. **Obtain exact prospective authority.** The executor must be the identified
+   Director Lane / Source Truth Agent lawfully authorized for this completion task;
+   a lane name, CurrentAuthority value or filesystem access is insufficient.
+   Prepare the exact remaining write plan with target/root, attempt, executor,
+   paths/fields/operations, before hashes (ABSENT for a declared missing output),
+   constrained after images, evidence destination and validation criteria. Obtain
+   explicit human approval for that exact plan under applicable governance,
+   retaining the original promotion approval and every applicable gate. Rule 14
+   recovery requires both applicable human capacities and named delegation; its
+   approval is separate from adoption and original Gate 1 approval. Verify current
+   execution authority for the exact executor, operations, paths and scope through
+   the legitimate platform approval flow, including Assisted Permissions where
+   applicable, and preserve its authoritative result/reference. A local approval
+   flag, AI assertion, verifier consistency PASS or successful earlier write is
+   insufficient. Missing, denied, ambiguous, expired, withdrawn or out-of-scope
+   authority requires STOP before mutation and human routing. Do not probe by
+   writing, bypass a denial or switch execution paths to evade platform approval.
+4. **Reserve the one correction and apply only the bounded plan.** Record the
+   authorized correction against the original attempt before other correction
+   writes. It consumes the existing one-correction allowance; it does not create
+   a new intake attempt or reset any stage/retry counter. The complete possible
+   canonical write scope, each item requiring exact authorization, is:
+   - Append-only reconciliation evidence in the declared promotion evidence,
+     append-only DECISION_LOG.md entries and an INTAKE_REGISTER.md Notes annotation
+     linked to the original intake/attempt. Preserve existing record content,
+     statuses and timestamps; do not replace the historical BLOCKED disposition.
+   - Create specifically declared missing completion evidence or Context Delta
+     at its bound, unused path; append missing completion evidence to an existing
+     declared evidence report. Reuse valid existing evidence and the actual CD-ID;
+     never overwrite/reissue a delta or allocate a replacement for a valid one.
+   - Complete only the originally permitted control-plane fields where needed:
+     SourceTruthVersion = the already registered version,
+     CurrentPhase = SOURCE_TRUTH_READY, ExecutionReadiness = NEEDS_CONTEXT,
+     LastAction, LastContextDelta = actual CD-ID, NextExpectedAction and
+     CurrentAuthority = Context Steward for the verified existing routing.
+   Reuse the existing registration, immutable source, extraction IDs/artifacts and
+   handoff unchanged. No new source version, source copy, extraction, promotion,
+   intake attempt or handoff is permitted. No other file, row or field may change.
+   ActiveWorkcell, ActiveHandoff, ActiveMilestone and ActiveCycle remain NONE;
+   identity and RoutingMode remain unchanged. No blocker closure, counter reset,
+   READY transition, framework edit or application mutation is authorized.
+   Recheck current hashes, bindings, permission and withdrawal immediately before
+   each write; serialize the action and STOP on changed bytes or another writer.
+   Preserve exact diffs and before/after hashes in append-only audit evidence,
+   with final output hashes external to avoid circular evidence hashes.
+5. **Validate, record disposition and STOP.** Independently validate the completed
+   promotion evidence, registration/source/extraction integrity, delta, existing
+   handoff references, control-plane consistency and unchanged excluded artifacts.
+   Record the validation evidence and a later completion disposition linked to
+   the original attempt, denial, exact recovery authorization, correction count
+   and final hashes; distinguish it from the historical BLOCKED finding. Claim
+   completion only after validation passes, then STOP at Director dispatch step 13.
+   A partial write, new denial, failed validation or interruption preserves all
+   actual outputs/history and requires STOP and human routing, never automatic
+   retry, rollback, fabricated completion or a second correction under this rule.
+
+Before subsequent ordinary consumption, Context Steward must verify the original
+attempt/bindings and Gate 1 evidence, current registered source/hash, extraction,
+the exact reconciliation authorization and platform permission evidence, correction
+reservation/count, independent final validation and linked completion disposition.
+It must verify that the original handoff remains unique, ACTIVE, unconsumed,
+lawfully created and addressed to it with matching scope/evidence/CD, and that
+current control-plane routing and its own current execution authority are valid.
+Missing or conflicting evidence/authority requires STOP and human routing; Steward
+cannot repair the promotion or infer authority from historical BLOCKED or ACTIVE
+labels. Any actual registered blocker still requires its existing resolution and
+sign-off; reconciliation does not clear it or substitute for operational handback.
+Only after all applicable prerequisites pass may Steward follow the existing first
+ordinary context procedure, consume the original request, retain its provenance,
+index the first ordinary pack and emit its normal delivery handoff, then STOP.
+No subsequent Director action, implementation or READY state is implied.
+
 ## Version Identifier Format
 
 Source truth versions use: SOURCE_TRUTH_V{{MAJOR}}.{{MINOR}}

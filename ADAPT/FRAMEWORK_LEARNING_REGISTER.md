@@ -1,9 +1,9 @@
 # FRAMEWORK LEARNING REGISTER
 
-Current Framework Version: ADAPT-FW-0008
+Current Framework Version: ADAPT-FW-0009
 
-Release Image Status: PROSPECTIVE_ISSUANCE_IMAGE_NOT_ISSUED
-Issued Baseline: ADAPT-FW-0007
+Release Image Status: INCORPORATED_CANDIDATE_NOT_ISSUED
+Issued Baseline: ADAPT-FW-0008
 Issuance Status: NOT_PERFORMED
 
 ## Purpose
@@ -257,3 +257,66 @@ Runtime code, tests, canonical contracts, manifest and payload bytes are unchang
 from the original approved image. No issuance, publication, instance adoption,
 recovery, operational handback or Company modification has occurred under this
 preparation authority. STOP at the final exact-image decision.
+
+
+## FLC-008 framework-origin registration (2026-11-27)
+
+Director-origin arrival is the new ADAPT-DEV Purpose A FRAMEWORK_LEARNING_RECEIPT,
+with EXTERNAL_RECEIPT / ORDINARY_DISPATCH_NOT_PERFORMED. It is not an ordinary
+Director handoff, a backdated escalation or an instance mutation. Evidence paths
+below are relative to workspace D:/Project/ADAPT. Original human responses and
+artifact hashes are preserved; conversational authority is not independently
+authenticated. Existing proposal and Maintainer A/B/C records remain unchanged.
+
+| FLC-ID | Observed In | Evidence | Novelty Dimensions | Solution-Specific Portion | Proposed Generic Change | Disposition | Decision | Introduced In | Backport | Upgrade Assessment |
+|---|---|---|---|---|---|---|---|---|---|---|
+| FLC-008 | ADAPT-DEV / standalone ADAPT framework; new Director-origin GAP-T14 external submission, 2026-11-27 | GROUNDED artifact bytes/hashes: .adapt-local/maintenance/fw0009-candidate-preparation-20261127/framework-origin-escalation/FRAMEWORK_LEARNING_RECEIPT.json, framework-origin-escalation/RECEIPT_VERIFICATION.json and PATCH_INPUTS.json in the same FW-0009 preparation packet; current Director submission and designation references are bound by the receipt. ASSERTED: RECOVERY_PATCH_EXTRACTION.md framework analysis and earlier-image 221-test summary; no FW-0009 regression pass claimed | EXECUTION_PATH, VALIDATION_MECHANISM, GOVERNANCE_COMBINATION | The supplied interrupted-promotion incident remains contextual, not independently verified incident evidence. ADAPT-DEV supplies framework-origin designation and escalation provenance; no consumer evidence or instance operational state is incorporated | Bounded post-registration completion reconciliation of the same first-promotion attempt, Director/Context Steward integration and synthetic conformance tests; preserve denials, actual execution authority, existing artifacts, one-correction limit and STOP; no new writer | PROMOTED | Brian Kevin Ferareza, Human Framework Maintainer: recorded A/B/C decisions at .adapt-local/maintenance/fw0009-candidate-preparation-20261127/decisions/20261127-03/DECISION_RECORD.json; new ADAPT-DEV Director arrival at .adapt-local/maintenance/fw0009-candidate-preparation-20261127/framework-origin-escalation/FRAMEWORK_LEARNING_RECEIPT.json. Successful exact-scope incorporation and 239 clean synthetic tests at .adapt-local/maintenance/fw0009-candidate-preparation-20261127/incorporation-20261127/INCORPORATION_RESULT.json. Current FINALIZE ADAPT FW-0009 RELEASE METADATA instruction records incorporated PROMOTED disposition and one advancement to selected FW-0009. Backport ELIGIBLE; Upgrade Assessment REQUIRED. Exact-image release approval pending; no issuance/publication/adoption | ADAPT-FW-0009 | ELIGIBLE | REQUIRED |
+
+Registration is separate from incorporation. The approved proposed disposition
+is PROMOTED, with Backport ELIGIBLE and Upgrade Assessment REQUIRED, for selected
+ADAPT-FW-0009. Under the Dispositions rule, the row uses the existing pending
+value and leaves Introduced In, Backport and Upgrade Assessment unset until
+incorporation is recorded. This is not a DEFERRED or rejected human decision.
+Current Framework Version remains ADAPT-FW-0008; all earlier version/release
+statements are retained verbatim as their dated history.
+
+The next separately invoked action is bounded candidate incorporation under
+the preserved Maintainer authority: the six hash-bound patches, three exact
+version substitutions and required manifest/hash and governed release metadata
+only. Revalidate bindings and record incorporation before marking PROMOTED and
+advancing the declaration once to selected ADAPT-FW-0009. Candidate validation
+and exact-image release approval remain subsequent boundaries. Registration
+applies no after-images and grants no publication, tagging, merge or adoption.
+
+
+## FLC-008 incorporation and FW-0009 metadata finalization (2026-11-27)
+
+The registered candidate is now PROMOTED following completed bounded incorporation.
+Introduced In is ADAPT-FW-0009; Backport ELIGIBLE; Upgrade Assessment REQUIRED.
+Brian Kevin Ferareza selected this version and authorized the bounded scope in
+the preserved Maintainer A/B/C decisions. The current metadata-finalization
+instruction records incorporation and advances the single declaration once.
+No new approval, candidate, feature or recovery writer is inferred.
+
+Director arrival: .adapt-local/maintenance/fw0009-candidate-preparation-20261127/framework-origin-escalation/FRAMEWORK_LEARNING_RECEIPT.json.
+Maintainer decisions: .adapt-local/maintenance/fw0009-candidate-preparation-20261127/decisions/20261127-03/DECISION_RECORD.json.
+Registration history: .adapt-local/maintenance/fw0009-candidate-preparation-20261127/registration-20261127/REGISTRATION_RESULT.json.
+Validated incorporation: .adapt-local/maintenance/fw0009-candidate-preparation-20261127/incorporation-20261127/INCORPORATION_RESULT.json.
+Metadata before/after hashes and validation: .adapt-local/maintenance/fw0009-candidate-preparation-20261127/metadata-finalization-20261127/.
+
+The earlier FLC-008 registration note describes its pending state at that stage;
+this incorporation record supersedes that state prospectively. Earlier FW-0008
+prospective/issuance text remains dated history. FW-0008 is the issued baseline,
+as established by preserved publication evidence and tag; no old release is
+redefined. All FLC-001 through FLC-007 rows and their evidence remain unchanged.
+
+Current ADAPT-FW-0009 identifies an incorporated, unissued candidate. All ten
+approved patch-file hashes are unchanged from incorporation validation. The 239
+passing checks qualify the documented synthetic FW-0009 configuration; they
+are not a new metadata-finalization test run or independent QA. Current metadata
+and distribution checks are recorded separately without rewriting prior results.
+
+See VALIDATION/FW0009_RELEASE_IMAGE_REVIEW.md. Exact-image inventory/archive
+preparation, final verification and Human Framework Maintainer exact-image release
+approval remain pending. No commit, merge, tag, push, publication, installation,
+instance adoption or operational recovery is authorized by this finalization.

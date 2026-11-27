@@ -191,6 +191,133 @@ def ordinary(root, pack_ref=PACK):
     return "PASS_ORDINARY_CONTEXT"
 
 
+def reconciliation_binding(root, basis):
+    """Exact review shape for the fixed synthetic case, never a writer API."""
+    return {"target": str(root.resolve()), "identity": state(root)["ProjectName"],
+            "attempt": "BT-001", "executor": "Director Lane / Source Truth Agent",
+            "source": SOURCE, "source_sha256": basis["source_sha256"],
+            "approval_sha256": basis["approval_sha256"],
+            "request_sha256": basis["request_sha256"], "version": basis["version"],
+            "scope": "first promotion", "inputs": snapshot(root),
+            "writes": [{"path": ref, "operation": operation} for ref, operation in
+                       ((ER, "append_completion_evidence"), (DEC, "append_correction"),
+                        (INTAKE, "append_original_intake_note"))],
+            "completion": "Validate same-attempt evidence; record disposition; STOP"}
+
+
+def reconciliation_conformance(root, basis, authorization, *, for_steward=False,
+                               validation=None):
+    """Read-only oracle for explicitly synthetic records, NOT recovery execution.
+
+    Platform/human declarations below are fixture inputs, never authenticated
+    authority. Completed/interrupted states are seeded by tests, not produced by
+    this function. No permission probe, writer, consumption or resume is exposed.
+    """
+    required = [SOURCE, PRESERVED, APPROVAL, REQUEST, LOG, INTAKE, DEC, ER, CD,
+                *REGISTERS, *CONTRACTS]
+    need(all((root / ref).is_file() for ref in required), "RECOVERY_EVIDENCE_MISSING")
+    try:
+        record = json.loads(read(root, ER))
+    except (ValueError, OSError) as error:
+        raise Stop("RECOVERY_EVIDENCE_INVALID") from error
+    need(record.get("synthetic_fixture_only") is True, "SYNTHETIC_LABEL")
+    need(record.get("attempt") == "BT-001" and
+         re.findall(r"BOOTSTRAP_ATTEMPT: (BT-\d+)", read(root, DEC)) == ["BT-001"] and
+         re.findall(r"BOOTSTRAP_ATTEMPT: (BT-\d+)", read(root, INTAKE)) == ["BT-001"],
+         "RECOVERY_ATTEMPT")
+    expected = {"source": SOURCE, "source_sha256": basis["source_sha256"],
+                "approval_sha256": basis["approval_sha256"],
+                "request_sha256": basis["request_sha256"], "version": basis["version"],
+                "scope": "first promotion"}
+    need(record.get("bindings") == expected, "RECOVERY_BINDING")
+    need(sha(root / SOURCE) == sha(root / PRESERVED) == basis["source_sha256"],
+         "RECOVERY_SOURCE_HASH")
+    need(sha(root / APPROVAL) == basis["approval_sha256"] and
+         sha(root / REQUEST) == basis["request_sha256"], "RECOVERY_APPROVAL_BINDING")
+    original_approval = json.loads(read(root, APPROVAL))
+    need(original_approval.get("synthetic_fixture_only") is True and
+         original_approval.get("approved") is True and original_approval.get("gate") == 1,
+         "RECOVERY_GATE_1")
+    need(all(original_approval.get(k) == v for k, v in
+             {"document": SOURCE, "sha256": basis["source_sha256"],
+              "version": basis["version"], "scope": "first promotion"}.items()),
+         "RECOVERY_APPROVAL_SCOPE")
+    rows = [line.split("|")[1:-1] for line in real_rows(root / LOG).splitlines()
+            if re.match(r"^\| SOURCE_TRUTH_V\d", line)]
+    need(len(rows) == 1 and [cell.strip() for cell in rows[0]][0] == basis["version"] and
+         rows[0][1].strip() == PRESERVED and rows[0][-1].strip() == "ACTIVE",
+         "RECOVERY_REGISTRATION")
+    need((root / HO).is_file() and not (root / CONSUMED).exists(), "RECOVERY_HANDOFF")
+    handoffs = [p for p in (root / "06_HANDOFFS").rglob("HO-*.md")]
+    need(handoffs == [root / HO], "RECOVERY_HANDOFF_CONFLICT")
+    document = read(root, HO)
+    for key, value in (("STATUS", "ACTIVE"), ("HANDOFF_ID", "HO-0001"),
+                       ("FROM_LANE", "Director Lane"),
+                       ("TO_WORKCELL / TO_LANE", "Context Steward"),
+                       ("SOURCE_TRUTH_VERSION", basis["version"])):
+        need(re.findall(r"^" + re.escape(key) + r":\s*([^\r\n]+)$", document, re.M) == [value],
+             "RECOVERY_HANDOFF_BINDING")
+    need(ER in document and CD in document, "RECOVERY_HANDOFF_EVIDENCE")
+    provenance = record.get("handoff_creation", {})
+    need(provenance.get("synthetic_fixture_only") is True and
+         provenance.get("platform_outcome") == "ALLOWED" and
+         provenance.get("original_response_reference") == "SYNTHETIC-LAWFUL-HO-001" and
+         provenance.get("handoff_sha256") == sha(root / HO), "RECOVERY_HANDOFF_AUTHORITY")
+    evidence = record.get("evidence", {})
+    need(set(evidence) == {LOG, CD, *REGISTERS, *CONTRACTS} and
+         all(sha(root / ref) == digest for ref, digest in evidence.items()),
+         "RECOVERY_ARTIFACT_HASH")
+    history = record.get("denied_history", {})
+    need(set(history) == {INTAKE, DEC} and all(
+        line in read(root, ref).splitlines() for ref, line in history.items()),
+        "RECOVERY_DENIAL_HISTORY")
+    need(record.get("recovery_ledger") == "NO_INTERRUPTED_CLAIM", "RECOVERY_LEDGER_INTERRUPTED")
+    # Read durable history, never a caller-supplied remaining-corrections counter.
+    try:
+        corrections = [json.loads(line.split(": ", 1)[1]) for line in read(root, DEC).splitlines()
+                       if line.startswith("SYNTHETIC_CORRECTION: ")]
+    except ValueError as error:
+        raise Stop("RECOVERY_CORRECTION_HISTORY") from error
+    need(all(item.get("attempt") == "BT-001" for item in corrections), "RECOVERY_ATTEMPT")
+    if for_steward:
+        need([item.get("state") for item in corrections] == ["RESERVED", "VALIDATED", "COMPLETE"],
+             "RECOVERY_COMPLETION_REQUIRED")
+    else:
+        need(not corrections, "RECOVERY_CORRECTION_USED")
+    need(isinstance(authorization, dict) and authorization.get("synthetic_fixture_only") is True,
+         "RECOVERY_APPROVAL_MISSING")
+    need(authorization.get("approved") is True, "RECOVERY_APPROVAL_MISSING")
+    need(authorization.get("withdrawn") is False, "RECOVERY_AUTHORITY_WITHDRAWN")
+    need(authorization.get("capacities") == ["Human Framework Maintainer", "Human Director"] and
+         authorization.get("response_reference") == "SYNTHETIC-EXACT-RECOVERY-001",
+         "RECOVERY_GOVERNANCE")
+    need(authorization.get("binding") == reconciliation_binding(root, basis),
+         "RECOVERY_PLAN_BINDING")
+    platform = authorization.get("platform", {})
+    need(platform == {"synthetic_fixture_only": True, "outcome": "ALLOWED",
+                      "response_reference": "SYNTHETIC-PLATFORM-001"},
+         "RECOVERY_PLATFORM_UNVERIFIED")
+    values = state(root)
+    need(values["SourceTruthVersion"] == basis["version"] and
+         all(values[k] == "NONE" for k in
+             ("ActiveWorkcell", "ActiveHandoff", "ActiveMilestone", "ActiveCycle")) and
+         values["ExecutionReadiness"] != "READY" and values["Blocked"] == "NO" and
+         values["ActiveBlockers"] == "NONE", "RECOVERY_STATE_BOUNDARY")
+    if for_steward:
+        need(isinstance(validation, dict) and validation.get("synthetic_fixture_only") is True and
+             validation.get("attempt") == "BT-001" and validation.get("result") == "PASS" and
+             validation.get("reviewer") == "Synthetic independent reviewer" and
+             validation.get("final_hashes") == snapshot(root), "RECOVERY_VALIDATION_REQUIRED")
+        need(authorization.get("steward_platform") == platform, "STEWARD_PLATFORM_UNVERIFIED")
+        need(values["CurrentAuthority"] == "Context Steward" and
+             values["CurrentPhase"] == "SOURCE_TRUTH_READY" and
+             values["ExecutionReadiness"] == "NEEDS_CONTEXT" and
+             values["LastContextDelta"] == "CD-0001", "STEWARD_AUTHORITY")
+    return {"status": "SYNTHETIC_STEWARD_ADMISSION" if for_steward else "SYNTHETIC_SAME_ATTEMPT_ELIGIBLE",
+            "action": "STOP", "operational_authority": False, "automatic_resume": False,
+            "limitations": "Fixture consistency only; human/platform authority and execution unverified"}
+
+
 def command(base, args, expected=0):
     result = subprocess.run([str(a) for a in args], cwd=base, capture_output=True, text=True)
     journal = json.loads((base / "commands.json").read_text()) if (base / "commands.json").exists() else []
@@ -378,8 +505,15 @@ def promote(base, root, basis):
     print("PASS_PROMOTION; STOP")
 
 
-def steward_request(root, basis):
+def steward_request(root, basis, *, reconciliation_authorization=None,
+                    reconciliation_validation=None):
     """Read-only conformance check for the exact Director-routed assembly request."""
+    # Structured recovery evidence belongs only to the synthetic reconciliation
+    # fixtures. Ordinary markdown promotion reports keep their original checks.
+    if (root / ER).is_file() and read(root, ER).lstrip().startswith("{"):
+        return reconciliation_conformance(
+            root, basis, reconciliation_authorization, for_steward=True,
+            validation=reconciliation_validation)
     need(state(root)["SourceTruthVersion"] == VERSION and state(root)["CurrentAuthority"] == "Context Steward", "STEWARD_AUTHORITY")
     need(all(state(root)[key] == "NONE" for key in ("ActiveWorkcell", "ActiveHandoff", "ActiveMilestone", "ActiveCycle")), "STEWARD_BINDING")
     need((root / HO).is_file(), "STEWARD_HANDOFF_MISSING")

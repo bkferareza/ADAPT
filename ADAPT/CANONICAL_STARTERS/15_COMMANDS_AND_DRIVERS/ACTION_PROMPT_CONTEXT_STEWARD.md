@@ -67,6 +67,25 @@ for this transition this replaces the builder's step 4 below. LastContextDelta
 contains the real processed/produced CD-ID, never CP-ID or PENDING_DELTA. No
 Authority field is written; ordinary evidence/delta/delivery and STOP still apply.
 
+For that first ordinary pack following an interrupted promotion, apply
+SOURCE_AUTHORITY_POLICY.md, "Post-Registration Completion Reconciliation", before
+consuming the existing request or assembling ordinary context. Verify the original
+attempt, unchanged source/hash/version/scope and Gate 1 bindings, exact recovery
+authorization and platform permission evidence, correction reservation/count,
+independent final validation and linked completion disposition. Verify the existing
+handoff's lawful creation provenance, unique ACTIVE/unconsumed status, sender,
+recipient and matching source/scope/evidence/CD, current control-plane routing and
+your own current execution authority through the legitimate platform approval
+flow. Historical BLOCKED evidence remains historical; an ACTIVE version or later
+handoff alone does not establish completed promotion or permission. Any missing
+or conflicting evidence/authority or failed policy condition requires STOP and
+human routing. Steward has no promotion reconciliation or repair authority.
+Only after every policy condition and applicable blocker/handback prerequisite
+passes may the existing first ordinary context procedure consume the original
+request, retain its provenance, index the pack and emit the normal delivery
+handoff, then STOP. Reconciliation does not automatically dispatch this lane,
+reopen bootstrap, bypass Assisted Permissions or authorize subsequent work.
+
 The Context Steward is authorized to:
 - Read any ADAPT artifact for the purpose of assembling context
 - Assemble context packs for any active handoff
