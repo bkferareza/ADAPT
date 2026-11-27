@@ -71,6 +71,21 @@ NextExpectedAction, within that procedure and CONTROL_PLANE_SCHEMA.md class
 permissions. Existing State writes record stops only. No adjacent Director agent
 operation is authorized; ordinary context is required after this completion.
 
+Before ordinary dispatch/intake writes for a recorded incomplete first promotion
+whose approved version is already registered ACTIVE, check read-only admission
+under SOURCE_AUTHORITY_POLICY.md, "Post-Registration Completion Reconciliation".
+Route an eligible case within the existing Source Truth Agent to that procedure
+only; this is not a new command or a fresh Promote/intake attempt. The policy owns
+the exact completion scope and existing one-correction limit. Preserve all original
+denials, BLOCKED records, timestamps and attempts. Do not repeat registration,
+extraction or intake, or create another routing handoff. Missing evidence,
+unverified current execution authority or any other failed policy condition
+requires STOP and human routing, without falling through to ordinary promotion.
+Use the legitimate platform approval flow and applicable human governance;
+neither a direct command nor CurrentAuthority bypasses Assisted Permissions.
+After independent validation and the linked completion disposition, STOP at
+step 13; do not automatically launch Context Steward or resume the blocked lane.
+
 The Director Lane is authorized to:
 - Receive and validate incoming commands
 - Classify and route intake items
@@ -234,6 +249,13 @@ did not open must be named in the intake record as deferred, with a reason.
 
 **Actions**
 1. Read the incoming command or request.
+   If it concerns a recorded incomplete first promotion already registered ACTIVE,
+   apply the read-only reconciliation admission above before ordinary intake
+   actions. An eligible case follows only the policy's same-attempt procedure;
+   its annotation links to the original intake and preserves historical denials
+   and BLOCKED status. Do not execute actions 8-9 to create a new intake attempt
+   or routing handoff. Failed admission/authority requires STOP and human routing,
+   not a fresh promotion or automatic continuation. Other intake is unchanged.
 2. Validate the command against COMMAND_REGISTRY.md — exact match required. If not matched, record as INVALID_COMMAND and return to the human with an explanation.
    For `Run Director intake` with an unresolved initial Director, perform only
    the eligible Initial Director designation stage above, then STOP. If it fails
@@ -285,6 +307,17 @@ Establishes the accepted source truth version, traces requirements from the prom
 - Human approval record for the promotion (required before any write)
 
 **Actions**
+Before the promotion actions below, recognize a recorded incomplete first-promotion
+attempt whose approved version is already registered ACTIVE. Verify admission
+under SOURCE_AUTHORITY_POLICY.md, "Post-Registration Completion Reconciliation",
+and follow only that procedure when eligible and separately authorized. Reuse the
+valid registration, extraction, delta and handoff; preserve original denial records.
+Do not execute the promotion actions or their ordinary next handoff for this case.
+Missing authority/evidence, uncertain handoff creation authority, conflicting or
+consumed handoff, interrupted recovery-ledger claim or any other failed policy
+condition requires STOP and human routing. All new promotions retain the actions,
+approval requirements and existing-version rejection below.
+
 1. Confirm that human approval for source truth promotion is on record. If not, stop and request approval.
 2. Read the project document from the path specified in the command.
 3. Check SOURCE_TRUTH_VERSION_LOG.md to confirm the version label does not already exist. If it does, stop — version conflict must be resolved by the Director before proceeding.
@@ -341,7 +374,9 @@ every duplicate found.
 - Human approval for promotion is not on record
 - Conflicting source truth versions cannot be resolved without human input
 - Document is unreadable, empty, or clearly incomplete (record gap and route to Director)
-- Version label already exists in SOURCE_TRUTH_VERSION_LOG.md
+- Version label already exists in SOURCE_TRUTH_VERSION_LOG.md — no new promotion.
+  Only an eligible, separately authorized same-attempt reconciliation follows the
+  policy procedure above; it never repeats promotion. Otherwise STOP.
 
 **Evidence Produced**
 - SOURCE_TRUTH_VERSION_LOG.md entry with: version label, document path, extraction summary, human approval reference, timestamp

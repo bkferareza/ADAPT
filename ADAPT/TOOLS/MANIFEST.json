@@ -10,19 +10,19 @@
     "supporting_modules/state_reader.py": "aca049abc4caac9cecb99948c19202243bc305f8f035e5f4c12a0aedb6ddc05b"
   },
   "instance_files": {
-    "VALIDATION/recovery_preflight.py": "87086f3785656e6824a8ddc2bb12dc607a3a3eeaf9811aa67a2c33ed73eb4354",
+    "VALIDATION/recovery_preflight.py": "ed70e6ca0c21c4acce417b18510ae21805ab9e89ca3d7baccad82ac9ed71a712",
     "VALIDATION/recovery_assembly.py": "131993a79b4745d75401c80244b021f743b3a987f4824b95f833bec4e86e9153",
     "VALIDATION/recovery_runtime.py": "8eba37224d41db0c86b1a0d08a232300a3accaa797896b47be5ea5039e799bf6",
     "VALIDATION/recovery_structural.py": "c364dc14856fa1de354e8c649d24770772c33a6bae37df340c8ada10e600e578",
     "VALIDATION/recovery_supervised.py": "8c88b15c75f10f501b27a8b1c1fb13aef99adbb35007a4e97130999475bfc0ee",
-    "VALIDATION/recovery_authority.py": "0afff64db5bca643d3fac8747f82de592bea05cca074d51a50940e4dc2f17e5f",
+    "VALIDATION/recovery_authority.py": "e6797392a587f6f6117ad77cec0ae6f6a393da32a10e02c6f10fa7e795dcfcec",
     "VALIDATION/recovery_plan_review.py": "100ce0bffc5942538c00d14c1c9b5299d84c7158c8ec3a7dd9d5f89c94614da2",
     "VALIDATION/recovery_execution.py": "c51e7a16bfaa3af5c19a1eb31db96d08190436a0acfa62c7299121562265ea2c",
-    "VALIDATION/recovery_operational.py": "ec6be9c5d03d2bb8ddbbf994172b68ad09fd307584ad144f6a9b3e3323c23200"
+    "VALIDATION/recovery_operational.py": "1a094a948c9915e55ab518ef3a99aafdcbb4a23b22dce1d2076af46901dbdf4d"
   },
   "recovery_distribution": "HUMAN_GOVERNED_RECOVERY_REQUIRES_INSTANCE_AUTHORIZATION",
   "recovery_capabilities": {
-    "proposed_framework": "ADAPT-FW-0008",
+    "proposed_framework": "ADAPT-FW-0009",
     "authorization": "HUMAN_SUPERVISED",
     "production_execution": false,
     "adopted": false,
@@ -41,5 +41,5 @@
     "operational_entry": "NORMAL_ADAPT_INTERACTION_EXPLICIT_HUMAN_APPROVAL",
     "technical_writer_available": true
   },
-  "release_framework_version": "ADAPT-FW-0008"
+  "release_framework_version": "ADAPT-FW-0009"
 }

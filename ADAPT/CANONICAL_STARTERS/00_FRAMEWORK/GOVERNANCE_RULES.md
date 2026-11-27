@@ -139,6 +139,23 @@ Promoted changes apply prospectively: future scaffolds inherit them from the can
 starters, and existing instances are never rewritten automatically — recovery does not
 overwrite existing files (DEPLOYMENT_MODES.md).
 
+For an incomplete first-promotion attempt whose approved source version is already
+registered ACTIVE, SOURCE_AUTHORITY_POLICY.md, "Post-Registration Completion
+Reconciliation", owns the bounded same-attempt completion procedure. Apply its
+read-only admission, unchanged bindings, preserved denial/history, one-correction
+limit, exact completion write scope, independent validation and STOP together.
+It grants no independent recovery authority and creates no command. Original
+Gate 1 approval and all applicable human gates remain required; Rule 14 recovery
+retains both applicable human capacities and named executor/delegation. Verify
+current execution authority through the legitimate platform approval flow,
+including Assisted Permissions where applicable. Missing evidence or authority
+requires STOP and human routing; later approval never authorizes a denied write
+retroactively. This reference does not broaden generic recovery permissions or
+Purpose B's assembly-only write scope, admit interrupted recovery-ledger claims,
+or enable automatic lane resumption. Reconciliation completion does not replace
+blocker resolution, current ordinary context or separately required handback.
+Release and separately authorized existing-instance adoption remain required.
+
 #### Prospective amendment: bounded external recovery/escalation entry
 
 FW-0006: FLC-005 promoted under Rule 14; release evidence is
