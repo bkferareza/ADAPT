@@ -482,7 +482,7 @@ class InteractionAcceptance:
                        'planning/intake', 'ordinary development', 'handoff/escalation',
                        'What actually happened', 'important verified findings',
                        'What remains unresolved', 'whether human input is needed',
-                       'semantic requirements, not mandatory headings',
+                       'next-interaction block below',
                        'returning a tool\'s JSON does not deliver a chat response',
                        'Deliver the human-facing chat response', 'await the actual human response'):
             self.assertIn(clause, master)
@@ -492,6 +492,98 @@ class InteractionAcceptance:
             if prompt.name == 'ACTION_PROMPT_MASTER.md':
                 continue
             self.assertIn('Atomic Handoff Dispatch', prompt.read_text(encoding='utf-8'), prompt.name)
+
+class NextActionExposureContractTests(unittest.TestCase):
+    """Prompt conformance plus existing read-only preview checks, not an agent test.
+
+    These temporary fixtures exercise actual preview refusal/binding behavior.
+    They do not render the new block, simulate approval as real authority, or
+    prove a model delivers the required response. No dispatcher is added.
+    """
+    def setUp(self):
+        import test_release as release_cases
+        self.case = release_cases.ReleaseTests(
+            'test_generated_bound_preview_and_evidence_without_dev_import_paths')
+        self.addCleanup(self.case.doCleanups)
+        self.case.setUp()
+        self.master = (self.case.instance /
+            '15_COMMANDS_AND_DRIVERS/ACTION_PROMPT_MASTER.md').read_text(encoding='utf-8')
+        self.block = self.master.split(
+            '### Next permitted human interaction (every completion and STOP)', 1)[1].split(
+                '## The 13-Step Atomic Handoff Dispatch Sequence', 1)[0]
+
+    def preview(self, fixture):
+        before = self.case.snapshot(fixture.instance)
+        result = self.case.cli('prompt', 'next', instance=fixture.instance)
+        self.assertEqual(before, self.case.snapshot(fixture.instance))
+        return result.returncode, json.loads(result.stdout)
+
+    def test_completed_action_exposes_bound_registered_invocation_contract(self):
+        fields = ('ACTION_RESULT', 'CURRENT_STATE', 'NEXT_PERMITTED_ACTION',
+                  'RESPONSIBLE_ROLE', 'HUMAN_DECISION_REQUIRED', 'NEXT_INVOCATION',
+                  'BLOCKER', 'EVIDENCE_REFERENCE')
+        for field in fields:
+            self.assertIn('| ' + field + ' |', self.block)
+        self.assertIn('For a completed action with an eligible next command', self.block)
+        self.assertIn('exact registered', self.block)
+        self.assertIn("Validate that command's inputs", self.block)
+        fixture = self.case.bound()
+        code, result = self.preview(fixture)
+        self.assertEqual(0, code, result)
+        command = result['invocation']['command']
+        for name in ('COMMAND_REGISTRY.md', 'COMMAND_ROUTING_MATRIX.md'):
+            document = (fixture.instance / '15_COMMANDS_AND_DRIVERS' / name).read_text()
+            self.assertIn('`' + command + '`', document)
+        self.assertEqual('BACKEND_TEST', result['invocation']['workcell'])
+        self.assertFalse(result['execution_authorized'])
+        self.assertIn('the human remains the orchestrator', self.block)
+        self.assertIn('Never automatically execute the next invocation', self.block)
+
+    def test_pending_approval_requires_human_reply_and_preserves_stop(self):
+        self.assertIn('ACTION_RESULT: APPROVAL_REQUIRED', self.block)
+        self.assertIn('Approve, Reject', self.block)
+        self.assertIn('This is a human response, not a new ADAPT', self.block)
+        self.assertIn('STOP and await the actual human response', self.block)
+        self.assertIn('do not expose the gated command', self.block)
+        fixture = self.case.bound()
+        (fixture.instance / '02_DIRECTOR_LANE/SYNTHETIC_APPROVAL.md').unlink()
+        code, result = self.preview(fixture)
+        self.assertEqual(1, code, result)
+        self.assertNotIn('invocation', result)
+
+    def test_blocked_action_requires_resolution_and_no_executable_invocation(self):
+        self.assertIn('For blocked work, expose NEXT_INVOCATION: NONE', self.block)
+        self.assertIn('exact lawful resolution', self.block)
+        self.assertIn('stale context requires Context Steward', self.block)
+        self.assertIn('route the issue to Director Lane', self.block)
+        fixture = self.case.bound()
+        source = fixture.instance / '01_SOURCE_TRUTH/FIXTURE_REQUIREMENTS.md'
+        source.write_bytes(source.read_bytes() + b'\nChanged synthetic source.\n')
+        code, result = self.preview(fixture)
+        self.assertEqual(1, code, result)
+        self.assertEqual('CONTEXT_STALE', result['diagnostics'][0]['id'])
+        self.assertNotIn('invocation', result)
+
+    def test_trace_unknown_command_and_unresolved_parameters_never_authorize(self):
+        self.assertIn('NextExpectedAction is trace only', self.block)
+        self.assertIn('never authorization or a command selector', self.block)
+        self.assertIn('Unresolved parameters,', self.block)
+        self.assertIn('unregistered commands or a trace-only recommendation require NEXT_INVOCATION: NONE',
+                      self.block)
+        fixture = self.case.bound()
+        fixture.values['NextExpectedAction'] = 'Execute unregistered automatic work'
+        fixture.write_state()
+        code, result = self.preview(fixture)
+        self.assertEqual(0, code, result)
+        self.assertEqual('Run atomic handoff dispatch', result['invocation']['command'])
+        self.assertFalse(result['execution_authorized'])
+        ref = fixture.instance / fixture.values['ActiveHandoff']
+        ref.write_bytes(ref.read_bytes().replace(
+            b'Run atomic handoff dispatch', b'Execute unregistered automatic work'))
+        code, result = self.preview(fixture)
+        self.assertEqual(1, code, result)
+        self.assertNotIn('invocation', result)
+
 
 class ModeAHumanInteraction(InteractionAcceptance, unittest.TestCase):
     mode = 'MODE_A_EXISTING_SOLUTION'
