@@ -1,9 +1,9 @@
 # FRAMEWORK LEARNING REGISTER
 
-Current Framework Version: ADAPT-FW-0009
+Current Framework Version: ADAPT-FW-0010
 
 Release Image Status: INCORPORATED_CANDIDATE_NOT_ISSUED
-Issued Baseline: ADAPT-FW-0008
+Issued Baseline: ADAPT-FW-0009
 Issuance Status: NOT_PERFORMED
 
 ## Purpose
@@ -320,3 +320,53 @@ See VALIDATION/FW0009_RELEASE_IMAGE_REVIEW.md. Exact-image inventory/archive
 preparation, final verification and Human Framework Maintainer exact-image release
 approval remain pending. No commit, merge, tag, push, publication, installation,
 instance adoption or operational recovery is authorized by this finalization.
+
+## FLC-009 prospective next-action exposure hotfix
+
+| FLC-ID | Observed In | Evidence | Novelty Dimensions | Solution-Specific Portion | Proposed Generic Change | Disposition | Decision | Introduced In | Backport | Upgrade Assessment |
+|--------|-------------|----------|--------------------|---------------------------|-------------------------|-------------|----------|---------------|----------|--------------------|
+| FLC-009 | Standalone ADAPT framework; new Human Director-origin GAP-T14 submission, 2026-11-27 | GROUNDED: issued FW-0009 ACTION_PROMPT_MASTER.md shared chat contract, command registry/routing and existing communication tests; .adapt-local/maintenance/next-action-exposure-hotfix-20261127/BOUNDED_PROPOSAL.json and HUMAN_DECISION_AND_DIRECTOR_RECEIPT.json bind proposal, original human reply and designation basis. ASSERTED: human-reported next-interaction usability gap; no independently verified recurring incidents claimed | EXECUTION_PATH, GOVERNANCE_COMBINATION | No consumer incident or instance state incorporated; original designation records establish the human's framework-origin Director capacity only | Require a concise result/state/next-action/role/decision/invocation/blocker/evidence block in the existing all-role shared prompt; derive invocations from current authoritative bindings and registered routing, expose exact resolution for blocked work, preserve human gates and STOP; no runtime dispatcher or automatic continuation | PROMOTED | Brian Kevin Ferareza explicitly responded "Submit as Director and authorize as Maintainer" to the hash-bound three-file proposal: new Director submission and separate Human Framework Maintainer authorization for pending registration, bounded prospective implementation and focused validation only. Proposal SHA256 ff0ead8f639537bdec433157267596ef8eea8b69168a732511130a990c444f7f. Disposition remains pending until incorporation evidence and introduced-version decision permit finalization; no release/version/adoption authorization inferred Current Human Framework Maintainer instruction approves prospective incorporation and bounded release-candidate preparation; verified FW-0009 issuance and available identifier select ADAPT-FW-0010. Original instruction and exact bindings: .adapt-local/maintenance/next-action-exposure-hotfix-20261127/fw0010-candidate-preparation/MAINTAINER_DECISION.json. Generic hotfix is incorporated in this candidate; no issuance/publication/adoption decision supplied. | ADAPT-FW-0010 | ELIGIBLE | REQUIRED |
+
+Rule 14 arrival is the actual new Human Director submission, received externally
+for this standalone framework change. The same named human separately authorized
+maintenance as Framework Maintainer; no exceptional blocked-context entry, old
+FLC-008 submission or invented ordinary handoff substitutes for this arrival.
+Original designation and DEC-003 verification references remain in the external
+receipt; no ADAPT-DEV or consumer instance is modified.
+
+The authorized worktree is a prospective patch from issued FW-0009. Existing
+FW-0009 prospective/unissued prose above is retained as its historical approved
+source snapshot; actual issuance/publication is established by the later records
+at .adapt-local/maintenance/fw0009-candidate-preparation-20261127/publication-execution-20261127/PUBLICATION_OUTCOME.json
+and the issued FW-0009 tag. This hotfix does not redefine that release.
+
+The initial three-file implementation left FLC-009 pending and selected no version.
+The subsequent actual Maintainer decision and bounded incorporation below supersede
+that pending disposition and authorize candidate metadata only. Synthetic prompt
+conformance does not prove every agent response or real human/platform authority.
+
+## FW-0010 prospective incorporation and candidate metadata
+
+FLC-009 is PROMOTED following incorporation of the approved shared master contract
+and focused tests. Introduced In: ADAPT-FW-0010. Backport: ELIGIBLE (a technical
+eligibility assessment, not backport execution authority). Upgrade Assessment:
+REQUIRED. The Human Framework Maintainer's current instruction approves prospective
+incorporation and bounded candidate preparation, selecting FW-0010 conditionally
+on verified FW-0009 issuance and identifier availability; both were verified before
+this one version declaration advance. Exact equality checks remain in force.
+
+Actual authority, baseline issuance, source hashes, original three-file validation,
+release-integration changes and candidate qualification are recorded externally at
+.adapt-local/maintenance/next-action-exposure-hotfix-20261127/fw0010-candidate-preparation/.
+The current declaration identifies an INCORPORATED_CANDIDATE_NOT_ISSUED image.
+FW-0009 is the latest issued baseline. Earlier release records above are dated
+history and are not changed into current issuance claims. No prior FLC row is changed.
+
+This candidate reuses the exact approved master/test hotfix bytes, updates only the
+three exact-version recovery checks and their manifest hashes/release identifiers,
+and records the learning disposition/version metadata. No runtime formatter,
+new command, writer, scheduler, state machine or instance capability is added.
+The new response block is an obligation on the acting agent; existing tooling JSON
+and rendered result schemas are unchanged. Exact-image approval and separately
+explicit issuance/publication authorization remain required. No instance adoption,
+deployment or operational recovery is authorized by this candidate preparation.

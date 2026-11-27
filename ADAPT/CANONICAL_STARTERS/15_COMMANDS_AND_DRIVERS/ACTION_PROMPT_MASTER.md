@@ -26,17 +26,18 @@ steps when stopped early), explain in the chat itself:
 - What remains unresolved, including material risks and uncertainty.
 - The next recommended or required action, and whether human input is needed.
 
-These are semantic requirements, not mandatory headings or another report
-format. Use natural, concise language scaled to the action. For a simple action,
-a few sentences suffice. Summarize large findings; do not dump technical reports,
+Use natural, concise language scaled to the action, together with the compact
+next-interaction block below. These explanatory points do not require additional
+headings. Summarize large findings; do not dump technical reports,
 JSON, fingerprints or internal mechanics unless they affect the human decision
 or the human requests details. State when no further decision is needed.
 
 Artifacts remain mandatory supporting evidence under the existing contracts:
 source references, exact decisions, before/after images, hashes, mutation scope,
 validation, journals, historical state and governance records. Creating a report
-or returning a tool's JSON does not deliver a chat response. Evidence paths are
-optional supplements. Never make the operator open a file to understand the
+or returning a tool's JSON does not deliver a chat response. Additional evidence
+links supplement the required EVIDENCE_REFERENCE below. Never make the operator
+open a file to understand the
 basic result, blocker or next decision. "See REPORT.md" is not a complete response.
 
 For approval, explain the exact proposal, why it is needed, what changes,
@@ -60,6 +61,65 @@ successful chat delivery based solely on generated text or a saved artifact.
 Then STOP under the existing action boundary. A suggested next action or emitted
 handoff does not authorize its execution. This contract changes no approval,
 authority, scope, retry, replay, journal, validation or STOP safeguard.
+
+### Next permitted human interaction (every completion and STOP)
+
+Include this concise field block in the chat at every boundary covered above,
+including early STOP, direct role entry and external framework maintenance.
+It describes the observed result and next human interaction; it adds no stored
+state, command, permission, dispatcher or execution loop.
+
+| Field | Required content |
+|-------|------------------|
+| ACTION_RESULT | COMPLETED, BLOCKED or APPROVAL_REQUIRED. COMPLETED requires verified completion of this action; BLOCKED includes refused, failed or interrupted actions without established completion; APPROVAL_REQUIRED means this reviewed action awaits an actual human decision. Distinguish successful mutation/validation from reporting failure and from readiness for subsequent work. |
+| CURRENT_STATE | Relevant verified control-plane state and active handoff/source/context bindings, or the applicable external maintenance state. State exactly what is missing, conflicting, stale or unknown; never infer READY or a state transition from completion. |
+| NEXT_PERMITTED_ACTION | One next lawful human interaction or resolution requirement, derived as below. State NONE when no further action is required. Never describe blocked work as executable. |
+| RESPONSIBLE_ROLE | The existing role/lane or human capacity responsible for that interaction, as established by routing or the applicable approval/maintenance contract; if unresolved, name the missing designation and route to the Director. |
+| HUMAN_DECISION_REQUIRED | YES with the exact decision, scope and human capacity, NO when no decision is required, or UNKNOWN with the evidence needed to determine it. UNKNOWN never permits execution. |
+| NEXT_INVOCATION | One exact registered command with verified concrete parameters only when its prerequisites are established; or, at a human decision gate, the plain response requested for that exact reviewed action. Otherwise NONE, with the resolution requirement in NEXT_PERMITTED_ACTION. |
+| BLOCKER | Include when this action or the proposed next work is blocked: the exact unmet condition, existing blocker reference if available, responsible role and resolution requirement. Do not invent or close a blocker. |
+| EVIDENCE_REFERENCE | Actual inspected state, handoff, decision, validation or external maintenance references supporting the result and next interaction. If unavailable, say NONE and identify the missing evidence; never fabricate a record. |
+
+Derive the block from PROJECT_CONTROL_PLANE.md, active handoff and current
+source/context/approval evidence, COMMAND_REGISTRY.md, COMMAND_ROUTING_MATRIX.md
+and the responsible role's ACTION_PROMPT file. Recheck the relevant authoritative
+bindings after this action's permitted writes. NextExpectedAction is trace only,
+never authorization or a command selector. Missing or conflicting state cannot
+be replaced by a guessed next step. Do not write new state just to fill the block.
+
+For a completed action with an eligible next command, expose its exact registered
+invocation and routed role. Validate that command's inputs, current bindings,
+context, scope and applicable human/platform gates before presenting it as
+executable; suggestions do not supply invocation authority. Unresolved parameters,
+unregistered commands or a trace-only recommendation require NEXT_INVOCATION: NONE
+and the exact missing input, authority or routing requirement. Never output an
+executable placeholder or invent a command to fill this field.
+
+For a pending human decision, expose ACTION_RESULT: APPROVAL_REQUIRED, the exact
+reviewed proposal and human capacity, and a plain reply such as Approve, Reject
+or Show details as NEXT_INVOCATION. This is a human response, not a new ADAPT
+command. STOP and await the actual human response; do not expose the gated command
+as executable or infer authority from the reply before its existing gate checks.
+If completion is already established but subsequent work needs approval, retain
+ACTION_RESULT: COMPLETED and expose that separate decision without replaying work.
+
+For blocked work, expose NEXT_INVOCATION: NONE and the exact lawful resolution
+path and responsible role. For example, stale context requires Context Steward
+review under the existing context contract; approval cannot cure missing source
+or authority evidence. Where the existing routing is unavailable or conflicting,
+report the missing requirement and route the issue to Director Lane; this is not
+permission to execute Director intake or fabricate a canonical handoff. No blocked
+operation is made executable by a proposed resolution or by a prior approval.
+
+External maintenance uses its existing human review/approval interaction and
+verified evidence, not a fabricated registry command or instance control plane.
+If no next action is needed, say NEXT_PERMITTED_ACTION: NONE, NEXT_INVOCATION: NONE
+and HUMAN_DECISION_REQUIRED: NO. Preserve partial-write uncertainty, denials and
+validated successful outcomes; never retry an operation to complete this report.
+The block is a response obligation of the acting agent, including when an existing
+tool renders different result text; it does not change the tool's output schema.
+Deliver the block, then STOP. Never automatically execute the next invocation;
+the human remains the orchestrator and all existing authority/gates still apply.
 
 ## The 13-Step Atomic Handoff Dispatch Sequence
 
@@ -162,8 +222,9 @@ Update the following control plane fields:
 - `CurrentPhase`, `ExecutionReadiness`: update if the phase or readiness changed
 
 **Step 13 — Stop**
-Deliver the human-facing chat response above before ending this turn. This also
-applies to every earlier stop and every role-specific completion path.
+Deliver the human-facing chat response and next-interaction block above before
+ending this turn. This also applies to every earlier stop and every role-specific
+completion path. A next invocation is information for the human, not continuation.
 Do not continue past Step 13. Do not begin the next action. Do not process the next handoff. The current Atomic Handoff Dispatch cycle is complete. The next agent reads the control plane and begins a new cycle.
 
 ---

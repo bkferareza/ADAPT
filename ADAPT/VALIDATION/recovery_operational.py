@@ -30,7 +30,7 @@ structural = _load('recovery_structural')
 rt = structural.runtime
 assembly, pre, op = rt.assembly, rt.pre, rt.op
 supervised = _load('recovery_supervised')
-VERSION = 'ADAPT-FW-0009'
+VERSION = 'ADAPT-FW-0010'
 
 
 def human_review(plan):
